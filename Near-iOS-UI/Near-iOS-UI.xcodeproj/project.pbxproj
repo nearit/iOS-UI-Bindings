@@ -1,0 +1,362 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
+		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
+		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */; };
+		26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3111F56C871009DDDF2 /* NITDialogController.xib */; };
+		26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */; };
+		26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */; };
+		26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC33D1F56EA46009DDDF2 /* Images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
+		26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
+		26CAC3071F56BB4E009DDDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITDialogController.swift; sourceTree = "<group>"; };
+		26CAC3111F56C871009DDDF2 /* NITDialogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITDialogController.xib; sourceTree = "<group>"; };
+		26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsViewController.swift; sourceTree = "<group>"; };
+		26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsViewController.xib; sourceTree = "<group>"; };
+		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26CAC2FF1F56BB4E009DDDF2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26441FFA1F57F9EE00A38740 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				26441FFB1F57FA0A00A38740 /* AppColors.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		26CAC2F91F56BB4E009DDDF2 = {
+			isa = PBXGroup;
+			children = (
+				26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */,
+				26CAC3041F56BB4E009DDDF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26CAC3041F56BB4E009DDDF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */ = {
+			isa = PBXGroup;
+			children = (
+				26CAC33A1F56EA02009DDDF2 /* Resources */,
+				26CAC30E1F56BB60009DDDF2 /* View Controllers */,
+				26441FFA1F57F9EE00A38740 /* Utils */,
+				26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */,
+				26CAC3071F56BB4E009DDDF2 /* Info.plist */,
+			);
+			path = "Near-iOS-UI";
+			sourceTree = "<group>";
+		};
+		26CAC30E1F56BB60009DDDF2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
+				26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */,
+				26CAC3111F56C871009DDDF2 /* NITDialogController.xib */,
+				26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */,
+				26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		26CAC33A1F56EA02009DDDF2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26CAC33D1F56EA46009DDDF2 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		26CAC3001F56BB4E009DDDF2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		26CAC3021F56BB4E009DDDF2 /* NeariOSUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */;
+			buildPhases = (
+				26CAC2FE1F56BB4E009DDDF2 /* Sources */,
+				26CAC2FF1F56BB4E009DDDF2 /* Frameworks */,
+				26CAC3001F56BB4E009DDDF2 /* Headers */,
+				26CAC3011F56BB4E009DDDF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NeariOSUI;
+			productName = "Near-iOS-UI";
+			productReference = 26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26CAC2FA1F56BB4E009DDDF2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Near;
+				TargetAttributes = {
+					26CAC3021F56BB4E009DDDF2 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = C8YW5Q8LEU;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 26CAC2FD1F56BB4E009DDDF2 /* Build configuration list for PBXProject "Near-iOS-UI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 26CAC2F91F56BB4E009DDDF2;
+			productRefGroup = 26CAC3041F56BB4E009DDDF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26CAC3021F56BB4E009DDDF2 /* NeariOSUI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26CAC3011F56BB4E009DDDF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
+				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
+				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26CAC2FE1F56BB4E009DDDF2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
+				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
+				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
+				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		26CAC3091F56BB4E009DDDF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		26CAC30A1F56BB4E009DDDF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		26CAC30C1F56BB4E009DDDF2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Near-iOS-UI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		26CAC30D1F56BB4E009DDDF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Near-iOS-UI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26CAC2FD1F56BB4E009DDDF2 /* Build configuration list for PBXProject "Near-iOS-UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CAC3091F56BB4E009DDDF2 /* Debug */,
+				26CAC30A1F56BB4E009DDDF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CAC30C1F56BB4E009DDDF2 /* Debug */,
+				26CAC30D1F56BB4E009DDDF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26CAC2FA1F56BB4E009DDDF2 /* Project object */;
+}
