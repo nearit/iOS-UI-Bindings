@@ -32,12 +32,12 @@
                                 <constraint firstAttribute="width" secondItem="DoX-lM-t4V" secondAttribute="height" multiplier="30:11" id="hld-ku-bqA"/>
                             </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-gH-q5V">
-                            <rect key="frame" x="0.0" y="137.5" width="375" height="176.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-gH-q5V">
+                            <rect key="frame" x="0.0" y="137.5" width="375" height="164.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhc-ir-PNg">
-                                    <rect key="frame" x="25" y="25" width="325" height="126.5"/>
-                                    <mutableString key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</mutableString>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhc-ir-PNg">
+                                    <rect key="frame" x="25" y="25" width="325" height="114.5"/>
+                                    <string key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -51,10 +51,10 @@
                                 <constraint firstItem="Xhc-ir-PNg" firstAttribute="top" secondItem="jDt-gH-q5V" secondAttribute="top" constant="25" id="xgk-qN-IxF"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
-                            <rect key="frame" x="0.0" y="314" width="375" height="61"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
+                            <rect key="frame" x="0.0" y="302" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Ybr-DK-9i4"/>
@@ -73,10 +73,10 @@
                                 <constraint firstAttribute="bottom" secondItem="0n5-Fd-HeG" secondAttribute="bottom" constant="8" id="uap-ek-qZu"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
-                            <rect key="frame" x="0.0" y="375" width="375" height="61"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
+                            <rect key="frame" x="0.0" y="363" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="6Ki-3j-CtS"/>
@@ -95,11 +95,11 @@
                                 <constraint firstAttribute="trailing" secondItem="8dB-wf-3Rs" secondAttribute="trailing" constant="25" id="zOu-gs-E6E"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-Yd-uxf">
-                            <rect key="frame" x="0.0" y="436" width="375" height="68"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-Yd-uxf">
+                            <rect key="frame" x="0.0" y="424" width="375" height="80"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-zD-bbD">
-                                    <rect key="frame" x="25" y="19" width="325" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-zD-bbD">
+                                    <rect key="frame" x="25" y="25" width="325" height="30"/>
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                     <state key="normal" title="Not now"/>
                                     <connections>

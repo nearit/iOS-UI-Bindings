@@ -10,9 +10,39 @@ import UIKit
 
 public class NITDialogController: UIViewController {
     
+    @objc public enum CFAlertControllerBackgroundStyle : Int {
+        case plain = 0
+        case blur
+    }
+    
+    // Background
+    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
+        didSet  {
+            if isViewLoaded {
+                // Set Background
+                if backgroundStyle == .blur {
+                    // Set Blur Background
+                    backgroundBlurView?.alpha = 1.0
+                }
+                else {
+                    // Display Plain Background
+                    backgroundBlurView?.alpha = 0.0
+                }
+            }
+        }
+    }
+    public var backgroundColor: UIColor?    {
+        didSet  {
+            if isViewLoaded {
+                view.backgroundColor = backgroundColor
+            }
+        }
+    }
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollHeightConstraint: NSLayoutConstraint!
+    @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
     private var viewController: UIViewController!
 
     override public func viewDidLoad() {
@@ -58,6 +88,9 @@ public class NITDialogController: UIViewController {
         if let baseViewController = viewController as? NITBaseViewController {
             baseViewController.dialogController = self
         }
+        
+        modalPresentationStyle = .overCurrentContext
+        modalTransitionStyle = .crossDissolve
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITDialogController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundBlurView" destination="Odv-fV-Hgg" id="GhO-Og-ZWA"/>
                 <outlet property="contentView" destination="pOA-nA-DZJ" id="ugs-Mq-kly"/>
                 <outlet property="scrollHeightConstraint" destination="KgK-M3-Iut" id="jsI-dh-jnb"/>
                 <outlet property="scrollView" destination="C8v-lf-H3R" id="ER7-jg-pSM"/>
@@ -50,6 +51,7 @@
                             </constraints>
                         </scrollView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="C8v-lf-H3R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="umR-P7-gAp" secondAttribute="top" constant="20" id="Ilj-ii-0Tk"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C8v-lf-H3R" secondAttribute="trailing" constant="20" id="Sg9-pE-kTZ"/>
@@ -60,7 +62,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Odv-fV-Hgg" secondAttribute="bottom" id="3do-ga-HH1"/>
                 <constraint firstItem="umR-P7-gAp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3e5-yl-fR5"/>

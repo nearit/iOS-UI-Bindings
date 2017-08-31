@@ -14,6 +14,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var location: UIButton!
     @IBOutlet weak var notification: UIButton!
     @IBOutlet weak var footer: UIButton!
+    var outlinedButton: UIImage!
+    var filledButton: UIImage!
     
     public var explainText: String? {
         get {
@@ -45,19 +47,19 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     internal func setupUI() {
+        let bundle = Bundle(for: NITDialogController.self)
+        let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
+        outlinedButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
+        filledButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        
         explain.textColor = UIColor.nearWarmGrey
         footer.tintColor = UIColor.nearWarmGrey
         
-        setupButton(button: location)
         location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        setupButton(button: notification)
+        location.setBackgroundImage(outlinedButton, for: .normal)
         notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-    }
-    
-    internal func setupButton(button: UIButton) {
-        button.layer.cornerRadius = 45.0 / 2
-        button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.black.cgColor
+        notification.setBackgroundImage(outlinedButton, for: .normal)
     }
     
     @IBAction func tapFooter(_ sender: Any) {
