@@ -63,6 +63,9 @@
                                     <state key="normal" title="LOCATION" image="location">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="tapLocation:" destination="-1" eventType="touchUpInside" id="yIC-rz-n1z"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,6 +88,9 @@
                                     <state key="normal" title="NOTIFICATIONS" image="notifications">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="tapNotifications:" destination="-1" eventType="touchUpInside" id="KTv-c1-A74"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

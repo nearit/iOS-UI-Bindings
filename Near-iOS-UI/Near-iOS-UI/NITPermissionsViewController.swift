@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import UserNotifications
 
 public class NITPermissionsViewController: NITBaseViewController {
     
@@ -16,6 +18,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var footer: UIButton!
     var outlinedButton: UIImage!
     var filledButton: UIImage!
+    var tickImage: UIImage!
+    let locationManager = CLLocationManager()
     
     public var explainText: String? {
         get {
@@ -31,6 +35,7 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
+        locationManager.delegate = self
     }
 
     override public func didReceiveMemoryWarning() {
@@ -52,6 +57,7 @@ public class NITPermissionsViewController: NITBaseViewController {
         outlinedButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         filledButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        tickImage = UIImage(named: "tick", in: bundle, compatibleWith: nil)
         
         explain.textColor = UIColor.nearWarmGrey
         footer.tintColor = UIColor.nearWarmGrey
@@ -65,6 +71,36 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBAction func tapFooter(_ sender: Any) {
         dialogController?.dismiss()
     }
+    
+    // MARK: - Permission buttons
+    
+    @IBAction func tapLocation(_ sender: Any) {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    @IBAction func tapNotifications(_ sender: Any) {
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
+                
+            })
+        } else {
+            let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
+        }
+    }
+    
+    func confirmLocationButton() {
+        location.setBackgroundImage(filledButton, for: .normal)
+        location.setTitleColor(UIColor.white, for: .normal)
+        location.setImage(tickImage, for: .normal)
+    }
+    
+    func confirmNotificationButton() {
+        notification.setBackgroundImage(filledButton, for: .normal)
+        notification.setTitleColor(UIColor.white, for: .normal)
+        notification.setImage(tickImage, for: .normal)
+    }
 
     /*
     // MARK: - Navigation
@@ -76,4 +112,13 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     */
 
+}
+
+extension NITPermissionsViewController : CLLocationManagerDelegate {
+    
+    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status != .notDetermined {
+            confirmLocationButton()
+        }
+    }
 }
