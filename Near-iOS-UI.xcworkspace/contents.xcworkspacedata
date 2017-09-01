@@ -7,4 +7,10 @@
    <FileRef
       location = "group:UI-Swift-Sample/UI-Swift-Sample.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:UI-ObjC-Sample/UI-ObjC-Sample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
 </Workspace>

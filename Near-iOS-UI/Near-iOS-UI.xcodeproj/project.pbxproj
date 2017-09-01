@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
 		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +29,9 @@
 		26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsViewController.swift; sourceTree = "<group>"; };
 		26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsViewController.xib; sourceTree = "<group>"; };
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
+		5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,12 +39,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B6CFF9321523FE0D79D5A70 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		26441FFA1F57F9EE00A38740 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +67,8 @@
 			children = (
 				26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */,
 				26CAC3041F56BB4E009DDDF2 /* Products */,
+				AEDDC17781B942BF030869BC /* Pods */,
+				1B6CFF9321523FE0D79D5A70 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +112,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		AEDDC17781B942BF030869BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */,
+				45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -115,10 +139,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */;
 			buildPhases = (
+				EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */,
 				26CAC2FE1F56BB4E009DDDF2 /* Sources */,
 				26CAC2FF1F56BB4E009DDDF2 /* Frameworks */,
 				26CAC3001F56BB4E009DDDF2 /* Headers */,
 				26CAC3011F56BB4E009DDDF2 /* Resources */,
+				A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -175,6 +201,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26CAC2FE1F56BB4E009DDDF2 /* Sources */ = {
@@ -294,6 +356,7 @@
 		};
 		26CAC30C1F56BB4E009DDDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -316,6 +379,7 @@
 		};
 		26CAC30D1F56BB4E009DDDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
