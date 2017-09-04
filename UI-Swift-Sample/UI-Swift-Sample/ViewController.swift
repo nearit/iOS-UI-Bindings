@@ -32,6 +32,14 @@ class ViewController: UIViewController {
         let dialog = NITDialogController(viewController: aViewController)
         present(dialog, animated: true, completion: nil)
     }
+    
+    func showPermissionsDialogCustom() {
+        let aViewController = NITPermissionsViewController()
+        aViewController.headerImage = UIImage(named: "NearIT")
+        aViewController.textColor = UIColor.black
+        let dialog = NITDialogController(viewController: aViewController)
+        present(dialog, animated: true, completion: nil)
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -41,7 +49,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,6 +62,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             title?.text = "Permissions"
             description?.text = "Request permissions for locations and notifications"
+        case 1:
+            title?.text = "Permissions"
+            description?.text = "Custom UI"
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -66,6 +77,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             showPermissionsDialog()
+        case 1:
+            showPermissionsDialogCustom()
         default:
             break
         }

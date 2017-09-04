@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="explain" destination="Xhc-ir-PNg" id="o9L-FJ-3Lh"/>
                 <outlet property="footer" destination="gsv-zD-bbD" id="Yzx-Cq-zCY"/>
+                <outlet property="header" destination="DoX-lM-t4V" id="uor-UT-AdS"/>
                 <outlet property="location" destination="0n5-Fd-HeG" id="b36-Yo-8PD"/>
                 <outlet property="notification" destination="8dB-wf-3Rs" id="1YP-j1-TYQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,7 +27,7 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-n1-al8">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="504"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="permissionsBanner" translatesAutoresizingMaskIntoConstraints="NO" id="DoX-lM-t4V">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="permissionsBanner" translatesAutoresizingMaskIntoConstraints="NO" id="DoX-lM-t4V">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="137.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="DoX-lM-t4V" secondAttribute="height" multiplier="30:11" id="hld-ku-bqA"/>

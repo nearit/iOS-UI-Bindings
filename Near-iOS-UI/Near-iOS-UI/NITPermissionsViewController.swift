@@ -16,9 +16,12 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var location: UIButton!
     @IBOutlet weak var notification: UIButton!
     @IBOutlet weak var footer: UIButton!
+    @IBOutlet weak var header: UIImageView!
     var outlinedButton: UIImage!
     var filledButton: UIImage!
     var tickImage: UIImage!
+    public var headerImage: UIImage!
+    public var textColor: UIColor!
     let locationManager = CLLocationManager()
     
     public var explainText: String? {
@@ -49,23 +52,29 @@ public class NITPermissionsViewController: NITBaseViewController {
         
         // Create New Instance Of Alert Controller
         self.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        setupDefaultElements()
     }
     
-    internal func setupUI() {
+    func setupDefaultElements() {
         let bundle = Bundle(for: NITDialogController.self)
         let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
         outlinedButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         filledButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         tickImage = UIImage(named: "tick", in: bundle, compatibleWith: nil)
-        
-        explain.textColor = UIColor.nearWarmGrey
-        footer.tintColor = UIColor.nearWarmGrey
+        headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
+        textColor = UIColor.nearWarmGrey
+    }
+    
+    internal func setupUI() {
+        explain.textColor = textColor
+        footer.tintColor = textColor
         
         location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         location.setBackgroundImage(outlinedButton, for: .normal)
         notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         notification.setBackgroundImage(outlinedButton, for: .normal)
+        header.image = headerImage
     }
     
     @IBAction func tapFooter(_ sender: Any) {
