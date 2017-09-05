@@ -38,11 +38,13 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+    var isEnableTapToClose = true
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollHeightConstraint: NSLayoutConstraint!
-    @IBOutlet public weak var backgroundBlurView: UIVisualEffectView?
+    @IBOutlet weak var backgroundBlurView: UIVisualEffectView?
+    @IBOutlet weak var containerView: UIView!
     private var viewController: UIViewController!
 
     override public func viewDidLoad() {
@@ -65,6 +67,10 @@ public class NITDialogController: UIViewController {
         viewController.didMove(toParentViewController: self)
         
         scrollView?.addObserver(self, forKeyPath: "contentSize", options: [.new, .old, .prior], context: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOutside(_:)))
+        tapGesture.delegate = self
+        containerView.addGestureRecognizer(tapGesture)
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -130,6 +136,12 @@ public class NITDialogController: UIViewController {
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func tapOutside(_ gesture: UITapGestureRecognizer) {
+        if isEnableTapToClose {
+            dismiss()
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -141,4 +153,13 @@ public class NITDialogController: UIViewController {
     }
     */
 
+}
+
+extension NITDialogController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point = touch.location(in: self.scrollView)
+        let inside = scrollView.point(inside: point, with: nil)
+        return !inside
+    }
 }

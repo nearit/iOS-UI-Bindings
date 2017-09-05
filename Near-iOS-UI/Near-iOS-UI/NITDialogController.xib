@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITDialogController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundBlurView" destination="Odv-fV-Hgg" id="GhO-Og-ZWA"/>
+                <outlet property="containerView" destination="umR-P7-gAp" id="Wsh-f9-XVa"/>
                 <outlet property="contentView" destination="pOA-nA-DZJ" id="ugs-Mq-kly"/>
                 <outlet property="scrollHeightConstraint" destination="KgK-M3-Iut" id="jsI-dh-jnb"/>
                 <outlet property="scrollView" destination="C8v-lf-H3R" id="ER7-jg-pSM"/>

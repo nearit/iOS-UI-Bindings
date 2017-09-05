@@ -11,6 +11,17 @@ import UIKit
 public class NITBaseViewController: UIViewController {
     
     var dialogController: NITDialogController?
+    var isEnableTapToClose: Bool {
+        get {
+            if let dialogController = dialogController {
+                return dialogController.isEnableTapToClose
+            }
+            return false
+        }
+        set(enabled) {
+            dialogController?.isEnableTapToClose = enabled
+        }
+    }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
