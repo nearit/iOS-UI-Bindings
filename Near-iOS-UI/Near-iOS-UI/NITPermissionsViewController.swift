@@ -75,6 +75,18 @@ public class NITPermissionsViewController: NITBaseViewController {
         notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         notification.setBackgroundImage(outlinedButton, for: .normal)
         header.image = headerImage
+        
+        if #available(iOS 10.0, *) {
+            permissionsManager.isNotificationAvailable({ (available) in
+                if available {
+                    self.confirmNotificationButton()
+                }
+            })
+        } else {
+            if permissionsManager.isNotificationAvailable() {
+                confirmNotificationButton()
+            }
+        }
     }
     
     @IBAction func tapFooter(_ sender: Any) {

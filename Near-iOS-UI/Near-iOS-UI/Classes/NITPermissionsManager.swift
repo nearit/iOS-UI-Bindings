@@ -75,6 +75,26 @@ class NITPermissionsManager: NSObject {
             delegate?.permissionsManagerDidRequestNotificationPermissions(self)
         }
     }
+    
+    @available(iOS 10.0, *)
+    func isNotificationAvailable(_ completionHandler: @escaping (Bool) -> Void) {
+        notificationCenter.getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+        }
+    }
+    
+    func isNotificationAvailable() -> Bool {
+        if let settings = application.currentUserNotificationSettings {
+            if (settings.types == .alert || settings.types == .badge || settings.types == .sound) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 extension NITPermissionsManager: CLLocationManagerDelegate {
