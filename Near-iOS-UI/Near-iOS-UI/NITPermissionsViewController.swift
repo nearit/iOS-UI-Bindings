@@ -22,7 +22,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     var tickImage: UIImage!
     public var headerImage: UIImage!
     public var textColor: UIColor!
-    let locationManager = CLLocationManager()
+    let permissionsManager = NITPermissionsManager()
     
     public var explainText: String? {
         get {
@@ -38,7 +38,6 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
-        locationManager.delegate = self
     }
 
     override public func didReceiveMemoryWarning() {
@@ -52,6 +51,7 @@ public class NITPermissionsViewController: NITBaseViewController {
         
         // Create New Instance Of Alert Controller
         self.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        permissionsManager.delegate = self
         setupDefaultElements()
     }
     
@@ -84,19 +84,11 @@ public class NITPermissionsViewController: NITBaseViewController {
     // MARK: - Permission buttons
     
     @IBAction func tapLocation(_ sender: Any) {
-        locationManager.requestAlwaysAuthorization()
+        permissionsManager.requestLocationPermission()
     }
     
     @IBAction func tapNotifications(_ sender: Any) {
-        if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
-                
-            })
-        } else {
-            let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-        }
+        permissionsManager.requestNotificationsPermission()
     }
     
     func confirmLocationButton() {
@@ -120,14 +112,17 @@ public class NITPermissionsViewController: NITBaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
 
-extension NITPermissionsViewController : CLLocationManagerDelegate {
+extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     
-    public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .notDetermined {
+    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
+        if (granted) {
             confirmLocationButton()
         }
+    }
+    
+    func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
+        confirmNotificationButton()
     }
 }

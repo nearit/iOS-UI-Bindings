@@ -10,6 +10,7 @@
 		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
+		264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */; };
 		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */; };
 		26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3111F56C871009DDDF2 /* NITDialogController.xib */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
+		264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsManager.swift; sourceTree = "<group>"; };
 		26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
 		26CAC3071F56BB4E009DDDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		264FB8C31F5D884200DC740A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		26CAC2F91F56BB4E009DDDF2 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +93,7 @@
 		26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */ = {
 			isa = PBXGroup;
 			children = (
+				264FB8C31F5D884200DC740A /* Classes */,
 				26CAC33A1F56EA02009DDDF2 /* Resources */,
 				26CAC30E1F56BB60009DDDF2 /* View Controllers */,
 				26441FFA1F57F9EE00A38740 /* Utils */,
@@ -247,6 +258,7 @@
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
+				264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
