@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         let aViewController = NITPermissionsViewController()
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
+        aViewController.isEnableTapToClose = false
         let dialog = NITDialogController(viewController: aViewController)
         present(dialog, animated: true, completion: nil)
     }

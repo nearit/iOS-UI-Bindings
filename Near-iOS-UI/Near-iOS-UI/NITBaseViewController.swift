@@ -11,15 +11,14 @@ import UIKit
 public class NITBaseViewController: UIViewController {
     
     var dialogController: NITDialogController?
-    var isEnableTapToClose: Bool {
+    private var _isEnableTapToClose: Bool = true
+    public var isEnableTapToClose: Bool {
         get {
-            if let dialogController = dialogController {
-                return dialogController.isEnableTapToClose
-            }
-            return false
+            return _isEnableTapToClose
         }
         set(enabled) {
             dialogController?.isEnableTapToClose = enabled
+            _isEnableTapToClose = enabled
         }
     }
 

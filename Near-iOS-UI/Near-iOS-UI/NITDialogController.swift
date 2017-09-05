@@ -93,6 +93,7 @@ public class NITDialogController: UIViewController {
         
         if let baseViewController = viewController as? NITBaseViewController {
             baseViewController.dialogController = self
+            isEnableTapToClose = baseViewController.isEnableTapToClose
         }
         
         modalPresentationStyle = .overCurrentContext

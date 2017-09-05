@@ -37,6 +37,7 @@
     NITPermissionsViewController *permissionsVC = [[NITPermissionsViewController alloc] init];
     permissionsVC.headerImage = [UIImage imageNamed:@"NearIT"];
     permissionsVC.textColor = [UIColor blackColor];
+    permissionsVC.isEnableTapToClose = NO;
     NITDialogController *dialogController = [[NITDialogController alloc] initWithViewController:permissionsVC];
     [self presentViewController:dialogController animated:YES completion:nil];
 }
