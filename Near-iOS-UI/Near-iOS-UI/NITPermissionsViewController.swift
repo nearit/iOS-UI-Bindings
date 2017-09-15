@@ -16,6 +16,11 @@ import UserNotifications
     case locationAndNotifications
 }
 
+@objc public enum NITPermissionsLocationType: NSInteger {
+    case always = 0
+    case whenInUse = 1
+}
+
 public class NITPermissionsViewController: NITBaseViewController {
     
     @IBOutlet weak var explain: UILabel!
@@ -32,6 +37,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()
     public var type: NITPermissionsType = .locationAndNotifications
+    public var locationType: NITPermissionsLocationType = .always
     
     public var explainText: String? {
         get {
@@ -107,6 +113,18 @@ public class NITPermissionsViewController: NITBaseViewController {
             if permissionsManager.isNotificationAvailable() {
                 confirmNotificationButton()
             }
+        }
+        
+        var authorizationStatus: CLAuthorizationStatus!
+        switch locationType {
+        case .always:
+            authorizationStatus = .authorizedAlways
+        case .whenInUse:
+            authorizationStatus = .authorizedWhenInUse
+        }
+        
+        if permissionsManager.isLocationGranted(status: authorizationStatus) {
+            confirmLocationButton()
         }
     }
     
