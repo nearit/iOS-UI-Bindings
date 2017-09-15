@@ -10,6 +10,12 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
+enum NITPermissionsType {
+    case locationOnly
+    case notificationsOnly
+    case locationAndNotifications
+}
+
 public class NITPermissionsViewController: NITBaseViewController {
     
     @IBOutlet weak var explain: UILabel!
@@ -17,12 +23,15 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var notification: UIButton!
     @IBOutlet weak var footer: UIButton!
     @IBOutlet weak var header: UIImageView!
+    @IBOutlet weak var locationContainer: UIView!
+    @IBOutlet weak var notificationsContainer: UIView!
     var outlinedButton: UIImage!
     var filledButton: UIImage!
     var tickImage: UIImage!
     public var headerImage: UIImage!
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()
+    var type: NITPermissionsType = .locationAndNotifications
     
     public var explainText: String? {
         get {
@@ -67,6 +76,18 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     internal func setupUI() {
+        switch type {
+        case .locationAndNotifications:
+            locationContainer.isHidden = false
+            notificationsContainer.isHidden = false
+        case .locationOnly:
+            locationContainer.isHidden = false
+            notificationsContainer.isHidden = true
+        case .notificationsOnly:
+            locationContainer.isHidden = true
+            notificationsContainer.isHidden = false
+        }
+        
         explain.textColor = textColor
         footer.tintColor = textColor
         
