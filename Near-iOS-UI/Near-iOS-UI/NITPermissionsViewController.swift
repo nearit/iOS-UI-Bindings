@@ -30,9 +30,9 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
     @IBOutlet weak var notificationsContainer: UIView!
-    var unknownButton: UIImage!
-    var grantedButton: UIImage!
-    var grantedIcon: UIImage!
+    public var unknownButton: UIImage!
+    public var grantedButton: UIImage!
+    public var grantedIcon: UIImage!
     public var headerImage: UIImage!
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()

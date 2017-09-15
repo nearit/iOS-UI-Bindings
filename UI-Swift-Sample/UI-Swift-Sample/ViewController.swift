@@ -33,10 +33,19 @@ class ViewController: UIViewController {
     }
     
     func showPermissionsDialogCustom() {
+        let baseUnknownImage = UIImage(named: "gray-button")
+        let unknownImage = baseUnknownImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
+        
+        let baseGrantedImage = UIImage(named: "blue-button")
+        let grantedImage = baseGrantedImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
+        
         let aViewController = NITPermissionsViewController()
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
         aViewController.isEnableTapToClose = false
+        aViewController.unknownButton = unknownImage
+        aViewController.grantedButton = grantedImage
+        aViewController.grantedIcon = UIImage(named: "green-dot")
         aViewController.show()
     }
     

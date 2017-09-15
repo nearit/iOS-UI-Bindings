@@ -33,10 +33,18 @@
 }
 
 - (void)showPermissionsDialogCustom {
+    UIImage *baseUnknownImage = [UIImage imageNamed:@"gray-button"];
+    UIImage *unknownImage = [baseUnknownImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 35, 0, 35)];
+    UIImage *baseGrantedImage = [UIImage imageNamed:@"blue-button"];
+    UIImage *grantedImage = [baseGrantedImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 35, 0, 35)];
+    
     NITPermissionsViewController *permissionsVC = [[NITPermissionsViewController alloc] init];
     permissionsVC.headerImage = [UIImage imageNamed:@"NearIT"];
     permissionsVC.textColor = [UIColor blackColor];
     permissionsVC.isEnableTapToClose = NO;
+    permissionsVC.unknownButton = unknownImage;
+    permissionsVC.grantedButton = grantedImage;
+    permissionsVC.grantedIcon = [UIImage imageNamed:@"green-dot"];
     [permissionsVC show];
 }
 
