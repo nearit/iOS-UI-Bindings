@@ -29,8 +29,7 @@ class ViewController: UIViewController {
 
     func showPermissionsDialog() {
         let aViewController = NITPermissionsViewController()
-        let dialog = NITDialogController(viewController: aViewController)
-        present(dialog, animated: true, completion: nil)
+        aViewController.show()
     }
     
     func showPermissionsDialogCustom() {
@@ -38,14 +37,12 @@ class ViewController: UIViewController {
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
         aViewController.isEnableTapToClose = false
-        let dialog = NITDialogController(viewController: aViewController)
-        present(dialog, animated: true, completion: nil)
+        aViewController.show()
     }
     
     func showPermissionsDialogLocationsOnly() {
         let aViewController = NITPermissionsViewController(type: .locationOnly)
-        let dialog = NITDialogController(viewController: aViewController)
-        present(dialog, animated: true, completion: nil)
+        aViewController.show()
     }
 }
 

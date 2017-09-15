@@ -170,6 +170,22 @@ public class NITPermissionsViewController: NITBaseViewController {
         notification.setTitleColor(UIColor.white, for: .normal)
         notification.setImage(grantedIcon, for: .normal)
     }
+    
+    /// Present permissions view controller from the rootViewController if it exists
+    public func show() {
+        if let viewController = UIApplication.shared.keyWindow?.rootViewController {
+            self.show(fromViewController: viewController)
+        }
+    }
+    
+    /**
+     Present permissions view controller from a view controller
+     - Parameter fromViewController: view controller used to present the permissions view controller
+     */
+    public func show(fromViewController: UIViewController) {
+        let dialog = NITDialogController(viewController: self)
+        fromViewController.present(dialog, animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation
