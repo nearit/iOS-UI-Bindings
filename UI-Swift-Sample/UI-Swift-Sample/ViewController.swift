@@ -43,8 +43,7 @@ class ViewController: UIViewController {
     }
     
     func showPermissionsDialogLocationsOnly() {
-        let aViewController = NITPermissionsViewController()
-        aViewController.type = .locationOnly
+        let aViewController = NITPermissionsViewController(type: .locationOnly)
         let dialog = NITDialogController(viewController: aViewController)
         present(dialog, animated: true, completion: nil)
     }

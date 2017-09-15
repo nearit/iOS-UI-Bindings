@@ -36,8 +36,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var headerImage: UIImage!
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()
-    public var type: NITPermissionsType = .locationAndNotifications
-    public var locationType: NITPermissionsLocationType = .always
+    public var type: NITPermissionsType
+    public var locationType: NITPermissionsLocationType
     
     public var explainText: String? {
         get {
@@ -61,13 +61,30 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     public convenience init() {
-        // Get Current Bundle
-        let bundle = Bundle(for: NITDialogController.self)
+        self.init(type: .locationAndNotifications, locationType: .always)
+    }
+    
+    public convenience init(locationType: NITPermissionsLocationType) {
+        self.init(type: .locationAndNotifications, locationType: locationType)
+    }
+    
+    public convenience init(type: NITPermissionsType) {
+        self.init(type: type, locationType: .always)
+    }
+    
+    public init(type: NITPermissionsType = .locationAndNotifications, locationType: NITPermissionsLocationType = .always) {
+        self.type = type
+        self.locationType = locationType
         
-        // Create New Instance Of Alert Controller
-        self.init(nibName: "NITPermissionsViewController", bundle: bundle)
-        permissionsManager.delegate = self
+        let bundle = Bundle(for: NITDialogController.self)
+        super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        
         setupDefaultElements()
+        permissionsManager.delegate = self
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupDefaultElements() {

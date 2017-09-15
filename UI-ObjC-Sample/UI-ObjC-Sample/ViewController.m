@@ -43,8 +43,7 @@
 }
 
 - (void)showPermissionsDialogLocationsOnly {
-    NITPermissionsViewController *permissionsVC = [[NITPermissionsViewController alloc] init];
-    permissionsVC.type = NITPermissionsTypeLocationOnly;
+    NITPermissionsViewController *permissionsVC = [[NITPermissionsViewController alloc] initWithType:NITPermissionsTypeLocationOnly];
     NITDialogController *dialogController = [[NITDialogController alloc] initWithViewController:permissionsVC];
     [self presentViewController:dialogController animated:YES completion:nil];
 }
