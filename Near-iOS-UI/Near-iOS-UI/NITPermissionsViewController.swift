@@ -10,8 +10,8 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-enum NITPermissionsType {
-    case locationOnly
+@objc public enum NITPermissionsType: NSInteger {
+    case locationOnly = 0
     case notificationsOnly
     case locationAndNotifications
 }
@@ -31,7 +31,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var headerImage: UIImage!
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()
-    var type: NITPermissionsType = .locationAndNotifications
+    public var type: NITPermissionsType = .locationAndNotifications
     
     public var explainText: String? {
         get {
