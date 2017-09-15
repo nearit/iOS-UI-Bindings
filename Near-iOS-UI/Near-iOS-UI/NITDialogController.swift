@@ -109,7 +109,7 @@ public class NITDialogController: UIViewController {
     
     internal func updateContainerViewFrame(withAnimation shouldAnimate: Bool) {
         
-        let animate: ((_: Void) -> Void)? = {() -> Void in
+        let animate: (() -> Void)? = {() -> Void in
             
             if let scrollView = self.scrollView   {
                 
