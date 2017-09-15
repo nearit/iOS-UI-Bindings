@@ -25,9 +25,9 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
     @IBOutlet weak var notificationsContainer: UIView!
-    var outlinedButton: UIImage!
-    var filledButton: UIImage!
-    var tickImage: UIImage!
+    var unknownButton: UIImage!
+    var grantedButton: UIImage!
+    var grantedIcon: UIImage!
     public var headerImage: UIImage!
     public var textColor: UIColor!
     let permissionsManager = NITPermissionsManager()
@@ -67,10 +67,10 @@ public class NITPermissionsViewController: NITBaseViewController {
     func setupDefaultElements() {
         let bundle = Bundle(for: NITDialogController.self)
         let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
-        outlinedButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        unknownButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
-        filledButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        tickImage = UIImage(named: "tick", in: bundle, compatibleWith: nil)
+        grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
     }
@@ -92,9 +92,9 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.tintColor = textColor
         
         location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        location.setBackgroundImage(outlinedButton, for: .normal)
+        location.setBackgroundImage(unknownButton, for: .normal)
         notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        notification.setBackgroundImage(outlinedButton, for: .normal)
+        notification.setBackgroundImage(unknownButton, for: .normal)
         header.image = headerImage
         
         if #available(iOS 10.0, *) {
@@ -125,15 +125,15 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func confirmLocationButton() {
-        location.setBackgroundImage(filledButton, for: .normal)
+        location.setBackgroundImage(grantedButton, for: .normal)
         location.setTitleColor(UIColor.white, for: .normal)
-        location.setImage(tickImage, for: .normal)
+        location.setImage(grantedIcon, for: .normal)
     }
     
     func confirmNotificationButton() {
-        notification.setBackgroundImage(filledButton, for: .normal)
+        notification.setBackgroundImage(grantedButton, for: .normal)
         notification.setTitleColor(UIColor.white, for: .normal)
-        notification.setImage(tickImage, for: .normal)
+        notification.setImage(grantedIcon, for: .normal)
     }
 
     /*
