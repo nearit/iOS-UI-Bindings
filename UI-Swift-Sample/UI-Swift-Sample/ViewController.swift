@@ -53,6 +53,12 @@ class ViewController: UIViewController {
         let aViewController = NITPermissionsViewController(type: .locationOnly)
         aViewController.show()
     }
+
+    func presentTheSameControllerAsAModalOne() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "main controller") {
+            present(vc, animated: true, completion: nil)
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -64,7 +70,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 4
         default:
             return 0
         }
@@ -88,6 +94,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 title?.text = "Permissions"
                 description?.text = "Locations Only"
+            case 3:
+                title?.text = NSLocalizedString("Present as a modal controller",
+                                                comment: "Mainview -> present the mainview as a modal controller")
+                description?.text = "Test popups when they are presented from a modal controller; handy to test complex controllers hierarchy"
             default:
                 title?.text = "Undefined"
                 description?.text = " - "
@@ -111,6 +121,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 showPermissionsDialogCustom()
             case 2:
                 showPermissionsDialogLocationsOnly()
+            case 3:
+                presentTheSameControllerAsAModalOne()
             default:
                 break
             }
