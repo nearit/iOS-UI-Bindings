@@ -10,14 +10,14 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
-protocol NITPermissionsManagerDelegate {
+protocol NITPermissionsManagerDelegate: class {
     func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool)
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager)
 }
 
 class NITPermissionsManager: NSObject {
     
-    var delegate: NITPermissionsManagerDelegate?
+    weak var delegate: NITPermissionsManagerDelegate?
     private let locationManager: CLLocationManager
     private let application: UIApplication
     
@@ -79,10 +79,12 @@ class NITPermissionsManager: NSObject {
     @available(iOS 10.0, *)
     func isNotificationAvailable(_ completionHandler: @escaping (Bool) -> Void) {
         notificationCenter.getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .authorized {
-                completionHandler(true)
-            } else {
-                completionHandler(false)
+            DispatchQueue.main.async {
+                if settings.authorizationStatus == .authorized {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
             }
         }
     }
