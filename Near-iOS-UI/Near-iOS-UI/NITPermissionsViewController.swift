@@ -174,7 +174,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     /// Present permissions view controller from the rootViewController if it exists
     public func show() {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewContr oller: viewController)
+            self.show(fromViewController: viewController)
         }
     }
     
