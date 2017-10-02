@@ -42,6 +42,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location is used for general purpose</string>
+	<string>Always usage: Your location is used for general purpose</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>When in use: Your location is used for general purpose</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Always and when in use: Your location is used for general purpose</string>
 </dict>
 </plist>
