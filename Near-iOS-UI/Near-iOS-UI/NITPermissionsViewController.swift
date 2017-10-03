@@ -19,6 +19,22 @@ import UserNotifications
 @objc public enum NITPermissionsLocationType: NSInteger {
     case always = 0
     case whenInUse = 1
+
+    var authorizationStatus: CLAuthorizationStatus {
+        get {
+            switch self {
+            case .always:
+                return .authorizedAlways
+            case .whenInUse:
+                return .authorizedWhenInUse
+            }
+        }
+    }
+}
+
+@objc public enum NITPermissionsAutoStartRadarType: NSInteger {
+    case off = 0
+    case on = 1
 }
 
 public class NITPermissionsViewController: NITBaseViewController {
@@ -38,6 +54,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     let permissionsManager = NITPermissionsManager()
     public var type: NITPermissionsType
     public var locationType: NITPermissionsLocationType
+    public var autoStartRadar: NITPermissionsAutoStartRadarType
     
     public var explainText: String? {
         get {
@@ -53,6 +70,18 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
+    }
+
+    public func checkPermissions() -> Bool {
+        switch type {
+        case .notificationsOnly:
+            return permissionsManager.isNotificationAvailable()
+        case .locationOnly:
+            return permissionsManager.isLocationGranted(status: locationType.authorizationStatus)
+        case .locationAndNotifications:
+            return permissionsManager.isNotificationAvailable() &&
+                permissionsManager.isLocationGranted(status: locationType.authorizationStatus)
+        }
     }
 
     override public func didReceiveMemoryWarning() {
@@ -72,9 +101,10 @@ public class NITPermissionsViewController: NITBaseViewController {
         self.init(type: type, locationType: .always)
     }
     
-    public init(type: NITPermissionsType = .locationAndNotifications, locationType: NITPermissionsLocationType = .always) {
+    public init(type: NITPermissionsType = .locationAndNotifications, locationType: NITPermissionsLocationType = .always, autoStartRadar: NITPermissionsAutoStartRadarType = .on) {
         self.type = type
         self.locationType = locationType
+        self.autoStartRadar = autoStartRadar
         
         let bundle = Bundle(for: NITDialogController.self)
         super.init(nibName: "NITPermissionsViewController", bundle: bundle)
