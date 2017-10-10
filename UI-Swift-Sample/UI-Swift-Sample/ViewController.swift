@@ -46,7 +46,9 @@ class ViewController: UIViewController {
         aViewController.unknownButton = unknownImage
         aViewController.grantedButton = grantedImage
         aViewController.grantedIcon = UIImage(named: "green-dot")
-        aViewController.show()
+        aViewController.show { (dialogController: NITDialogController) in
+            dialogController.backgroundStyle = .blur
+        }
     }
     
     func showPermissionsDialogLocationsOnly() {

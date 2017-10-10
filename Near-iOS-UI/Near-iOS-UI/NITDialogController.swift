@@ -16,18 +16,10 @@ public class NITDialogController: UIViewController {
     }
     
     // Background
-    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain    {
+    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
         didSet  {
             if isViewLoaded {
-                // Set Background
-                if backgroundStyle == .blur {
-                    // Set Blur Background
-                    backgroundBlurView?.alpha = 1.0
-                }
-                else {
-                    // Display Plain Background
-                    backgroundBlurView?.alpha = 0.0
-                }
+                applyBackgroundStyle()
             }
         }
     }
@@ -71,6 +63,11 @@ public class NITDialogController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOutside(_:)))
         tapGesture.delegate = self
         containerView.addGestureRecognizer(tapGesture)
+
+        applyBackgroundStyle()
+        if let bkg = backgroundColor {
+            view.backgroundColor = bkg
+        }
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -96,7 +93,7 @@ public class NITDialogController: UIViewController {
             isEnableTapToClose = baseViewController.isEnableTapToClose
         }
         
-        modalPresentationStyle = .overCurrentContext
+        modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
     }
     
@@ -141,6 +138,20 @@ public class NITDialogController: UIViewController {
     func tapOutside(_ gesture: UITapGestureRecognizer) {
         if isEnableTapToClose {
             dismiss()
+        }
+    }
+
+    func applyBackgroundStyle() {
+        // Set Background
+        if backgroundStyle == .blur {
+            // Set Blur Background
+            backgroundColor = .clear
+            backgroundBlurView?.alpha = 1.0
+        }
+        else {
+            // Display Plain Background
+            backgroundColor = .nearWarmGrey
+            backgroundBlurView?.alpha = 0.0
         }
     }
 

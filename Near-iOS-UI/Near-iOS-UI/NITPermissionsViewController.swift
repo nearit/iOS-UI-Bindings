@@ -202,9 +202,9 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     /// Present permissions view controller from the rootViewController if it exists
-    public func show() {
+    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController)
+            self.show(fromViewController: viewController, configureDialog: configureDialog)
         }
     }
     
@@ -212,8 +212,11 @@ public class NITPermissionsViewController: NITBaseViewController {
      Present permissions view controller from a view controller
      - Parameter fromViewController: view controller used to present the permissions view controller
      */
-    public func show(fromViewController: UIViewController) {
+    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
         let dialog = NITDialogController(viewController: self)
+        if let configDlg = configureDialog {
+            configDlg(dialog)
+        }
         fromViewController.present(dialog, animated: true, completion: nil)
     }
 
