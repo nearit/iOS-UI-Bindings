@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import UserNotifications
+import NearITSDK
 
 @objc public enum NITPermissionsType: NSInteger {
     case locationOnly = 0
@@ -70,6 +71,14 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if autoStartRadar == .on && checkPermissions() {
+            let manager = NITManager.default()
+            manager.start()
+        }
     }
 
     public func checkPermissions() -> Bool {
