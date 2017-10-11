@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,10 +34,10 @@
                     <blurEffect style="dark"/>
                 </visualEffectView>
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="umR-P7-gAp">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="16" y="40" width="343" height="607"/>
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8v-lf-H3R">
-                            <rect key="frame" x="20" y="233" width="335" height="200"/>
+                            <rect key="frame" x="4" y="203.5" width="335" height="200"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="335" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-nA-DZJ">
                                     <rect key="frame" x="0.0" y="0.0" width="335" height="128"/>
@@ -52,12 +54,11 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="C8v-lf-H3R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="umR-P7-gAp" secondAttribute="top" constant="20" id="Ilj-ii-0Tk"/>
-                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C8v-lf-H3R" secondAttribute="trailing" constant="20" id="Sg9-pE-kTZ"/>
-                        <constraint firstItem="C8v-lf-H3R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="umR-P7-gAp" secondAttribute="leading" constant="20" id="leZ-Ol-5Wk"/>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C8v-lf-H3R" secondAttribute="bottom" priority="990" constant="20" id="otY-cv-wMD"/>
+                        <constraint firstItem="C8v-lf-H3R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="umR-P7-gAp" secondAttribute="top" id="Ilj-ii-0Tk"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="C8v-lf-H3R" secondAttribute="trailing" id="Sg9-pE-kTZ"/>
+                        <constraint firstItem="C8v-lf-H3R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="umR-P7-gAp" secondAttribute="leading" id="leZ-Ol-5Wk"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="C8v-lf-H3R" secondAttribute="bottom" priority="990" id="otY-cv-wMD"/>
                         <constraint firstItem="C8v-lf-H3R" firstAttribute="centerX" secondItem="umR-P7-gAp" secondAttribute="centerX" id="p07-z6-wZT"/>
                         <constraint firstItem="C8v-lf-H3R" firstAttribute="centerY" secondItem="umR-P7-gAp" secondAttribute="centerY" id="uy3-kq-T9w"/>
                     </constraints>
@@ -66,12 +67,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Odv-fV-Hgg" secondAttribute="bottom" id="3do-ga-HH1"/>
-                <constraint firstItem="umR-P7-gAp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3e5-yl-fR5"/>
+                <constraint firstItem="umR-P7-gAp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="3e5-yl-fR5"/>
                 <constraint firstAttribute="trailing" secondItem="Odv-fV-Hgg" secondAttribute="trailing" id="H9w-Ak-4bO"/>
-                <constraint firstItem="umR-P7-gAp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Q3P-aM-lIY"/>
-                <constraint firstAttribute="bottom" secondItem="umR-P7-gAp" secondAttribute="bottom" id="btc-sy-y5j"/>
+                <constraint firstItem="umR-P7-gAp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" constant="20" id="Q3P-aM-lIY"/>
+                <constraint firstAttribute="bottomMargin" secondItem="umR-P7-gAp" secondAttribute="bottom" constant="20" id="btc-sy-y5j"/>
                 <constraint firstItem="Odv-fV-Hgg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uEH-4m-ssq"/>
-                <constraint firstAttribute="trailing" secondItem="umR-P7-gAp" secondAttribute="trailing" id="uw7-BI-z5A"/>
+                <constraint firstAttribute="trailingMargin" secondItem="umR-P7-gAp" secondAttribute="trailing" id="uw7-BI-z5A"/>
                 <constraint firstItem="Odv-fV-Hgg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xEv-c5-DH2"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
