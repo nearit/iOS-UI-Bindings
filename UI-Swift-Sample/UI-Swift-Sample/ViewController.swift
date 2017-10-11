@@ -42,10 +42,13 @@ class ViewController: UIViewController {
         let aViewController = NITPermissionsViewController()
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
-        aViewController.isEnableTapToClose = false
+        aViewController.isEnableTapToClose = true
         aViewController.unknownButton = unknownImage
         aViewController.grantedButton = grantedImage
         aViewController.grantedIcon = UIImage(named: "green-dot")
+        aViewController.locationText = "Turn on location"
+        aViewController.notificationsText = "Turn on notications"
+        aViewController.explainText = "We'll notify you of content that's interesting"
         aViewController.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }

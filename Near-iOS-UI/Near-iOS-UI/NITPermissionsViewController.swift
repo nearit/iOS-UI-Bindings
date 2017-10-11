@@ -57,14 +57,11 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var locationType: NITPermissionsLocationType
     public var autoStartRadar: NITPermissionsAutoStartRadarType
     
-    public var explainText: String? {
-        get {
-            return explain.text
-        }
-        set(text) {
-            explain.text = text
-        }
-    }
+    public var locationText = NSLocalizedString("LOCATION", comment: "Permissions popup: LOCATION")
+    public var notificationsText = NSLocalizedString("NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+    public var explainText = NSLocalizedString("Permissions explanation", comment: "Permissions popup: explanation")
+    public var closeText = NSLocalizedString("Close", comment: "Permissions popup: Close")
+    public var notNowText = NSLocalizedString("Not now", comment: "Permissios popup: Not now")
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -151,12 +148,15 @@ public class NITPermissionsViewController: NITBaseViewController {
         }
         
         explain.textColor = textColor
+        explain.text = explainText
         footer.tintColor = textColor
         
         location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         location.setBackgroundImage(unknownButton, for: .normal)
+        location.setTitle(locationText, for: .normal)
         notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         notification.setBackgroundImage(unknownButton, for: .normal)
+        notification.setTitle(notificationsText, for: .normal)
         header.image = headerImage
         
         if #available(iOS 10.0, *) {
@@ -182,8 +182,10 @@ public class NITPermissionsViewController: NITBaseViewController {
         if permissionsManager.isLocationGranted(status: authorizationStatus) {
             confirmLocationButton()
         }
+
+        footer.setTitle(notNowText, for: .normal)
     }
-    
+
     @IBAction func tapFooter(_ sender: Any) {
         dialogController?.dismiss()
     }
@@ -202,12 +204,14 @@ public class NITPermissionsViewController: NITBaseViewController {
         location.setBackgroundImage(grantedButton, for: .normal)
         location.setTitleColor(UIColor.white, for: .normal)
         location.setImage(grantedIcon, for: .normal)
+        footer.setTitle(closeText, for: .normal)
     }
     
     func confirmNotificationButton() {
         notification.setBackgroundImage(grantedButton, for: .normal)
         notification.setTitleColor(UIColor.white, for: .normal)
         notification.setImage(grantedIcon, for: .normal)
+        footer.setTitle(closeText, for: .normal)
     }
     
     /// Present permissions view controller from the rootViewController if it exists
