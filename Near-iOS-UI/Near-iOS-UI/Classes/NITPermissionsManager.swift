@@ -105,6 +105,11 @@ class NITPermissionsManager: NSObject {
         }
         return false
     }
+
+    func isLocationPartiallyGranted() -> Bool {
+        let authStatus = CLLocationManager.authorizationStatus()
+        return (authStatus == .authorizedAlways || authStatus == .authorizedWhenInUse)
+    }
 }
 
 extension NITPermissionsManager: CLLocationManagerDelegate {
