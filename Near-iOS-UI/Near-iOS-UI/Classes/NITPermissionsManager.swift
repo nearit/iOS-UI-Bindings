@@ -91,7 +91,7 @@ class NITPermissionsManager: NSObject {
     
     func isNotificationAvailable() -> Bool {
         if let settings = application.currentUserNotificationSettings {
-            if (settings.types == .alert || settings.types == .badge || settings.types == .sound) {
+            if (settings.types.contains(.alert) || settings.types.contains(.badge) || settings.types.contains(.sound)) {
                 return true
             }
         }
