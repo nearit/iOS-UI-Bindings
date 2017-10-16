@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NearITSDK
 import NeariOSUI
 
 class ViewController: UIViewController {
@@ -61,7 +62,8 @@ class ViewController: UIViewController {
     }
 
     func showFeedbackDialog() {
-        let aViewController = NITFeedbackViewController()
+        let feedback = NITFeedback()
+        let aViewController = NITFeedbackViewController(feedback: feedback)
         aViewController.show()
     }
 }
@@ -69,13 +71,15 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 4
+            return 3
+        case 1:
+            return 1
         default:
             return 0
         }
@@ -99,7 +103,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 title?.text = "Permissions"
                 description?.text = "Locations Only"
-            case 3:
+            default:
+                title?.text = "Undefined"
+                description?.text = " - "
+            }
+        case 1: // Feedback
+            switch indexPath.row {
+            case 0:
                 title?.text = "Feedback"
                 description?.text = "With comment"
             default:
@@ -125,7 +135,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 showPermissionsDialogCustom()
             case 2:
                 showPermissionsDialogLocationsOnly()
-            case 3:
+            default:
+                break
+            }
+        case 1: // Feedback
+            switch indexPath.row {
+            case 0:
                 showFeedbackDialog()
             default:
                 break
@@ -133,12 +148,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             break
         }
+
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Permissions"
+        case 1:
+            return "Feedback"
         default:
             return nil
         }
