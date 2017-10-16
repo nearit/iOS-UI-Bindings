@@ -60,10 +60,9 @@ class ViewController: UIViewController {
         aViewController.show()
     }
 
-    func presentTheSameControllerAsAModalOne() {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "main controller") {
-            present(vc, animated: true, completion: nil)
-        }
+    func showFeedbackDialog() {
+        let aViewController = NITFeedbackViewController()
+        aViewController.show()
     }
 }
 
@@ -101,9 +100,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 title?.text = "Permissions"
                 description?.text = "Locations Only"
             case 3:
-                title?.text = NSLocalizedString("Present as a modal controller",
-                                                comment: "Mainview -> present the mainview as a modal controller")
-                description?.text = "Test popups when they are presented from a modal controller; handy to test complex controllers hierarchy"
+                title?.text = "Feedback"
+                description?.text = "With comment"
             default:
                 title?.text = "Undefined"
                 description?.text = " - "
@@ -128,7 +126,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 2:
                 showPermissionsDialogLocationsOnly()
             case 3:
-                presentTheSameControllerAsAModalOne()
+                showFeedbackDialog()
             default:
                 break
             }
