@@ -9,9 +9,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITFeebackViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITFeedbackViewController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
+                <outlet property="comment" destination="S8p-S9-PRk" id="k01-xC-Ugz"/>
+                <outlet property="explanation" destination="Xhc-ir-PNg" id="KQO-QJ-5m8"/>
+                <outlet property="send" destination="8dB-wf-3Rs" id="b8i-se-ruS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="stars" destination="0Cp-4t-sug" collectionClass="NSMutableArray" id="uhc-ML-co9"/>
+                <outletCollection property="stars" destination="rEJ-TK-a88" collectionClass="NSMutableArray" id="CIE-L9-xI3"/>
+                <outletCollection property="stars" destination="Cih-2R-3Lo" collectionClass="NSMutableArray" id="Uix-6z-ob3"/>
+                <outletCollection property="stars" destination="q4F-qu-AR2" collectionClass="NSMutableArray" id="GgN-j2-J1f"/>
+                <outletCollection property="stars" destination="3Zr-q1-uiu" collectionClass="NSMutableArray" id="xno-C5-bJL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -55,6 +63,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" image="starEmpty"/>
                                             <state key="selected" image="star"/>
+                                            <connections>
+                                                <action selector="onStarTouchUpInside:" destination="-1" eventType="touchUpInside" id="n57-a1-8dp"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEJ-TK-a88">
                                             <rect key="frame" x="42" y="0.0" width="35" height="35"/>
@@ -64,6 +75,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" image="starEmpty"/>
                                             <state key="selected" image="star"/>
+                                            <connections>
+                                                <action selector="onStarTouchUpInside:" destination="-1" eventType="touchUpInside" id="JjZ-2k-Mwk"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cih-2R-3Lo">
                                             <rect key="frame" x="84" y="0.0" width="35" height="35"/>
@@ -73,6 +87,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" image="starEmpty"/>
                                             <state key="selected" image="star"/>
+                                            <connections>
+                                                <action selector="onStarTouchUpInside:" destination="-1" eventType="touchUpInside" id="skd-go-hwj"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4F-qu-AR2">
                                             <rect key="frame" x="126" y="0.0" width="35" height="35"/>
@@ -82,6 +99,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" image="starEmpty"/>
                                             <state key="selected" image="star"/>
+                                            <connections>
+                                                <action selector="onStarTouchUpInside:" destination="-1" eventType="touchUpInside" id="L5i-zG-x5B"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zr-q1-uiu">
                                             <rect key="frame" x="168" y="0.0" width="35" height="35"/>
@@ -91,6 +111,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" image="starEmpty"/>
                                             <state key="selected" image="star"/>
+                                            <connections>
+                                                <action selector="onStarTouchUpInside:" destination="-1" eventType="touchUpInside" id="rk0-he-oGh"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -106,7 +129,7 @@
                             <rect key="frame" x="0.0" y="225" width="375" height="43"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave a comment (optional):" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEG-u0-c5j">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                     <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -116,16 +139,15 @@
                             <constraints>
                                 <constraint firstItem="aEG-u0-c5j" firstAttribute="top" secondItem="cat-I3-JLM" secondAttribute="top" id="6Vx-mc-sd1"/>
                                 <constraint firstAttribute="trailing" secondItem="aEG-u0-c5j" secondAttribute="trailing" id="94p-sb-6Id"/>
-                                <constraint firstAttribute="bottom" secondItem="aEG-u0-c5j" secondAttribute="bottom" id="EXT-dl-c56"/>
+                                <constraint firstAttribute="bottom" secondItem="aEG-u0-c5j" secondAttribute="bottom" constant="5" id="EXT-dl-c56"/>
                                 <constraint firstItem="aEG-u0-c5j" firstAttribute="leading" secondItem="cat-I3-JLM" secondAttribute="leading" id="n71-qz-6ye"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTT-3d-t8w">
                             <rect key="frame" x="0.0" y="268" width="375" height="95"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S8p-S9-PRk">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" text="Comment" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S8p-S9-PRk">
                                     <rect key="frame" x="25" y="0.0" width="325" height="70"/>
-                                    <color key="backgroundColor" red="1" green="0.2806819975" blue="0.34224021430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="70" id="iXI-Bs-W4C"/>
                                     </constraints>
