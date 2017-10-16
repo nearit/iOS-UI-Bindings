@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         aViewController.locationText = "Turn on location"
         aViewController.notificationsText = "Turn on notications"
         aViewController.explainText = "We'll notify you of content that's interesting"
+        aViewController.autoCloseDialog = .on
         aViewController.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }

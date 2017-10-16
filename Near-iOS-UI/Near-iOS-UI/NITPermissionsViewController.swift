@@ -38,6 +38,11 @@ import NearITSDK
     case on = 1
 }
 
+@objc public enum NITPermissionsAutoCloseDialog: NSInteger {
+    case off = 0
+    case on = 1
+}
+
 public class NITPermissionsViewController: NITBaseViewController {
     
     @IBOutlet weak var explain: UILabel!
@@ -56,6 +61,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var type: NITPermissionsType
     public var locationType: NITPermissionsLocationType
     public var autoStartRadar: NITPermissionsAutoStartRadarType
+    public var autoCloseDialog: NITPermissionsAutoCloseDialog
     
     public var locationText = NSLocalizedString("LOCATION", comment: "Permissions popup: LOCATION")
     public var notificationsText = NSLocalizedString("NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
@@ -83,10 +89,9 @@ public class NITPermissionsViewController: NITBaseViewController {
         case .notificationsOnly:
             return permissionsManager.isNotificationAvailable()
         case .locationOnly:
-            return permissionsManager.isLocationGranted(status: locationType.authorizationStatus)
+            return permissionsManager.isLocationPartiallyGranted()
         case .locationAndNotifications:
-            return permissionsManager.isNotificationAvailable() &&
-                permissionsManager.isLocationGranted(status: locationType.authorizationStatus)
+            return permissionsManager.isNotificationAvailable() && permissionsManager.isLocationPartiallyGranted()
         }
     }
 
@@ -107,10 +112,14 @@ public class NITPermissionsViewController: NITBaseViewController {
         self.init(type: type, locationType: .always)
     }
     
-    public init(type: NITPermissionsType = .locationAndNotifications, locationType: NITPermissionsLocationType = .always, autoStartRadar: NITPermissionsAutoStartRadarType = .on) {
+    public init(type: NITPermissionsType = .locationAndNotifications,
+                locationType: NITPermissionsLocationType = .always,
+                autoStartRadar: NITPermissionsAutoStartRadarType = .on,
+                autoCloseDialog: NITPermissionsAutoCloseDialog = .off) {
         self.type = type
         self.locationType = locationType
         self.autoStartRadar = autoStartRadar
+        self.autoCloseDialog = autoCloseDialog
         
         let bundle = Bundle(for: NITDialogController.self)
         super.init(nibName: "NITPermissionsViewController", bundle: bundle)
@@ -249,10 +258,18 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
         if (granted) {
             confirmLocationButton()
+            eventuallyClose()
         }
     }
     
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
+        eventuallyClose()
+    }
+
+    func eventuallyClose() {
+        if autoCloseDialog == .on && checkPermissions() {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
