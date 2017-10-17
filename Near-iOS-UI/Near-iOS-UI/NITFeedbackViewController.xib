@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITFeedbackViewController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
+                <outlet property="close" destination="gsv-zD-bbD" id="IHV-GJ-yu6"/>
                 <outlet property="comment" destination="S8p-S9-PRk" id="k01-xC-Ugz"/>
+                <outlet property="commentDescription" destination="aEG-u0-c5j" id="U0f-nY-6dX"/>
                 <outlet property="explanation" destination="Xhc-ir-PNg" id="KQO-QJ-5m8"/>
                 <outlet property="send" destination="8dB-wf-3Rs" id="b8i-se-ruS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

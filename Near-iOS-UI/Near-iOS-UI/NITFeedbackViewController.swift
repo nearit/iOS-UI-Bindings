@@ -10,18 +10,22 @@ import UIKit
 import NearITSDK
 
 public class NITFeedbackViewController: NITBaseViewController {
+    var feedback: NITFeedback!
 
     public var sendButton: UIImage!
     public var rateFullButton: UIImage!
     public var rateEmptyButton: UIImage!
-    public var feedback: NITFeedback!
+    public var textColor: UIColor = UIColor.nearWarmGrey
+    public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
+    public var commentDescriptionText = NSLocalizedString("Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
+    public var sendText = NSLocalizedString("SEND", comment: "Feedback dialog: SEND")
 
     @IBOutlet weak var send: UIButton!
     @IBOutlet weak var comment: UITextView!
-
     @IBOutlet var stars: [UIButton]!
-
     @IBOutlet weak var explanation: UILabel!
+    @IBOutlet weak var close: UIButton!
+    @IBOutlet weak var commentDescription: UILabel!
 
     public init(feedback: NITFeedback) {
         let bundle = Bundle(for: NITDialogController.self)
@@ -63,23 +67,40 @@ public class NITFeedbackViewController: NITBaseViewController {
 
     internal func setupUI() {
         send.setBackgroundImage(sendButton, for: .normal)
+        send.setTitle(sendText, for: .normal)
+
         comment.layer.cornerRadius = 5.0
         comment.layer.borderWidth = 1.0
         comment.layer.borderColor = UIColor.init(white: 225.0/255.0, alpha: 1.0).cgColor
+
         for rate in stars {
             rate.setImage(rateEmptyButton, for: .normal)
             rate.setImage(rateFullButton, for: .selected)
         }
+
         explanation.text = feedback.question
+
+        close.setTitle(closeText, for: .normal)
+        commentDescription.text = commentDescriptionText
+
+        explanation.textColor = textColor
+        commentDescription.textColor = textColor
+        close.setTitleColor(textColor, for: .normal)
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
-        var unselected = false
-        for rate in stars {
-            rate.isSelected = !unselected
-            if rate == sender {
-                unselected = true
+        var index = stars.index(of: sender)!
+        let latest = stars.index(where: {
+            $0.isSelected == false
+        })
+        // Remove below if you want [1..5] values only
+        if let latest = latest {
+            if (latest - 1) == index {
+                index -= 1
             }
+        } else {
+            index -= 1
         }
+        stars.forEach { $0.isSelected = stars.index(of: $0)! <= index }
     }
 }
