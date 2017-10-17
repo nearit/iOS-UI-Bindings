@@ -16,7 +16,9 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var rateFullButton: UIImage!
     public var rateEmptyButton: UIImage!
     public var textColor: UIColor = UIColor.nearWarmGrey
+    public var textFont: UIFont?
     public var errorColor: UIColor = UIColor.nearRed
+    public var errorFont: UIFont?
     public var retryButton: UIImage!
 
     public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
@@ -25,7 +27,10 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)?
     public var errorText = NSLocalizedString("Oops, an error occured!", comment: "Feedback dialog: oops, an error occured!")
     public var retryText = NSLocalizedString("Retry", comment: "Feedback dialog: retry")
+    public var okText = NSLocalizedString("Thank you for your feedback.", comment: "Feedback dialog: Thank you for your feedback.")
 
+    @IBOutlet weak var stackview: UIStackView!
+    @IBOutlet weak var okContainer: UIView!
     @IBOutlet weak var send: UIButton!
     @IBOutlet weak var comment: UITextView!
     @IBOutlet var stars: [UIButton]!
@@ -34,6 +39,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     @IBOutlet weak var commentDescription: UILabel!
     @IBOutlet weak var error: UILabel!
     @IBOutlet weak var errorContainer: UIView!
+    @IBOutlet weak var ok: UILabel!
 
     var currentRating: Int = 0
 
@@ -103,6 +109,18 @@ public class NITFeedbackViewController: NITBaseViewController {
         error.text = errorText
         error.textColor = errorColor
         errorContainer.isHidden = true
+        if let errorFont = errorFont {
+            error.font = errorFont
+        }
+
+        okContainer.isHidden = true
+        ok.text = okText
+        ok.textColor = textColor
+
+        if let textFont = textFont {
+            explanation.font = textFont
+            ok.font = textFont
+        }
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
@@ -137,16 +155,37 @@ public class NITFeedbackViewController: NITBaseViewController {
             let manager = NITManager.default()
             let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
             manager.sendEvent(with: event, completionHandler: { [weak self](error: Error?) in
-                guard let wself = self else { return }
-                if let _ = error {
-                    wself.errorContainer.isHidden = false
-                    wself.send.setBackgroundImage(wself.retryButton, for: .normal)
-                    wself.send.setTitle(wself.retryText, for: .normal)
+                if error != nil {
+                    self?.nextError()
                 } else {
-                    wself.dialogController?.dismiss()
+                    self?.nextOk()
                 }
             })
         }
+    }
+
+    internal func nextOk() {
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+            guard let wself = self else { return }
+            // Animate
+            wself.stackview.arrangedSubviews.forEach({ (view: UIView) in
+                view.isHidden = view != wself.okContainer
+            })
+            // Relayout
+            wself.view.layoutIfNeeded()
+            }, completion: { _ in })
+    }
+
+    internal func nextError() {
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+            guard let wself = self else { return }
+            // Animate
+            wself.errorContainer.isHidden = false
+            wself.send.setBackgroundImage(wself.retryButton, for: .normal)
+            wself.send.setTitle(wself.retryText, for: .normal)
+            // Relayout
+            wself.view.layoutIfNeeded()
+        }, completion: { _ in })
     }
 
 }
