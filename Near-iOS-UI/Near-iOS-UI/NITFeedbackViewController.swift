@@ -20,6 +20,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var errorColor: UIColor = UIColor.nearRed
     public var errorFont: UIFont?
     public var retryButton: UIImage!
+    public var okDisappearTime:TimeInterval? = TimeInterval(floatLiteral: 3.0)
 
     public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
     public var commentDescriptionText = NSLocalizedString("Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
@@ -174,6 +175,14 @@ public class NITFeedbackViewController: NITBaseViewController {
             // Relayout
             wself.view.layoutIfNeeded()
             }, completion: { _ in })
+
+        if let okDisappearTime = okDisappearTime {
+            Timer.scheduledTimer(timeInterval: okDisappearTime, target: self, selector: #selector(closeController), userInfo: nil, repeats: false)
+        }
+    }
+
+    @objc func closeController() {
+        dialogController?.dismiss()
     }
 
     internal func nextError() {

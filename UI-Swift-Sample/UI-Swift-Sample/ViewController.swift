@@ -91,6 +91,7 @@ class ViewController: UIViewController {
         aViewController.okText = "Thank you for taking the time to provide us with your feedback.\n\nYour feedback is important to us and we will endeavour to respond to your feedback within 100 working days.\n\nIf your feedback is of an urgent nature, you can contact the Developer on +800HackerMenn"
         aViewController.textFont = UIFont.boldSystemFont(ofSize: 15.0)
         aViewController.errorFont = UIFont.boldSystemFont(ofSize: 20.0)
+        aViewController.okDisappearTime = nil
         aViewController.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
