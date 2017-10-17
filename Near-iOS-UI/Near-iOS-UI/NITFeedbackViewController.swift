@@ -70,6 +70,7 @@ public class NITFeedbackViewController: NITBaseViewController {
             rate.setImage(rateEmptyButton, for: .normal)
             rate.setImage(rateFullButton, for: .selected)
         }
+        explanation.text = feedback.question
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
