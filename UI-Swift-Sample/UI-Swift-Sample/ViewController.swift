@@ -61,10 +61,22 @@ class ViewController: UIViewController {
         aViewController.show()
     }
 
-    func showFeedbackDialog() {
+    func showFeedbackDialog(question: String) {
         let feedback = NITFeedback()
+        feedback.question = question
+        feedback.recipeId = "ffe0"
         let aViewController = NITFeedbackViewController(feedback: feedback)
         aViewController.show()
+    }
+
+    func showFeedbackDialogCustom(question: String) {
+        let feedback = NITFeedback()
+        feedback.question = question
+        feedback.recipeId = "ffe0"
+        let aViewController = NITFeedbackViewController(feedback: feedback)
+        aViewController.show { (dialogController: NITDialogController) in
+            dialogController.backgroundStyle = .blur
+        }
     }
 }
 
@@ -79,7 +91,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 0:
             return 3
         case 1:
-            return 1
+            return 2
         default:
             return 0
         }
@@ -112,6 +124,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 title?.text = "Feedback"
                 description?.text = "With comment"
+            case 1:
+                title?.text = "Feedback"
+                description?.text = "Custom with comment and long question"
             default:
                 title?.text = "Undefined"
                 description?.text = " - "
@@ -120,8 +135,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             title?.text = "Undefined"
             description?.text = " - "
         }
-        
-        
+                
         return cell
     }
     
@@ -141,7 +155,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 1: // Feedback
             switch indexPath.row {
             case 0:
-                showFeedbackDialog()
+                showFeedbackDialog(question: "What am I?")
+            case 1:
+                showFeedbackDialogCustom(question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ")
             default:
                 break
             }
