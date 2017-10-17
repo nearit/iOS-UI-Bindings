@@ -9,6 +9,12 @@
 import UIKit
 import NearITSDK
 
+@objc public enum NITFeedbackCommentVisibility: NSInteger {
+    case visible
+    case hidden
+    case onRating
+}
+
 public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
 
@@ -20,7 +26,8 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var errorColor: UIColor = UIColor.nearRed
     public var errorFont: UIFont?
     public var retryButton: UIImage!
-    public var okDisappearTime:TimeInterval? = TimeInterval(floatLiteral: 3.0)
+    public var okDisappearTime: TimeInterval? = TimeInterval(floatLiteral: 3.0)
+    public var commentVisibility: NITFeedbackCommentVisibility = .onRating
 
     public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
     public var commentDescriptionText = NSLocalizedString("Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
@@ -41,6 +48,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     @IBOutlet weak var error: UILabel!
     @IBOutlet weak var errorContainer: UIView!
     @IBOutlet weak var ok: UILabel!
+    @IBOutlet var commentViews: [UIView]!
 
     var currentRating: Int = 0
 
@@ -122,6 +130,8 @@ public class NITFeedbackViewController: NITBaseViewController {
             explanation.font = textFont
             ok.font = textFont
         }
+
+        setupCommentVisibility()
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
@@ -139,6 +149,14 @@ public class NITFeedbackViewController: NITBaseViewController {
         }
         stars.forEach { $0.isSelected = stars.index(of: $0)! <= index }
         currentRating = index
+
+        if commentVisibility == .onRating {
+            commentVisibility = .visible
+            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+                self?.setupCommentVisibility()
+                self?.view.layoutIfNeeded()
+            })
+        }
     }
 
     @IBAction func tapFooter(_ sender: Any) {
@@ -168,11 +186,9 @@ public class NITFeedbackViewController: NITBaseViewController {
     internal func nextOk() {
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
             guard let wself = self else { return }
-            // Animate
             wself.stackview.arrangedSubviews.forEach({ (view: UIView) in
                 view.isHidden = view != wself.okContainer
             })
-            // Relayout
             wself.view.layoutIfNeeded()
             }, completion: { _ in })
 
@@ -188,13 +204,22 @@ public class NITFeedbackViewController: NITBaseViewController {
     internal func nextError() {
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
             guard let wself = self else { return }
-            // Animate
             wself.errorContainer.isHidden = false
             wself.send.setBackgroundImage(wself.retryButton, for: .normal)
             wself.send.setTitle(wself.retryText, for: .normal)
-            // Relayout
             wself.view.layoutIfNeeded()
         }, completion: { _ in })
+    }
+
+    internal func setupCommentVisibility() {
+        switch commentVisibility {
+        case .hidden:
+            commentViews.forEach({ $0.isHidden = true })
+        case .visible:
+            commentViews.forEach({ $0.isHidden = false })
+        case .onRating:
+            commentViews.forEach({ $0.isHidden = true })
+        }
     }
 
 }
