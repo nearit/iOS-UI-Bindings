@@ -65,15 +65,29 @@ class ViewController: UIViewController {
         let feedback = NITFeedback()
         feedback.question = question
         feedback.recipeId = "ffe0"
+
         let aViewController = NITFeedbackViewController(feedback: feedback)
         aViewController.show()
     }
 
     func showFeedbackDialogCustom(question: String) {
+        let redEmptyButton = UIImage(named: "red-empty-dot")
+        let redButton = UIImage(named: "red-dot")
+        let blueButton = UIImage(named: "blue-button")
+        let sendButton = blueButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
+
         let feedback = NITFeedback()
         feedback.question = question
         feedback.recipeId = "ffe0"
+
         let aViewController = NITFeedbackViewController(feedback: feedback)
+        aViewController.sendButton = sendButton
+        aViewController.rateEmptyButton = redEmptyButton
+        aViewController.rateFullButton = redButton
+        aViewController.commentDescriptionText = "Anything to say?"
+        aViewController.closeText = "Not interested"
+        aViewController.sendText = "Rate"
+        aViewController.textColor = UIColor.black
         aViewController.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
@@ -122,11 +136,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 1: // Feedback
             switch indexPath.row {
             case 0:
-                title?.text = "Feedback"
-                description?.text = "With comment"
+                title?.text = "Default feedback"
+                description?.text = "With comment field"
             case 1:
-                title?.text = "Feedback"
-                description?.text = "Custom with comment and long question"
+                title?.text = "Custom feedback"
+                description?.text = "Custom UI with comment and long question"
             default:
                 title?.text = "Undefined"
                 description?.text = " - "
@@ -135,7 +149,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             title?.text = "Undefined"
             description?.text = " - "
         }
-                
+
         return cell
     }
     
