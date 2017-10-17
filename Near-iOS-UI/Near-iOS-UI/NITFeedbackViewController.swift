@@ -16,9 +16,15 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var rateFullButton: UIImage!
     public var rateEmptyButton: UIImage!
     public var textColor: UIColor = UIColor.nearWarmGrey
+    public var errorColor: UIColor = UIColor.nearRed
+    public var retryButton: UIImage!
+
     public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
     public var commentDescriptionText = NSLocalizedString("Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
     public var sendText = NSLocalizedString("SEND", comment: "Feedback dialog: SEND")
+    public var feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)?
+    public var errorText = NSLocalizedString("Oops, an error occured!", comment: "Feedback dialog: oops, an error occured!")
+    public var retryText = NSLocalizedString("Retry", comment: "Feedback dialog: retry")
 
     @IBOutlet weak var send: UIButton!
     @IBOutlet weak var comment: UITextView!
@@ -26,11 +32,16 @@ public class NITFeedbackViewController: NITBaseViewController {
     @IBOutlet weak var explanation: UILabel!
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var commentDescription: UILabel!
+    @IBOutlet weak var error: UILabel!
+    @IBOutlet weak var errorContainer: UIView!
 
-    public init(feedback: NITFeedback) {
+    var currentRating: Int = 0
+
+    public init(feedback: NITFeedback, feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)? = nil) {
         let bundle = Bundle(for: NITDialogController.self)
-        super.init(nibName: "NITFeedbackViewController", bundle: bundle)
+        self.feedbackCloseCallback = feedbackCloseCallback
         self.feedback = feedback
+        super.init(nibName: "NITFeedbackViewController", bundle: bundle)
         setupDefaultElements()
     }
 
@@ -58,6 +69,8 @@ public class NITFeedbackViewController: NITBaseViewController {
         sendButton = filledButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         rateFullButton = UIImage(named: "star", in: bundle, compatibleWith: nil)
         rateEmptyButton = UIImage(named: "starEmpty", in: bundle, compatibleWith: nil)
+        let filledRedButton = UIImage(named: "filledRedButton", in: bundle, compatibleWith: nil)
+        retryButton = filledRedButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
     }
 
     override public func viewDidLoad() {
@@ -86,6 +99,10 @@ public class NITFeedbackViewController: NITBaseViewController {
         explanation.textColor = textColor
         commentDescription.textColor = textColor
         close.setTitleColor(textColor, for: .normal)
+
+        error.text = errorText
+        error.textColor = errorColor
+        errorContainer.isHidden = true
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
@@ -102,5 +119,34 @@ public class NITFeedbackViewController: NITBaseViewController {
             index -= 1
         }
         stars.forEach { $0.isSelected = stars.index(of: $0)! <= index }
+        currentRating = index
     }
+
+    @IBAction func tapFooter(_ sender: Any) {
+        if let feedbackCloseCallback = feedbackCloseCallback {
+            feedbackCloseCallback(self, nil, nil)
+        } else {
+            dialogController?.dismiss()
+        }
+    }
+
+    @IBAction func tapSend(_ sender: Any) {
+        if let feedbackCloseCallback = feedbackCloseCallback {
+            feedbackCloseCallback(self, currentRating, comment.text)
+        } else {
+            let manager = NITManager.default()
+            let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
+            manager.sendEvent(with: event, completionHandler: { [weak self](error: Error?) in
+                guard let wself = self else { return }
+                if let _ = error {
+                    wself.errorContainer.isHidden = false
+                    wself.send.setBackgroundImage(wself.retryButton, for: .normal)
+                    wself.send.setTitle(wself.retryText, for: .normal)
+                } else {
+                    wself.dialogController?.dismiss()
+                }
+            })
+        }
+    }
+
 }

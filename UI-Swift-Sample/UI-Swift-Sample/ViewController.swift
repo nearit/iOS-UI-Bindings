@@ -116,6 +116,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let title = cell.viewWithTag(40) as? UILabel
         let description = cell.viewWithTag(50) as? UILabel
+
+        cell.backgroundColor = UIColor.yellow
         
         switch indexPath.section {
         case 0: // Permissions
