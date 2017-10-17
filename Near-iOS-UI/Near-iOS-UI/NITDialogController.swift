@@ -150,7 +150,7 @@ public class NITDialogController: UIViewController {
         }
         else {
             // Display Plain Background
-            backgroundColor = .nearWarmGrey
+            backgroundColor = UIColor.nearDialogBackground
             backgroundBlurView?.alpha = 0.0
         }
     }
