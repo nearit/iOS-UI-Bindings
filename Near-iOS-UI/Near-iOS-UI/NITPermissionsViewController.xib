@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,8 +14,11 @@
             <connections>
                 <outlet property="explain" destination="Xhc-ir-PNg" id="o9L-FJ-3Lh"/>
                 <outlet property="footer" destination="gsv-zD-bbD" id="Yzx-Cq-zCY"/>
+                <outlet property="header" destination="DoX-lM-t4V" id="uor-UT-AdS"/>
                 <outlet property="location" destination="0n5-Fd-HeG" id="b36-Yo-8PD"/>
+                <outlet property="locationContainer" destination="oZ1-Ie-aZy" id="Tbs-ty-Eo7"/>
                 <outlet property="notification" destination="8dB-wf-3Rs" id="1YP-j1-TYQ"/>
+                <outlet property="notificationsContainer" destination="rWf-k7-rDY" id="eF2-KH-vxy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,18 +30,18 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-n1-al8">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="504"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="permissionsBanner" translatesAutoresizingMaskIntoConstraints="NO" id="DoX-lM-t4V">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="permissionsBanner" translatesAutoresizingMaskIntoConstraints="NO" id="DoX-lM-t4V">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="137.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="DoX-lM-t4V" secondAttribute="height" multiplier="30:11" id="hld-ku-bqA"/>
                             </constraints>
                         </imageView>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-gH-q5V">
-                            <rect key="frame" x="0.0" y="137.5" width="375" height="176.5"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDt-gH-q5V">
+                            <rect key="frame" x="0.0" y="137.5" width="375" height="164.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhc-ir-PNg">
-                                    <rect key="frame" x="25" y="25" width="325" height="126.5"/>
-                                    <mutableString key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</mutableString>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xhc-ir-PNg">
+                                    <rect key="frame" x="25" y="25" width="325" height="114.5"/>
+                                    <string key="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -51,10 +55,10 @@
                                 <constraint firstItem="Xhc-ir-PNg" firstAttribute="top" secondItem="jDt-gH-q5V" secondAttribute="top" constant="25" id="xgk-qN-IxF"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
-                            <rect key="frame" x="0.0" y="314" width="375" height="61"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
+                            <rect key="frame" x="0.0" y="302" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Ybr-DK-9i4"/>
@@ -63,6 +67,9 @@
                                     <state key="normal" title="LOCATION" image="location">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="tapLocation:" destination="-1" eventType="touchUpInside" id="yIC-rz-n1z"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,10 +80,10 @@
                                 <constraint firstAttribute="bottom" secondItem="0n5-Fd-HeG" secondAttribute="bottom" constant="8" id="uap-ek-qZu"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
-                            <rect key="frame" x="0.0" y="375" width="375" height="61"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
+                            <rect key="frame" x="0.0" y="363" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="6Ki-3j-CtS"/>
@@ -85,6 +92,9 @@
                                     <state key="normal" title="NOTIFICATIONS" image="notifications">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="tapNotifications:" destination="-1" eventType="touchUpInside" id="KTv-c1-A74"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,11 +105,11 @@
                                 <constraint firstAttribute="trailing" secondItem="8dB-wf-3Rs" secondAttribute="trailing" constant="25" id="zOu-gs-E6E"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-Yd-uxf">
-                            <rect key="frame" x="0.0" y="436" width="375" height="68"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-Yd-uxf">
+                            <rect key="frame" x="0.0" y="424" width="375" height="80"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-zD-bbD">
-                                    <rect key="frame" x="25" y="19" width="325" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-zD-bbD">
+                                    <rect key="frame" x="25" y="25" width="325" height="30"/>
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                     <state key="normal" title="Not now"/>
                                     <connections>

@@ -10,9 +10,33 @@ import UIKit
 
 public class NITDialogController: UIViewController {
     
+    @objc public enum CFAlertControllerBackgroundStyle : Int {
+        case plain = 0
+        case blur
+    }
+    
+    // Background
+    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
+        didSet  {
+            if isViewLoaded {
+                applyBackgroundStyle()
+            }
+        }
+    }
+    public var backgroundColor: UIColor?    {
+        didSet  {
+            if isViewLoaded {
+                view.backgroundColor = backgroundColor
+            }
+        }
+    }
+    var isEnableTapToClose = true
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var backgroundBlurView: UIVisualEffectView?
+    @IBOutlet weak var containerView: UIView!
     private var viewController: UIViewController!
 
     override public func viewDidLoad() {
@@ -35,6 +59,15 @@ public class NITDialogController: UIViewController {
         viewController.didMove(toParentViewController: self)
         
         scrollView?.addObserver(self, forKeyPath: "contentSize", options: [.new, .old, .prior], context: nil)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOutside(_:)))
+        tapGesture.delegate = self
+        containerView.addGestureRecognizer(tapGesture)
+
+        applyBackgroundStyle()
+        if let bkg = backgroundColor {
+            view.backgroundColor = bkg
+        }
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -57,7 +90,11 @@ public class NITDialogController: UIViewController {
         
         if let baseViewController = viewController as? NITBaseViewController {
             baseViewController.dialogController = self
+            isEnableTapToClose = baseViewController.isEnableTapToClose
         }
+        
+        modalPresentationStyle = .overFullScreen
+        modalTransitionStyle = .crossDissolve
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -69,7 +106,7 @@ public class NITDialogController: UIViewController {
     
     internal func updateContainerViewFrame(withAnimation shouldAnimate: Bool) {
         
-        let animate: ((_: Void) -> Void)? = {() -> Void in
+        let animate: (() -> Void)? = {() -> Void in
             
             if let scrollView = self.scrollView   {
                 
@@ -97,6 +134,26 @@ public class NITDialogController: UIViewController {
     func dismiss() {
         dismiss(animated: true, completion: nil)
     }
+    
+    func tapOutside(_ gesture: UITapGestureRecognizer) {
+        if isEnableTapToClose {
+            dismiss()
+        }
+    }
+
+    func applyBackgroundStyle() {
+        // Set Background
+        if backgroundStyle == .blur {
+            // Set Blur Background
+            backgroundColor = .clear
+            backgroundBlurView?.alpha = 1.0
+        }
+        else {
+            // Display Plain Background
+            backgroundColor = .nearWarmGrey
+            backgroundBlurView?.alpha = 0.0
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -108,4 +165,13 @@ public class NITDialogController: UIViewController {
     }
     */
 
+}
+
+extension NITDialogController: UIGestureRecognizerDelegate {
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        let point = touch.location(in: self.scrollView)
+        let inside = scrollView.point(inside: point, with: nil)
+        return !inside
+    }
 }
