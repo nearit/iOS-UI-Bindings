@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITDialogController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundBlurView" destination="Odv-fV-Hgg" id="GhO-Og-ZWA"/>
+                <outlet property="bottomConstraint" destination="btc-sy-y5j" id="OKv-6Q-QHF"/>
                 <outlet property="containerView" destination="umR-P7-gAp" id="Wsh-f9-XVa"/>
                 <outlet property="contentView" destination="pOA-nA-DZJ" id="ugs-Mq-kly"/>
                 <outlet property="scrollHeightConstraint" destination="KgK-M3-Iut" id="jsI-dh-jnb"/>
@@ -36,7 +37,7 @@
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="umR-P7-gAp">
                     <rect key="frame" x="16" y="40" width="343" height="607"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8v-lf-H3R">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="C8v-lf-H3R">
                             <rect key="frame" x="4" y="203.5" width="335" height="200"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="335" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-nA-DZJ">
