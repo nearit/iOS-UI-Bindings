@@ -8,10 +8,16 @@
 
 import Quick
 import Nimble
+import FBSnapshotTestCase
+import Nimble_Snapshots
 @testable import NearITSDK
 @testable import NeariOSUI
 
 class NITFeedbackViewControllerSpec: QuickSpec {
+    
+    var recordingMode: Bool {
+        return false
+    }
     
     override func spec() {
         var feedbackVC: NITFeedbackViewController!
@@ -72,6 +78,27 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 expect(feedbackVC.errorContainer.isHidden).to(beFalse())
                 expect(feedbackVC.error.text).to(match(feedbackVC.errorText))
                 expect(feedbackVC.send.titleLabel?.text).to(match(feedbackVC.retryText))
+            }
+        }
+        
+        describe("comment") {
+            
+            it("keyboard show for comment") {
+                feedbackVC.show()
+                
+                feedbackVC.stars[2].sendActions(for: .touchUpInside)
+                
+                waitUntil(timeout: 1) { done in
+                    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardDidShow, object: nil, queue: OperationQueue.main, using: { (notification) in
+                        if (self.recordingMode) {
+                            expect(feedbackVC.dialogController?.view).to(recordSnapshot(named: "feedback keyboard"))
+                        } else {
+                            expect(feedbackVC.dialogController?.view).to(haveValidSnapshot(named: "feedback keyboard"))
+                        }
+                        done()
+                    })
+                    feedbackVC.comment.becomeFirstResponder()
+                }
             }
         }
     }
