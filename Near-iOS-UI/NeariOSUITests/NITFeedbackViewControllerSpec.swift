@@ -33,13 +33,14 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 
                 expect(feedbackVC.send.isHidden).to(beTrue())
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
-                
             }
             
-            it("Rate, comment should be visible") {
+            it("Rate something, comment and send should be visible") {
+                expect(feedbackVC.send.isHidden).to(beTrue())
                 feedbackVC.stars[2].sendActions(for: .touchUpInside)
                 
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
+                expect(feedbackVC.send.isHidden).to(beFalse())
             }
             
             it("Rate, comment hidden") {
