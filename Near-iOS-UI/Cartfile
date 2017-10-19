@@ -1,0 +1,3 @@
+github "https://github.com/Quick/Quick" # For tests purpose
+github "https://github.com/Quick/Nimble" # For tests purpose
+github "https://github.com/nearit/Near-iOS-SDK"

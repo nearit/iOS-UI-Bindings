@@ -17,6 +17,7 @@ import NearITSDK
 
 public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
+    var nearManager: NITManager
 
     public var sendButton: UIImage!
     public var rateFullButton: UIImage!
@@ -52,10 +53,11 @@ public class NITFeedbackViewController: NITBaseViewController {
 
     var currentRating: Int = 0
 
-    public init(feedback: NITFeedback, feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)? = nil) {
+    public init(feedback: NITFeedback, feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)? = nil, manager: NITManager = NITManager.default()) {
         let bundle = Bundle(for: NITDialogController.self)
         self.feedbackCloseCallback = feedbackCloseCallback
         self.feedback = feedback
+        self.nearManager = manager
         super.init(nibName: "NITFeedbackViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -171,7 +173,7 @@ public class NITFeedbackViewController: NITBaseViewController {
         if let feedbackCloseCallback = feedbackCloseCallback {
             feedbackCloseCallback(self, currentRating, comment.text)
         } else {
-            let manager = NITManager.default()
+            let manager = nearManager
             let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
             manager.sendEvent(with: event, completionHandler: { [weak self](error: Error?) in
                 if error != nil {
