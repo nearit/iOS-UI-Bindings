@@ -42,6 +42,13 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
             }
             
+            it("Rate, comment hidden") {
+                feedbackVC.commentVisibility = .hidden
+                
+                feedbackVC.stars[2].sendActions(for: .touchUpInside)
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
+            }
+            
             it("Rate 2 stars and send") {
                 expect(feedbackVC.send).notTo(beNil())
                 
@@ -49,6 +56,21 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 feedbackVC.send.sendActions(for: .touchUpInside)
                 
                 expect(fakeNearManager.isSendEventCalled).to(beTrue())
+            }
+            
+            it("Rate 2 stars, send with error should show retry and error text") {
+                fakeNearManager.fakeSendEventError = true
+                
+                expect(feedbackVC.errorContainer.isHidden).to(beTrue())
+                expect(feedbackVC.send.titleLabel?.text).to(match(feedbackVC.sendText))
+                
+                feedbackVC.stars[2].sendActions(for: .touchUpInside)
+                feedbackVC.send.sendActions(for: .touchUpInside)
+                
+                expect(fakeNearManager.isSendEventCalled).to(beTrue())
+                expect(feedbackVC.errorContainer.isHidden).to(beFalse())
+                expect(feedbackVC.error.text).to(match(feedbackVC.errorText))
+                expect(feedbackVC.send.titleLabel?.text).to(match(feedbackVC.retryText))
             }
         }
     }
@@ -59,9 +81,19 @@ class NITFeedbackViewControllerSpec: QuickSpec {
 
 class FakeNearManager: NITManager {
     
+    var fakeSendEventError = false
     var isSendEventCalled = false
     
     override func sendEvent(with event: NITEvent, completionHandler handler: ((Error?) -> Void)? = nil) {
         isSendEventCalled = true
+        if (fakeSendEventError) {
+            handler?(FakeManagerError.sendEventError)
+        } else {
+            handler?(nil)
+        }
     }
+}
+
+enum FakeManagerError: Error {
+    case sendEventError
 }
