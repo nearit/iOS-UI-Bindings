@@ -28,12 +28,10 @@ class NITFeedbackViewControllerSpec: QuickSpec {
         }
         
         describe("rating") {
-            it("Rate nothing and send") {
+            it("Rate nothing, send should not be visible") {
                 expect(feedbackVC.send).notTo(beNil())
                 
-                feedbackVC.send.sendActions(for: .touchUpInside)
-                
-                expect(fakeNearManager.isSendEventCalled).to(beFalse()) // Should not send feedback
+                expect(feedbackVC.send.isHidden).to(beTrue())
             }
             
             it("Rate 2 stars and send") {
