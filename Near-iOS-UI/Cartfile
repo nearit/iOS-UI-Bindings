@@ -1,5 +1,0 @@
-github "https://github.com/Quick/Quick" # For tests purpose
-github "https://github.com/Quick/Nimble" # For tests purpose
-github "https://github.com/facebookarchive/ios-snapshot-test-case" # For snaphots tests
-github "https://github.com/ashfurrow/Nimble-Snapshots"
-github "https://github.com/nearit/Near-iOS-SDK"

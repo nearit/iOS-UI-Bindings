@@ -10,26 +10,15 @@
 		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
-		264AE6F71F988ACF00AF8C48 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 264AE6F61F988ACF00AF8C48 /* Cartfile */; };
 		264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */; };
 		264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */; };
-		264AE7081F9890A700AF8C48 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264AE7071F9890A700AF8C48 /* Quick.framework */; };
-		264AE70A1F9890B600AF8C48 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 264AE7071F9890A700AF8C48 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		264AE70C1F9891E600AF8C48 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264AE70B1F9891E600AF8C48 /* Nimble.framework */; };
-		264AE70D1F9891EC00AF8C48 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 264AE70B1F9891E600AF8C48 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */; };
-		264AE7161F9893AF00AF8C48 /* NearITSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 264AE7151F9893AF00AF8C48 /* NearITSDK.framework */; };
-		264AE7171F9893B600AF8C48 /* NearITSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 264AE7151F9893AF00AF8C48 /* NearITSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */; };
 		26B85B031F98A02A00087BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B021F98A02A00087BEE /* AppDelegate.swift */; };
 		26B85B051F98A02A00087BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B041F98A02A00087BEE /* ViewController.swift */; };
 		26B85B081F98A02A00087BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B061F98A02A00087BEE /* Main.storyboard */; };
 		26B85B0A1F98A02A00087BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B091F98A02A00087BEE /* Assets.xcassets */; };
 		26B85B0D1F98A02A00087BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B0B1F98A02A00087BEE /* LaunchScreen.storyboard */; };
-		26B85B151F98D9D800087BEE /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B85B141F98D9D800087BEE /* FBSnapshotTestCase.framework */; };
-		26B85B161F98D9DE00087BEE /* FBSnapshotTestCase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 26B85B141F98D9D800087BEE /* FBSnapshotTestCase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		26B85B1A1F98DEBD00087BEE /* Nimble_Snapshots.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B85B191F98DEBC00087BEE /* Nimble_Snapshots.framework */; };
-		26B85B1B1F98DEC200087BEE /* Nimble_Snapshots.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 26B85B191F98DEBC00087BEE /* Nimble_Snapshots.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */; };
 		26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3111F56C871009DDDF2 /* NITDialogController.xib */; };
@@ -39,6 +28,7 @@
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
 		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
 		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
+		9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,11 +55,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				26B85B1B1F98DEC200087BEE /* Nimble_Snapshots.framework in CopyFiles */,
-				26B85B161F98D9DE00087BEE /* FBSnapshotTestCase.framework in CopyFiles */,
-				264AE7171F9893B600AF8C48 /* NearITSDK.framework in CopyFiles */,
-				264AE70D1F9891EC00AF8C48 /* Nimble.framework in CopyFiles */,
-				264AE70A1F9890B600AF8C48 /* Quick.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,16 +63,10 @@
 /* Begin PBXFileReference section */
 		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
-		264AE6F61F988ACF00AF8C48 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeariOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeariOSUITests.swift; sourceTree = "<group>"; };
 		264AE7001F98908700AF8C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		264AE7071F9890A700AF8C48 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		264AE70B1F9891E600AF8C48 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewControllerSpec.swift; sourceTree = "<group>"; };
-		264AE7111F9892D300AF8C48 /* NearITSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NearITSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		264AE7141F98931800AF8C48 /* NearITSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NearITSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		264AE7151F9893AF00AF8C48 /* NearITSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NearITSDK.framework; path = Carthage/Build/iOS/NearITSDK.framework; sourceTree = "<group>"; };
 		264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsManager.swift; sourceTree = "<group>"; };
 		26B85B001F98A02A00087BEE /* UIHostApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIHostApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B85B021F98A02A00087BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +75,6 @@
 		26B85B091F98A02A00087BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26B85B0C1F98A02A00087BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26B85B0E1F98A02A00087BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26B85B141F98D9D800087BEE /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSnapshotTestCase.framework; path = Carthage/Build/iOS/FBSnapshotTestCase.framework; sourceTree = "<group>"; };
-		26B85B191F98DEBC00087BEE /* Nimble_Snapshots.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble_Snapshots.framework; path = Carthage/Build/iOS/Nimble_Snapshots.framework; sourceTree = "<group>"; };
 		26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
 		26CAC3071F56BB4E009DDDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,8 +83,11 @@
 		26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsViewController.swift; sourceTree = "<group>"; };
 		26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsViewController.xib; sourceTree = "<group>"; };
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
+		5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+currentController.swift"; sourceTree = "<group>"; };
 		8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITFeedbackViewController.xib; sourceTree = "<group>"; };
@@ -119,12 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26B85B1A1F98DEBD00087BEE /* Nimble_Snapshots.framework in Frameworks */,
-				26B85B151F98D9D800087BEE /* FBSnapshotTestCase.framework in Frameworks */,
-				264AE7161F9893AF00AF8C48 /* NearITSDK.framework in Frameworks */,
-				264AE70C1F9891E600AF8C48 /* Nimble.framework in Frameworks */,
-				264AE7081F9890A700AF8C48 /* Quick.framework in Frameworks */,
 				264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */,
+				9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,14 +125,8 @@
 		1B6CFF9321523FE0D79D5A70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				26B85B191F98DEBC00087BEE /* Nimble_Snapshots.framework */,
-				26B85B141F98D9D800087BEE /* FBSnapshotTestCase.framework */,
-				264AE7141F98931800AF8C48 /* NearITSDK.framework */,
-				264AE7111F9892D300AF8C48 /* NearITSDK.framework */,
-				264AE7151F9893AF00AF8C48 /* NearITSDK.framework */,
-				264AE70B1F9891E600AF8C48 /* Nimble.framework */,
-				264AE7071F9890A700AF8C48 /* Quick.framework */,
 				5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */,
+				376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,7 +174,6 @@
 		26CAC2F91F56BB4E009DDDF2 = {
 			isa = PBXGroup;
 			children = (
-				264AE6F61F988ACF00AF8C48 /* Cartfile */,
 				26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */,
 				264AE6FD1F98908700AF8C48 /* NeariOSUITests */,
 				26B85B011F98A02A00087BEE /* UIHostApplication */,
@@ -264,6 +233,8 @@
 			children = (
 				7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */,
 				45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */,
+				624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */,
+				5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -286,10 +257,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 264AE7041F98908700AF8C48 /* Build configuration list for PBXNativeTarget "NeariOSUITests" */;
 			buildPhases = (
+				23F542C5A8E7ABEC3FE42B3F /* [CP] Check Pods Manifest.lock */,
 				264AE6F81F98908700AF8C48 /* Sources */,
 				264AE6F91F98908700AF8C48 /* Frameworks */,
 				264AE6FA1F98908700AF8C48 /* Resources */,
 				264AE7091F9890AB00AF8C48 /* CopyFiles */,
+				904FCC50741764EB287D33A1 /* [CP] Embed Pods Frameworks */,
+				E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -410,7 +384,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264AE6F71F988ACF00AF8C48 /* Cartfile in Resources */,
 				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
 				8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */,
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
@@ -421,6 +394,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23F542C5A8E7ABEC3FE42B3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-Tests-NeariOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		904FCC50741764EB287D33A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,6 +451,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
@@ -526,6 +558,7 @@
 /* Begin XCBuildConfiguration section */
 		264AE7051F98908700AF8C48 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -556,6 +589,7 @@
 		};
 		264AE7061F98908700AF8C48 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
