@@ -37,23 +37,49 @@ class NITFeedbackViewControllerSpec: QuickSpec {
             it("Rate nothing, send and comment should not be visible") {
                 expect(feedbackVC.send).notTo(beNil())
                 
-                expect(feedbackVC.send.isHidden).to(beTrue())
+                expect(feedbackVC.sendContainer.isHidden).to(beTrue())
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
             }
             
             it("Rate something, comment and send should be visible") {
-                expect(feedbackVC.send.isHidden).to(beTrue())
+                expect(feedbackVC.sendContainer.isHidden).to(beTrue())
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
+
                 feedbackVC.stars[2].sendActions(for: .touchUpInside)
                 
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
                 expect(feedbackVC.send.isHidden).to(beFalse())
             }
-            
+
+            it("Rate 0 special case, toggle/untoggle comment and send visibility") {
+                expect(feedbackVC.sendContainer.isHidden).to(beTrue())
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
+
+                feedbackVC.stars[0].sendActions(for: .touchUpInside)
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
+                expect(feedbackVC.send.isHidden).to(beFalse())
+
+                feedbackVC.stars[0].sendActions(for: .touchUpInside)
+                expect(feedbackVC.sendContainer.isHidden).to(beTrue())
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
+            }
+
             it("Rate, comment hidden") {
                 feedbackVC.commentVisibility = .hidden
                 
                 feedbackVC.stars[2].sendActions(for: .touchUpInside)
                 feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beTrue())})
+            }
+
+            it("Rate 0 special case, comment always visible support toggle") {
+                feedbackVC.commentVisibility = .visible
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
+
+                feedbackVC.stars[0].sendActions(for: .touchUpInside)
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
+
+                feedbackVC.stars[0].sendActions(for: .touchUpInside)
+                feedbackVC.commentViews.forEach({ expect($0.isHidden).to(beFalse())})
             }
             
             it("Rate 2 stars and send") {
