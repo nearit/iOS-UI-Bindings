@@ -260,7 +260,6 @@
                                 <constraint firstItem="da9-vt-ysy" firstAttribute="leading" secondItem="jDt-gH-q5V" secondAttribute="leading" constant="25" id="eUI-Qh-hmq"/>
                                 <constraint firstItem="sOT-fw-lam" firstAttribute="top" secondItem="jDt-gH-q5V" secondAttribute="top" constant="40" id="esV-S3-4Lr"/>
                                 <constraint firstItem="da9-vt-ysy" firstAttribute="top" secondItem="sOT-fw-lam" secondAttribute="bottom" constant="22" id="m3N-N3-EsO"/>
-                                <constraint firstAttribute="width" constant="375" id="vr5-O7-7Il"/>
                                 <constraint firstAttribute="bottom" secondItem="da9-vt-ysy" secondAttribute="bottom" constant="40" id="xcL-XA-gHn"/>
                             </constraints>
                         </view>
