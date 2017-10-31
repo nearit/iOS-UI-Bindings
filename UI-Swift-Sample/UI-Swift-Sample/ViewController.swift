@@ -279,6 +279,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
+
+    func lorem() -> String {
+        return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
@@ -298,7 +302,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 showFeedbackDialog(question: "What am I?")
             case 1:
-                showFeedbackDialogCustom(question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ")
+                showFeedbackDialogCustom(question: lorem())
             default:
                 break
             }
@@ -326,13 +330,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 let content = NITContent()
+                content.content = lorem()
+                content.title = "Content title"
                 showContentDialog(content: content)
-            case 2:
+            case 1:
                 let content = NITContent()
+                content.content = lorem()
+                content.title = "Content title"
                 pushContent(content: content)
             default:
                 break
-            }        default:
+            }
+        default:
             break
         }
 
