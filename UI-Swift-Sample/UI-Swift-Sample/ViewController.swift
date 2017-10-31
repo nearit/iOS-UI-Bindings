@@ -96,12 +96,81 @@ class ViewController: UIViewController {
             dialogController.backgroundStyle = .blur
         }
     }
+
+    func showCouponDialog(coupon: NITCoupon) {
+        let aViewController = NITCouponViewController(coupon: coupon)
+        aViewController.show()
+    }
+
+    func showCouponDialogCustom(coupon: NITCoupon) {
+        let aViewController = NITCouponViewController(coupon: coupon)
+        aViewController.separatorImage = UIImage(named: "Line")
+        aViewController.separatorBackgroundColor = .white
+        aViewController.couponValidColor = .black
+        aViewController.validFont = UIFont.systemFont(ofSize: 18.0)
+        aViewController.fromToFont = UIFont.systemFont(ofSize: 22.0)
+        aViewController.descriptionFont = UIFont.boldSystemFont(ofSize: 25.0)
+        aViewController.valueFont = UIFont.italicSystemFont(ofSize: 25.0)
+        aViewController.valueColor = .purple
+        aViewController.iconPlaceholder = UIImage(named: "NearIT")
+        aViewController.show { (dialogController: NITDialogController) in
+            dialogController.backgroundStyle = .blur
+        }
+    }
+
+    func pushCoupon(coupon: NITCoupon) {
+        let aViewController = NITCouponViewController(coupon: coupon)
+        aViewController.hideCloseButton = true
+        
+        let dialog = NITDialogController(viewController: aViewController)
+        dialog.hidesBottomBarWhenPushed = true
+        dialog.backgroundStyle = .push
+        navigationController?.pushViewController(dialog, animated: true)
+    }
+
+    func createExpiredCoupon() -> NITCoupon {
+        let coupon = NITCoupon()
+        coupon.couponDescription = "Description"
+        coupon.value = "10 $"
+        coupon.expiresAt = "2017-06-05T08:32:00.000Z"
+        coupon.redeemableFrom = "2017-06-01T08:32:00.000Z"
+        let claim = NITClaim()
+        claim.serialNumber = "0123456789"
+        coupon.claims = [claim]
+        coupon.icon = NITImage()
+        coupon.icon.image = ["square_300": ["url": "https://avatars0.githubusercontent.com/u/18052069?s=200&v=4"]]
+        return coupon
+    }
+
+    func createValidCoupon() -> NITCoupon {
+        let coupon = NITCoupon()
+        coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
+        coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
+        coupon.expiresAt = "3017-06-05T08:32:00.000Z"
+        let claim = NITClaim()
+        claim.serialNumber = "0123456789"
+        coupon.claims = [claim]
+        coupon.icon = NITImage()
+        return coupon
+    }
+
+    func createInactiveCoupon() -> NITCoupon {
+        let coupon = NITCoupon()
+        coupon.couponDescription = "Description"
+        coupon.value = "10 $"
+        coupon.redeemableFrom = "3017-06-05T08:32:00.000Z"
+        let claim = NITClaim()
+        claim.serialNumber = "0123456789"
+        coupon.claims = [claim]
+        coupon.icon = NITImage()
+        return coupon
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,6 +179,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 3
         case 1:
             return 2
+        case 2:
+            return 5
         default:
             return 0
         }
@@ -151,6 +222,27 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 title?.text = "Undefined"
                 description?.text = " - "
             }
+        case 2: // Coupon
+            switch indexPath.row {
+            case 0:
+                title?.text = "Default coupon, valid"
+                description?.text = "Show qrcode and all informations"
+            case 1:
+                title?.text = "Default coupon, expired"
+                description?.text = "With remote icon"
+            case 2:
+                title?.text = "Default coupon, inactive"
+                description?.text = "No qrcode and 'disabled' look"
+            case 3:
+                title?.text = "Custom coupon"
+                description?.text = "Valid with custom fonts/colors"
+            case 4:
+                title?.text = "Navigation controller coupon"
+                description?.text = "Like a default coupon but pushed"
+            default:
+                title?.text = "Undefined"
+                description?.text = " - "
+            }
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -181,6 +273,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+        case 2: // Coupon
+            switch indexPath.row {
+            case 0:
+                let coupon = createValidCoupon()
+                showCouponDialog(coupon: coupon)
+            case 1:
+                let coupon = createExpiredCoupon()
+                showCouponDialog(coupon: coupon)
+            case 2:
+                let coupon = createInactiveCoupon()
+                showCouponDialog(coupon: coupon)
+            case 3:
+                let coupon = createValidCoupon()
+                showCouponDialogCustom(coupon: coupon)
+            case 4:
+                let coupon = createValidCoupon()
+                pushCoupon(coupon: coupon)
+            default:
+                break
+            }
         default:
             break
         }
@@ -194,6 +306,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Permissions"
         case 1:
             return "Feedback"
+        case 2:
+            return "Coupon"
         default:
             return nil
         }
