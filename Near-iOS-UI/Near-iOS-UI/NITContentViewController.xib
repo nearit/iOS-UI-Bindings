@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITContentViewController" customModule="NeariOSUI" customModuleProvider="target">
+            <connections>
+                <outlet property="close" destination="Ne0-9U-dZG" id="vla-v9-inb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="567"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-n1-al8">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="567"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-Gt-iyV">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="79"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
+                                    <rect key="frame" x="278" y="10" width="12" height="22"/>
+                                    <state key="normal" image="chiudi"/>
+                                    <connections>
+                                        <action selector="tapClose:" destination="-1" eventType="touchUpInside" id="Qx2-SW-f4m"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" constant="10" id="Wj4-KZ-l6l"/>
+                                <constraint firstItem="Ne0-9U-dZG" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="10" id="vJj-Sh-hbL"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-Vp-tiU" userLabel="Trick view: keep XCode from warning about constraints">
+                            <rect key="frame" x="0.0" y="79" width="300" height="488"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="olb-no-Kif"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="2vb-n1-al8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Lm-X8-Giq"/>
+                <constraint firstAttribute="bottom" secondItem="2vb-n1-al8" secondAttribute="bottom" id="E6h-Hv-ipB"/>
+                <constraint firstItem="2vb-n1-al8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mnc-al-mdX"/>
+                <constraint firstAttribute="trailing" secondItem="2vb-n1-al8" secondAttribute="trailing" id="x5y-jc-ydW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-99" y="37"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chiudi" width="12" height="12"/>
+    </resources>
+</document>

@@ -32,6 +32,8 @@
 		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
 		8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */; };
 		8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */; };
+		8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */; };
+		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
 		9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,8 @@
 		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
 		8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NITCoupon+ui.swift"; sourceTree = "<group>"; };
 		8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponViewControllerSpec.swift; sourceTree = "<group>"; };
+		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
+		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,15 +223,17 @@
 		26CAC30E1F56BB60009DDDF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
+				8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */,
+				8AE08CE01FA8715100710B0B /* NITContentViewController.xib */,
 				8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */,
 				8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */,
-				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
 				26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */,
 				26CAC3111F56C871009DDDF2 /* NITDialogController.xib */,
-				26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */,
-				26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */,
 				8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */,
 				8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */,
+				26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */,
+				26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
 				8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */,
+				8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +535,7 @@
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
+				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
 				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,

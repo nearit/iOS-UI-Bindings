@@ -128,6 +128,21 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(dialog, animated: true)
     }
 
+    func showContentDialog(content: NITContent) {
+        let aViewController = NITContentViewController(content: content)
+        aViewController.show()
+    }
+
+    func pushContent(content: NITContent) {
+        let aViewController = NITContentViewController(content: content)
+        aViewController.hideCloseButton = true
+
+        let dialog = NITDialogController(viewController: aViewController)
+        dialog.hidesBottomBarWhenPushed = true
+        dialog.backgroundStyle = .push
+        navigationController?.pushViewController(dialog, animated: true)
+    }
+
     func createExpiredCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Description"
@@ -170,7 +185,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,6 +196,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 2
         case 2:
             return 5
+        case 3:
+            return 2
         default:
             return 0
         }
@@ -243,6 +260,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 title?.text = "Undefined"
                 description?.text = " - "
             }
+        case 3: // Content
+            switch indexPath.row {
+            case 0:
+                title?.text = "Default content"
+                description?.text = "Complete"
+            case 1:
+                title?.text = "Navigation controller content"
+                description?.text = "Like a default content but pushed"
+            default:
+                title?.text = "Undefined"
+                description?.text = " - "
+            }
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -293,7 +322,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
-        default:
+        case 3: // Content
+            switch indexPath.row {
+            case 0:
+                let content = NITContent()
+                showContentDialog(content: content)
+            case 2:
+                let content = NITContent()
+                pushContent(content: content)
+            default:
+                break
+            }        default:
             break
         }
 
@@ -308,6 +347,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Feedback"
         case 2:
             return "Coupon"
+        case 3:
+            return "Content"
         default:
             return nil
         }
