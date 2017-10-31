@@ -185,6 +185,7 @@ public class NITCouponViewController: NITBaseViewController {
             alternative.textColor = couponDisabledColor
             value.textColor = couponDisabledColor
             longDescription.textColor = couponDisabledColor
+            couponTitle.textColor = couponDisabledColor
             serial.isHidden = true
             setupDates(color: couponExpiredColor)
         case .expired:
