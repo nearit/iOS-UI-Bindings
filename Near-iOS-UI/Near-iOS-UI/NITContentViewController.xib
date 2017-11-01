@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITContentViewController" customModule="NeariOSUI" customModuleProvider="target">
             <connections>
+                <outlet property="callToAction" destination="wjj-Ja-BY8" id="tXO-5Y-bYv"/>
                 <outlet property="close" destination="Ne0-9U-dZG" id="vla-v9-inb"/>
                 <outlet property="contentTitle" destination="Iiy-TW-xUc" id="bPx-Up-uId"/>
                 <outlet property="image" destination="B6c-Vs-QdP" id="JTO-jS-YeT"/>
@@ -25,11 +26,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="345" height="672"/>
+            <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-n1-al8">
-                    <rect key="frame" x="0.0" y="0.0" width="345" height="672"/>
+                    <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-Gt-iyV">
                             <rect key="frame" x="0.0" y="0.0" width="345" height="52"/>
@@ -104,8 +105,31 @@
                                 <constraint firstAttribute="trailing" secondItem="ZbX-Yo-yMa" secondAttribute="trailing" constant="25" id="Xyp-bD-nup"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyn-Az-00f">
+                            <rect key="frame" x="0.0" y="600" width="345" height="115"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjj-Ja-BY8">
+                                    <rect key="frame" x="25" y="35" width="295" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="GrT-un-rRM"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="CTA" backgroundImage="filledButton"/>
+                                    <connections>
+                                        <action selector="tapCallToAction:" destination="-1" eventType="touchUpInside" id="lvf-M2-slr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="wjj-Ja-BY8" firstAttribute="leading" secondItem="vyn-Az-00f" secondAttribute="leading" constant="25" id="1Ea-kb-yRG"/>
+                                <constraint firstAttribute="bottom" secondItem="wjj-Ja-BY8" secondAttribute="bottom" constant="35" id="o1J-7p-ewE"/>
+                                <constraint firstAttribute="trailing" secondItem="wjj-Ja-BY8" secondAttribute="trailing" constant="25" id="sWH-Uc-2TB"/>
+                                <constraint firstItem="wjj-Ja-BY8" firstAttribute="top" secondItem="vyn-Az-00f" secondAttribute="top" constant="35" id="waE-q1-Gjy"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-Vp-tiU" userLabel="Trick view: keep XCode from warning about constraints">
-                            <rect key="frame" x="0.0" y="600" width="345" height="72"/>
+                            <rect key="frame" x="0.0" y="715" width="345" height="63"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="345" placeholder="YES" id="olb-no-Kif"/>
@@ -129,11 +153,12 @@
                 <constraint firstAttribute="trailing" secondItem="2vb-n1-al8" secondAttribute="trailing" id="x5y-jc-ydW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-108.5" y="30"/>
+            <point key="canvasLocation" x="-108.5" y="83"/>
         </view>
     </objects>
     <resources>
         <image name="chiudi" width="12" height="12"/>
+        <image name="filledButton" width="250" height="45"/>
         <image name="imgSegnaposto" width="340" height="200"/>
     </resources>
 </document>

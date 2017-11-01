@@ -9,6 +9,7 @@
 import UIKit
 import NearITSDK
 import WebKit
+import SafariServices
 
 public class NITWKWebViewContainer: UIView {
     var wkWebView: WKWebView!
@@ -82,7 +83,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var webviewContainer: NITWKWebViewContainer!
     @IBOutlet weak var stackviewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackview: UIStackView!
-
+    @IBOutlet weak var callToAction: UIButton!
+    
     public init(content: NITContent, closeCallback: ((NITContentViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
         let bundle = Bundle(for: NITDialogController.self)
         self.closeCallback = closeCallback
@@ -141,6 +143,12 @@ public class NITContentViewController: NITBaseViewController {
         contentTitle.text = content.title
 
         webviewContainer.loadContent(content: content)
+
+        if let contentLink = content.link {
+            callToAction.setTitle(contentLink.label, for: .normal)
+        } else {
+            callToAction.isHidden = true
+        }
     }
 
     @IBAction func tapClose(_ sender: Any) {
@@ -151,4 +159,8 @@ public class NITContentViewController: NITBaseViewController {
         }
     }
 
+    @IBAction func tapCallToAction(_ sender: Any) {
+        let s = SFSafariViewController(url: content.link!.url)
+        present(s, animated: true, completion: nil)
+    }
 }

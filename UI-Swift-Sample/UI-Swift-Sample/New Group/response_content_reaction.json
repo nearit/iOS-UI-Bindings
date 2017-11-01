@@ -1,0 +1,95 @@
+{
+    "data" : {
+        "id" : "e77d28fc-c6a0-4b9f-a28a-44e776119e25",
+        "relationships" : {
+            "audio" : {
+                "data": {
+                    "id": "bf8ce0ff-c247-49d2-9d1e-1d5451e7f9a3",
+                    "type": "audios"
+                }
+            },
+            "images" : {
+                "data" : [
+                          {
+                          "type" : "images",
+                          "id" : "478a5d40-59e2-4f37-a9fa-1566c2ee1e9d"
+                          }
+                          ]
+            },
+            "upload" : {
+                "data": {
+                    "id": "bd756f4d-1c22-4615-9e4c-2361c13a5277",
+                    "type": "uploads"
+                }
+            }
+        },
+        "type" : "contents",
+        "attributes" : {
+            "app_id" : "e34a7d90-14d2-46b8-81f0-81a2c93dd4d0",
+            "content" : "<h2>​Benvenuto e Benvenuti<\/h2><p>Benvenuto al primo contenuto ufficiale!<\/p>",
+            "image_ids" : [
+                           "478a5d40-59e2-4f37-a9fa-1566c2ee1e9d"
+                           ],
+            "upload_id" : "",
+            "created_at" : "2017-03-24T10:41:17.36665Z",
+            "audio_id" : "",
+            "video_link" : "",
+            "owner_id" : "fa71a6e6-b091-48ee-b79e-bd893d673713",
+            "updated_at" : "2017-03-24T10:41:17.36665Z",
+            "link": {
+                "label": "Eat the cake",
+                "url": "http://www.eatBigCakes.com"
+            }
+        }
+    },
+    "included" : [
+                  {
+                  "type" : "images",
+                  "id" : "478a5d40-59e2-4f37-a9fa-1566c2ee1e9d",
+                  "attributes" : {
+                  "app_id" : "e34a7d90-14d2-46b8-81f0-81a2c93dd4d0",
+                  "created_at" : "2017-03-24T10:40:36.795Z",
+                  "updated_at" : "2017-03-24T10:40:37.782Z",
+                  "name" : "spiderman.jpg",
+                  "image" : {
+                  "square_300" : {
+                  "url" : "https:\/\/dev-nearit-media.s3.amazonaws.com\/uploads\/image\/image\/478a5d40-59e2-4f37-a9fa-1566c2ee1e9d\/square_300_file.jpeg"
+                  },
+                  "url" : "https:\/\/dev-nearit-media.s3.amazonaws.com\/uploads\/image\/image\/478a5d40-59e2-4f37-a9fa-1566c2ee1e9d\/file.jpeg",
+                  "max_1920_jpg" : {
+                  "url" : "https:\/\/dev-nearit-media.s3.amazonaws.com\/uploads\/image\/image\/478a5d40-59e2-4f37-a9fa-1566c2ee1e9d\/file.jpeg"
+                  }
+                  },
+                  "creator_id" : "fa71a6e6-b091-48ee-b79e-bd893d673713"
+                  }
+                  },
+                  {
+                  "id": "bf8ce0ff-c247-49d2-9d1e-1d5451e7f9a3",
+                  "type": "audios",
+                  "attributes": {
+                  "name": "Audio",
+                  "audio": {
+                  "url": "audio-url"
+                  },
+                  "app_id": null,
+                  "creator_id": null,
+                  "created_at": null,
+                  "updated_at": null
+                  }
+                  },
+                  {
+                  "id": "bd756f4d-1c22-4615-9e4c-2361c13a5277",
+                  "type": "uploads",
+                  "attributes": {
+                  "name": "PDF",
+                  "upload": {
+                  "url": "upload-url"
+                  },
+                  "app_id": null,
+                  "creator_id": null,
+                  "created_at": null,
+                  "updated_at": null
+                  }
+                  }
+                  ]
+}

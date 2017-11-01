@@ -213,7 +213,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 2:
             return 5
         case 3:
-            return 2
+            return 3
         default:
             return 0
         }
@@ -280,8 +280,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 title?.text = "Default content"
-                description?.text = "Complete"
+                description?.text = "Simple text"
             case 1:
+                title?.text = "Default content"
+                description?.text = "With call to action"
+            case 2:
                 title?.text = "Navigation controller content"
                 description?.text = "Like a default content but pushed"
             default:
@@ -350,6 +353,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 content.title = "Content title"
                 showContentDialog(content: content)
             case 1:
+                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
+                if let content = reaction as? NITContent {
+                    showContentDialog(content: content)
+                }
+            case 2:
                 let reaction = recipeWithContentsOf(filename: "contents1")
                 if let content = reaction as? NITContent {
                     pushContent(content: content)
