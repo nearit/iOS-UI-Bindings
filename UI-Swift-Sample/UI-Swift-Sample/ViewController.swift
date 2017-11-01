@@ -349,7 +349,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             switch indexPath.row {
             case 0:
                 let content = NITContent()
-                content.content = lorem()
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
                 content.title = "Content title"
                 showContentDialog(content: content)
             case 1:

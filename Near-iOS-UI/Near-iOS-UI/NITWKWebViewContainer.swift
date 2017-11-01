@@ -10,8 +10,10 @@ import Foundation
 import WebKit
 import NearITSDK
 
-internal class NITWKWebViewContainer: UIView {
+internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
     public var font: UIFont = UIFont.systemFont(ofSize: 15.0)
+    public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
+
     var wkWebView: WKWebView!
     var heightConstraint: NSLayoutConstraint!
 
@@ -21,9 +23,11 @@ internal class NITWKWebViewContainer: UIView {
         let configuration = WKWebViewConfiguration()
         wkWebView = WKWebView.init(frame: bounds, configuration: configuration)
         wkWebView.translatesAutoresizingMaskIntoConstraints = false
+        wkWebView.navigationDelegate = self
 
         addSubview(wkWebView)
         wkWebView.scrollView.isScrollEnabled = false
+        wkWebView.scrollView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
 
         wkWebView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         wkWebView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -52,6 +56,15 @@ internal class NITWKWebViewContainer: UIView {
                     }
                 }
             }
+        }
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
+    {
+        if navigationAction.navigationType == .linkActivated, let linkHandler = linkHandler {
+            decisionHandler(linkHandler(navigationAction.request))
+        } else {
+            decisionHandler(.allow)
         }
     }
 

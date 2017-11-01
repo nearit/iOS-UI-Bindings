@@ -9,17 +9,21 @@
 import UIKit
 import NearITSDK
 import SafariServices
+import WebKit
 
 public class NITContentViewController: NITBaseViewController {
     var content: NITContent!
     var nearManager: NITManager
     var closeCallback: ((NITContentViewController) -> Void)?
 
+    public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
+    public var callToActionHandler: ((URL) -> Void)?
     public var drawSeparator = true
     public var hideCloseButton = false
     public var imagePlaceholder: UIImage!
     public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
     public var titleColor = UIColor.nearBlack
+    public var callToActionButton: UIImage!
 
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var image: UIImageView!
@@ -30,7 +34,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var stackviewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackview: UIStackView!
     @IBOutlet weak var callToAction: UIButton!
-    
+    @IBOutlet weak var ctaContainer: UIView!
+
     public init(content: NITContent, closeCallback: ((NITContentViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
         let bundle = Bundle(for: NITDialogController.self)
         self.closeCallback = closeCallback
@@ -61,6 +66,8 @@ public class NITContentViewController: NITBaseViewController {
     func setupDefaultElements() {
         let bundle = Bundle(for: NITDialogController.self)
         imagePlaceholder = UIImage(named: "imgSegnaposto", in: bundle, compatibleWith: nil)
+        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
+        callToActionButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
     }
 
     override public func viewDidLoad() {
@@ -88,12 +95,25 @@ public class NITContentViewController: NITBaseViewController {
         contentTitle.font = titleFont
         contentTitle.text = content.title
 
+        webviewContainer.linkHandler = { [weak self](request) in
+            if let wself = self, let url = request.url {
+                if let lh = wself.linkHandler {
+                    return lh(request)
+                }
+                let s = SFSafariViewController(url: url)
+                wself.present(s, animated: true, completion: nil)
+                return .cancel
+            }
+            return .allow
+        }
+
         webviewContainer.loadContent(content: content)
 
         if let contentLink = content.link {
             callToAction.setTitle(contentLink.label, for: .normal)
+            callToAction.setBackgroundImage(callToActionButton, for: .normal)
         } else {
-            callToAction.isHidden = true
+            ctaContainer.isHidden = true
         }
     }
 
@@ -106,7 +126,11 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     @IBAction func tapCallToAction(_ sender: Any) {
-        let s = SFSafariViewController(url: content.link!.url)
-        present(s, animated: true, completion: nil)
+        if let ctaHandler = callToActionHandler {
+            ctaHandler(content.link!.url)
+        } else {
+            let s = SFSafariViewController(url: content.link!.url)
+            present(s, animated: true, completion: nil)
+        }
     }
 }
