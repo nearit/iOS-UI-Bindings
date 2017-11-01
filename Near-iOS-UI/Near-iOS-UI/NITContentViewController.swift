@@ -16,14 +16,15 @@ public class NITContentViewController: NITBaseViewController {
     var nearManager: NITManager
     var closeCallback: ((NITContentViewController) -> Void)?
 
-    public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
-    public var callToActionHandler: ((URL) -> Void)?
+    public var linkHandler: ((NITContentViewController, URLRequest) -> WKNavigationActionPolicy)?
+    public var callToActionHandler: ((NITContentViewController, URL) -> Void)?
     public var drawSeparator = true
     public var hideCloseButton = false
     public var imagePlaceholder: UIImage!
     public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
     public var titleColor = UIColor.nearBlack
     public var callToActionButton: UIImage!
+    public var contentMainFont = UIFont.systemFont(ofSize: 15.0)
 
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var image: UIImageView!
@@ -98,7 +99,7 @@ public class NITContentViewController: NITBaseViewController {
         webviewContainer.linkHandler = { [weak self](request) in
             if let wself = self, let url = request.url {
                 if let lh = wself.linkHandler {
-                    return lh(request)
+                    return lh(wself, request)
                 }
                 let s = SFSafariViewController(url: url)
                 wself.present(s, animated: true, completion: nil)
@@ -107,6 +108,7 @@ public class NITContentViewController: NITBaseViewController {
             return .allow
         }
 
+        webviewContainer.font = contentMainFont
         webviewContainer.loadContent(content: content)
 
         if let contentLink = content.link {
@@ -127,7 +129,7 @@ public class NITContentViewController: NITBaseViewController {
 
     @IBAction func tapCallToAction(_ sender: Any) {
         if let ctaHandler = callToActionHandler {
-            ctaHandler(content.link!.url)
+            ctaHandler(self, content.link!.url)
         } else {
             let s = SFSafariViewController(url: content.link!.url)
             present(s, animated: true, completion: nil)
