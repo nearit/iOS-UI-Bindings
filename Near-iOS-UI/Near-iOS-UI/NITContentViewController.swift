@@ -35,7 +35,7 @@ public class NITWKWebViewContainer: UIView {
                     options: [.new, .old],
                     context: nil)
 
-        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 100)
+        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
         addConstraint(heightConstraint)
     }
 
@@ -120,11 +120,21 @@ public class NITContentViewController: NITBaseViewController {
         setupUI()
     }
 
+    internal func getImage() -> NITImage? {
+        if content.image != nil { return content.image }
+        guard let images = content.images else { return nil }
+        return images.first
+    }
+
     internal func setupUI() {
         dialogController?.contentView.backgroundColor = .clear
         close.isHidden = hideCloseButton
 
         image.image = imagePlaceholder
+        if let contentImage = getImage(),
+            let url = contentImage.url() ?? contentImage.smallSizeURL() {
+            applyImage(fromURL: url, toImageView: image)
+        }
 
         contentTitle.textColor = titleColor
         contentTitle.font = titleFont

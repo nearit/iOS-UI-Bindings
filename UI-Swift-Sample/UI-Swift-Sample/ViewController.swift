@@ -32,6 +32,22 @@ class ViewController: UIViewController {
         let aViewController = NITPermissionsViewController()
         aViewController.show()
     }
+
+    func recipeWithContentsOf(filename: String) -> NITReactionBundle? {
+        let bundle = Bundle.main
+
+        guard let path = bundle.path(forResource: filename,
+                                     ofType: "json",
+                                     inDirectory: nil) else { return nil }
+
+        guard let japi = try? NITJSONAPI.init(contentsOfFile: path) else { return nil }
+        japi.register(NITContent.self, forType: "contents")
+        japi.register(NITCoupon.self, forType: "coupons")
+        japi.register(NITImage.self, forType: "images")
+
+        let reactions = japi.parseToArrayOfObjects()
+        return reactions.last as? NITReactionBundle
+    }
     
     func showPermissionsDialogCustom() {
         let baseUnknownImage = UIImage(named: "gray-button")
@@ -334,10 +350,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 content.title = "Content title"
                 showContentDialog(content: content)
             case 1:
-                let content = NITContent()
-                content.content = lorem()
-                content.title = "Content title"
-                pushContent(content: content)
+                let reaction = recipeWithContentsOf(filename: "contents1")
+                if let content = reaction as? NITContent {
+                    pushContent(content: content)
+                }
             default:
                 break
             }

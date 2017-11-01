@@ -161,14 +161,7 @@ public class NITCouponViewController: NITBaseViewController {
         alternative.font = alternativeFont
 
         if let iconURL = coupon.icon.smallSizeURL() {
-            DispatchQueue.global(qos: .userInitiated).async {
-                let data = try? Data(contentsOf: iconURL)
-                if let imageData = data, let image = UIImage(data: imageData) {
-                    DispatchQueue.main.async { [weak self] () -> Void in
-                        self?.icon.image = image
-                    }
-                }
-            }
+            applyImage(fromURL: iconURL, toImageView: icon)
         }
 
         switch coupon.status {
