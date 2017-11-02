@@ -13,6 +13,7 @@ public class NITDialogController: UIViewController {
     @objc public enum CFAlertControllerBackgroundStyle : Int {
         case plain = 0
         case blur
+        case push
     }
     
     // Background
@@ -71,10 +72,7 @@ public class NITDialogController: UIViewController {
         containerView.addGestureRecognizer(tapGesture)
 
         applyBackgroundStyle()
-        if let bkg = backgroundColor {
-            view.backgroundColor = bkg
-        }
-
+        
         offset = bottomConstraint.constant
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -104,7 +102,7 @@ public class NITDialogController: UIViewController {
             baseViewController.dialogController = self
             isEnableTapToClose = baseViewController.isEnableTapToClose
         }
-        
+
         modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
     }
@@ -163,14 +161,15 @@ public class NITDialogController: UIViewController {
 
     func applyBackgroundStyle() {
         // Set Background
-        if backgroundStyle == .blur {
-            // Set Blur Background
+        switch backgroundStyle {
+        case .blur:
             backgroundColor = .clear
             backgroundBlurView?.alpha = 1.0
-        }
-        else {
-            // Display Plain Background
-            backgroundColor = UIColor.nearDialogBackground
+        case .plain:
+            backgroundColor = .nearDialogBackground
+            backgroundBlurView?.alpha = 0.0
+        case .push:
+            backgroundColor = .nearPushedBackground
             backgroundBlurView?.alpha = 0.0
         }
     }

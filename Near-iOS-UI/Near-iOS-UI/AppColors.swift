@@ -18,7 +18,28 @@ extension UIColor {
         return UIColor(red: 229.0 / 255.0, green: 77.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
     }
 
+    @nonobjc class var nearCouponValid: UIColor {
+        return UIColor(red: 104.0 / 255.0, green: 198.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var nearCouponExpired: UIColor {
+        return UIColor(red: 255.0 / 255.0, green: 52.0 / 255.0, blue: 52.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var nearCouponDisabled: UIColor {
+        return UIColor(red: 202.0 / 255.0, green: 202.0 / 255.0, blue: 202.0 / 255.0, alpha: 1.0)
+    }
+
     @nonobjc class var nearDialogBackground: UIColor {
         return UIColor.init(white: 0.0, alpha: 0.35)
     }
+
+    @nonobjc class var nearPushedBackground: UIColor {
+        return UIColor.init(white: 242.0 / 255.0, alpha: 1.0)
+    }
+
+    @nonobjc class var nearBlack: UIColor {
+        return UIColor(white: 51.0 / 255.0, alpha: 1.0)
+    }
+
 }
