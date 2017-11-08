@@ -61,6 +61,8 @@ class NITContentViewControllerSpec: QuickSpec {
                 } else {
                     expect(contentVC.dialogController?.view).to(haveValidSnapshot(named: "has a complete webview"))
                 }
+
+                contentVC.dialogController?.dismiss()
             }
         }
     }

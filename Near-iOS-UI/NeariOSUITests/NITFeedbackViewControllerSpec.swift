@@ -114,7 +114,7 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 
                 feedbackVC.stars[2].sendActions(for: .touchUpInside)
                 
-                waitUntil(timeout: 1) { done in
+                waitUntil(timeout: 2) { done in
                     NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardDidShow, object: nil, queue: OperationQueue.main, using: { (notification) in
                         if (self.recordingMode) {
                             expect(feedbackVC.dialogController?.view).to(recordSnapshot(named: "feedback keyboard"))
@@ -125,6 +125,8 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                     })
                     feedbackVC.comment.becomeFirstResponder()
                 }
+
+                feedbackVC.dialogController?.dismiss()
             }
         }
     }
