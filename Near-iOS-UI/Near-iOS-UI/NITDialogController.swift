@@ -14,6 +14,7 @@ public class NITDialogController: UIViewController {
         case plain = 0
         case blur
         case push
+        case pushMiddle
     }
     
     // Background
@@ -46,6 +47,13 @@ public class NITDialogController: UIViewController {
 
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
+    @IBOutlet var containerSideMarginConstraints: [NSLayoutConstraint]!
+    @IBOutlet var containerSideConstraints: [NSLayoutConstraint]!
+
+    @IBOutlet weak var containerBottomMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerTopMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var constraintAdditionalYTop: NSLayoutConstraint!
+    @IBOutlet weak var centerYConstraint: NSLayoutConstraint!
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -140,7 +148,9 @@ public class NITDialogController: UIViewController {
                 }, completion: { _ in })
             }
             else {
-                animate!()
+                UIView.performWithoutAnimation {
+                    animate!()
+                }
             }
         })
     }
@@ -165,12 +175,28 @@ public class NITDialogController: UIViewController {
         case .blur:
             backgroundColor = .clear
             backgroundBlurView?.alpha = 1.0
+            centerYConstraint.isActive = true
+            constraintAdditionalYTop.isActive = false
         case .plain:
             backgroundColor = .nearDialogBackground
             backgroundBlurView?.alpha = 0.0
+            centerYConstraint.isActive = true
+            constraintAdditionalYTop.isActive = false
         case .push:
+            backgroundColor = .white
+            backgroundBlurView?.alpha = 0.0
+            centerYConstraint.isActive = false
+            constraintAdditionalYTop.isActive = true
+            NSLayoutConstraint.deactivate(containerSideMarginConstraints)
+            NSLayoutConstraint.activate(containerSideConstraints)
+            viewController.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            containerBottomMarginConstraint.constant = 0
+            containerTopMarginConstraint.constant = 0
+        case .pushMiddle:
             backgroundColor = .nearPushedBackground
             backgroundBlurView?.alpha = 0.0
+            NSLayoutConstraint.deactivate(containerSideMarginConstraints)
+            NSLayoutConstraint.activate(containerSideConstraints)
         }
     }
 

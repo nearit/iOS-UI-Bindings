@@ -36,6 +36,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var stackview: UIStackView!
     @IBOutlet weak var callToAction: UIButton!
     @IBOutlet weak var ctaContainer: UIView!
+    @IBOutlet weak var topMarginContainer: UIView!
+    @IBOutlet weak var closeContainer: UIView!
 
     public init(content: NITContent, closeCallback: ((NITContentViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
         let bundle = Bundle(for: NITDialogController.self)
@@ -83,8 +85,12 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     internal func setupUI() {
-        dialogController?.contentView.backgroundColor = .clear
-        close.isHidden = hideCloseButton
+        if let dialogController = dialogController {
+            dialogController.contentView.backgroundColor = .clear
+        }
+
+        closeContainer.isHidden = hideCloseButton
+        topMarginContainer.isHidden = !hideCloseButton
 
         image.image = imagePlaceholder
         if let contentImage = getImage(),

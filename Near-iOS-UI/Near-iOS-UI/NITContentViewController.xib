@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="callToAction" destination="wjj-Ja-BY8" id="tXO-5Y-bYv"/>
                 <outlet property="close" destination="Ne0-9U-dZG" id="vla-v9-inb"/>
+                <outlet property="closeContainer" destination="ev8-Gt-iyV" id="Obv-En-5BU"/>
                 <outlet property="contentTitle" destination="Iiy-TW-xUc" id="bPx-Up-uId"/>
                 <outlet property="ctaContainer" destination="vyn-Az-00f" id="Kpk-gp-lSs"/>
                 <outlet property="image" destination="B6c-Vs-QdP" id="JTO-jS-YeT"/>
@@ -21,6 +22,7 @@
                 <outlet property="stackview" destination="2vb-n1-al8" id="E1E-Es-atZ"/>
                 <outlet property="stackviewWidthConstraint" destination="hUg-qA-Yzf" id="nKv-QZ-k9Z"/>
                 <outlet property="titleContainer" destination="hrc-rQ-TQQ" id="8xK-dp-TeL"/>
+                <outlet property="topMarginContainer" destination="x9N-Tu-RSe" id="SkZ-6G-6Ul"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webviewContainer" destination="ZbX-Yo-yMa" id="Gs8-2Q-g0E"/>
             </connections>
@@ -34,10 +36,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-Gt-iyV">
-                            <rect key="frame" x="0.0" y="0.0" width="345" height="115"/>
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="97"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
-                                    <rect key="frame" x="323" y="10" width="12" height="85"/>
+                                    <rect key="frame" x="323" y="10" width="12" height="67"/>
                                     <state key="normal" image="chiudi"/>
                                     <connections>
                                         <action selector="tapClose:" destination="-1" eventType="touchUpInside" id="Qx2-SW-f4m"/>
@@ -51,8 +53,15 @@
                                 <constraint firstItem="Ne0-9U-dZG" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="10" id="vJj-Sh-hbL"/>
                             </constraints>
                         </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9N-Tu-RSe">
+                            <rect key="frame" x="0.0" y="97" width="345" height="25"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="ZOd-Nn-ekR"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-fR-M9t" userLabel="Image container">
-                            <rect key="frame" x="0.0" y="115" width="345" height="196.5"/>
+                            <rect key="frame" x="0.0" y="97" width="345" height="196.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgSegnaposto" translatesAutoresizingMaskIntoConstraints="NO" id="B6c-Vs-QdP">
                                     <rect key="frame" x="25" y="0.0" width="295" height="196.5"/>
@@ -70,7 +79,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-rQ-TQQ" userLabel="Title container">
-                            <rect key="frame" x="0.0" y="311.5" width="345" height="56.5"/>
+                            <rect key="frame" x="0.0" y="293.5" width="345" height="56.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-TW-xUc" userLabel="Title">
                                     <rect key="frame" x="25" y="20" width="295" height="21.5"/>
@@ -88,10 +97,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1j-5p-qAk" userLabel="HTML container">
-                            <rect key="frame" x="0.0" y="368" width="345" height="295"/>
+                            <rect key="frame" x="0.0" y="350" width="345" height="313"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbX-Yo-yMa" userLabel="wkwebview container" customClass="NITWKWebViewContainer" customModule="NeariOSUI" customModuleProvider="target">
-                                    <rect key="frame" x="25" y="0.0" width="295" height="295"/>
+                                    <rect key="frame" x="16" y="0.0" width="313" height="313"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="ZbX-Yo-yMa" secondAttribute="height" multiplier="1:1" placeholder="YES" id="7dK-mR-PAs"/>
@@ -101,9 +110,9 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ZbX-Yo-yMa" firstAttribute="top" secondItem="m1j-5p-qAk" secondAttribute="top" id="9ce-4p-VNz"/>
-                                <constraint firstItem="ZbX-Yo-yMa" firstAttribute="leading" secondItem="m1j-5p-qAk" secondAttribute="leading" constant="25" id="Hjd-Pl-MVe"/>
+                                <constraint firstItem="ZbX-Yo-yMa" firstAttribute="leading" secondItem="m1j-5p-qAk" secondAttribute="leading" constant="16" id="Hjd-Pl-MVe"/>
                                 <constraint firstAttribute="bottom" secondItem="ZbX-Yo-yMa" secondAttribute="bottom" id="IMb-CL-mXU"/>
-                                <constraint firstAttribute="trailing" secondItem="ZbX-Yo-yMa" secondAttribute="trailing" constant="25" id="Xyp-bD-nup"/>
+                                <constraint firstAttribute="trailing" secondItem="ZbX-Yo-yMa" secondAttribute="trailing" constant="16" id="Xyp-bD-nup"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyn-Az-00f" userLabel="CTA container">

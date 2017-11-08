@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         
         let dialog = NITDialogController(viewController: aViewController)
         dialog.hidesBottomBarWhenPushed = true
-        dialog.backgroundStyle = .push
+        dialog.backgroundStyle = .pushMiddle
         navigationController?.pushViewController(dialog, animated: true)
     }
 
