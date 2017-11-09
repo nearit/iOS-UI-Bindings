@@ -10,20 +10,33 @@ import Foundation
 import WebKit
 import NearITSDK
 
+// There are two strategy to adapt the view to the content of the DOM.
+// The correct one is observing the WKWebView scrollView for its contentSize;
+// it usually works but sometimes (totally random) its just bigger than the
+// actual content.
+// The second strategy is to read the scrollHeight from the DOM; usually correct
+// still it does not react to dynamic changes; not relevant with just texts and no js.
+fileprivate enum NITWKWebViewContainerSizeType: Int {
+    case contentSize = 0
+    case scrollHeight
+}
+
 internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
     public var font: UIFont = UIFont.systemFont(ofSize: 15.0)
     public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
 
-    var wkWebView: WKWebView!
+    var wkWebView: WKWebView = {
+        let v = WKWebView.init()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+
     var heightConstraint: NSLayoutConstraint!
+
+    fileprivate let sizeType = NITWKWebViewContainerSizeType.scrollHeight
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
-        let configuration = WKWebViewConfiguration()
-        wkWebView = WKWebView.init(frame: bounds, configuration: configuration)
-        wkWebView.translatesAutoresizingMaskIntoConstraints = false
-        wkWebView.navigationDelegate = self
 
         addSubview(wkWebView)
         wkWebView.scrollView.isScrollEnabled = false
@@ -34,17 +47,23 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
         wkWebView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         wkWebView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
-        addObserver(self,
-                    forKeyPath: #keyPath(wkWebView.scrollView.contentSize),
-                    options: [.new, .old],
-                    context: nil)
+        if sizeType == .contentSize {
+            addObserver(self,
+                        forKeyPath: #keyPath(wkWebView.scrollView.contentSize),
+                        options: [.new, .old],
+                        context: nil)
+        }
 
         heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
         addConstraint(heightConstraint)
+
+        wkWebView.navigationDelegate = self
     }
 
     deinit {
-        removeObserver(self, forKeyPath: #keyPath(wkWebView.scrollView.contentSize))
+        if sizeType == .contentSize {
+            removeObserver(self, forKeyPath: #keyPath(wkWebView.scrollView.contentSize))
+        }
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -57,6 +76,17 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
                 }
             }
         }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if sizeType != .scrollHeight { return }
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+            if complete != nil {
+                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { [weak self](height, error) in
+                    self?.heightConstraint.constant = height as! CGFloat
+                })
+            }
+        })
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
