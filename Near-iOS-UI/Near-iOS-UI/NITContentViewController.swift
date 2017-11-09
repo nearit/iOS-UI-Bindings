@@ -39,6 +39,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var topMarginContainer: UIView!
     @IBOutlet weak var closeContainer: UIView!
 
+    @IBOutlet var constantConstraints: [NSLayoutConstraint]!
+    
     public init(content: NITContent, closeCallback: ((NITContentViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
         let bundle = Bundle(for: NITDialogController.self)
         self.closeCallback = closeCallback
@@ -87,6 +89,12 @@ public class NITContentViewController: NITBaseViewController {
     internal func setupUI() {
         if let dialogController = dialogController {
             dialogController.contentView.backgroundColor = .clear
+            if dialogController.backgroundStyle == .push {
+                constantConstraints.forEach({ (constraint) in
+                    let constant = constraint.constant
+                    constraint.constant = constant - 10
+                })
+            }
         }
 
         closeContainer.isHidden = hideCloseButton
