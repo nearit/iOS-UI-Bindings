@@ -68,6 +68,16 @@ public class NITContentViewController: NITBaseViewController {
         fromViewController.present(dialog, animated: true, completion: nil)
     }
 
+    public func show(from navigationController: UINavigationController) {
+        hideCloseButton = true
+        let dialog = NITDialogController(viewController: self)
+        dialog.hidesBottomBarWhenPushed = true
+        dialog.backgroundStyle = .plain
+        dialog.backgroundColor = .white
+        dialog.contentPosition = .full
+        navigationController.pushViewController(dialog, animated: true)
+    }
+
     func setupDefaultElements() {
         let bundle = Bundle(for: NITDialogController.self)
         imagePlaceholder = UIImage(named: "imgSegnaposto", in: bundle, compatibleWith: nil)
@@ -89,7 +99,7 @@ public class NITContentViewController: NITBaseViewController {
     internal func setupUI() {
         if let dialogController = dialogController {
             dialogController.contentView.backgroundColor = .clear
-            if dialogController.backgroundStyle == .push {
+            if dialogController.contentPosition == .full {
                 constantConstraints.forEach({ (constraint) in
                     let constant = constraint.constant
                     constraint.constant = constant - 10

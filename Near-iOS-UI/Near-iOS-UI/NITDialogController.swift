@@ -13,10 +13,13 @@ public class NITDialogController: UIViewController {
     @objc public enum CFAlertControllerBackgroundStyle : Int {
         case plain = 0
         case blur
-        case push
-        case pushMiddle
     }
-    
+
+    @objc public enum CFAlertControllerContentPosition : Int {
+        case middle = 0
+        case full
+    }
+
     // Background
     public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
         didSet  {
@@ -25,6 +28,7 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+
     public var backgroundColor: UIColor?    {
         didSet  {
             if isViewLoaded {
@@ -32,6 +36,15 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+
+    public var contentPosition = CFAlertControllerContentPosition.middle {
+        didSet  {
+            if isViewLoaded {
+                applyBackgroundStyle()
+            }
+        }
+    }
+
     var isEnableTapToClose = true
     
     @IBOutlet weak var contentView: UIView!
@@ -54,6 +67,7 @@ public class NITDialogController: UIViewController {
     @IBOutlet weak var containerTopMarginConstraint: NSLayoutConstraint!
     @IBOutlet weak var constraintAdditionalYTop: NSLayoutConstraint!
     @IBOutlet weak var centerYConstraint: NSLayoutConstraint!
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -170,33 +184,27 @@ public class NITDialogController: UIViewController {
     }
 
     func applyBackgroundStyle() {
-        // Set Background
         switch backgroundStyle {
         case .blur:
             backgroundColor = .clear
             backgroundBlurView?.alpha = 1.0
-            centerYConstraint.isActive = true
-            constraintAdditionalYTop.isActive = false
         case .plain:
-            backgroundColor = .nearDialogBackground
+            backgroundColor = backgroundColor ?? .nearDialogBackground
             backgroundBlurView?.alpha = 0.0
-            centerYConstraint.isActive = true
+        }
+
+        switch contentPosition {
+        case .middle:
             constraintAdditionalYTop.isActive = false
-        case .push:
-            backgroundColor = .white
-            backgroundBlurView?.alpha = 0.0
-            centerYConstraint.isActive = false
+            centerYConstraint.isActive = true
+        case .full:
             constraintAdditionalYTop.isActive = true
+            centerYConstraint.isActive = false
             NSLayoutConstraint.deactivate(containerSideMarginConstraints)
             NSLayoutConstraint.activate(containerSideConstraints)
             viewController.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
             containerBottomMarginConstraint.constant = 0
             containerTopMarginConstraint.constant = 0
-        case .pushMiddle:
-            backgroundColor = .nearPushedBackground
-            backgroundBlurView?.alpha = 0.0
-            NSLayoutConstraint.deactivate(containerSideMarginConstraints)
-            NSLayoutConstraint.activate(containerSideConstraints)
         }
     }
 

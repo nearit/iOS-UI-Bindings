@@ -77,6 +77,16 @@ public class NITCouponViewController: NITBaseViewController {
         fromViewController.present(dialog, animated: true, completion: nil)
     }
 
+    public func show(from navigationController: UINavigationController) {
+        hideCloseButton = true
+        let dialog = NITDialogController(viewController: self)
+        dialog.hidesBottomBarWhenPushed = true
+        dialog.backgroundStyle = .plain
+        dialog.backgroundColor = .nearPushedBackground
+        dialog.contentPosition = .middle
+        navigationController.pushViewController(dialog, animated: true)
+    }
+
     func setupDefaultElements() {
         let bundle = Bundle(for: NITDialogController.self)
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)

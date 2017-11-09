@@ -137,12 +137,7 @@ class ViewController: UIViewController {
 
     func pushCoupon(coupon: NITCoupon) {
         let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.hideCloseButton = true
-        
-        let dialog = NITDialogController(viewController: aViewController)
-        dialog.hidesBottomBarWhenPushed = true
-        dialog.backgroundStyle = .pushMiddle
-        navigationController?.pushViewController(dialog, animated: true)
+        aViewController.show(from: navigationController!)
     }
 
     func showContentDialog(content: NITContent) {
@@ -180,12 +175,7 @@ class ViewController: UIViewController {
 
     func pushContent(content: NITContent) {
         let aViewController = NITContentViewController(content: content)
-        aViewController.hideCloseButton = true
-
-        let dialog = NITDialogController(viewController: aViewController)
-        dialog.hidesBottomBarWhenPushed = true
-        dialog.backgroundStyle = .push
-        navigationController?.pushViewController(dialog, animated: true)
+        aViewController.show(from: navigationController!)
     }
 
     func createExpiredCoupon() -> NITCoupon {
