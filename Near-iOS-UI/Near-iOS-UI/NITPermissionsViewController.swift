@@ -223,6 +223,12 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.setTitle(closeText, for: .normal)
     }
     
+    public func show() {
+        if let viewController = UIApplication.shared.keyWindow?.currentController() {
+            self.show(fromViewController: viewController, configureDialog: nil)
+        }
+    }
+    
     /// Present permissions view controller from the rootViewController if it exists
     public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {

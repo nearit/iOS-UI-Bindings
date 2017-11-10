@@ -11,9 +11,15 @@ import NearITSDK
 import NeariOSUI
 import WebKit
 
+enum Code: Int {
+    case swift = 0
+    case objectiveC = 1
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var codeSegment: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +36,15 @@ class ViewController: UIViewController {
     }
 
     func showPermissionsDialog() {
-        let aViewController = NITPermissionsViewController()
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+            case Code.swift.rawValue:
+                let aViewController = NITPermissionsViewController()
+                aViewController.show()
+            case Code.objectiveC.rawValue:
+                ObjCUIManager.sharedInstance().showPermissiongDialog()
+            default:
+                print("Code undefined")
+        }
     }
 
     func recipeWithContentsOf(filename: String) -> NITReactionBundle? {
