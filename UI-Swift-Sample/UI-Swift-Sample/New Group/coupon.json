@@ -1,0 +1,65 @@
+{
+    "data" : [
+              {
+              "id" : "a2219054-6a9f-4764-aa7f-6763c076d5ec",
+              "relationships" : {
+              "claims" : {
+              "data" : [
+                        {
+                        "id" : "bb2ac963-e61d-4110-821f-717a946bacdb",
+                        "type" : "claims"
+                        }
+                        ]
+              },
+              "icon" : {
+              "data" : null
+              }
+              },
+              "meta" : {
+              "expired" : false,
+              "has_claim" : true,
+              "redeemable" : true
+              },
+              "type" : "coupons",
+              "attributes" : {
+              "app_id" : "e34a7d90-14d2-46b8-81f0-81a2c93dd4d0",
+              "icon_id" : null,
+              "redeemable_from" : "2017-03-10T00:00:00.000Z",
+              "expires_at" : "2017-04-12T23:59:59.999Z",
+              "created_at" : "2017-03-29T11:45:51.933Z",
+              "value" : "50 €",
+              "description" : "Buono omaggio!",
+              "updated_at" : "2017-03-29T11:45:51.933Z",
+              "owner_id" : "fa71a6e6-b091-48ee-b79e-bd893d673713",
+              "name" : "Le Coupon"
+              }
+              }
+              ],
+    "included" : [
+                  {
+                  "id" : "bb2ac963-e61d-4110-821f-717a946bacdb",
+                  "relationships" : {
+                  "coupon" : {
+                  "data" : {
+                  "id" : "a2219054-6a9f-4764-aa7f-6763c076d5ec",
+                  "type" : "coupons"
+                  }
+                  }
+                  },
+                  "meta" : {
+                  "redeemed" : false,
+                  "expired" : false,
+                  "redeemable" : true
+                  },
+                  "type" : "claims",
+                  "attributes" : {
+                  "serial_number" : "C545845F590E",
+                  "claimed_at" : "2017-03-30T09:30:31.542Z",
+                  "redeemed_at" : null,
+                  "recipe_id" : "fe92307e-a3b8-4637-86d8-922bf7a53b5f",
+                  "profile_id" : "6a2490f4-28b9-4e36-b0f6-2c97c86b0002"
+                  }
+                  }
+                  ]
+}
+

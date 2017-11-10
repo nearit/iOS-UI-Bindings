@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITContentViewController" customModule="NeariOSUI" customModuleProvider="target">
+            <connections>
+                <outlet property="callToAction" destination="wjj-Ja-BY8" id="tXO-5Y-bYv"/>
+                <outlet property="close" destination="Ne0-9U-dZG" id="vla-v9-inb"/>
+                <outlet property="closeContainer" destination="ev8-Gt-iyV" id="Obv-En-5BU"/>
+                <outlet property="contentTitle" destination="Iiy-TW-xUc" id="bPx-Up-uId"/>
+                <outlet property="ctaContainer" destination="vyn-Az-00f" id="Kpk-gp-lSs"/>
+                <outlet property="image" destination="B6c-Vs-QdP" id="JTO-jS-YeT"/>
+                <outlet property="imageContainer" destination="Wna-fR-M9t" id="2YO-LC-few"/>
+                <outlet property="stackview" destination="2vb-n1-al8" id="E1E-Es-atZ"/>
+                <outlet property="stackviewWidthConstraint" destination="hUg-qA-Yzf" id="nKv-QZ-k9Z"/>
+                <outlet property="titleContainer" destination="hrc-rQ-TQQ" id="8xK-dp-TeL"/>
+                <outlet property="topMarginContainer" destination="x9N-Tu-RSe" id="SkZ-6G-6Ul"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webviewContainer" destination="ZbX-Yo-yMa" id="Gs8-2Q-g0E"/>
+                <outletCollection property="constantConstraints" destination="C3p-bv-aqA" collectionClass="NSMutableArray" id="8bF-Dj-ggc"/>
+                <outletCollection property="constantConstraints" destination="eIM-qF-0vV" collectionClass="NSMutableArray" id="MQH-df-XJ3"/>
+                <outletCollection property="constantConstraints" destination="8eh-y9-J0b" collectionClass="NSMutableArray" id="sCY-y6-tMb"/>
+                <outletCollection property="constantConstraints" destination="Hjd-Pl-MVe" collectionClass="NSMutableArray" id="znQ-Wy-pmE"/>
+                <outletCollection property="constantConstraints" destination="Xyp-bD-nup" collectionClass="NSMutableArray" id="rBB-yK-YCA"/>
+                <outletCollection property="constantConstraints" destination="sXV-fT-dpZ" collectionClass="NSMutableArray" id="aqx-hi-cw1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2vb-n1-al8">
+                    <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-Gt-iyV">
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="97"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
+                                    <rect key="frame" x="323" y="10" width="12" height="67"/>
+                                    <state key="normal" image="chiudi"/>
+                                    <connections>
+                                        <action selector="tapClose:" destination="-1" eventType="touchUpInside" id="Qx2-SW-f4m"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Ne0-9U-dZG" secondAttribute="bottom" constant="20" id="3aD-MV-c2l"/>
+                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" constant="10" id="Wj4-KZ-l6l"/>
+                                <constraint firstItem="Ne0-9U-dZG" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="10" id="vJj-Sh-hbL"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9N-Tu-RSe">
+                            <rect key="frame" x="0.0" y="97" width="345" height="15"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="ZOd-Nn-ekR"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-fR-M9t" userLabel="Image container">
+                            <rect key="frame" x="0.0" y="97" width="345" height="196.5"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgSegnaposto" translatesAutoresizingMaskIntoConstraints="NO" id="B6c-Vs-QdP">
+                                    <rect key="frame" x="25" y="0.0" width="295" height="196.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="B6c-Vs-QdP" secondAttribute="height" multiplier="3:2" id="s9K-4h-z7u"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="B6c-Vs-QdP" secondAttribute="trailing" constant="25" id="C3p-bv-aqA"/>
+                                <constraint firstAttribute="bottom" secondItem="B6c-Vs-QdP" secondAttribute="bottom" id="MLm-d3-liB"/>
+                                <constraint firstItem="B6c-Vs-QdP" firstAttribute="top" secondItem="Wna-fR-M9t" secondAttribute="top" id="W2b-LM-wmi"/>
+                                <constraint firstItem="B6c-Vs-QdP" firstAttribute="leading" secondItem="Wna-fR-M9t" secondAttribute="leading" constant="25" id="sXV-fT-dpZ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-rQ-TQQ" userLabel="Title container">
+                            <rect key="frame" x="0.0" y="293.5" width="345" height="56.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-TW-xUc" userLabel="Title">
+                                    <rect key="frame" x="25" y="20" width="295" height="21.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="Iiy-TW-xUc" secondAttribute="bottom" constant="15" id="2hP-Yc-cew"/>
+                                <constraint firstItem="Iiy-TW-xUc" firstAttribute="top" secondItem="hrc-rQ-TQQ" secondAttribute="top" constant="20" id="8Ca-gw-N5X"/>
+                                <constraint firstAttribute="trailing" secondItem="Iiy-TW-xUc" secondAttribute="trailing" constant="25" id="8eh-y9-J0b"/>
+                                <constraint firstItem="Iiy-TW-xUc" firstAttribute="leading" secondItem="hrc-rQ-TQQ" secondAttribute="leading" constant="25" id="eIM-qF-0vV"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1j-5p-qAk" userLabel="HTML container">
+                            <rect key="frame" x="0.0" y="350" width="345" height="313"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZbX-Yo-yMa" userLabel="wkwebview container" customClass="NITWKWebViewContainer" customModule="NeariOSUI" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="0.0" width="313" height="313"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="ZbX-Yo-yMa" secondAttribute="height" multiplier="1:1" placeholder="YES" id="7dK-mR-PAs"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="ZbX-Yo-yMa" firstAttribute="top" secondItem="m1j-5p-qAk" secondAttribute="top" id="9ce-4p-VNz"/>
+                                <constraint firstItem="ZbX-Yo-yMa" firstAttribute="leading" secondItem="m1j-5p-qAk" secondAttribute="leading" constant="16" id="Hjd-Pl-MVe"/>
+                                <constraint firstAttribute="bottom" secondItem="ZbX-Yo-yMa" secondAttribute="bottom" id="IMb-CL-mXU"/>
+                                <constraint firstAttribute="trailing" secondItem="ZbX-Yo-yMa" secondAttribute="trailing" constant="16" id="Xyp-bD-nup"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyn-Az-00f" userLabel="CTA container">
+                            <rect key="frame" x="0.0" y="663" width="345" height="80"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjj-Ja-BY8">
+                                    <rect key="frame" x="47.5" y="35" width="250" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="250" id="3aT-WL-GPR"/>
+                                        <constraint firstAttribute="height" constant="45" id="GrT-un-rRM"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="CTA" backgroundImage="filledButton"/>
+                                    <connections>
+                                        <action selector="tapCallToAction:" destination="-1" eventType="touchUpInside" id="lvf-M2-slr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="wjj-Ja-BY8" firstAttribute="centerX" secondItem="vyn-Az-00f" secondAttribute="centerX" id="PSq-oL-fo3"/>
+                                <constraint firstAttribute="bottom" secondItem="wjj-Ja-BY8" secondAttribute="bottom" id="o1J-7p-ewE"/>
+                                <constraint firstItem="wjj-Ja-BY8" firstAttribute="top" secondItem="vyn-Az-00f" secondAttribute="top" constant="35" id="waE-q1-Gjy"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-Vp-tiU" userLabel="Trick view: keep XCode from warning about constraints">
+                            <rect key="frame" x="0.0" y="743" width="345" height="35"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="cJX-0s-mdR"/>
+                                <constraint firstAttribute="width" constant="345" placeholder="YES" id="olb-no-Kif"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="345" id="hUg-qA-Yzf"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hUg-qA-Yzf"/>
+                        </mask>
+                    </variation>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="2vb-n1-al8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4Lm-X8-Giq"/>
+                <constraint firstAttribute="bottom" secondItem="2vb-n1-al8" secondAttribute="bottom" id="E6h-Hv-ipB"/>
+                <constraint firstItem="2vb-n1-al8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="mnc-al-mdX"/>
+                <constraint firstAttribute="trailing" secondItem="2vb-n1-al8" secondAttribute="trailing" id="x5y-jc-ydW"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-108.5" y="83"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chiudi" width="12" height="12"/>
+        <image name="filledButton" width="250" height="45"/>
+        <image name="imgSegnaposto" width="340" height="200"/>
+    </resources>
+</document>

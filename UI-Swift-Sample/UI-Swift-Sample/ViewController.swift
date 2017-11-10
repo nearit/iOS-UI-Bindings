@@ -9,6 +9,7 @@
 import UIKit
 import NearITSDK
 import NeariOSUI
+import WebKit
 
 class ViewController: UIViewController {
     
@@ -31,6 +32,22 @@ class ViewController: UIViewController {
     func showPermissionsDialog() {
         let aViewController = NITPermissionsViewController()
         aViewController.show()
+    }
+
+    func recipeWithContentsOf(filename: String) -> NITReactionBundle? {
+        let bundle = Bundle.main
+
+        guard let path = bundle.path(forResource: filename,
+                                     ofType: "json",
+                                     inDirectory: nil) else { return nil }
+
+        guard let japi = try? NITJSONAPI.init(contentsOfFile: path) else { return nil }
+        japi.register(NITContent.self, forType: "contents")
+        japi.register(NITCoupon.self, forType: "coupons")
+        japi.register(NITImage.self, forType: "images")
+
+        let reactions = japi.parseToArrayOfObjects()
+        return reactions.last as? NITReactionBundle
     }
     
     func showPermissionsDialogCustom() {
@@ -120,12 +137,45 @@ class ViewController: UIViewController {
 
     func pushCoupon(coupon: NITCoupon) {
         let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.hideCloseButton = true
-        
-        let dialog = NITDialogController(viewController: aViewController)
-        dialog.hidesBottomBarWhenPushed = true
-        dialog.backgroundStyle = .push
-        navigationController?.pushViewController(dialog, animated: true)
+        aViewController.show(from: navigationController!)
+    }
+
+    func showContentDialog(content: NITContent) {
+        let aViewController = NITContentViewController(content: content)
+        aViewController.show()
+    }
+
+    func showCustomContentDialog(content: NITContent) {
+        let aViewController = NITContentViewController(content: content)
+
+        let blueButton = UIImage(named: "blue-button")
+        let ctaButton = blueButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
+
+        aViewController.callToActionButton = ctaButton
+        aViewController.contentMainFont = UIFont.systemFont(ofSize: 20.0)
+        aViewController.imagePlaceholder = UIImage.init(named: "NearIT")
+        aViewController.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
+            let ui = UIAlertController.init(title: "Link tapped", message: "URL: \(request.url!)", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            ui.addAction(okAction)
+            controller.present(ui, animated: true)
+            return .cancel
+        }
+        aViewController.callToActionHandler = { (controller, url) -> Void in
+            let ui = UIAlertController.init(title: "Call To Action", message: "URL: \(url)", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default)
+            ui.addAction(okAction)
+            controller.present(ui, animated: true)
+        }
+
+        aViewController.show { (dialogController: NITDialogController) in
+            dialogController.backgroundStyle = .blur
+        }
+    }
+
+    func pushContent(content: NITContent) {
+        let aViewController = NITContentViewController(content: content)
+        aViewController.show(from: navigationController!)
     }
 
     func createExpiredCoupon() -> NITCoupon {
@@ -170,7 +220,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,6 +231,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 2
         case 2:
             return 5
+        case 3:
+            return 4
         default:
             return 0
         }
@@ -243,12 +295,34 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 title?.text = "Undefined"
                 description?.text = " - "
             }
+        case 3: // Content
+            switch indexPath.row {
+            case 0:
+                title?.text = "Default content"
+                description?.text = "Simple text"
+            case 1:
+                title?.text = "Default content"
+                description?.text = "With call to action"
+            case 2:
+                title?.text = "Custom content"
+                description?.text = "With custom handlers"
+            case 3:
+                title?.text = "Navigation controller content"
+                description?.text = "Like a default content but pushed"
+            default:
+                title?.text = "Undefined"
+                description?.text = " - "
+            }
         default:
             title?.text = "Undefined"
             description?.text = " - "
         }
 
         return cell
+    }
+
+    func lorem() -> String {
+        return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -269,7 +343,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 showFeedbackDialog(question: "What am I?")
             case 1:
-                showFeedbackDialogCustom(question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ")
+                showFeedbackDialogCustom(question: lorem())
             default:
                 break
             }
@@ -293,6 +367,31 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+        case 3: // Content
+            switch indexPath.row {
+            case 0:
+                let content = NITContent()
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                content.title = "Content title"
+                showContentDialog(content: content)
+            case 1:
+                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
+                if let content = reaction as? NITContent {
+                    showContentDialog(content: content)
+                }
+            case 2:
+                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
+                if let content = reaction as? NITContent {
+                    showCustomContentDialog(content: content)
+                }
+            case 3:
+                let reaction = recipeWithContentsOf(filename: "contents1")
+                if let content = reaction as? NITContent {
+                    pushContent(content: content)
+                }
+            default:
+                break
+            }
         default:
             break
         }
@@ -308,6 +407,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Feedback"
         case 2:
             return "Coupon"
+        case 3:
+            return "Content"
         default:
             return nil
         }
