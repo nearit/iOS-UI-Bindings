@@ -342,7 +342,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 title?.text = "Coupon list"
                 description?.text = "Navigation controller"
-            case 0:
+            case 1:
                 title?.text = "Coupon list"
                 description?.text = "Modal"
             default:

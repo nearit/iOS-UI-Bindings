@@ -98,7 +98,14 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
 
     public func show(fromViewController: UIViewController) {
         let navigation = UINavigationController.init(rootViewController: self)
+        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                target: self,
+                                                                action: #selector(self.onDone))
         fromViewController.present(navigation, animated: true, completion: nil)
+    }
+
+    @objc func onDone() {
+        navigationController?.dismiss(animated: true, completion: nil)
     }
 
     public func show(from navigationController: UINavigationController) {
