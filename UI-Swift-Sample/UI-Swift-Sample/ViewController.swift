@@ -237,6 +237,16 @@ class ViewController: UIViewController {
             aViewController.show(from: navigationController!)
         }
     }
+
+    func customPushCouponList() {
+        let aViewController = NITListViewController()
+        aViewController.presentCoupon = .popover
+        aViewController.filterOption = .valid
+        aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
+        aViewController.cellBackground = UIImage.init(named: "customCell")
+        aViewController.selectedCellBackground = nil
+        aViewController.show()
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -256,7 +266,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 3:
             return 4
         case 4:
-            return 2
+            return 3
         default:
             return 0
         }
@@ -344,6 +354,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 description?.text = "Navigation controller"
             case 1:
                 title?.text = "Coupon list"
+                description?.text = "Modal"
+            case 2:
+                title?.text = "Custom coupon list"
                 description?.text = "Modal"
             default:
                 title?.text = "Undefined"
@@ -434,6 +447,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 pushCouponList(modal: false)
             case 1:
                 pushCouponList(modal: true)
+            case 2:
+                customPushCouponList()
             default:
                 break
             }
