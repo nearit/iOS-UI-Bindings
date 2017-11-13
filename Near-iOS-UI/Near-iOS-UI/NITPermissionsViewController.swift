@@ -122,7 +122,13 @@ public class NITPermissionsViewController: NITBaseViewController {
         self.autoCloseDialog = autoCloseDialog
         
         let bundle = Bundle(for: NITDialogController.self)
-        super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        
+        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
+            let xibBundle = Bundle(url: bundleUrl)
+            super.init(nibName: "NITPermissionsViewController", bundle: xibBundle)
+        } else {
+            super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        }
         
         setupDefaultElements()
         permissionsManager.delegate = self
