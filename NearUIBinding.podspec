@@ -13,7 +13,7 @@ s.author                = {
 }
 s.source                = { :git => "https://github.com/nearit/iOS-UI-Bindings.git", :tag => s.version.to_s }
 s.source_files          = 'Near-iOS-UI/Near-iOS-UI/**/*.{h,swift}'
-s.resource_bundle       = { 'NearUIBinding' => 'Near-iOS-UI/Near-iOS-UI/*.xib' }
+s.resource_bundles      = { 'NearUIBinding' => 'Near-iOS-UI/Near-iOS-UI/*.xib' }
 
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
