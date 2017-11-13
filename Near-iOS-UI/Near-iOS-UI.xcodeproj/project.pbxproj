@@ -11,7 +11,7 @@
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
 		264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */; };
-		264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */; };
+		264AE7011F98908700AF8C48 /* NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */; };
 		264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */; };
 		264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */; };
 		26B85B031F98A02A00087BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B021F98A02A00087BEE /* AppDelegate.swift */; };
@@ -85,7 +85,7 @@
 		26B85B091F98A02A00087BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26B85B0C1F98A02A00087BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26B85B0E1F98A02A00087BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
 		26CAC3071F56BB4E009DDDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITDialogController.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */,
+				264AE7011F98908700AF8C48 /* NearUIBinding.framework in Frameworks */,
 				9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,7 +210,7 @@
 		26CAC3041F56BB4E009DDDF2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */,
+				26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */,
 				264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */,
 				26B85B001F98A02A00087BEE /* UIHostApplication.app */,
 			);
@@ -329,9 +329,9 @@
 			productReference = 26B85B001F98A02A00087BEE /* UIHostApplication.app */;
 			productType = "com.apple.product-type.application";
 		};
-		26CAC3021F56BB4E009DDDF2 /* NeariOSUI */ = {
+		26CAC3021F56BB4E009DDDF2 /* NearUIBinding */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */;
+			buildConfigurationList = 26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NearUIBinding" */;
 			buildPhases = (
 				EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */,
 				26CAC2FE1F56BB4E009DDDF2 /* Sources */,
@@ -344,9 +344,9 @@
 			);
 			dependencies = (
 			);
-			name = NeariOSUI;
+			name = NearUIBinding;
 			productName = "Near-iOS-UI";
-			productReference = 26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */;
+			productReference = 26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -391,7 +391,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				26CAC3021F56BB4E009DDDF2 /* NeariOSUI */,
+				26CAC3021F56BB4E009DDDF2 /* NearUIBinding */,
 				264AE6FB1F98908700AF8C48 /* NeariOSUITests */,
 				26B85AFF1F98A02A00087BEE /* UIHostApplication */,
 			);
@@ -572,7 +572,7 @@
 /* Begin PBXTargetDependency section */
 		264AE7031F98908700AF8C48 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 26CAC3021F56BB4E009DDDF2 /* NeariOSUI */;
+			target = 26CAC3021F56BB4E009DDDF2 /* NearUIBinding */;
 			targetProxy = 264AE7021F98908700AF8C48 /* PBXContainerItemProxy */;
 		};
 		26B85B131F98A03000087BEE /* PBXTargetDependency */ = {
@@ -892,7 +892,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */ = {
+		26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NearUIBinding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26CAC30C1F56BB4E009DDDF2 /* Debug */,
