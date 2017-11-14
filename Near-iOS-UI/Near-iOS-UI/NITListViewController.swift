@@ -32,6 +32,11 @@ import NearITSDK
     }
 }
 
+@objc public enum NITListViewControllerFilterRedeemed: NSInteger {
+    case hide
+    case show
+}
+
 public class NITListViewController: NITBaseViewController, UITableViewDataSource, UITableViewDelegate {
     var nearManager: NITManager
     var coupons: [NITCoupon]?
@@ -41,6 +46,7 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
 
     public var presentCoupon = NITListViewControllerPresentCoupon.push
     public var filterOption = NITListViewControllerFilterOptions.all
+    public var filterRedeemed = NITListViewControllerFilterRedeemed.hide
 
     public var iconPlaceholder: UIImage!
 
@@ -138,12 +144,13 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
             if let coupons = coupons {
                 DispatchQueue.main.async {
-                    self?.isLoading = false
-                    self?.coupons = coupons.filter { [weak self](coupon: NITCoupon) -> Bool in
-                        guard let wself = self else { return false }
+                    guard let wself = self else { return }
+                    wself.isLoading = false
+                    wself.coupons = coupons.filter { (coupon: NITCoupon) -> Bool in
+                        if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
                         return wself.filterOption.filter(coupon.status)
                     }
-                    self?.tableView.reloadData()
+                    wself.tableView.reloadData()
                 }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
