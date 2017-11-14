@@ -76,7 +76,7 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
     public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
     public var valueExpiredColor = UIColor.nearCouponListGray
 
-    public var noCoupons = NSLocalizedString("Coupons not found", comment: "Coupon list: coupons not found")
+    public var noCoupons = NSLocalizedString("No coupons available", comment: "Coupon list: no coupons")
 
     public var cellBackground: UIImage!
     public var selectedCellBackground:  UIImage!
