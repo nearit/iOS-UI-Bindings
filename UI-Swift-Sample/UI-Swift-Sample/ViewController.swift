@@ -230,7 +230,7 @@ class ViewController: UIViewController {
     }
 
     func pushCouponList(modal: Bool = false) {
-        let aViewController = NITListViewController()
+        let aViewController = NITCouponListViewController()
         if modal {
             aViewController.show()
         } else {
@@ -239,7 +239,7 @@ class ViewController: UIViewController {
     }
 
     func customPushCouponList() {
-        let aViewController = NITListViewController()
+        let aViewController = NITCouponListViewController()
         aViewController.presentCoupon = .popover
         aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)

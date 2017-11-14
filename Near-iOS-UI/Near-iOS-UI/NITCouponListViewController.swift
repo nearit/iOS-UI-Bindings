@@ -1,5 +1,5 @@
 //
-//  NITListViewController.swift
+//  NITCouponListViewController.swift
 //  NeariOSUI
 //
 //  Created by Nicola Ferruzzi on 13/11/2017.
@@ -9,12 +9,12 @@
 import UIKit
 import NearITSDK
 
-@objc public enum NITListViewControllerPresentCoupon: NSInteger {
+@objc public enum NITCouponListViewControllerPresentCoupon: NSInteger {
     case popover
     case push
 }
 
-@objc public enum NITListViewControllerFilterOptions: NSInteger {
+@objc public enum NITCouponListViewControllerFilterOptions: NSInteger {
     case valid = 0b001
     case expired = 0b010
     case disabled = 0b100
@@ -23,30 +23,30 @@ import NearITSDK
     fileprivate func filter(_ status: NITCouponUIStatus) -> Bool {
         switch status {
         case .disabled:
-            return (rawValue & NITListViewControllerFilterOptions.disabled.rawValue) != 0
+            return (rawValue & NITCouponListViewControllerFilterOptions.disabled.rawValue) != 0
         case .expired:
-            return (rawValue & NITListViewControllerFilterOptions.expired.rawValue) != 0
+            return (rawValue & NITCouponListViewControllerFilterOptions.expired.rawValue) != 0
         case .valid:
-            return (rawValue & NITListViewControllerFilterOptions.valid.rawValue) != 0
+            return (rawValue & NITCouponListViewControllerFilterOptions.valid.rawValue) != 0
         }
     }
 }
 
-@objc public enum NITListViewControllerFilterRedeemed: NSInteger {
+@objc public enum NITCouponListViewControllerFilterRedeemed: NSInteger {
     case hide
     case show
 }
 
-public class NITListViewController: NITBaseViewController, UITableViewDataSource, UITableViewDelegate {
+public class NITCouponListViewController: NITBaseViewController, UITableViewDataSource, UITableViewDelegate {
     var nearManager: NITManager
     var coupons: [NITCoupon]?
     var isLoading = false
 
     @IBOutlet weak var tableView: UITableView!
 
-    public var presentCoupon = NITListViewControllerPresentCoupon.push
-    public var filterOption = NITListViewControllerFilterOptions.all
-    public var filterRedeemed = NITListViewControllerFilterRedeemed.hide
+    public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
+    public var filterOption = NITCouponListViewControllerFilterOptions.all
+    public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
 
     public var iconPlaceholder: UIImage!
 
@@ -83,8 +83,8 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
 
     public init(manager: NITManager = NITManager.default()) {
         self.nearManager = manager
-        let bundle = Bundle(for: NITListViewController.self)
-        super.init(nibName: "NITListViewController", bundle: bundle)
+        let bundle = Bundle(for: NITCouponListViewController.self)
+        super.init(nibName: "NITCouponListViewController", bundle: bundle)
         setupDefaultElements()
     }
 
@@ -119,7 +119,7 @@ public class NITListViewController: NITBaseViewController, UITableViewDataSource
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITListViewController.self)
+        let bundle = Bundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
         selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)

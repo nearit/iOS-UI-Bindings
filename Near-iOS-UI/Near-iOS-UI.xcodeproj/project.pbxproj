@@ -28,9 +28,9 @@
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
 		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
 		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
-		8A5ECD5D1FB982DE00C099BB /* NITListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5C1FB982DE00C099BB /* NITListViewController.xib */; };
+		8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */; };
 		8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */; };
-		8A5ECD611FB9868200C099BB /* NITListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD601FB9868200C099BB /* NITListViewController.swift */; };
+		8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */; };
 		8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */; };
 		8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */; };
 		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
@@ -106,9 +106,9 @@
 		8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+currentController.swift"; sourceTree = "<group>"; };
 		8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITFeedbackViewController.xib; sourceTree = "<group>"; };
 		8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewController.swift; sourceTree = "<group>"; };
-		8A5ECD5C1FB982DE00C099BB /* NITListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITListViewController.xib; sourceTree = "<group>"; };
+		8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponListViewController.xib; sourceTree = "<group>"; };
 		8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponCell.xib; sourceTree = "<group>"; };
-		8A5ECD601FB9868200C099BB /* NITListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITListViewController.swift; sourceTree = "<group>"; };
+		8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewController.swift; sourceTree = "<group>"; };
 		8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponCell.swift; sourceTree = "<group>"; };
 		8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITCouponViewController.swift; sourceTree = "<group>"; };
 		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 		26CAC30E1F56BB60009DDDF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8A5ECD601FB9868200C099BB /* NITListViewController.swift */,
-				8A5ECD5C1FB982DE00C099BB /* NITListViewController.xib */,
+				8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */,
+				8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */,
 				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
 				8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */,
 				8AE08CE01FA8715100710B0B /* NITContentViewController.xib */,
@@ -436,7 +436,7 @@
 			files = (
 				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
 				8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */,
-				8A5ECD5D1FB982DE00C099BB /* NITListViewController.xib in Resources */,
+				8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */,
 				8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */,
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
@@ -572,7 +572,7 @@
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
 				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
-				8A5ECD611FB9868200C099BB /* NITListViewController.swift in Sources */,
+				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
