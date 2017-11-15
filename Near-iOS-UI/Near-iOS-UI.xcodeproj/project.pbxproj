@@ -33,6 +33,8 @@
 		8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */; };
 		8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */; };
 		8A5ECD651FBC2DF300C099BB /* NITCouponListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */; };
+		8A636A001FBC8D99000C6EBF /* NITPermissionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */; };
+		8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */; };
 		8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */; };
 		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
 		8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */; };
@@ -112,6 +114,8 @@
 		8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewController.swift; sourceTree = "<group>"; };
 		8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponCell.swift; sourceTree = "<group>"; };
 		8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewControllerSpec.swift; sourceTree = "<group>"; };
+		8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsView.xib; sourceTree = "<group>"; };
+		8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionsView.swift; sourceTree = "<group>"; };
 		8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITCouponViewController.swift; sourceTree = "<group>"; };
 		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
 		8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITContentViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		264FB8C31F5D884200DC740A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */,
+				8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */,
 				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
 				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
 				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
@@ -445,6 +451,7 @@
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
 				8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */,
 				8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */,
+				8A636A001FBC8D99000C6EBF /* NITPermissionsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +583,7 @@
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
 				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
+				8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */,
 				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
