@@ -142,10 +142,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     internal func refreshCoupons() {
         isLoading = true
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
-            if let coupons = coupons {
+            if error == nil {
                 DispatchQueue.main.async {
                     guard let wself = self else { return }
                     wself.isLoading = false
+                    let coupons = coupons ?? []
                     wself.coupons = coupons.filter { (coupon: NITCoupon) -> Bool in
                         if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
                         return wself.filterOption.filter(coupon.status)
@@ -220,7 +221,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.value.textColor = valueExpiredColor
                 }
 
-                cell.applyImage(fromURL: coupon.icon.smallSizeURL())
+                if let url = coupon.icon.smallSizeURL() {
+                    cell.applyImage(fromURL: url)
+                }
 
             } else {
                 if isLoading {

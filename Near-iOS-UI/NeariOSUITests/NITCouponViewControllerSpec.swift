@@ -13,9 +13,9 @@ import Nimble_Snapshots
 @testable import NearITSDK
 @testable import NeariOSUI
 
-class NITCouponViewControllerSpec: QuickSpec {
-
-    func createExpiredCoupon() -> NITCoupon {
+class NITCouponSpec: QuickSpec {
+    
+    static func createExpiredCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Description"
         coupon.value = "10 $"
@@ -29,7 +29,7 @@ class NITCouponViewControllerSpec: QuickSpec {
         return coupon
     }
 
-    func createValidCoupon() -> NITCoupon {
+    static func createValidCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
         coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
@@ -41,7 +41,7 @@ class NITCouponViewControllerSpec: QuickSpec {
         return coupon
     }
 
-    func createInactiveCoupon() -> NITCoupon {
+    static func createInactiveCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Description"
         coupon.value = "10 $"
@@ -53,7 +53,7 @@ class NITCouponViewControllerSpec: QuickSpec {
         return coupon
     }
 
-    func decodeQRCode(image: CIImage?) -> String? {
+    static func decodeQRCode(image: CIImage?) -> String? {
         guard let image = image else { return nil }
         if let detector = CIDetector(ofType: CIDetectorTypeQRCode,
                                      context: nil,
@@ -69,11 +69,18 @@ class NITCouponViewControllerSpec: QuickSpec {
         return nil
     }
 
+    static func couponList() -> [NITCoupon] {
+        return [createExpiredCoupon(), createValidCoupon(), createInactiveCoupon()]
+    }
+}
+
+class NITCouponViewControllerSpec: NITCouponSpec {
+
     override func spec() {
         var couponVC: NITCouponViewController!
-        let validCoupon = createValidCoupon()
-        let expiredCoupon = createExpiredCoupon()
-        let inactiveCoupon = createInactiveCoupon()
+        let validCoupon = NITCouponSpec.createValidCoupon()
+        let expiredCoupon = NITCouponSpec.createExpiredCoupon()
+        let inactiveCoupon = NITCouponSpec.createInactiveCoupon()
 
         describe("qrcode generation") {
             it("can generate proper qrcode, short test") {
@@ -83,7 +90,7 @@ class NITCouponViewControllerSpec: QuickSpec {
                 claim.serialNumber = serial
                 coupon.claims = [claim]
 
-                let message = self.decodeQRCode(image: coupon.qrCodeImage)
+                let message = NITCouponSpec.decodeQRCode(image: coupon.qrCodeImage)
                 expect(serial).to(equal(message))
             }
 
@@ -94,13 +101,13 @@ class NITCouponViewControllerSpec: QuickSpec {
                 claim.serialNumber = serial
                 coupon.claims = [claim]
 
-                let message = self.decodeQRCode(image: coupon.qrCodeImage)
+                let message = NITCouponSpec.decodeQRCode(image: coupon.qrCodeImage)
                 expect(serial).to(equal(message))
             }
 
             it("nothing to generate here") {
                 let coupon = NITCoupon()
-                let message = self.decodeQRCode(image: coupon.qrCodeImage)
+                let message = NITCouponSpec.decodeQRCode(image: coupon.qrCodeImage)
                 expect(message).to(beNil())
             }
         }
