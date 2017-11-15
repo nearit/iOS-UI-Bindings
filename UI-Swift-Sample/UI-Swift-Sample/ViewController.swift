@@ -228,12 +228,31 @@ class ViewController: UIViewController {
         coupon.icon = NITImage()
         return coupon
     }
+
+    func pushCouponList(modal: Bool = false) {
+        let aViewController = NITCouponListViewController()
+        if modal {
+            aViewController.show()
+        } else {
+            aViewController.show(from: navigationController!)
+        }
+    }
+
+    func customPushCouponList() {
+        let aViewController = NITCouponListViewController()
+        aViewController.presentCoupon = .popover
+        aViewController.filterOption = .valid
+        aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
+        aViewController.cellBackground = UIImage.init(named: "customCell")
+        aViewController.selectedCellBackground = nil
+        aViewController.show()
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -246,6 +265,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 5
         case 3:
             return 4
+        case 4:
+            return 3
         default:
             return 0
         }
@@ -322,6 +343,21 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 3:
                 title?.text = "Navigation controller content"
                 description?.text = "Like a default content but pushed"
+            default:
+                title?.text = "Undefined"
+                description?.text = " - "
+            }
+        case 4: // Coupon list
+            switch indexPath.row {
+            case 0:
+                title?.text = "Coupon list"
+                description?.text = "Navigation controller"
+            case 1:
+                title?.text = "Coupon list"
+                description?.text = "Modal"
+            case 2:
+                title?.text = "Custom coupon list"
+                description?.text = "Modal"
             default:
                 title?.text = "Undefined"
                 description?.text = " - "
@@ -405,6 +441,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+        case 4:
+            switch indexPath.row {
+            case 0:
+                pushCouponList(modal: false)
+            case 1:
+                pushCouponList(modal: true)
+            case 2:
+                customPushCouponList()
+            default:
+                break
+            }
         default:
             break
         }
@@ -422,6 +469,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Coupon"
         case 3:
             return "Content"
+        case 4:
+            return "Coupon list"
         default:
             return nil
         }

@@ -13,5 +13,6 @@
 + (ObjCUIManager*)sharedInstance;
 
 - (void)showPermissiongDialog;
+- (void)showListOfCoupons;
 
 @end

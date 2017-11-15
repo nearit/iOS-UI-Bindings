@@ -42,4 +42,8 @@ extension UIColor {
         return UIColor(white: 51.0 / 255.0, alpha: 1.0)
     }
 
+    @nonobjc class var nearCouponListGray: UIColor {
+        return UIColor(red: 55.0 / 255.0, green: 57.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0)
+    }
+
 }

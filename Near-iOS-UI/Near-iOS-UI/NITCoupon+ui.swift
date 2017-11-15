@@ -59,4 +59,13 @@ extension NITCoupon {
         formatter.timeStyle = DateFormatter.Style.none
         return formatter.string(from: date)
     }
+
+    var isRedeemed: Bool {
+        for claim in claims {
+            if claim.redeemedAt != nil {
+                return true
+            }
+        }
+        return false
+    }
 }
