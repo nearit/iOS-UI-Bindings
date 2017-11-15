@@ -28,6 +28,11 @@
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
 		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
 		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
+		8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */; };
+		8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */; };
+		8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */; };
+		8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */; };
+		8A5ECD651FBC2DF300C099BB /* NITCouponListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */; };
 		8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */; };
 		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
 		8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */; };
@@ -102,6 +107,11 @@
 		8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+currentController.swift"; sourceTree = "<group>"; };
 		8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITFeedbackViewController.xib; sourceTree = "<group>"; };
 		8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewController.swift; sourceTree = "<group>"; };
+		8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponListViewController.xib; sourceTree = "<group>"; };
+		8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponCell.xib; sourceTree = "<group>"; };
+		8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewController.swift; sourceTree = "<group>"; };
+		8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponCell.swift; sourceTree = "<group>"; };
+		8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewControllerSpec.swift; sourceTree = "<group>"; };
 		8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITCouponViewController.swift; sourceTree = "<group>"; };
 		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
 		8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITContentViewControllerSpec.swift; sourceTree = "<group>"; };
@@ -170,6 +180,7 @@
 				264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */,
 				8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */,
 				8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */,
+				8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */,
 			);
 			path = NeariOSUITests;
 			sourceTree = "<group>";
@@ -178,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
+				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
+				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -233,6 +246,8 @@
 		26CAC30E1F56BB60009DDDF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */,
+				8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */,
 				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
 				8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */,
 				8AE08CE01FA8715100710B0B /* NITContentViewController.xib */,
@@ -361,18 +376,18 @@
 				TargetAttributes = {
 					264AE6FB1F98908700AF8C48 = {
 						CreatedOnToolsVersion = 9.0;
-						DevelopmentTeam = C8YW5Q8LEU;
+						DevelopmentTeam = XBC8ZV2BGE;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 26B85AFF1F98A02A00087BEE;
 					};
 					26B85AFF1F98A02A00087BEE = {
 						CreatedOnToolsVersion = 9.0;
-						DevelopmentTeam = C8YW5Q8LEU;
+						DevelopmentTeam = XBC8ZV2BGE;
 						ProvisioningStyle = Automatic;
 					};
 					26CAC3021F56BB4E009DDDF2 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = C8YW5Q8LEU;
+						DevelopmentTeam = XBC8ZV2BGE;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -423,6 +438,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
+				8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */,
+				8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */,
 				8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */,
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
@@ -534,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */,
+				8A5ECD651FBC2DF300C099BB /* NITCouponListViewControllerSpec.swift in Sources */,
 				8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */,
 				8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */,
 				264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */,
@@ -553,10 +571,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */,
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
 				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
+				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
@@ -616,7 +636,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -647,7 +667,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -678,7 +698,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UIHostApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -704,7 +724,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UIHostApplication/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -824,7 +844,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -832,7 +852,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI.wdy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -847,7 +867,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -855,7 +875,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI.wdy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
