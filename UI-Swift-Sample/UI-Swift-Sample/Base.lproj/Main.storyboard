@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DAR-6U-h8z">
-                                <rect key="frame" x="100" y="72" width="175" height="29"/>
+                                <rect key="frame" x="100" y="122" width="175" height="29"/>
                                 <segments>
                                     <segment title="Swift"/>
                                     <segment title="Objective-C"/>
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="60" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Lqk-02-qaf">
-                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="460"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="sampleCell" rowHeight="60" id="Hyr-6I-kQB">
@@ -69,14 +69,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="n1X-NM-lPd"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fw2-GX-ipV" customClass="NITPermissionsView" customModule="NeariOSUI">
+                                <rect key="frame" x="0.0" y="64" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.39607843139999999" green="0.79607843140000001" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" placeholder="YES" id="vlz-G9-2EH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DAR-6U-h8z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3MO-Nd-9Ey"/>
+                            <constraint firstItem="DAR-6U-h8z" firstAttribute="top" secondItem="Fw2-GX-ipV" secondAttribute="bottom" constant="8" id="4f7-dM-zO4"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Lqk-02-qaf" secondAttribute="bottom" id="KfG-FO-mAY"/>
+                            <constraint firstItem="Fw2-GX-ipV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="QWC-m4-zRa"/>
+                            <constraint firstItem="Fw2-GX-ipV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cud-dH-xk8"/>
                             <constraint firstItem="Lqk-02-qaf" firstAttribute="top" secondItem="DAR-6U-h8z" secondAttribute="bottom" constant="8" id="eeL-GF-dbL"/>
                             <constraint firstItem="Lqk-02-qaf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iBa-kT-FVJ"/>
-                            <constraint firstItem="DAR-6U-h8z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="kSV-DK-DUU"/>
+                            <constraint firstAttribute="trailing" secondItem="Fw2-GX-ipV" secondAttribute="trailing" id="sH6-jr-xVh"/>
                             <constraint firstAttribute="trailing" secondItem="Lqk-02-qaf" secondAttribute="trailing" id="z01-qW-BXd"/>
                         </constraints>
                     </view>
