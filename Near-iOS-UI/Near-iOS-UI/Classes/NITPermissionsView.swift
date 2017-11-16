@@ -71,12 +71,63 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
 
-    public var messageText: String?
-    public var buttonText: String?
-    public var permissionAvailableColor = UIColor.white
-    public var permissionNotAvailableColor = UIColor.nearRed
-    public var animateView = true
+    public var messageText: String? {
+        didSet {
+            message.text = messageText
+        }
+    }
 
+    @IBInspectable
+    public var messageColor: UIColor? {
+        didSet {
+            message.textColor = messageColor
+        }
+    }
+
+    public var messageFont: UIFont? {
+        didSet {
+            message.font = messageFont
+        }
+    }
+
+    @IBInspectable
+    public var buttonText: String? {
+        didSet {
+            button.setTitle(buttonText, for: .normal)
+        }
+    }
+
+    @IBInspectable
+    public var buttonColor: UIColor? {
+        didSet {
+            button.setTitleColor(buttonColor, for: .normal)
+        }
+    }
+
+    public var buttonFont: UIFont? {
+        didSet {
+            button.titleLabel?.font = buttonFont
+        }
+    }
+
+    @IBInspectable
+    public var permissionAvailableColor: UIColor? = UIColor.white {
+        didSet {
+            refresh()
+        }
+    }
+
+    @IBInspectable
+    public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
+        didSet {
+            refresh()
+        }
+    }
+
+    @IBInspectable
+    public var animateView: Bool = true
+
+    @IBInspectable
     public var permissionsRequired = NITPermissionsViewPermissions.all {
         didSet {
             refresh()
@@ -84,6 +135,13 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
     }
 
     public var callbackOnPermissions: ((NITPermissionsView) -> Void)?
+
+    @IBInspectable
+    public var buttonBackgroundImage: UIImage? {
+        didSet {
+            button.setBackgroundImage(buttonBackgroundImage, for: .normal)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -123,6 +181,8 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
             view.defaultCallback()
         }
 
+        buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
+
         refresh()
         setNeedsLayout()
     }
@@ -151,8 +211,6 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
         iconNotifications.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
         iconBluetooth.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
 
-        message.text = messageText
-        button.setTitle(buttonText, for: .normal)
         button.isHidden = permissionsRequired.toNITPermission() == nil
 
         debounceResize()
