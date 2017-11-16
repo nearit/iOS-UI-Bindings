@@ -149,6 +149,15 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         setup()
     }
 
+    init(frame: CGRect,
+                permissionManager: NITPermissionsManager?,
+                btManager: CBPeripheralManager?) {
+        super.init(frame: frame)
+        self.permissionManager = permissionManager ?? NITPermissionsManager()
+        self.btManager = btManager ?? CBPeripheralManager.init(delegate: self, queue: nil)
+        setup()
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         btManager = CBPeripheralManager.init(delegate: self, queue: nil)
