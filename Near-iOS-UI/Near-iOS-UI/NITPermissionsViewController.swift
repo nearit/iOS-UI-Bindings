@@ -43,6 +43,11 @@ import NearITSDK
     case on = 1
 }
 
+@objc public protocol NITPermissionsViewControllerDelegate: class {
+    @objc optional func locationGranted(_ granted: Bool)
+    @objc optional func notificationsGranted(_ granted: Bool)
+}
+
 public class NITPermissionsViewController: NITBaseViewController {
     
     @IBOutlet weak var explain: UILabel!
@@ -68,6 +73,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var explainText = NSLocalizedString("Permissions explanation", comment: "Permissions popup: explanation")
     public var closeText = NSLocalizedString("Close", comment: "Permissions popup: Close")
     public var notNowText = NSLocalizedString("Not now", comment: "Permissios popup: Not now")
+
+    public weak var delegate: NITPermissionsViewControllerDelegate?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -266,11 +273,13 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
             confirmLocationButton()
             eventuallyClose()
         }
+        delegate?.locationGranted?(granted)
     }
     
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
         eventuallyClose()
+        delegate?.notificationsGranted?(manager.isNotificationAvailable())
     }
 
     func eventuallyClose() {
