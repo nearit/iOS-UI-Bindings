@@ -9,7 +9,54 @@
 import UIKit
 import CoreBluetooth
 
-class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate {
+@objc public enum NITPermissionsViewPermissions: NSInteger {
+    case location = 0b001
+    case notifications = 0b010
+    case bluetooth = 0b100
+    case locationAndNotifications = 0b011
+    case notificationAndBluetooth = 0b110
+    case locationAndBluetooth = 0b101
+    case all = 0b111
+
+    static public func |(lhs: NITPermissionsViewPermissions, rhs: NITPermissionsViewPermissions) -> NITPermissionsViewPermissions {
+        let or = lhs.rawValue | rhs.rawValue
+        return NITPermissionsViewPermissions(rawValue: or)!
+    }
+
+    public func contains(_ lhs: NITPermissionsViewPermissions) -> Bool {
+        return (rawValue & lhs.rawValue) != 0
+    }
+
+    public func toNITPermission() -> NITPermissionsType? {
+        let hasLocation = contains(NITPermissionsViewPermissions.location)
+        let hasNotification = contains(NITPermissionsViewPermissions.notifications)
+
+        switch (hasLocation, hasNotification) {
+        case (false, true):
+            return NITPermissionsType.notificationsOnly
+        case (true, false):
+            return NITPermissionsType.locationOnly
+        case (true, true):
+            return NITPermissionsType.locationAndNotifications
+        default:
+            return nil
+        }
+    }
+
+    fileprivate func isGranted(permissionManager: NITPermissionsManager, btManager: CBPeripheralManager) -> Bool {
+        let hasLocation = contains(NITPermissionsViewPermissions.location)
+        let hasNotification = contains(NITPermissionsViewPermissions.notifications)
+        let hasBluetooth = contains(NITPermissionsViewPermissions.bluetooth)
+
+        if hasBluetooth && btManager.state != .poweredOn { return false }
+        if hasLocation && !permissionManager.isLocationPartiallyGranted() { return false }
+        if hasNotification && !permissionManager.isNotificationAvailable() { return false }
+
+        return true
+    }
+}
+
+class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var message: UILabel!
@@ -20,9 +67,23 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
 
     private var btManager: CBPeripheralManager!
     private var permissionManager = NITPermissionsManager()
+    private var heightConstraint: NSLayoutConstraint?
+    private let height: CGFloat = 50.0
+    private var debouncer: Timer?
 
     public var messageText: String?
     public var buttonText: String?
+    public var permissionAvailableColor = UIColor.white
+    public var permissionNotAvailableColor = UIColor.nearRed
+    public var animateView = true
+
+    public var permissionsRequired = NITPermissionsViewPermissions.all {
+        didSet {
+            refresh()
+        }
+    }
+
+    public var callbackOnPermissions: ((NITPermissionsView) -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +98,7 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
     }
 
     private func setup() {
-        translatesAutoresizingMaskIntoConstraints = false
+        clipsToBounds = true
         permissionManager.delegate = self
         backgroundColor = .orange
 
@@ -45,16 +106,22 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
 
         bundle.loadNibNamed("NITPermissionsView", owner: self, options: nil)
         addSubview(backgroundView)
+
+        heightConstraint = heightAnchor.constraint(equalToConstant: 0.0)
         NSLayoutConstraint.activate([
             backgroundView.leftAnchor.constraint(equalTo: leftAnchor),
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
             backgroundView.widthAnchor.constraint(equalTo: widthAnchor),
-            backgroundView.heightAnchor.constraint(equalToConstant: 50.0),
+            heightConstraint!
         ])
 
-        messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Plese provide all required permissions", comment: "Permission bar message: provide all permissions")
+        messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Please provide all required permissions", comment: "Permission bar message: provide all permissions")
 
         buttonText = NSLocalizedString("Permission bar button", tableName: nil, bundle: bundle, value: "OK", comment: "Permission bar button: OK")
+
+        callbackOnPermissions = { (view: NITPermissionsView) -> Void in
+            view.defaultCallback()
+        }
 
         refresh()
         setNeedsLayout()
@@ -62,26 +129,58 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
 
     private func refresh() {
         if permissionManager.isLocationPartiallyGranted() {
-            iconLocation.tintColor = .white
+            iconLocation.tintColor = permissionAvailableColor
         } else {
-            iconLocation.tintColor = UIColor.nearRed
+            iconLocation.tintColor = permissionNotAvailableColor
         }
 
         switch btManager.state {
         case .poweredOn:
-            iconBluetooth.tintColor = .white
+            iconBluetooth.tintColor = permissionAvailableColor
         default:
-            iconBluetooth.tintColor = UIColor.nearRed
+            iconBluetooth.tintColor = permissionNotAvailableColor
         }
 
         if permissionManager.isNotificationAvailable() {
-            iconNotifications.tintColor = .white
+            iconNotifications.tintColor = permissionAvailableColor
         } else {
-            iconNotifications.tintColor = UIColor.nearRed
+            iconNotifications.tintColor = permissionNotAvailableColor
         }
+
+        iconLocation.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.location)
+        iconNotifications.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
+        iconBluetooth.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
 
         message.text = messageText
         button.setTitle(buttonText, for: .normal)
+        button.isHidden = permissionsRequired.toNITPermission() == nil
+
+        debounceResize()
+    }
+
+    private func debounceResize() {
+        // Debounce resize changes to avoid fast show-hide of the view.
+        // This problem usually happens at the beginning, when iOS permissions state are not ready
+        // causing the view to prompt for them and suddenly hide cause the "real states" become
+        // available.
+        debouncer?.invalidate()
+        debouncer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(resize), userInfo: nil, repeats: false)
+    }
+
+    @objc private func resize() {
+        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, btManager: btManager)
+        let newHeight = granted ? 0.0 : height
+
+        if animateView {
+            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: { [weak self] () -> Void in
+                if let wself = self {
+                    wself.heightConstraint!.constant = newHeight
+                    wself.superview?.layoutIfNeeded()
+                }
+                }, completion: { _ in })
+        } else {
+            heightConstraint = heightAnchor.constraint(equalToConstant: newHeight)
+        }
     }
 
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
@@ -96,4 +195,21 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
         refresh()
     }
 
+    func notificationsGranted(_ granted: Bool) {
+        refresh()
+    }
+
+    private func defaultCallback() {
+        if let permissions = permissionsRequired.toNITPermission() {
+            let aViewController = NITPermissionsViewController(type: permissions)
+            aViewController.delegate = self
+            aViewController.show()
+        }
+    }
+
+    @IBAction private func tapOK(_ sender: Any) {
+        if let callbackOnPermissions = callbackOnPermissions {
+            callbackOnPermissions(self)
+        }
+    }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,6 +34,9 @@
                     <state key="normal" title="Button" backgroundImage="filledWhite">
                         <color key="titleColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="tapOK:" destination="-1" eventType="touchUpInside" id="2Qr-Xx-R4D"/>
+                    </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="u6Z-7y-QHZ">
                     <rect key="frame" x="12" y="15" width="64" height="20"/>
@@ -73,7 +76,6 @@
                 <constraint firstItem="u6Z-7y-QHZ" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="Lzh-Uw-jRX"/>
                 <constraint firstAttribute="trailing" secondItem="qRd-Fn-Jwd" secondAttribute="trailing" constant="12" id="eTy-nt-7NT"/>
                 <constraint firstItem="vmc-sc-QSN" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="fVC-TO-eNa"/>
-                <constraint firstAttribute="bottom" secondItem="qRd-Fn-Jwd" secondAttribute="bottom" constant="10" id="if6-aI-F36"/>
                 <constraint firstItem="vmc-sc-QSN" firstAttribute="leading" secondItem="u6Z-7y-QHZ" secondAttribute="trailing" constant="22" id="ldJ-8V-5wP"/>
                 <constraint firstItem="qRd-Fn-Jwd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vmc-sc-QSN" secondAttribute="trailing" constant="20" id="r4O-SV-DvQ"/>
                 <constraint firstItem="qRd-Fn-Jwd" firstAttribute="top" secondItem="Yzn-0J-3jA" secondAttribute="top" constant="10" id="y4a-qm-fVM"/>
