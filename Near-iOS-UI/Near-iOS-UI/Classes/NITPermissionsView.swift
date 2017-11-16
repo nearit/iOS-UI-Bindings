@@ -56,7 +56,7 @@ import CoreBluetooth
     }
 }
 
-class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
+public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var message: UILabel!
@@ -143,33 +143,37 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
         }
     }
 
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         btManager = CBPeripheralManager.init(delegate: self, queue: nil)
         setup()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         btManager = CBPeripheralManager.init(delegate: self, queue: nil)
         setup()
     }
 
     private func setup() {
+        translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
         permissionManager.delegate = self
-        backgroundColor = .orange
+        backgroundColor = backgroundColor ?? UIColor.nearBlack
 
         let bundle = Bundle(for: NITPermissionsView.self)
 
         bundle.loadNibNamed("NITPermissionsView", owner: self, options: nil)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundView.backgroundColor = .clear
         addSubview(backgroundView)
 
         heightConstraint = heightAnchor.constraint(equalToConstant: 0.0)
         NSLayoutConstraint.activate([
             backgroundView.leftAnchor.constraint(equalTo: leftAnchor),
+            backgroundView.rightAnchor.constraint(equalTo: rightAnchor),
             backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.widthAnchor.constraint(equalTo: widthAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             heightConstraint!
         ])
 
@@ -241,7 +245,7 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
         }
     }
 
-    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+    public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         refresh()
     }
 
@@ -253,7 +257,7 @@ class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsMan
         refresh()
     }
 
-    func notificationsGranted(_ granted: Bool) {
+    public func notificationsGranted(_ granted: Bool) {
         refresh()
     }
 

@@ -73,12 +73,12 @@
             </subviews>
             <color key="backgroundColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="qRd-Fn-Jwd" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="LGK-F4-bg3"/>
                 <constraint firstItem="u6Z-7y-QHZ" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="Lzh-Uw-jRX"/>
                 <constraint firstAttribute="trailing" secondItem="qRd-Fn-Jwd" secondAttribute="trailing" constant="12" id="eTy-nt-7NT"/>
                 <constraint firstItem="vmc-sc-QSN" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="fVC-TO-eNa"/>
                 <constraint firstItem="vmc-sc-QSN" firstAttribute="leading" secondItem="u6Z-7y-QHZ" secondAttribute="trailing" constant="22" id="ldJ-8V-5wP"/>
                 <constraint firstItem="qRd-Fn-Jwd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vmc-sc-QSN" secondAttribute="trailing" constant="20" id="r4O-SV-DvQ"/>
-                <constraint firstItem="qRd-Fn-Jwd" firstAttribute="top" secondItem="Yzn-0J-3jA" secondAttribute="top" constant="10" id="y4a-qm-fVM"/>
                 <constraint firstItem="u6Z-7y-QHZ" firstAttribute="leading" secondItem="Yzn-0J-3jA" secondAttribute="leading" constant="12" id="ymZ-wY-gjn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

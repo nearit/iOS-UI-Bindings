@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         return reactions.last as? NITReactionBundle
     }
     
-    func showPermissionsDialogCustom() {
+    func showPermissionsDialogCustom() -> NITPermissionsViewController {
         let baseUnknownImage = UIImage(named: "gray-button")
         let unknownImage = baseUnknownImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
         
@@ -84,6 +84,8 @@ class ViewController: UIViewController {
         aViewController.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
+
+        return aViewController
     }
     
     func showPermissionsDialogLocationsOnly() {
@@ -247,12 +249,52 @@ class ViewController: UIViewController {
         aViewController.selectedCellBackground = nil
         aViewController.show()
     }
+
+    func permissionBar() {
+        let vc = UIViewController.init()
+        vc.view.backgroundColor = .white
+
+        let permissionViewA = NITPermissionsView.init(frame: CGRect.zero)
+        vc.view.addSubview(permissionViewA)
+
+        NSLayoutConstraint.activate([
+            permissionViewA.leftAnchor.constraint(equalTo: vc.view.leftAnchor),
+            permissionViewA.rightAnchor.constraint(equalTo: vc.view.rightAnchor),
+            permissionViewA.topAnchor.constraint(equalTo: vc.topLayoutGuide.bottomAnchor),
+        ])
+
+        let permissionViewB = NITPermissionsView.init(frame: CGRect.zero)
+        permissionViewB.permissionsRequired = .locationAndNotifications
+        permissionViewB.backgroundColor = .gray
+        permissionViewB.messageColor = .black
+        permissionViewB.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
+        permissionViewB.permissionAvailableColor = .green
+        permissionViewB.permissionNotAvailableColor = .red
+        permissionViewB.buttonText = "Roger"
+        permissionViewB.buttonColor = .white
+        permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 20.0)
+        permissionViewB.buttonBackgroundImage = UIImage(named: "blue-button")
+        permissionViewB.callbackOnPermissions = { (view) in
+            let vc = self.showPermissionsDialogCustom()
+            vc.autoCloseDialog = .off
+            vc.delegate = view
+        }
+        vc.view.addSubview(permissionViewB)
+
+        NSLayoutConstraint.activate([
+            permissionViewB.leftAnchor.constraint(equalTo: vc.view.leftAnchor),
+            permissionViewB.rightAnchor.constraint(equalTo: vc.view.rightAnchor),
+            permissionViewB.topAnchor.constraint(equalTo: permissionViewA.bottomAnchor, constant: 20.0)
+            ])
+
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -267,6 +309,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 4
         case 4:
             return 3
+        case 5:
+            return 1
         default:
             return 0
         }
@@ -362,6 +406,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 title?.text = "Undefined"
                 description?.text = " - "
             }
+        case 5: // Permission bar
+            title?.text = "Coupon permission bar"
+            description?.text = "Creted by code"
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -452,6 +499,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             default:
                 break
             }
+        case 5:
+            permissionBar()
         default:
             break
         }
@@ -471,6 +520,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Content"
         case 4:
             return "Coupon list"
+        case 5:
+            return "Permission bar"
         default:
             return nil
         }
