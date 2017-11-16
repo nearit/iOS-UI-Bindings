@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */; };
+		2660D9BA1FBD8970005C11F3 /* MockCouponsNearManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2660D9B91FBD8970005C11F3 /* MockCouponsNearManager.swift */; };
 		26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */; };
 		26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3211F56D220009DDDF2 /* ViewController.swift */; };
 		26CAC3251F56D220009DDDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3231F56D220009DDDF2 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		2645FE0C1FB5BBD000C814FA /* UI-Swift-Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-Swift-Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCUIManager.h; sourceTree = "<group>"; };
 		2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUIManager.m; sourceTree = "<group>"; };
+		2660D9B91FBD8970005C11F3 /* MockCouponsNearManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCouponsNearManager.swift; sourceTree = "<group>"; };
 		26CAC31C1F56D220009DDDF2 /* UI-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26CAC3211F56D220009DDDF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2660D9B81FBD8943005C11F3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2660D9B91FBD8970005C11F3 /* MockCouponsNearManager.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		26CAC3131F56D220009DDDF2 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 		26CAC31E1F56D220009DDDF2 /* UI-Swift-Sample */ = {
 			isa = PBXGroup;
 			children = (
+				2660D9B81FBD8943005C11F3 /* Classes */,
 				26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */,
 				26CAC3211F56D220009DDDF2 /* ViewController.swift */,
 				2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */,
@@ -269,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */,
+				2660D9BA1FBD8970005C11F3 /* MockCouponsNearManager.swift in Sources */,
 				26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */,
 				26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */,
 			);

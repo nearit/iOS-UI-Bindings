@@ -230,7 +230,9 @@ class ViewController: UIViewController {
     }
 
     func pushCouponList(modal: Bool = false) {
-        let aViewController = NITCouponListViewController()
+        let mockCouponManager = MockCouponsNearManager()
+        mockCouponManager.coupons = [createValidCoupon(), createValidCoupon(), createExpiredCoupon(), createInactiveCoupon()]
+        let aViewController = NITCouponListViewController(manager: mockCouponManager)
         if modal {
             aViewController.show()
         } else {
@@ -239,7 +241,9 @@ class ViewController: UIViewController {
     }
 
     func customPushCouponList() {
-        let aViewController = NITCouponListViewController()
+        let mockCouponManager = MockCouponsNearManager()
+        mockCouponManager.coupons = [createValidCoupon(), createValidCoupon(), createExpiredCoupon(), createInactiveCoupon()]
+        let aViewController = NITCouponListViewController(manager: mockCouponManager)
         aViewController.presentCoupon = .popover
         aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
