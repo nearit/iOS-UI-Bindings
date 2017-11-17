@@ -14,7 +14,12 @@ public class NITDialogController: UIViewController {
         case plain = 0
         case blur
     }
-    
+
+    @objc public enum CFAlertControllerContentPosition : Int {
+        case middle = 0
+        case full
+    }
+
     // Background
     public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
         didSet  {
@@ -23,6 +28,7 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+
     public var backgroundColor: UIColor?    {
         didSet  {
             if isViewLoaded {
@@ -30,6 +36,15 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+
+    public var contentPosition = CFAlertControllerContentPosition.middle {
+        didSet  {
+            if isViewLoaded {
+                applyBackgroundStyle()
+            }
+        }
+    }
+
     var isEnableTapToClose = true
     
     @IBOutlet weak var contentView: UIView!
@@ -37,7 +52,21 @@ public class NITDialogController: UIViewController {
     @IBOutlet weak var scrollHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundBlurView: UIVisualEffectView?
     @IBOutlet weak var containerView: UIView!
+
     private var viewController: UIViewController!
+    fileprivate var offset : CGFloat = 0
+    fileprivate var keyboardVisibleHeight : CGFloat = 0
+    fileprivate var keyboardIsVisible = false
+
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+
+    @IBOutlet var containerSideMarginConstraints: [NSLayoutConstraint]!
+    @IBOutlet var containerSideConstraints: [NSLayoutConstraint]!
+
+    @IBOutlet weak var containerBottomMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerTopMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var constraintAdditionalYTop: NSLayoutConstraint!
+    @IBOutlet weak var centerYConstraint: NSLayoutConstraint!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +94,12 @@ public class NITDialogController: UIViewController {
         containerView.addGestureRecognizer(tapGesture)
 
         applyBackgroundStyle()
-        if let bkg = backgroundColor {
-            view.backgroundColor = bkg
-        }
+        
+        offset = bottomConstraint.constant
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
     }
     
     override public func viewDidAppear(_ animated: Bool) {
@@ -92,9 +124,13 @@ public class NITDialogController: UIViewController {
             baseViewController.dialogController = self
             isEnableTapToClose = baseViewController.isEnableTapToClose
         }
-        
+
         modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -126,7 +162,9 @@ public class NITDialogController: UIViewController {
                 }, completion: { _ in })
             }
             else {
-                animate!()
+                UIView.performWithoutAnimation {
+                    animate!()
+                }
             }
         })
     }
@@ -136,22 +174,37 @@ public class NITDialogController: UIViewController {
     }
     
     func tapOutside(_ gesture: UITapGestureRecognizer) {
-        if isEnableTapToClose {
-            dismiss()
+        if !keyboardIsVisible {
+            if isEnableTapToClose {
+                dismiss()
+            }
+        } else {
+            view.endEditing(true)
         }
     }
 
     func applyBackgroundStyle() {
-        // Set Background
-        if backgroundStyle == .blur {
-            // Set Blur Background
+        switch backgroundStyle {
+        case .blur:
             backgroundColor = .clear
             backgroundBlurView?.alpha = 1.0
-        }
-        else {
-            // Display Plain Background
-            backgroundColor = .nearWarmGrey
+        case .plain:
+            backgroundColor = backgroundColor ?? .nearDialogBackground
             backgroundBlurView?.alpha = 0.0
+        }
+
+        switch contentPosition {
+        case .middle:
+            constraintAdditionalYTop.isActive = false
+            centerYConstraint.isActive = true
+        case .full:
+            constraintAdditionalYTop.isActive = true
+            centerYConstraint.isActive = false
+            NSLayoutConstraint.deactivate(containerSideMarginConstraints)
+            NSLayoutConstraint.activate(containerSideConstraints)
+            viewController.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            containerBottomMarginConstraint.constant = 0
+            containerTopMarginConstraint.constant = 0
         }
     }
 
@@ -173,5 +226,72 @@ extension NITDialogController: UIGestureRecognizerDelegate {
         let point = touch.location(in: self.scrollView)
         let inside = scrollView.point(inside: point, with: nil)
         return !inside
+    }
+}
+
+// Keyboard extension is based code from
+// https://github.com/xtrinch/KeyboardLayoutHelper
+
+extension NITDialogController {
+
+    func keyboardWillShowNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                let frame = frameValue.cgRectValue
+                keyboardVisibleHeight = frame.size.height
+            }
+
+            self.updateConstant()
+            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            case let (.some(duration), .some(curve)):
+
+                let options = UIViewAnimationOptions(rawValue: curve.uintValue)
+
+                UIView.animate(
+                    withDuration: TimeInterval(duration.doubleValue),
+                    delay: 0,
+                    options: options,
+                    animations: {
+                        UIApplication.shared.keyWindow?.layoutIfNeeded()
+                        return
+                }, completion: { finished in
+                })
+            default:
+
+                break
+            }
+        }
+        keyboardIsVisible = true
+    }
+
+    func keyboardWillHideNotification(notification: NSNotification) {
+        keyboardVisibleHeight = 0
+        keyboardIsVisible = false
+        self.updateConstant()
+
+        if let userInfo = notification.userInfo {
+
+            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            case let (.some(duration), .some(curve)):
+
+                let options = UIViewAnimationOptions(rawValue: curve.uintValue)
+
+                UIView.animate(
+                    withDuration: TimeInterval(duration.doubleValue),
+                    delay: 0,
+                    options: options,
+                    animations: {
+                        UIApplication.shared.keyWindow?.layoutIfNeeded()
+                        return
+                }, completion: { finished in
+                })
+            default:
+                break
+            }
+        }
+    }
+
+    func updateConstant() {
+        bottomConstraint.constant = offset + keyboardVisibleHeight
     }
 }

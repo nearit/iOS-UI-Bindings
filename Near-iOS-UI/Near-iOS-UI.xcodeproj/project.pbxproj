@@ -10,7 +10,15 @@
 		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
+		264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */; };
+		264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */; };
+		264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */; };
 		264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */; };
+		26B85B031F98A02A00087BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B021F98A02A00087BEE /* AppDelegate.swift */; };
+		26B85B051F98A02A00087BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B041F98A02A00087BEE /* ViewController.swift */; };
+		26B85B081F98A02A00087BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B061F98A02A00087BEE /* Main.storyboard */; };
+		26B85B0A1F98A02A00087BEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B091F98A02A00087BEE /* Assets.xcassets */; };
+		26B85B0D1F98A02A00087BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B0B1F98A02A00087BEE /* LaunchScreen.storyboard */; };
 		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */; };
 		26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3111F56C871009DDDF2 /* NITDialogController.xib */; };
@@ -18,12 +26,73 @@
 		26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */; };
 		26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC33D1F56EA46009DDDF2 /* Images.xcassets */; };
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
+		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
+		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
+		8A581EA21FBDF79F00FBA96A /* NITPermissionViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581EA11FBDF79F00FBA96A /* NITPermissionViewSpec.swift */; };
+		8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */; };
+		8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */; };
+		8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */; };
+		8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */; };
+		8A5ECD651FBC2DF300C099BB /* NITCouponListViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */; };
+		8A636A001FBC8D99000C6EBF /* NITPermissionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */; };
+		8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */; };
+		8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */; };
+		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
+		8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */; };
+		8AAB7C101FB3532400D594D9 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0F1FB3532400D594D9 /* content.json */; };
+		8AAB7C111FB3552C00D594D9 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0F1FB3532400D594D9 /* content.json */; };
+		8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1900A1FA9E08C00D03836 /* NITWKWebViewContainer.swift */; };
+		8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */; };
+		8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */; };
+		8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */; };
+		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
+		9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		264AE7021F98908700AF8C48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26CAC2FA1F56BB4E009DDDF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26CAC3021F56BB4E009DDDF2;
+			remoteInfo = NeariOSUI;
+		};
+		26B85B121F98A03000087BEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26CAC2FA1F56BB4E009DDDF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26B85AFF1F98A02A00087BEE;
+			remoteInfo = UIHostApplication;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		264AE7091F9890AB00AF8C48 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
+		264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeariOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeariOSUITests.swift; sourceTree = "<group>"; };
+		264AE7001F98908700AF8C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewControllerSpec.swift; sourceTree = "<group>"; };
 		264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsManager.swift; sourceTree = "<group>"; };
+		26B85B001F98A02A00087BEE /* UIHostApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIHostApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26B85B021F98A02A00087BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		26B85B041F98A02A00087BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		26B85B071F98A02A00087BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		26B85B091F98A02A00087BEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		26B85B0C1F98A02A00087BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26B85B0E1F98A02A00087BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
 		26CAC3071F56BB4E009DDDF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -32,13 +101,51 @@
 		26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsViewController.swift; sourceTree = "<group>"; };
 		26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsViewController.xib; sourceTree = "<group>"; };
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
+		5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+currentController.swift"; sourceTree = "<group>"; };
+		8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITFeedbackViewController.xib; sourceTree = "<group>"; };
+		8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewController.swift; sourceTree = "<group>"; };
+		8A581EA11FBDF79F00FBA96A /* NITPermissionViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NITPermissionViewSpec.swift; path = NeariOSUITests/NITPermissionViewSpec.swift; sourceTree = SOURCE_ROOT; };
+		8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponListViewController.xib; sourceTree = "<group>"; };
+		8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponCell.xib; sourceTree = "<group>"; };
+		8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewController.swift; sourceTree = "<group>"; };
+		8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponCell.swift; sourceTree = "<group>"; };
+		8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponListViewControllerSpec.swift; sourceTree = "<group>"; };
+		8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsView.xib; sourceTree = "<group>"; };
+		8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionsView.swift; sourceTree = "<group>"; };
+		8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITCouponViewController.swift; sourceTree = "<group>"; };
+		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
+		8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITContentViewControllerSpec.swift; sourceTree = "<group>"; };
+		8AAB7C0F1FB3532400D594D9 /* content.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
+		8AD1900A1FA9E08C00D03836 /* NITWKWebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITWKWebViewContainer.swift; sourceTree = "<group>"; };
+		8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NITCoupon+ui.swift"; sourceTree = "<group>"; };
+		8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponViewControllerSpec.swift; sourceTree = "<group>"; };
+		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
+		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		264AE6F91F98908700AF8C48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264AE7011F98908700AF8C48 /* NeariOSUI.framework in Frameworks */,
+				9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26B85AFD1F98A02A00087BEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CAC2FF1F56BB4E009DDDF2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -54,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */,
+				376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -63,22 +171,58 @@
 			children = (
 				26441FFB1F57FA0A00A38740 /* AppColors.swift */,
 				8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */,
+				8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */,
+				8AD1900A1FA9E08C00D03836 /* NITWKWebViewContainer.swift */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		264AE6FD1F98908700AF8C48 /* NeariOSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB7C0E1FB352F400D594D9 /* fixtures */,
+				264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */,
+				264AE7001F98908700AF8C48 /* Info.plist */,
+				8A581EA11FBDF79F00FBA96A /* NITPermissionViewSpec.swift */,
+				264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */,
+				8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */,
+				8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */,
+				8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */,
+			);
+			path = NeariOSUITests;
 			sourceTree = "<group>";
 		};
 		264FB8C31F5D884200DC740A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8A6369FF1FBC8D98000C6EBF /* NITPermissionsView.xib */,
+				8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */,
 				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
+				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
+				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		26B85B011F98A02A00087BEE /* UIHostApplication */ = {
+			isa = PBXGroup;
+			children = (
+				26B85B021F98A02A00087BEE /* AppDelegate.swift */,
+				26B85B041F98A02A00087BEE /* ViewController.swift */,
+				26B85B061F98A02A00087BEE /* Main.storyboard */,
+				26B85B091F98A02A00087BEE /* Assets.xcassets */,
+				26B85B0B1F98A02A00087BEE /* LaunchScreen.storyboard */,
+				26B85B0E1F98A02A00087BEE /* Info.plist */,
+			);
+			path = UIHostApplication;
 			sourceTree = "<group>";
 		};
 		26CAC2F91F56BB4E009DDDF2 = {
 			isa = PBXGroup;
 			children = (
 				26CAC3051F56BB4E009DDDF2 /* Near-iOS-UI */,
+				264AE6FD1F98908700AF8C48 /* NeariOSUITests */,
+				26B85B011F98A02A00087BEE /* UIHostApplication */,
 				26CAC3041F56BB4E009DDDF2 /* Products */,
 				AEDDC17781B942BF030869BC /* Pods */,
 				1B6CFF9321523FE0D79D5A70 /* Frameworks */,
@@ -89,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				26CAC3031F56BB4E009DDDF2 /* NeariOSUI.framework */,
+				264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */,
+				26B85B001F98A02A00087BEE /* UIHostApplication.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,9 +255,17 @@
 		26CAC30E1F56BB60009DDDF2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8A5ECD601FB9868200C099BB /* NITCouponListViewController.swift */,
+				8A5ECD5C1FB982DE00C099BB /* NITCouponListViewController.xib */,
 				26441FFD1F58129B00A38740 /* NITBaseViewController.swift */,
+				8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */,
+				8AE08CE01FA8715100710B0B /* NITContentViewController.xib */,
+				8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */,
+				8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */,
 				26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */,
 				26CAC3111F56C871009DDDF2 /* NITDialogController.xib */,
+				8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */,
+				8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */,
 				26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */,
 				26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */,
 			);
@@ -126,11 +280,21 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8AAB7C0E1FB352F400D594D9 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				8AAB7C0F1FB3532400D594D9 /* content.json */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 		AEDDC17781B942BF030869BC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */,
 				45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */,
+				624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */,
+				5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -149,6 +313,46 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		264AE6FB1F98908700AF8C48 /* NeariOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 264AE7041F98908700AF8C48 /* Build configuration list for PBXNativeTarget "NeariOSUITests" */;
+			buildPhases = (
+				23F542C5A8E7ABEC3FE42B3F /* [CP] Check Pods Manifest.lock */,
+				264AE6F81F98908700AF8C48 /* Sources */,
+				264AE6F91F98908700AF8C48 /* Frameworks */,
+				264AE6FA1F98908700AF8C48 /* Resources */,
+				264AE7091F9890AB00AF8C48 /* CopyFiles */,
+				904FCC50741764EB287D33A1 /* [CP] Embed Pods Frameworks */,
+				E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				264AE7031F98908700AF8C48 /* PBXTargetDependency */,
+				26B85B131F98A03000087BEE /* PBXTargetDependency */,
+			);
+			name = NeariOSUITests;
+			productName = NeariOSUITests;
+			productReference = 264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		26B85AFF1F98A02A00087BEE /* UIHostApplication */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26B85B0F1F98A02A00087BEE /* Build configuration list for PBXNativeTarget "UIHostApplication" */;
+			buildPhases = (
+				26B85AFC1F98A02A00087BEE /* Sources */,
+				26B85AFD1F98A02A00087BEE /* Frameworks */,
+				26B85AFE1F98A02A00087BEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UIHostApplication;
+			productName = UIHostApplication;
+			productReference = 26B85B001F98A02A00087BEE /* UIHostApplication.app */;
+			productType = "com.apple.product-type.application";
+		};
 		26CAC3021F56BB4E009DDDF2 /* NeariOSUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 26CAC30B1F56BB4E009DDDF2 /* Build configuration list for PBXNativeTarget "NeariOSUI" */;
@@ -175,12 +379,24 @@
 		26CAC2FA1F56BB4E009DDDF2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Near;
 				TargetAttributes = {
+					264AE6FB1F98908700AF8C48 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = XBC8ZV2BGE;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 26B85AFF1F98A02A00087BEE;
+					};
+					26B85AFF1F98A02A00087BEE = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = XBC8ZV2BGE;
+						ProvisioningStyle = Automatic;
+					};
 					26CAC3021F56BB4E009DDDF2 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = C8YW5Q8LEU;
+						DevelopmentTeam = XBC8ZV2BGE;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -192,6 +408,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 26CAC2F91F56BB4E009DDDF2;
 			productRefGroup = 26CAC3041F56BB4E009DDDF2 /* Products */;
@@ -199,24 +416,95 @@
 			projectRoot = "";
 			targets = (
 				26CAC3021F56BB4E009DDDF2 /* NeariOSUI */,
+				264AE6FB1F98908700AF8C48 /* NeariOSUITests */,
+				26B85AFF1F98A02A00087BEE /* UIHostApplication */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		264AE6FA1F98908700AF8C48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AAB7C101FB3532400D594D9 /* content.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26B85AFE1F98A02A00087BEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26B85B0D1F98A02A00087BEE /* LaunchScreen.storyboard in Resources */,
+				26B85B0A1F98A02A00087BEE /* Assets.xcassets in Resources */,
+				26B85B081F98A02A00087BEE /* Main.storyboard in Resources */,
+				8AAB7C111FB3552C00D594D9 /* content.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CAC3011F56BB4E009DDDF2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
+				8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */,
+				8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */,
+				8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */,
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
+				8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */,
+				8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */,
+				8A636A001FBC8D99000C6EBF /* NITPermissionsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		23F542C5A8E7ABEC3FE42B3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-Tests-NeariOSUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		904FCC50741764EB287D33A1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +518,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
@@ -253,22 +556,198 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		264AE6F81F98908700AF8C48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */,
+				8A5ECD651FBC2DF300C099BB /* NITCouponListViewControllerSpec.swift in Sources */,
+				8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */,
+				8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */,
+				8A581EA21FBDF79F00FBA96A /* NITPermissionViewSpec.swift in Sources */,
+				264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26B85AFC1F98A02A00087BEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26B85B051F98A02A00087BEE /* ViewController.swift in Sources */,
+				26B85B031F98A02A00087BEE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		26CAC2FE1F56BB4E009DDDF2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A5ECD631FB9A0B500C099BB /* NITCouponCell.swift in Sources */,
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
+				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
+				8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */,
+				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
+				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
+				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,
+				8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */,
+				8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */,
 				264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		264AE7031F98908700AF8C48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26CAC3021F56BB4E009DDDF2 /* NeariOSUI */;
+			targetProxy = 264AE7021F98908700AF8C48 /* PBXContainerItemProxy */;
+		};
+		26B85B131F98A03000087BEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26B85AFF1F98A02A00087BEE /* UIHostApplication */;
+			targetProxy = 26B85B121F98A03000087BEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		26B85B061F98A02A00087BEE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26B85B071F98A02A00087BEE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		26B85B0B1F98A02A00087BEE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26B85B0C1F98A02A00087BEE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		264AE7051F98908700AF8C48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NeariOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = con.nearit.tests.NeariOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIHostApplication.app/UIHostApplication";
+			};
+			name = Debug;
+		};
+		264AE7061F98908700AF8C48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NeariOSUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = con.nearit.tests.NeariOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIHostApplication.app/UIHostApplication";
+			};
+			name = Release;
+		};
+		26B85B101F98A02A00087BEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UIHostApplication/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = con.nearit.tests.UIHostApplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26B85B111F98A02A00087BEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = UIHostApplication/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = con.nearit.tests.UIHostApplication;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		26CAC3091F56BB4E009DDDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -377,7 +856,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -385,7 +864,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI.wdy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -400,7 +879,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = C8YW5Q8LEU;
+				DEVELOPMENT_TEAM = XBC8ZV2BGE;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -408,7 +887,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI.wdy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -418,6 +897,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		264AE7041F98908700AF8C48 /* Build configuration list for PBXNativeTarget "NeariOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264AE7051F98908700AF8C48 /* Debug */,
+				264AE7061F98908700AF8C48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26B85B0F1F98A02A00087BEE /* Build configuration list for PBXNativeTarget "UIHostApplication" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26B85B101F98A02A00087BEE /* Debug */,
+				26B85B111F98A02A00087BEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		26CAC2FD1F56BB4E009DDDF2 /* Build configuration list for PBXProject "Near-iOS-UI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
