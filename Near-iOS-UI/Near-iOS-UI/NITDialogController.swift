@@ -115,8 +115,13 @@ public class NITDialogController: UIViewController {
         // Get Current Bundle
         let bundle = Bundle(for: NITDialogController.self)
         
-        // Create New Instance Of Alert Controller
-        self.init(nibName: "NITDialogController", bundle: bundle)
+        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
+            let xibBundle = Bundle(url: bundleUrl)
+            self.init(nibName: "NITDialogController", bundle: xibBundle)
+        } else {
+            // Create New Instance Of Alert Controller
+            self.init(nibName: "NITDialogController", bundle: bundle)
+        }
         
         self.viewController = viewController
         

@@ -129,7 +129,13 @@ public class NITPermissionsViewController: NITBaseViewController {
         self.autoCloseDialog = autoCloseDialog
         
         let bundle = Bundle(for: NITDialogController.self)
-        super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        
+        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
+            let xibBundle = Bundle(url: bundleUrl)
+            super.init(nibName: "NITPermissionsViewController", bundle: xibBundle)
+        } else {
+            super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+        }
         
         setupDefaultElements()
         permissionsManager.delegate = self
@@ -140,13 +146,20 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func setupDefaultElements() {
+        var realBundle: Bundle? = nil
         let bundle = Bundle(for: NITDialogController.self)
-        let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
+        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
+            let xibBundle = Bundle(url: bundleUrl)
+            realBundle = xibBundle!
+        } else {
+            realBundle = bundle
+        }
+        let emptyOutline = UIImage(named: "outlinedButton", in: realBundle, compatibleWith: nil)
         unknownButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
+        let filledOutline = UIImage(named: "filledButton", in: realBundle, compatibleWith: nil)
         grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
-        headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
+        grantedIcon = UIImage(named: "tick", in: realBundle, compatibleWith: nil)
+        headerImage = UIImage(named: "permissionsBanner", in: realBundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
     }
     
