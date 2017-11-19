@@ -248,7 +248,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         case .popover:
             couponController.show()
         case .push:
-            couponController.show(from: navigationController!)
+            couponController.show(navigationController: navigationController!)
         }
     }
 

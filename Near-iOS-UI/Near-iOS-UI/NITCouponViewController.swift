@@ -12,7 +12,6 @@ import NearITSDK
 public class NITCouponViewController: NITBaseViewController {
     var coupon: NITCoupon!
     var nearManager: NITManager
-    var closeCallback: ((NITCouponViewController) -> Void)?
 
     public var drawSeparator = true
     public var hideCloseButton = false
@@ -49,12 +48,15 @@ public class NITCouponViewController: NITBaseViewController {
     @IBOutlet weak var couponTitle: UILabel!
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var close: UIButton!
+
+    public convenience init(coupon: NITCoupon) {
+        self.init(coupon: coupon, manager: nil)
+    }
     
-    public init(coupon: NITCoupon, closeCallback: ((NITCouponViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
+    init(coupon: NITCoupon, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
-        self.closeCallback = closeCallback
         self.coupon = coupon
-        self.nearManager = manager
+        self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITCouponViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -63,21 +65,24 @@ public class NITCouponViewController: NITBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: configureDialog)
+    public func show() {
+        show(fromViewController: nil, configureDialog: nil)
+    }
+
+    public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+
+            let dialog = NITDialogController(viewController: self)
+            if let configDlg = configureDialog {
+                configDlg(dialog)
+            }
+
+            fromViewController.present(dialog, animated: true, completion: nil)
         }
     }
 
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
-        let dialog = NITDialogController(viewController: self)
-        if let configDlg = configureDialog {
-            configDlg(dialog)
-        }
-        fromViewController.present(dialog, animated: true, completion: nil)
-    }
-
-    public func show(from navigationController: UINavigationController) {
+    public func show(navigationController: UINavigationController) {
         hideCloseButton = true
         let dialog = NITDialogController(viewController: self)
         dialog.hidesBottomBarWhenPushed = true
@@ -202,11 +207,7 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     @IBAction func tapClose(_ sender: Any) {
-        if let closeCallback = closeCallback {
-            closeCallback(self)
-        } else {
-            dialogController?.dismiss()
-        }
+        dialogController?.dismiss()
     }
 
 }
