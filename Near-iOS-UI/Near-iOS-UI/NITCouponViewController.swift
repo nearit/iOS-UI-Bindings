@@ -51,7 +51,7 @@ public class NITCouponViewController: NITBaseViewController {
     @IBOutlet weak var close: UIButton!
     
     public init(coupon: NITCoupon, closeCallback: ((NITCouponViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.closeCallback = closeCallback
         self.coupon = coupon
         self.nearManager = manager
@@ -88,7 +88,7 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
     }

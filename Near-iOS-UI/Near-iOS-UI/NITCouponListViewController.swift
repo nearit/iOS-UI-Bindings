@@ -83,7 +83,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     public init(manager: NITManager = NITManager.default()) {
         self.nearManager = manager
-        let bundle = Bundle(for: NITCouponListViewController.self)
+        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         super.init(nibName: "NITCouponListViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -119,7 +119,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITCouponListViewController.self)
+        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
         selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
@@ -134,7 +134,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     internal func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        let bundle = Bundle(for: NITCouponCell.self)
+        let bundle = Bundle.NITBundle(for: NITCouponCell.self)
         let nib = UINib.init(nibName: "NITCouponCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: "coupon")
     }

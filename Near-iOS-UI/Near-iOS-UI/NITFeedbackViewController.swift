@@ -61,7 +61,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     var currentRating: Int = 0
 
     public init(feedback: NITFeedback, feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)? = nil, manager: NITManager = NITManager.default()) {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.feedbackCloseCallback = feedbackCloseCallback
         self.feedback = feedback
         self.nearManager = manager
@@ -88,7 +88,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         let filledButton = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         sendButton = filledButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         rateFullButton = UIImage(named: "star", in: bundle, compatibleWith: nil)

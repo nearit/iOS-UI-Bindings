@@ -170,8 +170,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         permissionManager.delegate = self
         backgroundColor = backgroundColor ?? UIColor.nearBlack
 
-        let bundle = Bundle(for: NITPermissionsView.self)
-
+        let bundle = Bundle.NITBundle(for: NITPermissionsView.self)
         bundle.loadNibNamed("NITPermissionsView", owner: self, options: nil)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.backgroundColor = .clear

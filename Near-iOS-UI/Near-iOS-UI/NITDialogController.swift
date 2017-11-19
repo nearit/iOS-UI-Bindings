@@ -113,16 +113,9 @@ public class NITDialogController: UIViewController {
     
     public convenience init(viewController: UIViewController) {
         // Get Current Bundle
-        let bundle = Bundle(for: NITDialogController.self)
-        
-        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
-            let xibBundle = Bundle(url: bundleUrl)
-            self.init(nibName: "NITDialogController", bundle: xibBundle)
-        } else {
-            // Create New Instance Of Alert Controller
-            self.init(nibName: "NITDialogController", bundle: bundle)
-        }
-        
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
+        self.init(nibName: "NITDialogController", bundle: bundle)
+
         self.viewController = viewController
         
         if let baseViewController = viewController as? NITBaseViewController {
