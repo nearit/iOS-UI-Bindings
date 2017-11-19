@@ -29,7 +29,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    public var backgroundColor: UIColor?    {
+    public var backgroundColor: UIColor? {
         didSet  {
             if isViewLoaded {
                 view.backgroundColor = backgroundColor

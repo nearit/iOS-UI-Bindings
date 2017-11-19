@@ -19,6 +19,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
     var nearManager: NITManager
 
+    public var feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?
     public var sendButton: UIImage!
     public var rateFullButton: UIImage!
     public var rateEmptyButton: UIImage!
@@ -39,7 +40,6 @@ public class NITFeedbackViewController: NITBaseViewController {
     public var closeText = NSLocalizedString("Close", comment: "Feedback dialog: Close")
     public var commentDescriptionText = NSLocalizedString("Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
     public var sendText = NSLocalizedString("SEND", comment: "Feedback dialog: SEND")
-    public var feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)?
     public var errorText = NSLocalizedString("Oops, an error occured!", comment: "Feedback dialog: oops, an error occured!")
     public var retryText = NSLocalizedString("Retry", comment: "Feedback dialog: retry")
     public var okText = NSLocalizedString("Thank you for your feedback.", comment: "Feedback dialog: Thank you for your feedback.")
@@ -60,11 +60,19 @@ public class NITFeedbackViewController: NITBaseViewController {
 
     var currentRating: Int = 0
 
-    public init(feedback: NITFeedback, feedbackCloseCallback: ((NITFeedbackViewController, Int?, String?) -> Void)? = nil, manager: NITManager = NITManager.default()) {
+    public convenience init(feedback: NITFeedback) {
+        self.init(feedback: feedback, feedbackSendCallback: nil, manager: nil)
+    }
+
+    public convenience init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?) {
+        self.init(feedback: feedback, feedbackSendCallback: feedbackSendCallback, manager: nil)
+    }
+
+    init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
-        self.feedbackCloseCallback = feedbackCloseCallback
+        self.feedbackSendCallback = feedbackSendCallback
         self.feedback = feedback
-        self.nearManager = manager
+        self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITFeedbackViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -73,18 +81,18 @@ public class NITFeedbackViewController: NITBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: configureDialog)
-        }
+    public func show() {
+        show(fromViewController: nil, configureDialog: nil)
     }
 
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
-        let dialog = NITDialogController(viewController: self)
-        if let configDlg = configureDialog {
-            configDlg(dialog)
+    public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+            let dialog = NITDialogController(viewController: self)
+            if let configDlg = configureDialog {
+                configDlg(dialog)
+            }
+            fromViewController.present(dialog, animated: true, completion: nil)
         }
-        fromViewController.present(dialog, animated: true, completion: nil)
     }
 
     func setupDefaultElements() {
@@ -172,16 +180,12 @@ public class NITFeedbackViewController: NITBaseViewController {
     }
 
     @IBAction func tapFooter(_ sender: Any) {
-        if let feedbackCloseCallback = feedbackCloseCallback {
-            feedbackCloseCallback(self, nil, nil)
-        } else {
-            dialogController?.dismiss()
-        }
+        dialogController?.dismiss()
     }
 
     @IBAction func tapSend(_ sender: Any) {
-        if let feedbackCloseCallback = feedbackCloseCallback {
-            feedbackCloseCallback(self, currentRating, comment.text)
+        if let feedbackSendCallback = feedbackSendCallback {
+            feedbackSendCallback(self, currentRating, comment.text)
         } else {
             let manager = nearManager
             let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
