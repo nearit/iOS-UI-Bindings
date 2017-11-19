@@ -44,10 +44,11 @@ public class NITContentViewController: NITBaseViewController {
         self.init(content: content, manager: NITManager.default())
     }
 
-    public init(content: NITContent, manager: NITManager) {
+
+    init(content: NITContent, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.content = content
-        self.nearManager = manager
+        self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITContentViewController", bundle: bundle)
         setupDefaultElements()
     }
