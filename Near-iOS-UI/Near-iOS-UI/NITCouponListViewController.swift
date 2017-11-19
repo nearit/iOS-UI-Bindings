@@ -81,8 +81,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     public var cellBackground: UIImage!
     public var selectedCellBackground:  UIImage!
 
-    public init(manager: NITManager = NITManager.default()) {
-        self.nearManager = manager
+    public convenience init () {
+        self.init(manager: nil)
+    }
+
+    init(manager: NITManager?) {
+        self.nearManager = manager ?? NITManager.default()
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         super.init(nibName: "NITCouponListViewController", bundle: bundle)
         setupDefaultElements()
@@ -93,29 +97,27 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     public func show() {
-        self.show(configureDialog: nil)
+        show(fromViewController: nil)
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController)
+    public func show(fromViewController: UIViewController? = nil) {
+
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+
+            let navigation = UINavigationController.init(rootViewController: self)
+            navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.onDone))
+            fromViewController.present(navigation, animated: true, completion: nil)
         }
     }
 
-    public func show(fromViewController: UIViewController) {
-        let navigation = UINavigationController.init(rootViewController: self)
-        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
-                                                                target: self,
-                                                                action: #selector(self.onDone))
-        fromViewController.present(navigation, animated: true, completion: nil)
+    public func show(navigationController: UINavigationController) {
+        navigationController.pushViewController(self, animated: true)
     }
 
     @objc func onDone() {
         navigationController?.dismiss(animated: true, completion: nil)
-    }
-
-    public func show(from navigationController: UINavigationController) {
-        navigationController.pushViewController(self, animated: true)
     }
 
     func setupDefaultElements() {
