@@ -7,7 +7,7 @@ For example, using NearIT UI, a developer can launch a dialog for requesting the
 #### Features
 Permissions related:
 - [Permissions request](DOCS/PERMISSIONS.md)
-- Missing permissions alert bar
+- [Missing permissions alert bar](DOCS/PERMISSIONS_BAR.md)
 
 Content related:
 - Handle in-app content
