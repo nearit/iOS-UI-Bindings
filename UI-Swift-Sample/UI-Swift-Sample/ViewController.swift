@@ -98,8 +98,15 @@ class ViewController: UIViewController {
         feedback.question = question
         feedback.recipeId = "ffe0"
 
-        let aViewController = NITFeedbackViewController(feedback: feedback)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITFeedbackViewController(feedback: feedback)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showFeedbackDialog(feedback)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showFeedbackDialogCustom(question: String) {
@@ -130,8 +137,15 @@ class ViewController: UIViewController {
     }
 
     func showCouponDialog(coupon: NITCoupon) {
-        let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITCouponViewController(coupon: coupon)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showCouponDialog(coupon)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showCouponDialogCustom(coupon: NITCoupon) {
@@ -156,8 +170,15 @@ class ViewController: UIViewController {
     }
 
     func showContentDialog(content: NITContent) {
-        let aViewController = NITContentViewController(content: content)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITContentViewController(content: content)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showContenDialog(content)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showCustomContentDialog(content: NITContent) {
@@ -232,11 +253,18 @@ class ViewController: UIViewController {
     }
 
     func pushCouponList(modal: Bool = false) {
-        let aViewController = NITCouponListViewController()
-        if modal {
-            aViewController.show()
-        } else {
-            aViewController.show(from: navigationController!)
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITCouponListViewController()
+            if modal {
+                aViewController.show()
+            } else {
+                aViewController.show(from: navigationController!)
+            }
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showListOfCoupons()
+        default:
+            print("Code undefined")
         }
     }
 
