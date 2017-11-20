@@ -8,7 +8,7 @@
 
 import UIKit
 import NearITSDK
-import NeariOSUI
+import NearUIBinding
 import WebKit
 
 enum Code: Int {
@@ -131,7 +131,7 @@ class ViewController: UIViewController {
         aViewController.textFont = UIFont.boldSystemFont(ofSize: 15.0)
         aViewController.errorFont = UIFont.boldSystemFont(ofSize: 20.0)
         aViewController.okDisappearTime = nil
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
@@ -159,14 +159,14 @@ class ViewController: UIViewController {
         aViewController.valueFont = UIFont.italicSystemFont(ofSize: 25.0)
         aViewController.valueColor = .purple
         aViewController.iconPlaceholder = UIImage(named: "NearIT")
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
 
     func pushCoupon(coupon: NITCoupon) {
         let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.show(from: navigationController!)
+        aViewController.show(navigationController: navigationController!)
     }
 
     func showContentDialog(content: NITContent) {
@@ -204,14 +204,14 @@ class ViewController: UIViewController {
             controller.present(ui, animated: true)
         }
 
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
 
     func pushContent(content: NITContent) {
         let aViewController = NITContentViewController(content: content)
-        aViewController.show(from: navigationController!)
+        aViewController.show(navigationController: navigationController!)
     }
 
     func createExpiredCoupon() -> NITCoupon {
@@ -259,7 +259,7 @@ class ViewController: UIViewController {
             if modal {
                 aViewController.show()
             } else {
-                aViewController.show(from: navigationController!)
+                aViewController.show(navigationController: navigationController!)
             }
         case Code.objectiveC.rawValue:
             ObjCUIManager.sharedInstance().showListOfCoupons()
