@@ -25,7 +25,7 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
     public var font: UIFont = UIFont.systemFont(ofSize: 15.0)
     public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
 
-    var wkWebView: WKWebView = {
+    @objc var wkWebView: WKWebView = {
         let v = WKWebView.init()
         v.translatesAutoresizingMaskIntoConstraints = false
         return v

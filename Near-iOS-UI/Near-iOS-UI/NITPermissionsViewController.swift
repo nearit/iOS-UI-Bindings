@@ -91,7 +91,7 @@ public class NITPermissionsViewController: NITBaseViewController {
         }
     }
 
-    public func checkPermissions() -> Bool {
+    @objc public func checkPermissions() -> Bool {
         switch type {
         case .notificationsOnly:
             return permissionsManager.isNotificationAvailable()
@@ -107,22 +107,22 @@ public class NITPermissionsViewController: NITBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    public convenience init() {
+    @objc public convenience init() {
         self.init(type: .locationAndNotifications, locationType: .always)
     }
     
-    public convenience init(locationType: NITPermissionsLocationType) {
+    @objc public convenience init(locationType: NITPermissionsLocationType) {
         self.init(type: .locationAndNotifications, locationType: locationType)
     }
     
-    public convenience init(type: NITPermissionsType) {
+    @objc public convenience init(type: NITPermissionsType) {
         self.init(type: type, locationType: .always)
     }
     
-    public init(type: NITPermissionsType = .locationAndNotifications,
-                locationType: NITPermissionsLocationType = .always,
-                autoStartRadar: NITPermissionsAutoStartRadarType = .on,
-                autoCloseDialog: NITPermissionsAutoCloseDialog = .off) {
+    @objc public init(type: NITPermissionsType = .locationAndNotifications,
+                      locationType: NITPermissionsLocationType = .always,
+                      autoStartRadar: NITPermissionsAutoStartRadarType = .on,
+                      autoCloseDialog: NITPermissionsAutoCloseDialog = .off) {
         self.type = type
         self.locationType = locationType
         self.autoStartRadar = autoStartRadar
@@ -237,14 +237,14 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.setTitle(closeText, for: .normal)
     }
     
-    public func show() {
+    @objc public func show() {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
             self.show(fromViewController: viewController, configureDialog: nil)
         }
     }
     
     /// Present permissions view controller from the rootViewController if it exists
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
+    @objc public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
             self.show(fromViewController: viewController, configureDialog: configureDialog)
         }
@@ -254,7 +254,7 @@ public class NITPermissionsViewController: NITBaseViewController {
      Present permissions view controller from a view controller
      - Parameter fromViewController: view controller used to present the permissions view controller
      */
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
+    @objc public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
         let dialog = NITDialogController(viewController: self)
         if let configDlg = configureDialog {
             configDlg(dialog)

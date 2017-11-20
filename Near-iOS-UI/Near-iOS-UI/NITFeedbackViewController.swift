@@ -19,17 +19,16 @@ public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
     var nearManager: NITManager
 
-    public var feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?
-    public var sendButton: UIImage!
-    public var rateFullButton: UIImage!
-    public var rateEmptyButton: UIImage!
-    public var textColor: UIColor = UIColor.nearWarmGrey
-    public var textFont: UIFont?
-    public var errorColor: UIColor = UIColor.nearRed
-    public var errorFont: UIFont?
-    public var retryButton: UIImage!
-    public var okDisappearTime: TimeInterval? = TimeInterval(floatLiteral: 3.0)
-    public var commentVisibility: NITFeedbackCommentVisibility = .onRating {
+    @objc public var feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?
+    @objc public var sendButton: UIImage!
+    @objc public var rateFullButton: UIImage!
+    @objc public var rateEmptyButton: UIImage!
+    @objc public var textColor: UIColor = UIColor.nearWarmGrey
+    @objc public var textFont: UIFont?
+    @objc public var errorColor: UIColor = UIColor.nearRed
+    @objc public var errorFont: UIFont?
+    @objc public var retryButton: UIImage!
+    @objc public var commentVisibility: NITFeedbackCommentVisibility = .onRating {
         didSet {
             if isViewLoaded {
                 setupCommentVisibility(hidden: commentVisibility != .visible)
@@ -37,12 +36,18 @@ public class NITFeedbackViewController: NITBaseViewController {
         }
     }
 
-    public var closeText: String!
-    public var commentDescriptionText: String!
-    public var sendText: String!
-    public var errorText: String!
-    public var retryText: String!
-    public var okText: String!
+    @objc public var closeText: String!
+    @objc public var commentDescriptionText: String!
+    @objc public var sendText: String!
+    @objc public var errorText: String!
+    @objc public var retryText: String!
+    @objc public var okText: String!
+
+    @objc public var disappearTime: Double = 3.0 {
+        didSet {
+            disappearTimer = TimeInterval(floatLiteral: disappearTime)
+        }
+    }
 
     @IBOutlet weak var stackview: UIStackView!
     @IBOutlet weak var okContainer: UIView!
@@ -59,12 +64,13 @@ public class NITFeedbackViewController: NITBaseViewController {
     @IBOutlet weak var sendContainer: UIView!
 
     var currentRating: Int = 0
+    var disappearTimer: TimeInterval?
 
-    public convenience init(feedback: NITFeedback) {
+    @objc public convenience init(feedback: NITFeedback) {
         self.init(feedback: feedback, feedbackSendCallback: nil, manager: nil)
     }
 
-    public convenience init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?) {
+    @objc public convenience init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?) {
         self.init(feedback: feedback, feedbackSendCallback: feedbackSendCallback, manager: nil)
     }
 
@@ -81,11 +87,11 @@ public class NITFeedbackViewController: NITBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show() {
+    @objc public func show() {
         show(fromViewController: nil, configureDialog: nil)
     }
 
-    public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+    @objc public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
             let dialog = NITDialogController(viewController: self)
             if let configDlg = configureDialog {
@@ -215,8 +221,8 @@ public class NITFeedbackViewController: NITBaseViewController {
             wself.view.layoutIfNeeded()
             }, completion: { _ in })
 
-        if let okDisappearTime = okDisappearTime {
-            Timer.scheduledTimer(timeInterval: okDisappearTime, target: self, selector: #selector(closeController), userInfo: nil, repeats: false)
+        if let disappearTimer = disappearTimer {
+            Timer.scheduledTimer(timeInterval: disappearTimer, target: self, selector: #selector(closeController), userInfo: nil, repeats: false)
         }
     }
 

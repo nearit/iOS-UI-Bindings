@@ -21,7 +21,7 @@ public class NITDialogController: UIViewController {
     }
 
     // Background
-    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
+    @objc public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
         didSet  {
             if isViewLoaded {
                 applyBackgroundStyle()
@@ -29,7 +29,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    public var backgroundColor: UIColor? {
+    @objc public var backgroundColor: UIColor? {
         didSet  {
             if isViewLoaded {
                 view.backgroundColor = backgroundColor
@@ -37,7 +37,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    public var contentPosition = CFAlertControllerContentPosition.middle {
+    @objc public var contentPosition = CFAlertControllerContentPosition.middle {
         didSet  {
             if isViewLoaded {
                 applyBackgroundStyle()
@@ -45,7 +45,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    var isEnableTapToClose = true
+    @objc var isEnableTapToClose = true
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -171,7 +171,7 @@ public class NITDialogController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func tapOutside(_ gesture: UITapGestureRecognizer) {
+    @objc func tapOutside(_ gesture: UITapGestureRecognizer) {
         if !keyboardIsVisible {
             if isEnableTapToClose {
                 dismiss()
@@ -232,7 +232,7 @@ extension NITDialogController: UIGestureRecognizerDelegate {
 
 extension NITDialogController {
 
-    func keyboardWillShowNotification(notification: NSNotification) {
+    @objc func keyboardWillShowNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.cgRectValue
@@ -262,7 +262,7 @@ extension NITDialogController {
         keyboardIsVisible = true
     }
 
-    func keyboardWillHideNotification(notification: NSNotification) {
+    @objc func keyboardWillHideNotification(notification: NSNotification) {
         keyboardVisibleHeight = 0
         keyboardIsVisible = false
         self.updateConstant()

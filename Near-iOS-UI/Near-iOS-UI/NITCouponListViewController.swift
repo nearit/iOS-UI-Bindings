@@ -44,44 +44,44 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
 
-    public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
-    public var filterOption = NITCouponListViewControllerFilterOptions.all
-    public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
+    @objc public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
+    @objc public var filterOption = NITCouponListViewControllerFilterOptions.all
+    @objc public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
 
-    public var iconPlaceholder: UIImage!
+    @objc public var iconPlaceholder: UIImage!
 
-    public var expiredColor = UIColor.nearCouponExpired
-    public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var expiredColor = UIColor.nearCouponExpired
+    @objc public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var disabledColor = UIColor.nearCouponDisabled
-    public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var disabledColor = UIColor.nearCouponDisabled
+    @objc public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var validColor = UIColor.nearCouponValid
-    public var validFont = UIFont.systemFont(ofSize: 12.0)
+    @objc public var validColor = UIColor.nearCouponValid
+    @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
 
-    public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var titleColor = UIColor.nearBlack
-    public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    public var titleDisabledColor = UIColor.nearCouponListGray
-    public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var titleExpiredColor = UIColor.nearCouponListGray
+    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleDisabledColor = UIColor.nearCouponListGray
+    @objc public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var titleExpiredColor = UIColor.nearCouponListGray
 
-    public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
-    public var valueColor = UIColor.nearBlack
-    public var valueDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    public var valueDisabledColor = UIColor.nearCouponListGray
-    public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var valueExpiredColor = UIColor.nearCouponListGray
+    @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var valueColor = UIColor.nearBlack
+    @objc public var valueDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var valueDisabledColor = UIColor.nearCouponListGray
+    @objc public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var valueExpiredColor = UIColor.nearCouponListGray
 
-    public var expiredText: String!
-    public var disabledText: String!
-    public var validText: String!
-    public var noCoupons: String!
+    @objc public var expiredText: String!
+    @objc public var disabledText: String!
+    @objc public var validText: String!
+    @objc public var noCoupons: String!
 
-    public var cellBackground: UIImage!
-    public var selectedCellBackground:  UIImage!
+    @objc public var cellBackground: UIImage!
+    @objc public var selectedCellBackground:  UIImage!
 
-    public convenience init () {
+    @objc public convenience init () {
         self.init(manager: nil)
     }
 
@@ -96,11 +96,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show() {
+    @objc public func show() {
         show(fromViewController: nil)
     }
 
-    public func show(fromViewController: UIViewController? = nil) {
+    @objc public func show(fromViewController: UIViewController? = nil) {
 
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
 
@@ -112,7 +112,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         }
     }
 
-    public func show(navigationController: UINavigationController) {
+    @objc public func show(navigationController: UINavigationController) {
         navigationController.pushViewController(self, animated: true)
     }
 
