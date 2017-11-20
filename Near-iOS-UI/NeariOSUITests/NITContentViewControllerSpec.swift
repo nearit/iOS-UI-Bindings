@@ -19,31 +19,15 @@ class NITContentViewControllerSpec: QuickSpec {
         return false
     }
 
-    func contentWithContentsOf(filename: String) -> NITContent? {
-        let bundle = Bundle.main
-
-        guard let path = bundle.path(forResource: filename,
-                                     ofType: "json",
-                                     inDirectory: nil) else { return nil }
-
-        guard let japi = try? NITJSONAPI.init(contentsOfFile: path) else { return nil }
-        japi.register(NITContent.self, forType: "contents")
-        japi.register(NITCoupon.self, forType: "coupons")
-        japi.register(NITImage.self, forType: "images")
-
-        let reactions = japi.parseToArrayOfObjects()
-        return reactions.last as? NITContent
-    }
-
     override func spec() {
         var contentVC: NITContentViewController!
 
         describe("content") {
             beforeEach {
-                let content = self.contentWithContentsOf(filename: "content")
-                expect(content).notTo(beNil())
-
-                contentVC = NITContentViewController(content: content!)
+                let content = NITContent()
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>Sopra la panca la capra campa sotto la panca la capra crepa."
+                content.title = "Content title"
+                contentVC = NITContentViewController(content: content)
                 expect(contentVC.view).notTo(beNil())
             }
 

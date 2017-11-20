@@ -505,7 +505,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
