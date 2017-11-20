@@ -49,6 +49,7 @@
 		8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */; };
 		8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */; };
 		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
+		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 		9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +136,7 @@
 		8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponViewControllerSpec.swift; sourceTree = "<group>"; };
 		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
 		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
+		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
 		D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
 				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
 				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
+				8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
+				8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */,
 				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
 				8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */,
 				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
