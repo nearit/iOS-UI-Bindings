@@ -11,7 +11,7 @@ Permissions related:
 
 Content related:
 - Handle in-app content
-- Coupon detail
+- [Coupon detail](DOCS/COUPON.md)
 - Feedback request
 - Content detail
 - Coupon list
