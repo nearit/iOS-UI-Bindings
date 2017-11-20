@@ -6,7 +6,7 @@ For example, using NearIT UI, a developer can launch a dialog for requesting the
 
 #### Features
 Permissions related:
-- Permissions request
+- [Permissions request](DOCS/PERMISSIONS.md)
 - Missing permissions alert bar
 
 Content related:
@@ -19,3 +19,16 @@ Content related:
 ## Installation
 
 Near IT UI library will be available on Cocoapods.
+
+## Configuration
+
+#### objc
+
+```objc
+@import NearUIBinding;
+```
+
+#### swift
+```swift
+import NearUIBinding
+```
