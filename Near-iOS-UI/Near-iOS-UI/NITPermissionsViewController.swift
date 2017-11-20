@@ -50,7 +50,9 @@ import NearITSDK
 }
 
 public class NITPermissionsViewController: NITBaseViewController {
-    
+
+    let permissionsManager = NITPermissionsManager()
+
     @IBOutlet weak var explain: UILabel!
     @IBOutlet weak var location: UIButton!
     @IBOutlet weak var notification: UIButton!
@@ -58,22 +60,23 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
     @IBOutlet weak var notificationsContainer: UIView!
-    public var unknownButton: UIImage!
-    public var grantedButton: UIImage!
-    public var grantedIcon: UIImage!
-    public var headerImage: UIImage!
-    public var textColor: UIColor!
-    let permissionsManager = NITPermissionsManager()
-    public var type: NITPermissionsType
-    public var locationType: NITPermissionsLocationType
-    public var autoStartRadar: NITPermissionsAutoStartRadarType
-    public var autoCloseDialog: NITPermissionsAutoCloseDialog
-    
-    public var locationText: String!
-    public var notificationsText: String!
-    public var explainText: String!
-    public var closeText: String!
-    public var notNowText: String!
+
+    @objc public var type: NITPermissionsType
+    @objc public var locationType: NITPermissionsLocationType
+    @objc public var autoStartRadar: NITPermissionsAutoStartRadarType
+    @objc public var autoCloseDialog: NITPermissionsAutoCloseDialog
+
+    @objc public var unknownButton: UIImage!
+    @objc public var grantedButton: UIImage!
+    @objc public var grantedIcon: UIImage!
+    @objc public var headerImage: UIImage!
+    @objc public var textColor: UIColor!
+
+    @objc public var locationText: String!
+    @objc public var notificationsText: String!
+    @objc public var explainText: String!
+    @objc public var closeText: String!
+    @objc public var notNowText: String!
 
     @objc public weak var delegate: NITPermissionsViewControllerDelegate?
 
