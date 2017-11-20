@@ -68,11 +68,11 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var autoStartRadar: NITPermissionsAutoStartRadarType
     public var autoCloseDialog: NITPermissionsAutoCloseDialog
     
-    public var locationText = NSLocalizedString("LOCATION", comment: "Permissions popup: LOCATION")
-    public var notificationsText = NSLocalizedString("NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
-    public var explainText = NSLocalizedString("Permissions explanation", comment: "Permissions popup: explanation")
-    public var closeText = NSLocalizedString("Close", comment: "Permissions popup: Close")
-    public var notNowText = NSLocalizedString("Not now", comment: "Permissios popup: Not now")
+    public var locationText: String!
+    public var notificationsText: String!
+    public var explainText: String!
+    public var closeText: String!
+    public var notNowText: String!
 
     public weak var delegate: NITPermissionsViewControllerDelegate?
 
@@ -149,6 +149,12 @@ public class NITPermissionsViewController: NITBaseViewController {
         grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
+
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, value: "LOCATION", comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, value: "Permissions explanation", comment: "Permissions popup: explanation")
+        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, value: "Close", comment: "Permissions popup: Close")
+        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, value: "Not now", comment: "Permissios popup: Not now")
     }
     
     internal func setupUI() {

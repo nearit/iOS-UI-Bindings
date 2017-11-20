@@ -50,15 +50,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     public var iconPlaceholder: UIImage!
 
-    public var expiredText = NSLocalizedString("Expired coupon", comment: "Coupon list: expired coupon")
     public var expiredColor = UIColor.nearCouponExpired
     public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var disabledText = NSLocalizedString("Inactive coupon", comment: "Coupon list: inactive coupon")
     public var disabledColor = UIColor.nearCouponDisabled
     public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var validText = NSLocalizedString("Valid coupon", comment: "Coupon list: valid coupon ")
     public var validColor = UIColor.nearCouponValid
     public var validFont = UIFont.systemFont(ofSize: 12.0)
 
@@ -76,7 +73,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
     public var valueExpiredColor = UIColor.nearCouponListGray
 
-    public var noCoupons = NSLocalizedString("No coupons available", comment: "Coupon list: no coupons")
+    public var expiredText: String!
+    public var disabledText: String!
+    public var validText: String!
+    public var noCoupons: String!
 
     public var cellBackground: UIImage!
     public var selectedCellBackground:  UIImage!
@@ -125,6 +125,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
         selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
+
+        expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
+        disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
+        validText = NSLocalizedString("Coupon list: valid coupon", tableName: nil, bundle: bundle, value: "Valid coupon", comment: "Coupon list: valid coupon")
+        noCoupons = NSLocalizedString( "Coupon list: no coupons", tableName: nil, bundle: bundle, value: "No coupons available", comment: "Coupon list: no coupons")
     }
 
     override public func viewDidLoad() {

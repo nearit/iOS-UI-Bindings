@@ -18,11 +18,11 @@ public class NITCouponViewController: NITBaseViewController {
     public var separatorImage: UIImage!
     public var separatorBackgroundColor = UIColor.clear
     public var iconPlaceholder: UIImage!
-    public var expiredText = NSLocalizedString("Expired coupon", comment: "Coupon dialog: expired coupon")
-    public var disabledText = NSLocalizedString("Inactive coupon", comment: "Coupon dialog: inactive coupon")
-    public var validText = NSLocalizedString("Valid:", comment: "Coupon dialog: valid: ")
-    public var fromText = NSLocalizedString("from", comment: "Coupon dialog: from")
-    public var toText = NSLocalizedString("to", comment: "Coupon dialog: to")
+    public var expiredText: String!
+    public var disabledText: String!
+    public var validText: String!
+    public var fromText: String!
+    public var toText: String!
     public var couponValidColor = UIColor.nearCouponValid
     public var couponDisabledColor = UIColor.nearCouponDisabled
     public var couponExpiredColor = UIColor.nearCouponExpired
@@ -96,6 +96,12 @@ public class NITCouponViewController: NITBaseViewController {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
+
+        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
+        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
+        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
+        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, value: "from", comment: "Coupon dialog: from")
+        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, value: "to", comment: "Coupon dialog: to")
     }
 
     override public func viewDidLoad() {
