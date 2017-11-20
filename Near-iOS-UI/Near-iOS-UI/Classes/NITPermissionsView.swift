@@ -77,8 +77,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @IBInspectable
-    @objc public var messageColor: UIColor? {
+
+    @objc @IBInspectable public var messageColor: UIColor? {
         didSet {
             message.textColor = messageColor
         }
@@ -90,15 +90,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @IBInspectable
-    @objc public var buttonText: String? {
+    @objc @IBInspectable public var buttonText: String? {
         didSet {
             button.setTitle(buttonText, for: .normal)
         }
     }
 
-    @IBInspectable
-    @objc public var buttonColor: UIColor? {
+    @objc @IBInspectable public var buttonColor: UIColor? {
         didSet {
             button.setTitleColor(buttonColor, for: .normal)
         }
@@ -110,25 +108,21 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @IBInspectable
-    @objc public var permissionAvailableColor: UIColor? = UIColor.white {
+    @objc @IBInspectable public var permissionAvailableColor: UIColor? = UIColor.white {
         didSet {
             refresh()
         }
     }
 
-    @IBInspectable
-    @objc public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
+    @objc @IBInspectable public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
         didSet {
             refresh()
         }
     }
 
-    @IBInspectable
-    @objc public var animateView: Bool = true
+    @objc @IBInspectable public var animateView: Bool = true
 
-    @IBInspectable
-    @objc public var permissionsRequired = NITPermissionsViewPermissions.all {
+    @objc @IBInspectable public var permissionsRequired = NITPermissionsViewPermissions.all {
         didSet {
             refresh()
         }
@@ -136,8 +130,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     @objc public var callbackOnPermissions: ((NITPermissionsView) -> Void)?
 
-    @IBInspectable
-    @objc public var buttonBackgroundImage: UIImage? {
+    @objc @IBInspectable public var buttonBackgroundImage: UIImage? {
         didSet {
             button.setBackgroundImage(buttonBackgroundImage, for: .normal)
         }
