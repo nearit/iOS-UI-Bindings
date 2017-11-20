@@ -3,7 +3,7 @@ use_frameworks!
 
 workspace 'Near-iOS-UI'
 
-target 'NeariOSUI' do
+target 'NearUIBinding' do
     project 'Near-iOS-UI/Near-iOS-UI.xcodeproj'
     pod 'NearITSDK', '~> 2.2'
 
@@ -15,9 +15,10 @@ target 'NeariOSUI' do
         pod 'FBSnapshotTestCase'
         pod 'Nimble-Snapshots'
     end
+
+    target 'UI-Swift-Sample' do
+        project 'UI-Swift-Sample/UI-Swift-Sample.xcodeproj'
+        pod 'NearITSDK', '~> 2.2'
+    end
 end
 
-target 'UI-Swift-Sample' do
-    project 'UI-Swift-Sample/UI-Swift-Sample.xcodeproj'
-    pod 'NearITSDK', '~> 2.2'
-end

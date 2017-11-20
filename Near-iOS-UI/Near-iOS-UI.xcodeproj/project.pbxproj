@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		169662BB8C3A40F5EDB00405 /* Pods_NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
 		264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */; };
@@ -25,6 +26,7 @@
 		26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */; };
 		26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */; };
 		26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC33D1F56EA46009DDDF2 /* Images.xcassets */; };
+		75065E4A2B183D949D1F8960 /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */; };
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
 		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
 		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
@@ -80,6 +82,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding.release.xcconfig"; sourceTree = "<group>"; };
+		1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
 		264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeariOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,8 @@
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
+		4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding.debug.xcconfig"; sourceTree = "<group>"; };
 		5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +135,8 @@
 		8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponViewControllerSpec.swift; sourceTree = "<group>"; };
 		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
 		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
+		D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,7 @@
 			files = (
 				264AE7011F98908700AF8C48 /* NearUIBinding.framework in Frameworks */,
 				9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */,
+				75065E4A2B183D949D1F8960 /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */,
+				169662BB8C3A40F5EDB00405 /* Pods_NearUIBinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +174,8 @@
 			children = (
 				5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */,
 				376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */,
+				4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */,
+				1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,6 +310,10 @@
 				45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */,
 				624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */,
 				5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */,
+				54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */,
+				1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */,
+				F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */,
+				D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -475,7 +491,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-Tests-NeariOSUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NearUIBinding-Tests-NeariOSUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -488,7 +504,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
@@ -505,7 +521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */ = {
@@ -520,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */ = {
@@ -535,7 +551,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
@@ -549,7 +565,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NearUIBinding-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -640,7 +656,7 @@
 /* Begin XCBuildConfiguration section */
 		264AE7051F98908700AF8C48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */;
+			baseConfigurationReference = F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -671,7 +687,7 @@
 		};
 		264AE7061F98908700AF8C48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */;
+			baseConfigurationReference = D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -855,7 +871,7 @@
 		};
 		26CAC30C1F56BB4E009DDDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */;
+			baseConfigurationReference = 54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -878,7 +894,7 @@
 		};
 		26CAC30D1F56BB4E009DDDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */;
+			baseConfigurationReference = 1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
