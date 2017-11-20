@@ -46,6 +46,7 @@ import NearITSDK
 @objc public protocol NITPermissionsViewControllerDelegate: class {
     @objc optional func locationGranted(_ granted: Bool)
     @objc optional func notificationsGranted(_ granted: Bool)
+    @objc optional func dialogClosed(locationGranted: Bool, notificationsGranted: Bool)
 }
 
 public class NITPermissionsViewController: NITBaseViewController {
@@ -74,7 +75,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     public var closeText: String!
     public var notNowText: String!
 
-    public weak var delegate: NITPermissionsViewControllerDelegate?
+    @objc public weak var delegate: NITPermissionsViewControllerDelegate?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ public class NITPermissionsViewController: NITBaseViewController {
             let manager = NITManager.default()
             manager.start()
         }
+        callClosingDelegate()
     }
 
     @objc public func checkPermissions() -> Bool {
@@ -212,6 +214,12 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBAction func tapFooter(_ sender: Any) {
         dialogController?.dismiss()
     }
+
+    fileprivate func callClosingDelegate() {
+        let location = permissionsManager.isLocationPartiallyGranted()
+        let notifications = permissionsManager.isNotificationAvailable()
+        delegate?.dialogClosed?(locationGranted: location, notificationsGranted: notifications)
+    }
     
     // MARK: - Permission buttons
     
@@ -276,17 +284,15 @@ public class NITPermissionsViewController: NITBaseViewController {
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     
     func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
-        if (granted) {
-            confirmLocationButton()
-            eventuallyClose()
-        }
+        confirmLocationButton()
         delegate?.locationGranted?(granted)
+        eventuallyClose()
     }
     
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
-        eventuallyClose()
         delegate?.notificationsGranted?(manager.isNotificationAvailable())
+        eventuallyClose()
     }
 
     func eventuallyClose() {
@@ -294,4 +300,5 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
             dismiss(animated: true, completion: nil)
         }
     }
+
 }
