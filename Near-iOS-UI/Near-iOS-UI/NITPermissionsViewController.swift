@@ -150,11 +150,11 @@ public class NITPermissionsViewController: NITBaseViewController {
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
 
-        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, value: "LOCATION", comment: "Permissions popup: LOCATION")
-        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
-        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, value: "Permissions explanation", comment: "Permissions popup: explanation")
-        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, value: "Close", comment: "Permissions popup: Close")
-        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, value: "Not now", comment: "Permissios popup: Not now")
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
+        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
+        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, bundle: bundle, value: "Not now", comment: "Permissios popup: Not now")
     }
     
     internal func setupUI() {

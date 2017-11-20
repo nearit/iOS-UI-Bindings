@@ -97,11 +97,11 @@ public class NITCouponViewController: NITBaseViewController {
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
 
-        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
-        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
-        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
-        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, value: "from", comment: "Coupon dialog: from")
-        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, value: "to", comment: "Coupon dialog: to")
+        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
+        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
+        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, bundle: bundle, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
+        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from", comment: "Coupon dialog: from")
+        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: "to", comment: "Coupon dialog: to")
     }
 
     override public func viewDidLoad() {
