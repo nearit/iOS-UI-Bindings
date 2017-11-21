@@ -116,6 +116,7 @@ public class NITCouponViewController: NITBaseViewController {
         previousTimer = UIApplication.shared.isIdleTimerDisabled
         previousBrightness = UIScreen.main.brightness
         UIApplication.shared.isIdleTimerDisabled = true
+        UIScreen.main.brightness = 1.0
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
