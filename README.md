@@ -13,7 +13,7 @@ Content related:
 - Handle in-app content
 - [Coupon detail](DOCS/COUPON.md)
 - [Feedback request](DOCS/FEEDBACK.md)
-- Content detail
+- [Content detail](DOCS/CONTENT.md)
 - Coupon list
 
 ## Installation
