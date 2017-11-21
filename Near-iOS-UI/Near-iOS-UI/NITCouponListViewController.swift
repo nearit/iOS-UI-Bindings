@@ -12,24 +12,39 @@ import NearITSDK
 @objc public enum NITCouponListViewControllerPresentCoupon: NSInteger {
     case popover
     case push
+    case custom
 }
 
 @objc public enum NITCouponListViewControllerFilterOptions: NSInteger {
+    case none = 0b000
     case valid = 0b001
     case expired = 0b010
+    case validAndExpired =  0b011
     case disabled = 0b100
+    case validAndDisabled = 0b101
+    case expiredAndDisabled = 0b110
     case all = 0b111
 
     fileprivate func filter(_ status: NITCouponUIStatus) -> Bool {
         switch status {
         case .disabled:
-            return (rawValue & NITCouponListViewControllerFilterOptions.disabled.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.disabled)
         case .expired:
-            return (rawValue & NITCouponListViewControllerFilterOptions.expired.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.expired)
         case .valid:
-            return (rawValue & NITCouponListViewControllerFilterOptions.valid.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.valid)
         }
     }
+
+    static public func |(lhs: NITCouponListViewControllerFilterOptions, rhs: NITCouponListViewControllerFilterOptions) -> NITCouponListViewControllerFilterOptions {
+        let or = lhs.rawValue | rhs.rawValue
+        return NITCouponListViewControllerFilterOptions(rawValue: or)!
+    }
+
+    public func contains(_ lhs: NITCouponListViewControllerFilterOptions) -> Bool {
+        return (rawValue & lhs.rawValue) != 0
+    }
+
 }
 
 @objc public enum NITCouponListViewControllerFilterRedeemed: NSInteger {
@@ -80,6 +95,8 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     @objc public var cellBackground: UIImage!
     @objc public var selectedCellBackground:  UIImage!
+
+    @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
     @objc public convenience init () {
         self.init(manager: nil)
@@ -249,11 +266,15 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         guard let coupons = coupons else { return }
         let coupon = coupons[indexPath.section]
         let couponController = NITCouponViewController.init(coupon: coupon)
+        if let couponViewControllerConfiguration = couponViewControllerConfiguration {
+            couponViewControllerConfiguration(couponController)
+        }
         switch presentCoupon {
         case .popover:
             couponController.show()
         case .push:
             couponController.show(navigationController: navigationController!)
+        case .custom: ()
         }
     }
 
