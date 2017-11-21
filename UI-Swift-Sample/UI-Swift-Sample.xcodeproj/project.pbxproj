@@ -7,32 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05F45DEC53C9F6D9E02A580E /* Pods_NearUIBinding_UI_Swift_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C17E159099336060C530DCA /* Pods_NearUIBinding_UI_Swift_Sample.framework */; };
 		2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */; };
 		26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */; };
 		26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3211F56D220009DDDF2 /* ViewController.swift */; };
 		26CAC3251F56D220009DDDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3231F56D220009DDDF2 /* Main.storyboard */; };
 		26CAC3271F56D220009DDDF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3261F56D220009DDDF2 /* Assets.xcassets */; };
 		26CAC32A1F56D220009DDDF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3281F56D220009DDDF2 /* LaunchScreen.storyboard */; };
-		26CAC3321F56D238009DDDF2 /* NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3311F56D238009DDDF2 /* NeariOSUI.framework */; };
-		26CAC3331F56D238009DDDF2 /* NeariOSUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3311F56D238009DDDF2 /* NeariOSUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A4C0C6A1FC422CB000C9C7B /* NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF9E5111FC320DB00ED0057 /* NearUIBinding.framework */; };
+		8A4C0C6B1FC422CB000C9C7B /* NearUIBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF9E5111FC320DB00ED0057 /* NearUIBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A4CA2891FA94E1D0043C4C3 /* coupon.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA2881FA94E1D0043C4C3 /* coupon.json */; };
 		8A4CA28C1FA951E30043C4C3 /* contents1.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA28B1FA951E30043C4C3 /* contents1.json */; };
 		8A83148F1FC3354E000609A6 /* NITJSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83148C1FC3354E000609A6 /* NITJSONAPI.m */; };
 		8A8314901FC3354E000609A6 /* NITJSONAPIResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83148E1FC3354E000609A6 /* NITJSONAPIResource.m */; };
 		8AB187271FA96809009E6959 /* response_content_reaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AB187261FA96809009E6959 /* response_content_reaction.json */; };
-		8AF9E5101FC320DB00ED0057 /* NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF9E5111FC320DB00ED0057 /* NearUIBinding.framework */; };
 		EC34CF04E2D19794698A6111 /* Pods_UI_Swift_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0D721A108731BFA5645DC6 /* Pods_UI_Swift_Sample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		26CAC3341F56D238009DDDF2 /* Embed Frameworks */ = {
+		8A4C0C6C1FC422CB000C9C7B /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				26CAC3331F56D238009DDDF2 /* NeariOSUI.framework in Embed Frameworks */,
+				8A4C0C6B1FC422CB000C9C7B /* NearUIBinding.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,10 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AF9E5101FC320DB00ED0057 /* NearUIBinding.framework in Frameworks */,
-				26CAC3321F56D238009DDDF2 /* NeariOSUI.framework in Frameworks */,
+				8A4C0C6A1FC422CB000C9C7B /* NearUIBinding.framework in Frameworks */,
 				EC34CF04E2D19794698A6111 /* Pods_UI_Swift_Sample.framework in Frameworks */,
-				05F45DEC53C9F6D9E02A580E /* Pods_NearUIBinding_UI_Swift_Sample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,9 +170,9 @@
 				26CAC3181F56D220009DDDF2 /* Sources */,
 				26CAC3191F56D220009DDDF2 /* Frameworks */,
 				26CAC31A1F56D220009DDDF2 /* Resources */,
-				26CAC3341F56D238009DDDF2 /* Embed Frameworks */,
 				28D72A7CE240C0222A0BB9E9 /* [CP] Embed Pods Frameworks */,
 				42F71882ED251DC57AAD8983 /* [CP] Copy Pods Resources */,
+				8A4C0C6C1FC422CB000C9C7B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
