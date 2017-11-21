@@ -12,6 +12,8 @@ import NearITSDK
 public class NITCouponViewController: NITBaseViewController {
     var coupon: NITCoupon!
     var nearManager: NITManager
+    var previousBrightness: CGFloat = 1.0
+    var previousTimer: Bool = false
 
     @objc public var drawSeparator = true
     @objc public var hideCloseButton = false
@@ -107,6 +109,19 @@ public class NITCouponViewController: NITBaseViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+    }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        previousTimer = UIApplication.shared.isIdleTimerDisabled
+        previousBrightness = UIScreen.main.brightness
+        UIApplication.shared.isIdleTimerDisabled = true
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.isIdleTimerDisabled = previousTimer
+        UIScreen.main.brightness = previousBrightness
     }
 
     internal func setupQRCode() {
