@@ -55,7 +55,7 @@ vc.feedbackSendCallback = { (vc: NITFeedbackViewController, rating: Int, comment
 }
 ```
 
-`return true` to continue with the success dialog, `return false` to show a retry button. 
+`chain(true)` to continue with the success dialog, `chain(false)` to show a retry button. 
 
 ## UI Customization
 
