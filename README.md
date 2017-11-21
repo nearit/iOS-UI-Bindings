@@ -14,7 +14,7 @@ Content related:
 - [Coupon detail](DOCS/COUPON.md)
 - [Feedback request](DOCS/FEEDBACK.md)
 - [Content detail](DOCS/CONTENT.md)
-- Coupon list
+- [Coupon list](DOCS/COUPON_LIST.md)
 
 ## Installation
 
