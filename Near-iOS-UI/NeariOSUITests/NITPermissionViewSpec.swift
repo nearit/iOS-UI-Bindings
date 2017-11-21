@@ -13,7 +13,7 @@ import Nimble_Snapshots
 import UIKit
 import CoreBluetooth
 @testable import NearITSDK
-@testable import NeariOSUI
+@testable import NearUIBinding
 
 class NITPermissionViewSpec: QuickSpec {
 

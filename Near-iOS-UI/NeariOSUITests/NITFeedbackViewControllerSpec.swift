@@ -11,7 +11,7 @@ import Nimble
 import FBSnapshotTestCase
 import Nimble_Snapshots
 @testable import NearITSDK
-@testable import NeariOSUI
+@testable import NearUIBinding
 
 class NITFeedbackViewControllerSpec: QuickSpec {
     
@@ -26,7 +26,7 @@ class NITFeedbackViewControllerSpec: QuickSpec {
         beforeEach {
             let feedback = NITFeedback()
             feedback.question = "Should i go on vacation?"
-            feedbackVC = NITFeedbackViewController(feedback: feedback, manager: fakeNearManager)
+            feedbackVC = NITFeedbackViewController(feedback: feedback, feedbackSendCallback: nil, manager: fakeNearManager)
             
             //Trigger the view to load and assert that it's not nil
             expect(feedbackVC.view).notTo(beNil())

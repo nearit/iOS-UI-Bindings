@@ -11,7 +11,7 @@ import Nimble
 import FBSnapshotTestCase
 import Nimble_Snapshots
 @testable import NearITSDK
-@testable import NeariOSUI
+@testable import NearUIBinding
 
 class NITContentViewControllerSpec: QuickSpec {
 
