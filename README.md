@@ -12,7 +12,7 @@ Permissions related:
 Content related:
 - Handle in-app content
 - [Coupon detail](DOCS/COUPON.md)
-- Feedback request
+- [Feedback request](DOCS/FEEDBACK.md)
 - Content detail
 - Coupon list
 
