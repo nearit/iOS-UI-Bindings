@@ -15,11 +15,13 @@ import NearITSDK
     case onRating
 }
 
+public typealias NITFeedbackCallback = ((NITFeedbackViewController, Int, String?, @escaping (Bool)->(Void)) -> Void)
+
 public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
     var nearManager: NITManager
 
-    @objc public var feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?
+    @objc public var feedbackSendCallback: NITFeedbackCallback?
     @objc public var sendButton: UIImage!
     @objc public var rateFullButton: UIImage!
     @objc public var rateEmptyButton: UIImage!
@@ -70,11 +72,11 @@ public class NITFeedbackViewController: NITBaseViewController {
         self.init(feedback: feedback, feedbackSendCallback: nil, manager: nil)
     }
 
-    @objc public convenience init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?) {
+    @objc public convenience init(feedback: NITFeedback, feedbackSendCallback: NITFeedbackCallback?) {
         self.init(feedback: feedback, feedbackSendCallback: feedbackSendCallback, manager: nil)
     }
 
-    init(feedback: NITFeedback, feedbackSendCallback: ((NITFeedbackViewController, Int, String?) -> Void)?, manager: NITManager?) {
+    @objc init(feedback: NITFeedback, feedbackSendCallback: NITFeedbackCallback?, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.feedbackSendCallback = feedbackSendCallback
         self.feedback = feedback
@@ -198,7 +200,14 @@ public class NITFeedbackViewController: NITBaseViewController {
 
     @IBAction func tapSend(_ sender: Any) {
         if let feedbackSendCallback = feedbackSendCallback {
-            feedbackSendCallback(self, currentRating, comment.text)
+            let chain = { [weak self](ok: Bool) -> Void in
+                if ok {
+                    self?.nextOk()
+                } else {
+                    self?.nextError()
+                }
+            }
+            feedbackSendCallback(self, currentRating, comment.text, chain)
         } else {
             let manager = nearManager
             let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
