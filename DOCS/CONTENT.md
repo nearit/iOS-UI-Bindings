@@ -59,7 +59,7 @@ NITContentViewController *vc = [[NITContentViewController alloc] initWithContent
 
  By default all content `links` are allowed; a custom link handler can be customized to restrict this behaviour:
 
-Swift versions
+Swift version
 ```swift
 vc.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
     [...]
@@ -74,7 +74,7 @@ vc.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
 
 ## UI Customization
 
-Swift versions
+Swift version
 ```swift
 vc.callToActionButton = UIImage.init(named: "better button")
 vc.contentMainFont = UIFont.systemFont(ofSize: 20.0)
