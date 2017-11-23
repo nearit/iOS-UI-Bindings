@@ -46,10 +46,13 @@ import NearITSDK
 @objc public protocol NITPermissionsViewControllerDelegate: class {
     @objc optional func locationGranted(_ granted: Bool)
     @objc optional func notificationsGranted(_ granted: Bool)
+    @objc optional func dialogClosed(locationGranted: Bool, notificationsGranted: Bool)
 }
 
 public class NITPermissionsViewController: NITBaseViewController {
-    
+
+    let permissionsManager = NITPermissionsManager()
+
     @IBOutlet weak var explain: UILabel!
     @IBOutlet weak var location: UIButton!
     @IBOutlet weak var notification: UIButton!
@@ -57,24 +60,25 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
     @IBOutlet weak var notificationsContainer: UIView!
-    public var unknownButton: UIImage!
-    public var grantedButton: UIImage!
-    public var grantedIcon: UIImage!
-    public var headerImage: UIImage!
-    public var textColor: UIColor!
-    let permissionsManager = NITPermissionsManager()
-    public var type: NITPermissionsType
-    public var locationType: NITPermissionsLocationType
-    public var autoStartRadar: NITPermissionsAutoStartRadarType
-    public var autoCloseDialog: NITPermissionsAutoCloseDialog
-    
-    public var locationText = NSLocalizedString("LOCATION", comment: "Permissions popup: LOCATION")
-    public var notificationsText = NSLocalizedString("NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
-    public var explainText = NSLocalizedString("Permissions explanation", comment: "Permissions popup: explanation")
-    public var closeText = NSLocalizedString("Close", comment: "Permissions popup: Close")
-    public var notNowText = NSLocalizedString("Not now", comment: "Permissios popup: Not now")
 
-    public weak var delegate: NITPermissionsViewControllerDelegate?
+    @objc public var type: NITPermissionsType
+    @objc public var locationType: NITPermissionsLocationType
+    @objc public var autoStartRadar: NITPermissionsAutoStartRadarType
+    @objc public var autoCloseDialog: NITPermissionsAutoCloseDialog
+
+    @objc public var unknownButton: UIImage!
+    @objc public var grantedButton: UIImage!
+    @objc public var grantedIcon: UIImage!
+    @objc public var headerImage: UIImage!
+    @objc public var textColor: UIColor!
+
+    @objc public var locationText: String!
+    @objc public var notificationsText: String!
+    @objc public var explainText: String!
+    @objc public var closeText: String!
+    @objc public var notNowText: String!
+
+    @objc public weak var delegate: NITPermissionsViewControllerDelegate?
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -89,9 +93,10 @@ public class NITPermissionsViewController: NITBaseViewController {
             let manager = NITManager.default()
             manager.start()
         }
+        callClosingDelegate()
     }
 
-    public func checkPermissions() -> Bool {
+    @objc public func checkPermissions() -> Bool {
         switch type {
         case .notificationsOnly:
             return permissionsManager.isNotificationAvailable()
@@ -107,36 +112,30 @@ public class NITPermissionsViewController: NITBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    public convenience init() {
+    @objc public convenience init() {
         self.init(type: .locationAndNotifications, locationType: .always)
     }
     
-    public convenience init(locationType: NITPermissionsLocationType) {
+    @objc public convenience init(locationType: NITPermissionsLocationType) {
         self.init(type: .locationAndNotifications, locationType: locationType)
     }
     
-    public convenience init(type: NITPermissionsType) {
+    @objc public convenience init(type: NITPermissionsType) {
         self.init(type: type, locationType: .always)
     }
     
-    public init(type: NITPermissionsType = .locationAndNotifications,
-                locationType: NITPermissionsLocationType = .always,
-                autoStartRadar: NITPermissionsAutoStartRadarType = .on,
-                autoCloseDialog: NITPermissionsAutoCloseDialog = .off) {
+    @objc public init(type: NITPermissionsType = .locationAndNotifications,
+                      locationType: NITPermissionsLocationType = .always,
+                      autoStartRadar: NITPermissionsAutoStartRadarType = .on,
+                      autoCloseDialog: NITPermissionsAutoCloseDialog = .off) {
         self.type = type
         self.locationType = locationType
         self.autoStartRadar = autoStartRadar
         self.autoCloseDialog = autoCloseDialog
         
-        let bundle = Bundle(for: NITDialogController.self)
-        
-        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
-            let xibBundle = Bundle(url: bundleUrl)
-            super.init(nibName: "NITPermissionsViewController", bundle: xibBundle)
-        } else {
-            super.init(nibName: "NITPermissionsViewController", bundle: bundle)
-        }
-        
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
+        super.init(nibName: "NITPermissionsViewController", bundle: bundle)
+
         setupDefaultElements()
         permissionsManager.delegate = self
     }
@@ -146,21 +145,21 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func setupDefaultElements() {
-        var realBundle: Bundle? = nil
-        let bundle = Bundle(for: NITDialogController.self)
-        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
-            let xibBundle = Bundle(url: bundleUrl)
-            realBundle = xibBundle!
-        } else {
-            realBundle = bundle
-        }
-        let emptyOutline = UIImage(named: "outlinedButton", in: realBundle, compatibleWith: nil)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
+
+        let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
         unknownButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        let filledOutline = UIImage(named: "filledButton", in: realBundle, compatibleWith: nil)
+        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        grantedIcon = UIImage(named: "tick", in: realBundle, compatibleWith: nil)
-        headerImage = UIImage(named: "permissionsBanner", in: realBundle, compatibleWith: nil)
+        grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
+        headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
+
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
+        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
+        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, bundle: bundle, value: "Not now", comment: "Permissios popup: Not now")
     }
     
     internal func setupUI() {
@@ -218,6 +217,12 @@ public class NITPermissionsViewController: NITBaseViewController {
     @IBAction func tapFooter(_ sender: Any) {
         dialogController?.dismiss()
     }
+
+    fileprivate func callClosingDelegate() {
+        let location = permissionsManager.isLocationPartiallyGranted()
+        let notifications = permissionsManager.isNotificationAvailable()
+        delegate?.dialogClosed?(locationGranted: location, notificationsGranted: notifications)
+    }
     
     // MARK: - Permission buttons
     
@@ -243,14 +248,14 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.setTitle(closeText, for: .normal)
     }
     
-    public func show() {
+    @objc public func show() {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
             self.show(fromViewController: viewController, configureDialog: nil)
         }
     }
     
     /// Present permissions view controller from the rootViewController if it exists
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
+    @objc public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
             self.show(fromViewController: viewController, configureDialog: configureDialog)
         }
@@ -260,7 +265,7 @@ public class NITPermissionsViewController: NITBaseViewController {
      Present permissions view controller from a view controller
      - Parameter fromViewController: view controller used to present the permissions view controller
      */
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
+    @objc public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
         let dialog = NITDialogController(viewController: self)
         if let configDlg = configureDialog {
             configDlg(dialog)
@@ -282,17 +287,15 @@ public class NITPermissionsViewController: NITBaseViewController {
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     
     func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
-        if (granted) {
-            confirmLocationButton()
-            eventuallyClose()
-        }
+        confirmLocationButton()
         delegate?.locationGranted?(granted)
+        eventuallyClose()
     }
     
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
-        eventuallyClose()
         delegate?.notificationsGranted?(manager.isNotificationAvailable())
+        eventuallyClose()
     }
 
     func eventuallyClose() {
@@ -300,4 +303,5 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
             dismiss(animated: true, completion: nil)
         }
     }
+
 }

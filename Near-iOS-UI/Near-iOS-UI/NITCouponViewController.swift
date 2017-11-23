@@ -12,32 +12,33 @@ import NearITSDK
 public class NITCouponViewController: NITBaseViewController {
     var coupon: NITCoupon!
     var nearManager: NITManager
-    var closeCallback: ((NITCouponViewController) -> Void)?
+    var previousBrightness: CGFloat = 1.0
+    var previousTimer: Bool = false
 
-    public var drawSeparator = true
-    public var hideCloseButton = false
-    public var separatorImage: UIImage!
-    public var separatorBackgroundColor = UIColor.clear
-    public var iconPlaceholder: UIImage!
-    public var expiredText = NSLocalizedString("Expired coupon", comment: "Coupon dialog: expired coupon")
-    public var disabledText = NSLocalizedString("Inactive coupon", comment: "Coupon dialog: inactive coupon")
-    public var validText = NSLocalizedString("Valid:", comment: "Coupon dialog: valid: ")
-    public var fromText = NSLocalizedString("from", comment: "Coupon dialog: from")
-    public var toText = NSLocalizedString("to", comment: "Coupon dialog: to")
-    public var couponValidColor = UIColor.nearCouponValid
-    public var couponDisabledColor = UIColor.nearCouponDisabled
-    public var couponExpiredColor = UIColor.nearCouponExpired
-    public var validFont = UIFont.systemFont(ofSize: 12.0)
-    public var fromToFont = UIFont.italicSystemFont(ofSize: 12.0)
-    public var alternativeFont = UIFont.systemFont(ofSize: 20.0)
-    public var titleFont = UIFont.systemFont(ofSize: 16.0)
-    public var titleColor = UIColor.nearBlack
-    public var descriptionFont = UIFont.systemFont(ofSize: 13.0)
-    public var descriptionColor = UIColor.nearWarmGrey
-    public var serialFont = UIFont.systemFont(ofSize: 20.0)
-    public var serialColor = UIColor.nearBlack
-    public var valueFont = UIFont.systemFont(ofSize: 20.0)
-    public var valueColor = UIColor.nearBlack
+    @objc public var drawSeparator = true
+    @objc public var hideCloseButton = false
+    @objc public var separatorImage: UIImage!
+    @objc public var separatorBackgroundColor = UIColor.clear
+    @objc public var iconPlaceholder: UIImage!
+    @objc public var expiredText: String!
+    @objc public var disabledText: String!
+    @objc public var validText: String!
+    @objc public var fromText: String!
+    @objc public var toText: String!
+    @objc public var couponValidColor = UIColor.nearCouponValid
+    @objc public var couponDisabledColor = UIColor.nearCouponDisabled
+    @objc public var couponExpiredColor = UIColor.nearCouponExpired
+    @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
+    @objc public var fromToFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var alternativeFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearBlack
+    @objc public var descriptionFont = UIFont.systemFont(ofSize: 13.0)
+    @objc public var descriptionColor = UIColor.nearWarmGrey
+    @objc public var serialFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var serialColor = UIColor.nearBlack
+    @objc public var valueFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var valueColor = UIColor.nearBlack
 
     @IBOutlet weak var dates: UILabel!
     @IBOutlet weak var qrcode: UIImageView!
@@ -49,12 +50,15 @@ public class NITCouponViewController: NITBaseViewController {
     @IBOutlet weak var couponTitle: UILabel!
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var close: UIButton!
+
+    @objc public convenience init(coupon: NITCoupon) {
+        self.init(coupon: coupon, manager: nil)
+    }
     
-    public init(coupon: NITCoupon, closeCallback: ((NITCouponViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
-        let bundle = Bundle(for: NITDialogController.self)
-        self.closeCallback = closeCallback
+    init(coupon: NITCoupon, manager: NITManager?) {
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.coupon = coupon
-        self.nearManager = manager
+        self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITCouponViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -63,21 +67,24 @@ public class NITCouponViewController: NITBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: configureDialog)
+    @objc public func show() {
+        show(fromViewController: nil, configureDialog: nil)
+    }
+
+    @objc public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+
+            let dialog = NITDialogController(viewController: self)
+            if let configDlg = configureDialog {
+                configDlg(dialog)
+            }
+
+            fromViewController.present(dialog, animated: true, completion: nil)
         }
     }
 
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
-        let dialog = NITDialogController(viewController: self)
-        if let configDlg = configureDialog {
-            configDlg(dialog)
-        }
-        fromViewController.present(dialog, animated: true, completion: nil)
-    }
-
-    public func show(from navigationController: UINavigationController) {
+    @objc public func show(navigationController: UINavigationController) {
         hideCloseButton = true
         let dialog = NITDialogController(viewController: self)
         dialog.hidesBottomBarWhenPushed = true
@@ -88,9 +95,15 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
+
+        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
+        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
+        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, bundle: bundle, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
+        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from", comment: "Coupon dialog: from")
+        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: "to", comment: "Coupon dialog: to")
     }
 
     override public func viewDidLoad() {
@@ -98,12 +111,26 @@ public class NITCouponViewController: NITBaseViewController {
         setupUI()
     }
 
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        previousTimer = UIApplication.shared.isIdleTimerDisabled
+        previousBrightness = UIScreen.main.brightness
+        UIApplication.shared.isIdleTimerDisabled = true
+        UIScreen.main.brightness = 1.0
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.isIdleTimerDisabled = previousTimer
+        UIScreen.main.brightness = previousBrightness
+    }
+
     internal func setupQRCode() {
         if let oimage = coupon.qrCodeImage {
             let scaleX = qrcode.frame.size.width / oimage.extent.size.width
             let scaleY = qrcode.frame.size.height / oimage.extent.size.height
             let affine = CGAffineTransform(scaleX: scaleX, y: scaleY)
-            let transformedImage = oimage.applying(affine)
+            let transformedImage = oimage.transformed(by: affine)
             qrcode.image = UIImage(ciImage: transformedImage)
         } else {
             qrcode.image = nil
@@ -111,14 +138,14 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     internal func setupDates(color: UIColor) {
-        let validAttrs: [String: Any] = [
-            NSFontAttributeName: validFont,
-            NSForegroundColorAttributeName: color
+        let validAttrs: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.font: validFont,
+            NSAttributedStringKey.foregroundColor: color
         ]
 
-        let fromToAttrs: [String: Any] = [
-            NSFontAttributeName: fromToFont,
-            NSForegroundColorAttributeName: UIColor.nearWarmGrey
+        let fromToAttrs: [NSAttributedStringKey: Any] = [
+            NSAttributedStringKey.font: fromToFont,
+            NSAttributedStringKey.foregroundColor: UIColor.nearWarmGrey
         ]
 
         let text = NSMutableAttributedString()
@@ -202,11 +229,7 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     @IBAction func tapClose(_ sender: Any) {
-        if let closeCallback = closeCallback {
-            closeCallback(self)
-        } else {
-            dialogController?.dismiss()
-        }
+        dialogController?.dismiss()
     }
 
 }

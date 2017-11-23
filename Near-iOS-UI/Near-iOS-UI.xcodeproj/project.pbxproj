@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		169662BB8C3A40F5EDB00405 /* Pods_NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */; };
 		26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFB1F57FA0A00A38740 /* AppColors.swift */; };
 		26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26441FFD1F58129B00A38740 /* NITBaseViewController.swift */; };
 		264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE6FE1F98908700AF8C48 /* NeariOSUITests.swift */; };
@@ -25,7 +25,12 @@
 		26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */; };
 		26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */; };
 		26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC33D1F56EA46009DDDF2 /* Images.xcassets */; };
+		75065E4A2B183D949D1F8960 /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */; };
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
+		8A4C0C6E1FC42537000C9C7B /* NearUIBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A4C0C731FC42559000C9C7B /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A4C0C741FC46259000C9C7B /* Pods_NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4C0C751FC46259000C9C7B /* Pods_NearUIBinding.framework */; };
+		8A4C0C761FC462A7000C9C7B /* Pods_NearUIBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4C0C751FC46259000C9C7B /* Pods_NearUIBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */; };
 		8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */; };
 		8A581EA21FBDF79F00FBA96A /* NITPermissionViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A581EA11FBDF79F00FBA96A /* NITPermissionViewSpec.swift */; };
@@ -38,6 +43,7 @@
 		8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */; };
 		8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */; };
 		8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */; };
+		8A6BE7CE1FC0A09F00678C21 /* Bundle+framework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BE7CD1FC0A09F00678C21 /* Bundle+framework.swift */; };
 		8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */; };
 		8AAB7C101FB3532400D594D9 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0F1FB3532400D594D9 /* content.json */; };
 		8AAB7C111FB3552C00D594D9 /* content.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AAB7C0F1FB3532400D594D9 /* content.json */; };
@@ -46,7 +52,7 @@
 		8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */; };
 		8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */; };
 		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
-		9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */; };
+		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +70,13 @@
 			remoteGlobalIDString = 26B85AFF1F98A02A00087BEE;
 			remoteInfo = UIHostApplication;
 		};
+		8A4C0C6F1FC42537000C9C7B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26CAC2FA1F56BB4E009DDDF2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26CAC3021F56BB4E009DDDF2;
+			remoteInfo = NearUIBinding;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,9 +89,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8A4C0C711FC42537000C9C7B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A4C0C761FC462A7000C9C7B /* Pods_NearUIBinding.framework in Embed Frameworks */,
+				8A4C0C731FC42559000C9C7B /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Embed Frameworks */,
+				8A4C0C6E1FC42537000C9C7B /* NearUIBinding.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding.release.xcconfig"; sourceTree = "<group>"; };
+		1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26441FFB1F57FA0A00A38740 /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		26441FFD1F58129B00A38740 /* NITBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITBaseViewController.swift; sourceTree = "<group>"; };
 		264AE6FC1F98908700AF8C48 /* NeariOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeariOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,11 +131,14 @@
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
+		4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding.debug.xcconfig"; sourceTree = "<group>"; };
 		5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.debug.xcconfig"; sourceTree = "<group>"; };
 		8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+currentController.swift"; sourceTree = "<group>"; };
+		8A4C0C751FC46259000C9C7B /* Pods_NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A4E89321F94FE92002BCAB6 /* NITFeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITFeedbackViewController.xib; sourceTree = "<group>"; };
 		8A4E89341F9507A7002BCAB6 /* NITFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewController.swift; sourceTree = "<group>"; };
 		8A581EA11FBDF79F00FBA96A /* NITPermissionViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NITPermissionViewSpec.swift; path = NeariOSUITests/NITPermissionViewSpec.swift; sourceTree = SOURCE_ROOT; };
@@ -120,6 +151,7 @@
 		8A636A011FBC8E49000C6EBF /* NITPermissionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionsView.swift; sourceTree = "<group>"; };
 		8A6AF9CB1F9E407F00FA9D4B /* NITCouponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITCouponViewController.swift; sourceTree = "<group>"; };
 		8A6AF9CC1F9E408000FA9D4B /* NITCouponViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITCouponViewController.xib; sourceTree = "<group>"; };
+		8A6BE7CD1FC0A09F00678C21 /* Bundle+framework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+framework.swift"; sourceTree = "<group>"; };
 		8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITContentViewControllerSpec.swift; sourceTree = "<group>"; };
 		8AAB7C0F1FB3532400D594D9 /* content.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = content.json; sourceTree = "<group>"; };
 		8AD1900A1FA9E08C00D03836 /* NITWKWebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITWKWebViewContainer.swift; sourceTree = "<group>"; };
@@ -127,6 +159,9 @@
 		8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITCouponViewControllerSpec.swift; sourceTree = "<group>"; };
 		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
 		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
+		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
+		D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264AE7011F98908700AF8C48 /* NearUIBinding.framework in Frameworks */,
-				9C7772C38A03CAA4AE9F8E99 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework in Frameworks */,
+				75065E4A2B183D949D1F8960 /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A4C0C741FC46259000C9C7B /* Pods_NearUIBinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B24FD0319B598B196803384 /* Pods_NeariOSUI.framework in Frameworks */,
+				169662BB8C3A40F5EDB00405 /* Pods_NearUIBinding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +196,11 @@
 		1B6CFF9321523FE0D79D5A70 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A4C0C751FC46259000C9C7B /* Pods_NearUIBinding.framework */,
 				5A814E4C210F668822AAB347 /* Pods_NeariOSUI.framework */,
 				376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */,
+				4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */,
+				1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,6 +212,7 @@
 				8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */,
 				8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */,
 				8AD1900A1FA9E08C00D03836 /* NITWKWebViewContainer.swift */,
+				8A6BE7CD1FC0A09F00678C21 /* Bundle+framework.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -200,6 +240,7 @@
 				264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */,
 				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
 				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
+				8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -295,6 +336,10 @@
 				45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */,
 				624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */,
 				5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */,
+				54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */,
+				1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */,
+				F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */,
+				D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -343,10 +388,12 @@
 				26B85AFC1F98A02A00087BEE /* Sources */,
 				26B85AFD1F98A02A00087BEE /* Frameworks */,
 				26B85AFE1F98A02A00087BEE /* Resources */,
+				8A4C0C711FC42537000C9C7B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8A4C0C701FC42537000C9C7B /* PBXTargetDependency */,
 			);
 			name = UIHostApplication;
 			productName = UIHostApplication;
@@ -380,7 +427,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = Near;
 				TargetAttributes = {
 					264AE6FB1F98908700AF8C48 = {
@@ -397,7 +444,7 @@
 					26CAC3021F56BB4E009DDDF2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = XBC8ZV2BGE;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -472,7 +519,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-Tests-NeariOSUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NearUIBinding-Tests-NeariOSUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -485,8 +532,8 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
+				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
@@ -502,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A8E21F8A7E4EF20D7895245C /* [CP] Copy Pods Resources */ = {
@@ -517,7 +564,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E892B2173CA551A0DDF58BBE /* [CP] Copy Pods Resources */ = {
@@ -532,7 +579,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NeariOSUI-Tests-NeariOSUITests/Pods-NeariOSUI-Tests-NeariOSUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
@@ -546,7 +593,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NeariOSUI-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NearUIBinding-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -586,10 +633,12 @@
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
+				8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */,
 				8AE08CE11FA8715100710B0B /* NITContentViewController.swift in Sources */,
 				8A636A021FBC8E49000C6EBF /* NITPermissionsView.swift in Sources */,
 				8A5ECD611FB9868200C099BB /* NITCouponListViewController.swift in Sources */,
 				26441FFE1F58129B00A38740 /* NITBaseViewController.swift in Sources */,
+				8A6BE7CE1FC0A09F00678C21 /* Bundle+framework.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
 				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,
@@ -611,6 +660,11 @@
 			isa = PBXTargetDependency;
 			target = 26B85AFF1F98A02A00087BEE /* UIHostApplication */;
 			targetProxy = 26B85B121F98A03000087BEE /* PBXContainerItemProxy */;
+		};
+		8A4C0C701FC42537000C9C7B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26CAC3021F56BB4E009DDDF2 /* NearUIBinding */;
+			targetProxy = 8A4C0C6F1FC42537000C9C7B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -636,7 +690,7 @@
 /* Begin XCBuildConfiguration section */
 		264AE7051F98908700AF8C48 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 624F80877B841EBACBBEC2AA /* Pods-NeariOSUI-Tests-NeariOSUITests.debug.xcconfig */;
+			baseConfigurationReference = F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -649,10 +703,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBC8ZV2BGE;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NeariOSUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -667,7 +717,7 @@
 		};
 		264AE7061F98908700AF8C48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5867581EFDECF062270F7602 /* Pods-NeariOSUI-Tests-NeariOSUITests.release.xcconfig */;
+			baseConfigurationReference = D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -680,10 +730,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XBC8ZV2BGE;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = NeariOSUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -699,6 +745,7 @@
 		26B85B101F98A02A00087BEE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -725,6 +772,7 @@
 		26B85B111F98A02A00087BEE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -758,7 +806,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -766,7 +816,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -812,7 +866,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -820,7 +876,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -851,7 +911,7 @@
 		};
 		26CAC30C1F56BB4E009DDDF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B8309578D2CCE61B3E552D2 /* Pods-NeariOSUI.debug.xcconfig */;
+			baseConfigurationReference = 54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -868,13 +928,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		26CAC30D1F56BB4E009DDDF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */;
+			baseConfigurationReference = 1949DA133764D614D26A00D9 /* Pods-NearUIBinding.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -890,7 +950,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.near.Near-iOS-UI.wdy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -8,11 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class NITContent;
+@class NITCoupon;
+@class NITFeedback;
+
 @interface ObjCUIManager : NSObject
 
 + (ObjCUIManager*)sharedInstance;
 
 - (void)showPermissiongDialog;
 - (void)showListOfCoupons;
+- (void)showContenDialog:(NITContent *)content;
+- (void)showCouponDialog:(NITCoupon *)coupon;
+- (void)showFeedbackDialog:(NITFeedback *)feedback;
 
 @end

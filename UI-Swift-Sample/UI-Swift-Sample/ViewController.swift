@@ -8,7 +8,7 @@
 
 import UIKit
 import NearITSDK
-import NeariOSUI
+import NearUIBinding
 import WebKit
 
 enum Code: Int {
@@ -98,8 +98,15 @@ class ViewController: UIViewController {
         feedback.question = question
         feedback.recipeId = "ffe0"
 
-        let aViewController = NITFeedbackViewController(feedback: feedback)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITFeedbackViewController(feedback: feedback)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showFeedbackDialog(feedback)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showFeedbackDialogCustom(question: String) {
@@ -123,15 +130,22 @@ class ViewController: UIViewController {
         aViewController.okText = "Thank you for taking the time to provide us with your feedback.\n\nYour feedback is important to us and we will endeavour to respond to your feedback within 100 working days.\n\nIf your feedback is of an urgent nature, you can contact the Developer on +800HackerMenn"
         aViewController.textFont = UIFont.boldSystemFont(ofSize: 15.0)
         aViewController.errorFont = UIFont.boldSystemFont(ofSize: 20.0)
-        aViewController.okDisappearTime = nil
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.disappearTime = 2.0
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
 
     func showCouponDialog(coupon: NITCoupon) {
-        let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITCouponViewController(coupon: coupon)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showCouponDialog(coupon)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showCouponDialogCustom(coupon: NITCoupon) {
@@ -145,19 +159,26 @@ class ViewController: UIViewController {
         aViewController.valueFont = UIFont.italicSystemFont(ofSize: 25.0)
         aViewController.valueColor = .purple
         aViewController.iconPlaceholder = UIImage(named: "NearIT")
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
 
     func pushCoupon(coupon: NITCoupon) {
         let aViewController = NITCouponViewController(coupon: coupon)
-        aViewController.show(from: navigationController!)
+        aViewController.show(navigationController: navigationController!)
     }
 
     func showContentDialog(content: NITContent) {
-        let aViewController = NITContentViewController(content: content)
-        aViewController.show()
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITContentViewController(content: content)
+            aViewController.show()
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showContenDialog(content)
+        default:
+            print("Code undefined")
+        }
     }
 
     func showCustomContentDialog(content: NITContent) {
@@ -183,14 +204,14 @@ class ViewController: UIViewController {
             controller.present(ui, animated: true)
         }
 
-        aViewController.show { (dialogController: NITDialogController) in
+        aViewController.show(fromViewController: nil) { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
     }
 
     func pushContent(content: NITContent) {
         let aViewController = NITContentViewController(content: content)
-        aViewController.show(from: navigationController!)
+        aViewController.show(navigationController: navigationController!)
     }
 
     func createExpiredCoupon() -> NITCoupon {
@@ -232,11 +253,18 @@ class ViewController: UIViewController {
     }
 
     func pushCouponList(modal: Bool = false) {
-        let aViewController = NITCouponListViewController()
-        if modal {
-            aViewController.show()
-        } else {
-            aViewController.show(from: navigationController!)
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let aViewController = NITCouponListViewController()
+            if modal {
+                aViewController.show()
+            } else {
+                aViewController.show(navigationController: navigationController!)
+            }
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showListOfCoupons()
+        default:
+            print("Code undefined")
         }
     }
 
@@ -428,7 +456,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 showPermissionsDialog()
             case 1:
-                showPermissionsDialogCustom()
+                _ = showPermissionsDialogCustom()
             case 2:
                 showPermissionsDialogLocationsOnly()
             default:

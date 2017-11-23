@@ -71,87 +71,80 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
 
-    public var messageText: String? {
+    @objc public var messageText: String? {
         didSet {
             message.text = messageText
         }
     }
 
-    @IBInspectable
-    public var messageColor: UIColor? {
+
+    @objc @IBInspectable public var messageColor: UIColor? {
         didSet {
             message.textColor = messageColor
         }
     }
 
-    public var messageFont: UIFont? {
+    @objc public var messageFont: UIFont? {
         didSet {
             message.font = messageFont
         }
     }
 
-    @IBInspectable
-    public var buttonText: String? {
+    @objc @IBInspectable public var buttonText: String? {
         didSet {
             button.setTitle(buttonText, for: .normal)
         }
     }
 
-    @IBInspectable
-    public var buttonColor: UIColor? {
+    @objc @IBInspectable public var buttonColor: UIColor? {
         didSet {
             button.setTitleColor(buttonColor, for: .normal)
         }
     }
 
-    public var buttonFont: UIFont? {
+    @objc public var buttonFont: UIFont? {
         didSet {
             button.titleLabel?.font = buttonFont
         }
     }
 
-    @IBInspectable
-    public var permissionAvailableColor: UIColor? = UIColor.white {
+    @objc @IBInspectable public var permissionAvailableColor: UIColor? = UIColor.white {
         didSet {
             refresh()
         }
     }
 
-    @IBInspectable
-    public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
+    @objc @IBInspectable public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
         didSet {
             refresh()
         }
     }
 
-    @IBInspectable
-    public var animateView: Bool = true
+    @objc @IBInspectable public var animateView: Bool = true
 
-    @IBInspectable
-    public var permissionsRequired = NITPermissionsViewPermissions.all {
+    @objc @IBInspectable public var permissionsRequired = NITPermissionsViewPermissions.all {
         didSet {
             refresh()
         }
     }
 
-    public var callbackOnPermissions: ((NITPermissionsView) -> Void)?
+    @objc public var callbackOnPermissions: ((NITPermissionsView) -> Void)?
 
-    @IBInspectable
-    public var buttonBackgroundImage: UIImage? {
+    @objc @IBInspectable public var buttonBackgroundImage: UIImage? {
         didSet {
             button.setBackgroundImage(buttonBackgroundImage, for: .normal)
         }
     }
 
-    override public init(frame: CGRect) {
+    @objc override public init(frame: CGRect) {
         super.init(frame: frame)
         btManager = CBPeripheralManager.init(delegate: self, queue: nil)
         setup()
     }
 
     init(frame: CGRect,
-                permissionManager: NITPermissionsManager?,
-                btManager: CBPeripheralManager?) {
+         permissionManager: NITPermissionsManager?,
+         btManager: CBPeripheralManager?) {
         super.init(frame: frame)
         self.permissionManager = permissionManager ?? NITPermissionsManager()
         self.btManager = btManager ?? CBPeripheralManager.init(delegate: self, queue: nil)
@@ -170,8 +163,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         permissionManager.delegate = self
         backgroundColor = backgroundColor ?? UIColor.nearBlack
 
-        let bundle = Bundle(for: NITPermissionsView.self)
-
+        let bundle = Bundle.NITBundle(for: NITPermissionsView.self)
         bundle.loadNibNamed("NITPermissionsView", owner: self, options: nil)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         backgroundView.backgroundColor = .clear

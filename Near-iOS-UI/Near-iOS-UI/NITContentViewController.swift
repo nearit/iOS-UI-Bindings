@@ -14,17 +14,16 @@ import WebKit
 public class NITContentViewController: NITBaseViewController {
     var content: NITContent!
     var nearManager: NITManager
-    var closeCallback: ((NITContentViewController) -> Void)?
 
-    public var linkHandler: ((NITContentViewController, URLRequest) -> WKNavigationActionPolicy)?
-    public var callToActionHandler: ((NITContentViewController, URL) -> Void)?
-    public var drawSeparator = true
-    public var hideCloseButton = false
-    public var imagePlaceholder: UIImage!
-    public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
-    public var titleColor = UIColor.nearBlack
-    public var callToActionButton: UIImage!
-    public var contentMainFont = UIFont.systemFont(ofSize: 15.0)
+    @objc public var linkHandler: ((NITContentViewController, URLRequest) -> WKNavigationActionPolicy)?
+    @objc public var callToActionHandler: ((NITContentViewController, URL) -> Void)?
+    @objc public var drawSeparator = true
+    @objc public var hideCloseButton = false
+    @objc public var imagePlaceholder: UIImage!
+    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
+    @objc public var titleColor = UIColor.nearBlack
+    @objc public var callToActionButton: UIImage!
+    @objc public var contentMainFont = UIFont.systemFont(ofSize: 15.0)
 
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var image: UIImageView!
@@ -40,12 +39,16 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var closeContainer: UIView!
 
     @IBOutlet var constantConstraints: [NSLayoutConstraint]!
-    
-    public init(content: NITContent, closeCallback: ((NITContentViewController) -> Void)? = nil, manager: NITManager = NITManager.default()) {
-        let bundle = Bundle(for: NITDialogController.self)
-        self.closeCallback = closeCallback
+
+    @objc public convenience init(content: NITContent) {
+        self.init(content: content, manager: NITManager.default())
+    }
+
+
+    init(content: NITContent, manager: NITManager?) {
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.content = content
-        self.nearManager = manager
+        self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITContentViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -54,21 +57,24 @@ public class NITContentViewController: NITBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: configureDialog)
+    @objc public func show() {
+        show(fromViewController: nil, configureDialog: nil)
+    }
+
+    @objc public func show(fromViewController: UIViewController?,
+                     configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+
+            let dialog = NITDialogController(viewController: self)
+            if let configureDialog = configureDialog {
+                configureDialog(dialog)
+            }
+
+            fromViewController.present(dialog, animated: true, completion: nil)
         }
     }
 
-    public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
-        let dialog = NITDialogController(viewController: self)
-        if let configDlg = configureDialog {
-            configDlg(dialog)
-        }
-        fromViewController.present(dialog, animated: true, completion: nil)
-    }
-
-    public func show(from navigationController: UINavigationController) {
+    @objc public func show(navigationController: UINavigationController) {
         hideCloseButton = true
         let dialog = NITDialogController(viewController: self)
         dialog.hidesBottomBarWhenPushed = true
@@ -79,7 +85,7 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITDialogController.self)
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
         imagePlaceholder = UIImage(named: "imgSegnaposto", in: bundle, compatibleWith: nil)
         let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         callToActionButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
@@ -144,11 +150,7 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     @IBAction func tapClose(_ sender: Any) {
-        if let closeCallback = closeCallback {
-            closeCallback(self)
-        } else {
-            dialogController?.dismiss()
-        }
+        dialogController?.dismiss()
     }
 
     @IBAction func tapCallToAction(_ sender: Any) {

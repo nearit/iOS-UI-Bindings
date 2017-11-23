@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITPermissionsViewController" customModule="NeariOSUI" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITPermissionsViewController" customModule="NearUIBinding" customModuleProvider="target">
             <connections>
                 <outlet property="explain" destination="Xhc-ir-PNg" id="o9L-FJ-3Lh"/>
                 <outlet property="footer" destination="gsv-zD-bbD" id="Yzx-Cq-zCY"/>
@@ -58,7 +58,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
                             <rect key="frame" x="0.0" y="302" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG" customClass="NITPermissionButton" customModule="NearUIBinding" customModuleProvider="target">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Ybr-DK-9i4"/>
@@ -83,7 +83,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
                             <rect key="frame" x="0.0" y="363" width="375" height="61"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs" customClass="NITPermissionButton" customModule="NearUIBinding" customModuleProvider="target">
                                     <rect key="frame" x="25" y="8" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="6Ki-3j-CtS"/>

@@ -21,7 +21,7 @@ public class NITDialogController: UIViewController {
     }
 
     // Background
-    public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
+    @objc public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
         didSet  {
             if isViewLoaded {
                 applyBackgroundStyle()
@@ -29,7 +29,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    public var backgroundColor: UIColor?    {
+    @objc public var backgroundColor: UIColor? {
         didSet  {
             if isViewLoaded {
                 view.backgroundColor = backgroundColor
@@ -37,7 +37,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    public var contentPosition = CFAlertControllerContentPosition.middle {
+    @objc public var contentPosition = CFAlertControllerContentPosition.middle {
         didSet  {
             if isViewLoaded {
                 applyBackgroundStyle()
@@ -45,7 +45,7 @@ public class NITDialogController: UIViewController {
         }
     }
 
-    var isEnableTapToClose = true
+    @objc var isEnableTapToClose = true
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -113,16 +113,9 @@ public class NITDialogController: UIViewController {
     
     public convenience init(viewController: UIViewController) {
         // Get Current Bundle
-        let bundle = Bundle(for: NITDialogController.self)
-        
-        if let bundleUrl = bundle.url(forResource: "NearUIBinding", withExtension: "bundle") {
-            let xibBundle = Bundle(url: bundleUrl)
-            self.init(nibName: "NITDialogController", bundle: xibBundle)
-        } else {
-            // Create New Instance Of Alert Controller
-            self.init(nibName: "NITDialogController", bundle: bundle)
-        }
-        
+        let bundle = Bundle.NITBundle(for: NITDialogController.self)
+        self.init(nibName: "NITDialogController", bundle: bundle)
+
         self.viewController = viewController
         
         if let baseViewController = viewController as? NITBaseViewController {
@@ -178,7 +171,7 @@ public class NITDialogController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func tapOutside(_ gesture: UITapGestureRecognizer) {
+    @objc func tapOutside(_ gesture: UITapGestureRecognizer) {
         if !keyboardIsVisible {
             if isEnableTapToClose {
                 dismiss()
@@ -239,7 +232,7 @@ extension NITDialogController: UIGestureRecognizerDelegate {
 
 extension NITDialogController {
 
-    func keyboardWillShowNotification(notification: NSNotification) {
+    @objc func keyboardWillShowNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.cgRectValue
@@ -269,7 +262,7 @@ extension NITDialogController {
         keyboardIsVisible = true
     }
 
-    func keyboardWillHideNotification(notification: NSNotification) {
+    @objc func keyboardWillHideNotification(notification: NSNotification) {
         keyboardVisibleHeight = 0
         keyboardIsVisible = false
         self.updateConstant()

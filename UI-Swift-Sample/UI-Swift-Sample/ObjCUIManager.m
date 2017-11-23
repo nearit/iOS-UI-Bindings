@@ -7,7 +7,8 @@
 //
 
 #import "ObjCUIManager.h"
-@import NeariOSUI;
+@import NearUIBinding;
+@import NearITSDK;
 
 static NSString *const sharedManagerLock = @"manager.lock";
 static ObjCUIManager *sharedManager;
@@ -33,5 +34,36 @@ static ObjCUIManager *sharedManager;
     controller.filterOption = NITCouponListViewControllerFilterOptionsValid;
     [controller show];
 }
+
+- (void)installPermissionBar:(UIViewController *)vc {
+    NITPermissionsView *permissionView = [[NITPermissionsView alloc] initWithFrame:CGRectZero];
+    [vc.view addSubview:permissionView];
+
+    [permissionView.leftAnchor constraintEqualToAnchor:vc.view.leftAnchor].active = TRUE;
+    [permissionView.rightAnchor constraintEqualToAnchor:vc.view.rightAnchor].active = TRUE;
+    if (@available(iOS 11.0, *)) {
+        [permissionView.topAnchor constraintEqualToAnchor:vc.view.safeAreaLayoutGuide.topAnchor].active = TRUE;
+    } else {
+        [permissionView.topAnchor constraintEqualToAnchor:vc.topLayoutGuide.bottomAnchor].active = TRUE;
+    }
+}
+
+- (void)showContenDialog:(NITContent *)content {
+    NITContentViewController *vc = [[NITContentViewController alloc] initWithContent:content];
+    [vc showFromViewController:nil configureDialog:nil];
+}
+
+- (void)showCouponDialog:(NITCoupon *)coupon {
+    NITCouponViewController *vc = [[NITCouponViewController alloc] initWithCoupon:coupon];
+    [vc showFromViewController:nil configureDialog:nil];
+}
+
+- (void)showFeedbackDialog:(NITFeedback *)feedback {
+    NITFeedbackViewController *vc = [[NITFeedbackViewController alloc] initWithFeedback:feedback];
+    [vc showFromViewController:nil configureDialog:^(NITDialogController *dialog) {
+        dialog.backgroundStyle = CFAlertControllerBackgroundStyleBlur;
+    }];
+}
+
 
 @end

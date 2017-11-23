@@ -12,24 +12,39 @@ import NearITSDK
 @objc public enum NITCouponListViewControllerPresentCoupon: NSInteger {
     case popover
     case push
+    case custom
 }
 
 @objc public enum NITCouponListViewControllerFilterOptions: NSInteger {
+    case none = 0b000
     case valid = 0b001
     case expired = 0b010
+    case validAndExpired =  0b011
     case disabled = 0b100
+    case validAndDisabled = 0b101
+    case expiredAndDisabled = 0b110
     case all = 0b111
 
     fileprivate func filter(_ status: NITCouponUIStatus) -> Bool {
         switch status {
         case .disabled:
-            return (rawValue & NITCouponListViewControllerFilterOptions.disabled.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.disabled)
         case .expired:
-            return (rawValue & NITCouponListViewControllerFilterOptions.expired.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.expired)
         case .valid:
-            return (rawValue & NITCouponListViewControllerFilterOptions.valid.rawValue) != 0
+            return contains(NITCouponListViewControllerFilterOptions.valid)
         }
     }
+
+    static public func |(lhs: NITCouponListViewControllerFilterOptions, rhs: NITCouponListViewControllerFilterOptions) -> NITCouponListViewControllerFilterOptions {
+        let or = lhs.rawValue | rhs.rawValue
+        return NITCouponListViewControllerFilterOptions(rawValue: or)!
+    }
+
+    public func contains(_ lhs: NITCouponListViewControllerFilterOptions) -> Bool {
+        return (rawValue & lhs.rawValue) != 0
+    }
+
 }
 
 @objc public enum NITCouponListViewControllerFilterRedeemed: NSInteger {
@@ -44,46 +59,52 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     @IBOutlet weak var tableView: UITableView!
 
-    public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
-    public var filterOption = NITCouponListViewControllerFilterOptions.all
-    public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
+    @objc public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
+    @objc public var filterOption = NITCouponListViewControllerFilterOptions.all
+    @objc public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
 
-    public var iconPlaceholder: UIImage!
+    @objc public var iconPlaceholder: UIImage!
 
-    public var expiredText = NSLocalizedString("Expired coupon", comment: "Coupon list: expired coupon")
-    public var expiredColor = UIColor.nearCouponExpired
-    public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var expiredColor = UIColor.nearCouponExpired
+    @objc public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var disabledText = NSLocalizedString("Inactive coupon", comment: "Coupon list: inactive coupon")
-    public var disabledColor = UIColor.nearCouponDisabled
-    public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var disabledColor = UIColor.nearCouponDisabled
+    @objc public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
 
-    public var validText = NSLocalizedString("Valid coupon", comment: "Coupon list: valid coupon ")
-    public var validColor = UIColor.nearCouponValid
-    public var validFont = UIFont.systemFont(ofSize: 12.0)
+    @objc public var validColor = UIColor.nearCouponValid
+    @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
 
-    public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var titleColor = UIColor.nearBlack
-    public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    public var titleDisabledColor = UIColor.nearCouponListGray
-    public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var titleExpiredColor = UIColor.nearCouponListGray
+    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleDisabledColor = UIColor.nearCouponListGray
+    @objc public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var titleExpiredColor = UIColor.nearCouponListGray
 
-    public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
-    public var valueColor = UIColor.nearBlack
-    public var valueDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    public var valueDisabledColor = UIColor.nearCouponListGray
-    public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    public var valueExpiredColor = UIColor.nearCouponListGray
+    @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var valueColor = UIColor.nearBlack
+    @objc public var valueDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var valueDisabledColor = UIColor.nearCouponListGray
+    @objc public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
+    @objc public var valueExpiredColor = UIColor.nearCouponListGray
 
-    public var noCoupons = NSLocalizedString("No coupons available", comment: "Coupon list: no coupons")
+    @objc public var expiredText: String!
+    @objc public var disabledText: String!
+    @objc public var validText: String!
+    @objc public var noCoupons: String!
 
-    public var cellBackground: UIImage!
-    public var selectedCellBackground:  UIImage!
+    @objc public var cellBackground: UIImage!
+    @objc public var selectedCellBackground:  UIImage!
 
-    public init(manager: NITManager = NITManager.default()) {
-        self.nearManager = manager
-        let bundle = Bundle(for: NITCouponListViewController.self)
+    @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
+
+    @objc public convenience init () {
+        self.init(manager: nil)
+    }
+
+    init(manager: NITManager?) {
+        self.nearManager = manager ?? NITManager.default()
+        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         super.init(nibName: "NITCouponListViewController", bundle: bundle)
         setupDefaultElements()
     }
@@ -92,37 +113,40 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func show() {
-        self.show(configureDialog: nil)
+    @objc public func show() {
+        show(fromViewController: nil)
     }
 
-    public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController)
+    @objc public func show(fromViewController: UIViewController? = nil) {
+
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+
+            let navigation = UINavigationController.init(rootViewController: self)
+            navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                    target: self,
+                                                                    action: #selector(self.onDone))
+            fromViewController.present(navigation, animated: true, completion: nil)
         }
     }
 
-    public func show(fromViewController: UIViewController) {
-        let navigation = UINavigationController.init(rootViewController: self)
-        navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
-                                                                target: self,
-                                                                action: #selector(self.onDone))
-        fromViewController.present(navigation, animated: true, completion: nil)
+    @objc public func show(navigationController: UINavigationController) {
+        navigationController.pushViewController(self, animated: true)
     }
 
     @objc func onDone() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
 
-    public func show(from navigationController: UINavigationController) {
-        navigationController.pushViewController(self, animated: true)
-    }
-
     func setupDefaultElements() {
-        let bundle = Bundle(for: NITCouponListViewController.self)
+        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
         selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
+
+        expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
+        disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
+        validText = NSLocalizedString("Coupon list: valid coupon", tableName: nil, bundle: bundle, value: "Valid coupon", comment: "Coupon list: valid coupon")
+        noCoupons = NSLocalizedString( "Coupon list: no coupons", tableName: nil, bundle: bundle, value: "No coupons available", comment: "Coupon list: no coupons")
     }
 
     override public func viewDidLoad() {
@@ -134,7 +158,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     internal func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        let bundle = Bundle(for: NITCouponCell.self)
+        let bundle = Bundle.NITBundle(for: NITCouponCell.self)
         let nib = UINib.init(nibName: "NITCouponCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: "coupon")
     }
@@ -242,11 +266,15 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         guard let coupons = coupons else { return }
         let coupon = coupons[indexPath.section]
         let couponController = NITCouponViewController.init(coupon: coupon)
+        if let couponViewControllerConfiguration = couponViewControllerConfiguration {
+            couponViewControllerConfiguration(couponController)
+        }
         switch presentCoupon {
         case .popover:
             couponController.show()
         case .push:
-            couponController.show(from: navigationController!)
+            couponController.show(navigationController: navigationController!)
+        case .custom: ()
         }
     }
 
