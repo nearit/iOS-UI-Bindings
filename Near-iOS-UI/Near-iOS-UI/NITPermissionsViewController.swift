@@ -287,7 +287,9 @@ public class NITPermissionsViewController: NITBaseViewController {
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     
     func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
-        confirmLocationButton()
+        if (granted) {
+            confirmLocationButton()
+        }
         delegate?.locationGranted?(granted)
         eventuallyClose()
     }
