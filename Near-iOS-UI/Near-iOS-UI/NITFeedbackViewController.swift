@@ -165,6 +165,13 @@ public class NITFeedbackViewController: NITBaseViewController {
         }
 
         setupCommentVisibility(hidden: commentVisibility != .visible)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.onViewTap(_:)))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func onViewTap(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 
     @IBAction func onStarTouchUpInside(_ sender: UIButton) {
