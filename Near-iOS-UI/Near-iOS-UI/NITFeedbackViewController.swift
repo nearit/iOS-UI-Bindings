@@ -123,6 +123,12 @@ public class NITFeedbackViewController: NITBaseViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShowNotification), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     internal func setupUI() {
@@ -260,4 +266,16 @@ public class NITFeedbackViewController: NITBaseViewController {
         commentViews.forEach({ $0.isHidden = hidden })
     }
 
+}
+
+// Keyboard extension
+
+extension NITFeedbackViewController {
+    
+    @objc func keyboardDidShowNotification(notification: NSNotification) {
+        if let scrollView = dialogController?.scrollView {
+            let point = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.bounds.size.height)
+            scrollView.setContentOffset(point, animated: true)
+        }
+    }
 }

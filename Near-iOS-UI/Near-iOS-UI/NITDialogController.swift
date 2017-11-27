@@ -88,6 +88,7 @@ public class NITDialogController: UIViewController {
         viewController.didMove(toParentViewController: self)
         
         scrollView?.addObserver(self, forKeyPath: "contentSize", options: [.new, .old, .prior], context: nil)
+        scrollView?.keyboardDismissMode = .interactive
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOutside(_:)))
         tapGesture.delegate = self
