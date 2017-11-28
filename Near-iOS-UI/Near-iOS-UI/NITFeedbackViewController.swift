@@ -194,7 +194,7 @@ public class NITFeedbackViewController: NITBaseViewController {
             index -= 1
         }
         stars.forEach { $0.isSelected = stars.index(of: $0)! <= index }
-        currentRating = index
+        currentRating = index + 1
 
         let hideSendAndComment = !stars.reduce(false) { $0 || $1.isSelected }
         sendContainer.isHidden = hideSendAndComment
