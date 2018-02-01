@@ -18,7 +18,11 @@ Content related:
 
 ## Installation
 
-Near IT UI library will be available on Cocoapods.
+Near IT UI library is available on Cocoapods.
+
+```
+pod 'NearUIBinding'
+```
 
 ## Configuration
 
