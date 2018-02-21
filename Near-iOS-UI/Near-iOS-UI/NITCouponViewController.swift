@@ -196,7 +196,7 @@ public class NITCouponViewController: NITBaseViewController {
         icon.image = iconPlaceholder
 
         alternative.font = alternativeFont
-        if coupon.icon! {
+        if coupon.icon != nil {
             if let iconURL = coupon.icon.smallSizeURL() {
                 applyImage(fromURL: iconURL, toImageView: icon)
             }
