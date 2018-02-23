@@ -17,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
+        NITLog.setLogEnabled(true)
+        NITManager.setup(withApiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI5NTJlMGViZTU4OWQ0NWEzOWZkYWQwNWIzNTNhMGQ1ZCIsImlhdCI6MTUwNTkxNjg1NCwiZXhwIjoxNjMyMTgyMzk5LCJkYXRhIjp7ImFjY291bnQiOnsiaWQiOiJjMTFmYmI1Zi02YjA5LTQ3ZWEtYmQ3My02ODZjMzFjMzIwNmIiLCJyb2xlX2tleSI6ImFwcCJ9fX0.EXcVsRaKm2KmwN5Wmt46l5N5nCyXQlPEeJIEh4wDJio")
+        NITManager.default().start()
         return true
     }
 
@@ -45,5 +53,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
 }
 

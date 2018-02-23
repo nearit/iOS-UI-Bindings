@@ -17,8 +17,6 @@
 		8A4C0C6B1FC422CB000C9C7B /* NearUIBinding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AF9E5111FC320DB00ED0057 /* NearUIBinding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8A4CA2891FA94E1D0043C4C3 /* coupon.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA2881FA94E1D0043C4C3 /* coupon.json */; };
 		8A4CA28C1FA951E30043C4C3 /* contents1.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA28B1FA951E30043C4C3 /* contents1.json */; };
-		8A83148F1FC3354E000609A6 /* NITJSONAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83148C1FC3354E000609A6 /* NITJSONAPI.m */; };
-		8A8314901FC3354E000609A6 /* NITJSONAPIResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A83148E1FC3354E000609A6 /* NITJSONAPIResource.m */; };
 		8AB187271FA96809009E6959 /* response_content_reaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AB187261FA96809009E6959 /* response_content_reaction.json */; };
 		EC34CF04E2D19794698A6111 /* Pods_UI_Swift_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0D721A108731BFA5645DC6 /* Pods_UI_Swift_Sample.framework */; };
 /* End PBXBuildFile section */
@@ -54,10 +52,6 @@
 		7A34905661C2AF9B0EB4D01F /* Pods-UI-Swift-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UI-Swift-Sample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-UI-Swift-Sample/Pods-UI-Swift-Sample.release.xcconfig"; sourceTree = "<group>"; };
 		8A4CA2881FA94E1D0043C4C3 /* coupon.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = coupon.json; sourceTree = "<group>"; };
 		8A4CA28B1FA951E30043C4C3 /* contents1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = contents1.json; sourceTree = "<group>"; };
-		8A83148B1FC3354E000609A6 /* NITJSONAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITJSONAPI.h; sourceTree = "<group>"; };
-		8A83148C1FC3354E000609A6 /* NITJSONAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITJSONAPI.m; sourceTree = "<group>"; };
-		8A83148D1FC3354E000609A6 /* NITJSONAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NITJSONAPIResource.h; sourceTree = "<group>"; };
-		8A83148E1FC3354E000609A6 /* NITJSONAPIResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NITJSONAPIResource.m; sourceTree = "<group>"; };
 		8AB187261FA96809009E6959 /* response_content_reaction.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = response_content_reaction.json; sourceTree = "<group>"; };
 		8AF9E5111FC320DB00ED0057 /* NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C17E159099336060C530DCA /* Pods_NearUIBinding_UI_Swift_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding_UI_Swift_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,7 +93,6 @@
 		26CAC31E1F56D220009DDDF2 /* UI-Swift-Sample */ = {
 			isa = PBXGroup;
 			children = (
-				8A83148A1FC3354E000609A6 /* JSON */,
 				26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */,
 				26CAC3211F56D220009DDDF2 /* ViewController.swift */,
 				2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */,
@@ -146,17 +139,6 @@
 			);
 			name = Fixtures;
 			path = "New Group";
-			sourceTree = "<group>";
-		};
-		8A83148A1FC3354E000609A6 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				8A83148B1FC3354E000609A6 /* NITJSONAPI.h */,
-				8A83148C1FC3354E000609A6 /* NITJSONAPI.m */,
-				8A83148D1FC3354E000609A6 /* NITJSONAPIResource.h */,
-				8A83148E1FC3354E000609A6 /* NITJSONAPIResource.m */,
-			);
-			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +225,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-UI-Swift-Sample/Pods-UI-Swift-Sample-frameworks.sh",
-				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -296,8 +278,6 @@
 			files = (
 				2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */,
 				26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */,
-				8A8314901FC3354E000609A6 /* NITJSONAPIResource.m in Sources */,
-				8A83148F1FC3354E000609A6 /* NITJSONAPI.m in Sources */,
 				26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
