@@ -38,7 +38,7 @@ class NITInboxCell: UITableViewCell {
         if bold {
             moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .bold)
         } else {
-            messageLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .regular)
+            moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .regular)
         }
     }
 }

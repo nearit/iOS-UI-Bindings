@@ -14,6 +14,7 @@ public class NITInboxListViewController: NITBaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var cellBackground: UIImage!
+    var cellReadBackground: UIImage!
     var selectedCellBackground:  UIImage!
     
     var nearManager: NITManager
@@ -41,6 +42,7 @@ public class NITInboxListViewController: NITBaseViewController {
         // Do any additional setup after loading the view.
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
+        tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         
         setupUI()
         setupDefaultElements()
@@ -63,6 +65,7 @@ public class NITInboxListViewController: NITBaseViewController {
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
+        cellReadBackground = UIImage(named: "bgNewsSenzacontenuto", in: bundle, compatibleWith: nil)
         selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
     }
     
@@ -114,8 +117,6 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
         
         if let cell = cell as? NITInboxCell {
             cell.backgroundColor = .clear
-            cell.backgroundView = UIImageView.init(image: cellBackground)
-            cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
             
             if let item = items?[indexPath.row] {
                 let date = Date(timeIntervalSince1970: item.timestamp)
@@ -123,6 +124,13 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
                 cell.messageLabel.text = item.reactionBundle.notificationMessage
                 cell.makeBoldMessage(!item.read)
                 cell.makeBoldMore(!item.read)
+                
+                if item.read {
+                    cell.backgroundView = UIImageView.init(image: cellReadBackground)
+                } else {
+                    cell.backgroundView = UIImageView.init(image: cellBackground)
+                    cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
+                }
             }
         }
         
