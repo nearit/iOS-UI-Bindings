@@ -122,6 +122,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
                 cell.dateLabel.text = dateFormatter.string(from: date)
                 cell.messageLabel.text = item.reactionBundle.notificationMessage
                 cell.makeBoldMessage(!item.read)
+                cell.makeBoldMore(!item.read)
             }
         }
         

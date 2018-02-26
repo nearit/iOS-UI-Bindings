@@ -13,6 +13,7 @@ class NITInboxCell: UITableViewCell {
     @IBOutlet weak var subContent: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var moreLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,14 @@ class NITInboxCell: UITableViewCell {
             messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         } else {
             messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        }
+    }
+    
+    func makeBoldMore(_ bold: Bool) {
+        if bold {
+            moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .bold)
+        } else {
+            messageLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .regular)
         }
     }
 }

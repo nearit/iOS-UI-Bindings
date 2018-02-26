@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scopri di più" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2k-7Q-643">
-                                <rect key="frame" x="245.5" y="95" width="75.5" height="14.5"/>
+                                <rect key="frame" x="245.5" y="95" width="76" height="15"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="0.31764705882352939" green="0.62352941176470589" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -69,6 +69,7 @@
             <connections>
                 <outlet property="dateLabel" destination="R4L-op-Tgt" id="L69-pJ-YrD"/>
                 <outlet property="messageLabel" destination="bP9-1h-e4I" id="M8G-XO-oCm"/>
+                <outlet property="moreLabel" destination="r2k-7Q-643" id="Egw-Ny-2dU"/>
                 <outlet property="subContent" destination="Q5y-ZC-i1n" id="UPE-4a-Tik"/>
             </connections>
             <point key="canvasLocation" x="26.5" y="146"/>
