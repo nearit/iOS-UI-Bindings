@@ -12,6 +12,7 @@ import NearITSDK
 public class NITInboxListViewController: NITBaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl: UIRefreshControl?
     
     var cellBackground: UIImage!
     var cellReadBackground: UIImage!
@@ -44,6 +45,16 @@ public class NITInboxListViewController: NITBaseViewController {
         dateFormatter.timeStyle = .none
         tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(NITInboxListViewController.refreshControl(_:)), for: .valueChanged)
+        if let refreshControl = refreshControl {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
+        }
+        
         setupUI()
         setupDefaultElements()
         refreshInbox()
@@ -70,6 +81,7 @@ public class NITInboxListViewController: NITBaseViewController {
     }
     
     func refreshInbox() {
+        refreshControl?.beginRefreshing()
         nearManager.inbox {[weak self] (items, error) in
             if let _ = error {
                 
@@ -80,6 +92,7 @@ public class NITInboxListViewController: NITBaseViewController {
                         item.read = true
                     }
                 }
+                self?.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
             }
         }
@@ -89,6 +102,11 @@ public class NITInboxListViewController: NITBaseViewController {
         navigationController.pushViewController(self, animated: true)
     }
     
+    // MARK: - Refresh control
+    
+    @objc func refreshControl(_ refreshControl: UIRefreshControl) {
+        refreshInbox()
+    }
 
     /*
     // MARK: - Navigation
