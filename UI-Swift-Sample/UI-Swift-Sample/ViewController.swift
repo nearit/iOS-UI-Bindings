@@ -324,7 +324,7 @@ class ViewController: UIViewController {
             let inbox = NITInboxListViewController()
             inbox.show(navigationController: navigationController!)
         case Code.objectiveC.rawValue:
-            print("Code undefined")
+            ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
         default:
             print("Code undefined")
         }

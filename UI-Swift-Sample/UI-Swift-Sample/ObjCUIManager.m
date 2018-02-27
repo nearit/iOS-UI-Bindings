@@ -65,5 +65,10 @@ static ObjCUIManager *sharedManager;
     }];
 }
 
+- (void)showInboxListWithNavigationController:(UINavigationController*)navController {
+    NITInboxListViewController *inboxVC = [[NITInboxListViewController alloc] init];
+    [inboxVC showWithNavigationController:navController];
+}
+
 
 @end
