@@ -14,9 +14,7 @@ public class NITInboxListViewController: NITBaseViewController {
     @IBOutlet weak var tableView: UITableView!
     var refreshControl: UIRefreshControl?
     
-    var cellBackground: UIImage!
-    var cellReadBackground: UIImage!
-    var selectedCellBackground:  UIImage!
+    var selectedCellBackground: UIView!
     
     var nearManager: NITManager
     var items: [NITInboxItem]?
@@ -43,7 +41,6 @@ public class NITInboxListViewController: NITBaseViewController {
         // Do any additional setup after loading the view.
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
-        tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(NITInboxListViewController.refreshControl(_:)), for: .valueChanged)
@@ -74,10 +71,8 @@ public class NITInboxListViewController: NITBaseViewController {
     }
     
     func setupDefaultElements() {
-        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
-        cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
-        cellReadBackground = UIImage(named: "bgNewsSenzacontenuto", in: bundle, compatibleWith: nil)
-        selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
+        selectedCellBackground = UIView(frame: CGRect.zero)
+        selectedCellBackground.layer.cornerRadius = 5.0
     }
     
     func refreshInbox() {
@@ -123,11 +118,11 @@ public class NITInboxListViewController: NITBaseViewController {
 extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return (items ?? []).count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (items ?? []).count
+        return 1
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -135,19 +130,21 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
         
         if let cell = cell as? NITInboxCell {
             cell.backgroundColor = .clear
+            cell.selectedBackgroundView = selectedCellBackground
             
-            if let item = items?[indexPath.row] {
+            if let item = items?[indexPath.section] {
                 let date = Date(timeIntervalSince1970: item.timestamp)
                 cell.dateLabel.text = dateFormatter.string(from: date)
                 cell.messageLabel.text = item.reactionBundle.notificationMessage
-                cell.makeBoldMessage(!item.read)
-                cell.makeBoldMore(!item.read)
                 
-                if item.read {
-                    cell.backgroundView = UIImageView.init(image: cellReadBackground)
+                if let _ = item.reactionBundle as? NITSimpleNotification {
+                    cell.state = .notReadable
                 } else {
-                    cell.backgroundView = UIImageView.init(image: cellBackground)
-                    cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
+                    if item.read {
+                        cell.state = .read
+                    } else {
+                        cell.state = .unread
+                    }
                 }
             }
         }
@@ -156,7 +153,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = items?[indexPath.row] {
+        if let item = items?[indexPath.section] {
             nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeEngaged)
             item.read = true
             tableView.reloadRows(at: [indexPath], with: .automatic)
@@ -169,5 +166,19 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
                 contentVC.show(fromViewController: self, configureDialog: nil)
             }
         }
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect.zero)
+        view.backgroundColor = .clear
+        return view
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ""
     }
 }
