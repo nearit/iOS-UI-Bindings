@@ -9,6 +9,15 @@
 import UIKit
 import NearITSDK
 
+struct NITInboxAvailableItems: OptionSet {
+    let rawValue: Int
+    
+    static let customJSON = NITInboxAvailableItems(rawValue: 1 << 0)
+    static let feedback = NITInboxAvailableItems(rawValue: 1 << 1)
+    
+    static let all: NITInboxAvailableItems = [.customJSON, .feedback]
+}
+
 public class NITInboxListViewController: NITBaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +28,7 @@ public class NITInboxListViewController: NITBaseViewController {
     var nearManager: NITManager
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
+    var availableItems: NITInboxAvailableItems = .all
     
     @objc public convenience init () {
         self.init(manager: NITManager.default())
@@ -81,12 +91,26 @@ public class NITInboxListViewController: NITBaseViewController {
             if let _ = error {
                 
             } else {
-                self?.items = items
-                for item in self?.items ?? [] {
+                var filteredItems = [NITInboxItem]()
+                for item in items ?? [] {
                     if let _ = item.reactionBundle as? NITSimpleNotification {
                         item.read = true
+                    } else if let _ = item.reactionBundle as? NITCustomJSON {
+                        if let jsonAvailable = self?.availableItems.contains(.customJSON) {
+                            if !jsonAvailable {
+                                continue
+                            }
+                        }
+                    } else if let _ = item.reactionBundle as? NITFeedback {
+                        if let feedbackAvailable = self?.availableItems.contains(.feedback) {
+                            if !feedbackAvailable {
+                                continue
+                            }
+                        }
                     }
+                    filteredItems.append(item)
                 }
+                self?.items = filteredItems
                 self?.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
             }

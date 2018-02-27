@@ -14,6 +14,7 @@
 		264AE7011F98908700AF8C48 /* NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */; };
 		264AE70F1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */; };
 		264FB8C91F5D887500DC740A /* NITPermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */; };
+		2673531920454F9600D87305 /* NITInboxListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2673531820454F9600D87305 /* NITInboxListViewControllerTest.swift */; };
 		26B85B031F98A02A00087BEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B021F98A02A00087BEE /* AppDelegate.swift */; };
 		26B85B051F98A02A00087BEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B85B041F98A02A00087BEE /* ViewController.swift */; };
 		26B85B081F98A02A00087BEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B061F98A02A00087BEE /* Main.storyboard */; };
@@ -118,6 +119,7 @@
 		264AE7001F98908700AF8C48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		264AE70E1F98920F00AF8C48 /* NITFeedbackViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITFeedbackViewControllerSpec.swift; sourceTree = "<group>"; };
 		264FB8C81F5D887500DC740A /* NITPermissionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITPermissionsManager.swift; sourceTree = "<group>"; };
+		2673531820454F9600D87305 /* NITInboxListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITInboxListViewControllerTest.swift; sourceTree = "<group>"; };
 		26B85B001F98A02A00087BEE /* UIHostApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIHostApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B85B021F98A02A00087BEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26B85B041F98A02A00087BEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				8AE08CDD1FA80C4600710B0B /* NITCouponViewControllerSpec.swift */,
 				8AAB7C0C1FB0D73300D594D9 /* NITContentViewControllerSpec.swift */,
 				8A5ECD641FBC2DF200C099BB /* NITCouponListViewControllerSpec.swift */,
+				2673531820454F9600D87305 /* NITInboxListViewControllerTest.swift */,
 			);
 			path = NeariOSUITests;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				8AAB7C0D1FB0D73300D594D9 /* NITContentViewControllerSpec.swift in Sources */,
 				8AE08CDE1FA80C4600710B0B /* NITCouponViewControllerSpec.swift in Sources */,
 				8A581EA21FBDF79F00FBA96A /* NITPermissionViewSpec.swift in Sources */,
+				2673531920454F9600D87305 /* NITInboxListViewControllerTest.swift in Sources */,
 				264AE6FF1F98908700AF8C48 /* NeariOSUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
