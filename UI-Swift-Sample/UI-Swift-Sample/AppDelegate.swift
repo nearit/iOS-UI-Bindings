@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Fallback on earlier versions
         }
         NITLog.setLogEnabled(true)
-        NITManager.setup(withApiKey: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI5NTJlMGViZTU4OWQ0NWEzOWZkYWQwNWIzNTNhMGQ1ZCIsImlhdCI6MTUwNTkxNjg1NCwiZXhwIjoxNjMyMTgyMzk5LCJkYXRhIjp7ImFjY291bnQiOnsiaWQiOiJjMTFmYmI1Zi02YjA5LTQ3ZWEtYmQ3My02ODZjMzFjMzIwNmIiLCJyb2xlX2tleSI6ImFwcCJ9fX0.EXcVsRaKm2KmwN5Wmt46l5N5nCyXQlPEeJIEh4wDJio")
+        NITManager.setup(withApiKey: " - ")
         NITManager.default().start()
         return true
     }
