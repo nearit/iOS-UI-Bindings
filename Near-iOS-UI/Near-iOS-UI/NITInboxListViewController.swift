@@ -29,6 +29,7 @@ public class NITInboxListViewController: NITBaseViewController {
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
     var availableItems: NITInboxAvailableItems = .all
+    @objc public var noContentView: UIView?
     
     @objc public convenience init () {
         self.init(manager: NITManager.default())
@@ -113,12 +114,34 @@ public class NITInboxListViewController: NITBaseViewController {
                 self?.items = filteredItems
                 self?.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
+                
+                if self?.items?.count == 0 {
+                    self?.showNoContentViewIfAvailable()
+                } else {
+                    self?.showNoContentViewIfAvailable(false)
+                }
             }
         }
     }
     
     @objc public func show(navigationController: UINavigationController) {
         navigationController.pushViewController(self, animated: true)
+    }
+    
+    func showNoContentViewIfAvailable(_ show: Bool = true) {
+        if let noContentView = noContentView {
+            if show && noContentView.superview == nil {
+                noContentView.translatesAutoresizingMaskIntoConstraints = false
+                noContentView.isUserInteractionEnabled = false
+                view.addSubview(noContentView)
+                noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            } else if !show {
+                noContentView.removeFromSuperview()
+            }
+        }
     }
     
     // MARK: - Refresh control
