@@ -317,12 +317,24 @@ class ViewController: UIViewController {
 
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func showInboxListInNavigationController() {
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let inbox = NITInboxListViewController()
+            inbox.show(navigationController: navigationController!)
+        case Code.objectiveC.rawValue:
+            ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
+        default:
+            print("Code undefined")
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -338,6 +350,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 4:
             return 3
         case 5:
+            return 1
+        case 6:
             return 1
         default:
             return 0
@@ -437,6 +451,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5: // Permission bar
             title?.text = "Coupon permission bar"
             description?.text = "Creted by code"
+        case 6: // Inbox
+            switch indexPath.row {
+            case 0:
+                title?.text = "Inbox list"
+                description?.text = "Navigation controller"
+            default:
+                title?.text = "Undefined Inbox"
+                description?.text = " - "
+            }
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -529,6 +552,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 5:
             permissionBar()
+        case 6:
+            showInboxListInNavigationController()
         default:
             break
         }
@@ -550,6 +575,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Coupon list"
         case 5:
             return "Permission bar"
+        case 6:
+            return "Inbox list"
         default:
             return nil
         }

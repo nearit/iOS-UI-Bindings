@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class NITContent;
 @class NITCoupon;
@@ -21,5 +22,6 @@
 - (void)showContenDialog:(NITContent *)content;
 - (void)showCouponDialog:(NITCoupon *)coupon;
 - (void)showFeedbackDialog:(NITFeedback *)feedback;
+- (void)showInboxListWithNavigationController:(UINavigationController*)navController;
 
 @end
