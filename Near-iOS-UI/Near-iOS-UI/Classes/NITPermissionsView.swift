@@ -138,7 +138,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     @objc override public init(frame: CGRect) {
         super.init(frame: frame)
-        btManager = CBPeripheralManager.init(delegate: self, queue: nil)
+        btManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
@@ -147,13 +147,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
          btManager: CBPeripheralManager?) {
         super.init(frame: frame)
         self.permissionManager = permissionManager ?? NITPermissionsManager()
-        self.btManager = btManager ?? CBPeripheralManager.init(delegate: self, queue: nil)
+        self.btManager = btManager ?? CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        btManager = CBPeripheralManager.init(delegate: self, queue: nil)
+        btManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
