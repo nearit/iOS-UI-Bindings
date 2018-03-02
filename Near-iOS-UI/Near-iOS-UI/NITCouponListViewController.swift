@@ -57,6 +57,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     var coupons: [NITCoupon]?
     var isLoading = false
     @objc public var noContentView: UIView?
+    var refreshControl: UIRefreshControl?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -158,6 +159,16 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     internal func setupUI() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(self.refreshControl(_:)), for: .valueChanged)
+        if let refreshControl = refreshControl {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         let bundle = Bundle.NITBundle(for: NITCouponCell.self)
@@ -167,6 +178,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     internal func refreshCoupons() {
         isLoading = true
+        refreshControl?.beginRefreshing()
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
             if error == nil {
                 DispatchQueue.main.async {
@@ -192,11 +204,15 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 DispatchQueue.main.async {
                     self?.showNoContentViewIfAvailable()
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    self?.refreshCoupons()
-                }
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    @objc func refreshControl(_ refreshControl: UIRefreshControl) {
+        refreshCoupons()
     }
     
     func showNoContentViewIfAvailable(_ show: Bool = true) {
