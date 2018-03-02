@@ -56,6 +56,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     var nearManager: NITManager
     var coupons: [NITCoupon]?
     var isLoading = false
+    @objc public var noContentView: UIView?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -151,6 +152,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        showNoContentViewIfAvailable()
         setupUI()
         refreshCoupons()
     }
@@ -175,12 +177,40 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                         if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
                         return wself.filterOption.filter(coupon.status)
                     }
+                    if let coupons = wself.coupons {
+                        if coupons.count == 0 {
+                            wself.showNoContentViewIfAvailable()
+                        } else {
+                            wself.showNoContentViewIfAvailable(false)
+                        }
+                    } else {
+                        wself.showNoContentViewIfAvailable()
+                    }
                     wself.tableView.reloadData()
                 }
             } else {
+                DispatchQueue.main.async {
+                    self?.showNoContentViewIfAvailable()
+                }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                     self?.refreshCoupons()
                 }
+            }
+        }
+    }
+    
+    func showNoContentViewIfAvailable(_ show: Bool = true) {
+        if let noContentView = noContentView {
+            if show && noContentView.superview == nil {
+                noContentView.translatesAutoresizingMaskIntoConstraints = false
+                noContentView.isUserInteractionEnabled = false
+                view.addSubview(noContentView)
+                noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            } else if !show {
+                noContentView.removeFromSuperview()
             }
         }
     }
