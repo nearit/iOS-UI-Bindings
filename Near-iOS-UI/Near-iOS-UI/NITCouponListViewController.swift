@@ -310,6 +310,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let coupons = coupons else { return }
+        if coupons.count == 0 {
+            return
+        }
         let coupon = coupons[indexPath.section]
         let couponController = NITCouponViewController.init(coupon: coupon)
         if let couponViewControllerConfiguration = couponViewControllerConfiguration {
