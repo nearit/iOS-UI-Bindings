@@ -63,6 +63,7 @@ public class NITInboxListViewController: NITBaseViewController {
             }
         }
         
+        showNoContentViewIfAvailable()
         setupUI()
         setupDefaultElements()
         refreshInbox()
