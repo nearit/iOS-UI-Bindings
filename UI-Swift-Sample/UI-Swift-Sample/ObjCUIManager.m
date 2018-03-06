@@ -70,5 +70,11 @@ static ObjCUIManager *sharedManager;
     [inboxVC showWithNavigationController:navController];
 }
 
+- (void)showInboxListWithNavigationController:(UINavigationController *)navController customNoContent:(UIView *)noContentView {
+    NITInboxListViewController *inboxVC = [[NITInboxListViewController alloc] init];
+    inboxVC.noContentView = noContentView;
+    [inboxVC showWithNavigationController:navController];
+}
+
 
 @end

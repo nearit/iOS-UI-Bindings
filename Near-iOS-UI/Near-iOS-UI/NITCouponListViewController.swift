@@ -56,6 +56,8 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     var nearManager: NITManager
     var coupons: [NITCoupon]?
     var isLoading = false
+    @objc public var noContentView: UIView?
+    var refreshControl: UIRefreshControl?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -151,11 +153,22 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        showNoContentViewIfAvailable()
         setupUI()
         refreshCoupons()
     }
 
     internal func setupUI() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(self.refreshControl(_:)), for: .valueChanged)
+        if let refreshControl = refreshControl {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         let bundle = Bundle.NITBundle(for: NITCouponCell.self)
@@ -165,6 +178,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     internal func refreshCoupons() {
         isLoading = true
+        refreshControl?.beginRefreshing()
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
             if error == nil {
                 DispatchQueue.main.async {
@@ -175,12 +189,44 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                         if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
                         return wself.filterOption.filter(coupon.status)
                     }
+                    if let coupons = wself.coupons {
+                        if coupons.count == 0 {
+                            wself.showNoContentViewIfAvailable()
+                        } else {
+                            wself.showNoContentViewIfAvailable(false)
+                        }
+                    } else {
+                        wself.showNoContentViewIfAvailable()
+                    }
                     wself.tableView.reloadData()
                 }
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    self?.refreshCoupons()
+                DispatchQueue.main.async {
+                    self?.showNoContentViewIfAvailable()
                 }
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+    @objc func refreshControl(_ refreshControl: UIRefreshControl) {
+        refreshCoupons()
+    }
+    
+    func showNoContentViewIfAvailable(_ show: Bool = true) {
+        if let noContentView = noContentView {
+            if show && noContentView.superview == nil {
+                noContentView.translatesAutoresizingMaskIntoConstraints = false
+                noContentView.isUserInteractionEnabled = false
+                view.addSubview(noContentView)
+                noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            } else if !show {
+                noContentView.removeFromSuperview()
             }
         }
     }
@@ -264,6 +310,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let coupons = coupons else { return }
+        if coupons.count == 0 {
+            return
+        }
         let coupon = coupons[indexPath.section]
         let couponController = NITCouponViewController.init(coupon: coupon)
         if let couponViewControllerConfiguration = couponViewControllerConfiguration {

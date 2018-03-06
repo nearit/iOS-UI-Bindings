@@ -318,13 +318,25 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showInboxListInNavigationController() {
+    func showInboxListInNavigationController(_ customNoContent: Bool = false) {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
             let inbox = NITInboxListViewController()
+            if customNoContent {
+                let view = UIView()
+                view.backgroundColor = UIColor.blue
+                inbox.noContentView = view
+            }
             inbox.show(navigationController: navigationController!)
         case Code.objectiveC.rawValue:
-            ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
+            if customNoContent {
+                let view = UIView()
+                view.backgroundColor = UIColor.orange
+                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!, customNoContent: view)
+            } else {
+                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
+            }
+            
         default:
             print("Code undefined")
         }
@@ -352,7 +364,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5:
             return 1
         case 6:
-            return 1
+            return 2
         default:
             return 0
         }
@@ -456,6 +468,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 title?.text = "Inbox list"
                 description?.text = "Navigation controller"
+            case 1:
+                title?.text = "Inbox list"
+                description?.text = "Navigation controller with no content view"
             default:
                 title?.text = "Undefined Inbox"
                 description?.text = " - "
@@ -553,7 +568,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5:
             permissionBar()
         case 6:
-            showInboxListInNavigationController()
+            switch indexPath.row {
+            case 0:
+                showInboxListInNavigationController()
+            case 1:
+                showInboxListInNavigationController(true)
+            default:
+                break
+            }
+            
         default:
             break
         }

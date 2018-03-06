@@ -17,6 +17,6 @@ s.resource_bundles      = { 'NearUIBinding' => ['Near-iOS-UI/Near-iOS-UI/**/*.xi
 
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
-s.dependency            'NearITSDK', '~> 2.7'
+s.dependency            'NearITSDK', '2.7.0-rc.2'
 
 end
