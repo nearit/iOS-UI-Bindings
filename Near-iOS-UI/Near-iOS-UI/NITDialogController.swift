@@ -44,6 +44,13 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+    @objc public var horizontalMargin: CGFloat = 0 {
+        didSet {
+            if isViewLoaded {
+                applyHorizontalMargin()
+            }
+        }
+    }
 
     @objc var isEnableTapToClose = true
     
@@ -95,6 +102,7 @@ public class NITDialogController: UIViewController {
         containerView.addGestureRecognizer(tapGesture)
 
         applyBackgroundStyle()
+        applyHorizontalMargin()
         
         offset = bottomConstraint.constant
 
@@ -204,6 +212,12 @@ public class NITDialogController: UIViewController {
             viewController.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
             containerBottomMarginConstraint.constant = 0
             containerTopMarginConstraint.constant = 0
+        }
+    }
+    
+    func applyHorizontalMargin() {
+        for sideConstraint in containerSideMarginConstraints {
+            sideConstraint.constant = horizontalMargin
         }
     }
 
