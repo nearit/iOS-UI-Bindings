@@ -10,7 +10,7 @@ Permissions related:
 - [Missing permissions alert bar](DOCS/PERMISSIONS_BAR.md)
 
 Content related:
-- Handle in-app content
+- [Handle in-app content](DOCS/CONTENT.md)
 - [Coupon detail](DOCS/COUPON.md)
 - [Feedback request](DOCS/FEEDBACK.md)
 - [Content detail](DOCS/CONTENT.md)
