@@ -1,53 +1,78 @@
 {
-    "data":[
-            {
-            "id":"00ab18d5-b4ed-4e42-98c0-abed2c4856a3",
-            "type":"notifications",
-            "attributes":{
-            "failed":false,
-            "recipe_id":"1b8323f8-6885-4614-a835-c27229bb3b08",
-            "delivered":true,
-            "push_id":"b1f02797-40d3-4144-8598-6f5b0583b033",
-            "delivered_at":"2018-03-15T10:06:36.022Z",
-            "payload":{
-            "recipe_id":"1b8323f8-6885-4614-a835-c27229bb3b08",
-            "reaction_bundle_id":null,
-            "notification":{
-            "body":"Simple notification"
-            },
-            "push_id":"b1f02797-40d3-4144-8598-6f5b0583b033",
-            "reaction_action_id":"simple_notification",
-            "delivery_id":"5cad14bf-56db-4758-b8a9-f4b972b9c188",
-            "reaction_plugin_id":"simple-notification"
-            },
-            "read":true,
-            "delivery_id":"5cad14bf-56db-4758-b8a9-f4b972b9c188"
-            }
-            },
-            {
-            "id":"04988eff-9b4d-4496-9691-4344840a9799",
-            "type":"notifications",
-            "attributes":{
-            "failed":false,
-            "recipe_id":"a413c2c8-077f-4cee-8e5f-5f12cd861f79",
-            "delivered":true,
-            "push_id":"cb9b851c-069d-42d1-88cf-116ca8a2f801",
-            "delivered_at":"2018-03-15T10:07:38.221Z",
-            "payload":{
-            "recipe_id":"a413c2c8-077f-4cee-8e5f-5f12cd861f79",
-            "reaction_bundle_id":"1345297b-7dc1-4b29-839a-3ab13b6ae2d4",
-            "reaction_bundle":"eJzFU9tunDAQ/ReeY9Z3MD/QH+hT0giN7dkNrTEUjJI22n+vvbtN1EipElVK\nXwAfzpy5+Mxj5SFB1T1Wg6+6igmpuGksabxjRFpuSCsMEAGWCasBuZfVVZV+\nzJjZbooJY1ozAiktg90SrietjC8RQr/gHheMrrA/YYA0RSzxQwovoItWBr9s\nlAo3n154Zpyh3QXL7GGEA/aDz9luKq4YB52LZi13RHKqiGFoiefWSa694W1T\n3V5VYYjfSnUBLIan7FltW8rxLqW52+0Gh7VbEMbqmNua5/40mJYryqhQhBlU\nRLKWktaahgDFvVVOK6ogK033EZdzBLYtVRSQeLOnRKoca6m1RGDjpNMMW9OW\nvnOqhL6H0jqnrCGMEio/M9ox0ylWU84azYUW16XS2b/G5jlA1lmUak2btrA9\n7mELqQ8QD1seWI55eChtLaXzYYrr3TCfLgw2P0zl4+yGuIVwvEx5fYZvLi55\n08CfXHJROd4eS/1hAv8i0bGkii5sHv0/JnlpxAhj+cu5kEwyZYiWRoLnigjr\nOJGCSWKMNNngyoHRlnrU9df58NtjRWSEh54ZTvuC5/OzXdbsl3mZPIkIy5DI\niH6AehU1jPBzinC/1m4ad+eu191J8fJ8S3u7/RAwV4OHcmnr9w0W7AWlH1vE\nc97+j3r+0xhOCzO9b8neu8avLSU1HWMd1bUx7d/W8cxjvFZUXlfHbP1ff8mc\n9w==",
-            "push_id":"cb9b851c-069d-42d1-88cf-116ca8a2f801",
-            "notification":{
-            "body":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
-            },
-            "reaction_action_id":"show_content",
-            "delivery_id":"667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a",
-            "reaction_plugin_id":"content-notification"
-            },
-            "read":true,
-            "delivery_id":"667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a"
-            }
-            }
-            ]
+    "data": [
+             {
+             "id": "00ab18d5-b4ed-4e42-98c0-abed2c4856a3",
+             "type": "notifications",
+             "attributes": {
+             "failed": false,
+             "recipe_id": "1b8323f8-6885-4614-a835-c27229bb3b08",
+             "delivered": true,
+             "push_id": "b1f02797-40d3-4144-8598-6f5b0583b033",
+             "delivered_at": "2018-03-15T10:06:36.022Z",
+             "payload": {
+             "recipe_id": "1b8323f8-6885-4614-a835-c27229bb3b08",
+             "reaction_bundle_id": null,
+             "notification": {
+             "body": "Simple notification"
+             },
+             "push_id": "b1f02797-40d3-4144-8598-6f5b0583b033",
+             "reaction_action_id": "simple_notification",
+             "delivery_id": "5cad14bf-56db-4758-b8a9-f4b972b9c188",
+             "reaction_plugin_id": "simple-notification"
+             },
+             "read": false,
+             "delivery_id": "5cad14bf-56db-4758-b8a9-f4b972b9c188"
+             }
+             },
+             {
+             "id": "04988eff-9b4d-4496-9691-4344840a9799",
+             "type": "notifications",
+             "attributes": {
+             "failed": false,
+             "recipe_id": "a413c2c8-077f-4cee-8e5f-5f12cd861f79",
+             "delivered": true,
+             "push_id": "cb9b851c-069d-42d1-88cf-116ca8a2f801",
+             "delivered_at": "2018-03-15T10:07:38.221Z",
+             "payload": {
+             "recipe_id": "a413c2c8-077f-4cee-8e5f-5f12cd861f79",
+             "reaction_bundle_id": "1345297b-7dc1-4b29-839a-3ab13b6ae2d4",
+             "reaction_bundle": "eJzFU9tunDAQ/ReeY9Z3MD/QH+hT0giN7dkNrTEUjJI22n+vvbtN1EipElVK\nXwAfzpy5+Mxj5SFB1T1Wg6+6igmpuGksabxjRFpuSCsMEAGWCasBuZfVVZV+\nzJjZbooJY1ozAiktg90SrietjC8RQr/gHheMrrA/YYA0RSzxQwovoItWBr9s\nlAo3n154Zpyh3QXL7GGEA/aDz9luKq4YB52LZi13RHKqiGFoiefWSa694W1T\n3V5VYYjfSnUBLIan7FltW8rxLqW52+0Gh7VbEMbqmNua5/40mJYryqhQhBlU\nRLKWktaahgDFvVVOK6ogK033EZdzBLYtVRSQeLOnRKoca6m1RGDjpNMMW9OW\nvnOqhL6H0jqnrCGMEio/M9ox0ylWU84azYUW16XS2b/G5jlA1lmUak2btrA9\n7mELqQ8QD1seWI55eChtLaXzYYrr3TCfLgw2P0zl4+yGuIVwvEx5fYZvLi55\n08CfXHJROd4eS/1hAv8i0bGkii5sHv0/JnlpxAhj+cu5kEwyZYiWRoLnigjr\nOJGCSWKMNNngyoHRlnrU9df58NtjRWSEh54ZTvuC5/OzXdbsl3mZPIkIy5DI\niH6AehU1jPBzinC/1m4ad+eu191J8fJ8S3u7/RAwV4OHcmnr9w0W7AWlH1vE\nc97+j3r+0xhOCzO9b8neu8avLSU1HWMd1bUx7d/W8cxjvFZUXlfHbP1ff8mc\n9w==",
+             "push_id": "cb9b851c-069d-42d1-88cf-116ca8a2f801",
+             "notification": {
+             "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
+             },
+             "reaction_action_id": "show_content",
+             "delivery_id": "667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a",
+             "reaction_plugin_id": "content-notification"
+             },
+             "read": true,
+             "delivery_id": "667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a"
+             }
+             },
+             {
+             "id": "04988eff-9b4d-4496-9691-4344840a9799",
+             "type": "notifications",
+             "attributes": {
+             "failed": false,
+             "recipe_id": "a413c2c8-077f-4cee-8e5f-5f12cd861f79",
+             "delivered": true,
+             "push_id": "cb9b851c-069d-42d1-88cf-116ca8a2f801",
+             "delivered_at": "2018-03-15T10:07:38.221Z",
+             "payload": {
+             "recipe_id": "a413c2c8-077f-4cee-8e5f-5f12cd861f79",
+             "reaction_bundle_id": "1345297b-7dc1-4b29-839a-3ab13b6ae2d4",
+             "reaction_bundle": "eJzFU9tunDAQ/ReeY9Z3MD/QH+hT0giN7dkNrTEUjJI22n+vvbtN1EipElVK\nXwAfzpy5+Mxj5SFB1T1Wg6+6igmpuGksabxjRFpuSCsMEAGWCasBuZfVVZV+\nzJjZbooJY1ozAiktg90SrietjC8RQr/gHheMrrA/YYA0RSzxQwovoItWBr9s\nlAo3n154Zpyh3QXL7GGEA/aDz9luKq4YB52LZi13RHKqiGFoiefWSa694W1T\n3V5VYYjfSnUBLIan7FltW8rxLqW52+0Gh7VbEMbqmNua5/40mJYryqhQhBlU\nRLKWktaahgDFvVVOK6ogK033EZdzBLYtVRSQeLOnRKoca6m1RGDjpNMMW9OW\nvnOqhL6H0jqnrCGMEio/M9ox0ylWU84azYUW16XS2b/G5jlA1lmUak2btrA9\n7mELqQ8QD1seWI55eChtLaXzYYrr3TCfLgw2P0zl4+yGuIVwvEx5fYZvLi55\n08CfXHJROd4eS/1hAv8i0bGkii5sHv0/JnlpxAhj+cu5kEwyZYiWRoLnigjr\nOJGCSWKMNNngyoHRlnrU9df58NtjRWSEh54ZTvuC5/OzXdbsl3mZPIkIy5DI\niH6AehU1jPBzinC/1m4ad+eu191J8fJ8S3u7/RAwV4OHcmnr9w0W7AWlH1vE\nc97+j3r+0xhOCzO9b8neu8avLSU1HWMd1bUx7d/W8cxjvFZUXlfHbP1ff8mc\n9w==",
+             "push_id": "cb9b851c-069d-42d1-88cf-116ca8a2f801",
+             "notification": {
+             "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis."
+             },
+             "reaction_action_id": "show_content",
+             "delivery_id": "667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a",
+             "reaction_plugin_id": "content-notification"
+             },
+             "read": false,
+             "delivery_id": "667e7f98-7cdc-42ba-81b9-fbb42ec3ab9a"
+             }
+             }
+             ]
 }

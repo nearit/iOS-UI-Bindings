@@ -67,12 +67,14 @@ static ObjCUIManager *sharedManager;
 
 - (void)showInboxListWithNavigationController:(UINavigationController*)navController {
     NITInboxListViewController *inboxVC = [[NITInboxListViewController alloc] init];
+    inboxVC.unreadColor = [UIColor colorWithRed:99.0/255.0 green:182.0/255.0 blue:1.0 alpha:1.0];
     [inboxVC showWithNavigationController:navController];
 }
 
 - (void)showInboxListWithNavigationController:(UINavigationController *)navController customNoContent:(UIView *)noContentView {
     NITInboxListViewController *inboxVC = [[NITInboxListViewController alloc] init];
     inboxVC.noContentView = noContentView;
+    inboxVC.unreadColor = [UIColor colorWithRed:99.0/255.0 green:182.0/255.0 blue:1.0 alpha:1.0];
     [inboxVC showWithNavigationController:navController];
 }
 

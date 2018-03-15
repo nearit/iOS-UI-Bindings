@@ -21,6 +21,9 @@ class NITInboxCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var moreIcon: UIImageView!
+    var unreadColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
+    var readColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
+    private var cardBackgroundReadColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
     var shadowOpacity: Float = 0.35
     var state: NITInboxCellState = .unread {
         didSet {
@@ -34,8 +37,9 @@ class NITInboxCell: UITableViewCell {
         
         clipsToBounds = false
         contentView.layer.cornerRadius = 5
-        contentView.layer.borderColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.5).cgColor
-        contentView.layer.borderWidth = 1.0
+        let bundle = Bundle.NITBundle(for: NITInboxCell.self)
+        let icon = UIImage(named: "scopriBold", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        moreIcon.image = icon
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,9 +50,9 @@ class NITInboxCell: UITableViewCell {
 
     func makeBoldMessage(_ bold: Bool) {
         if bold {
-            messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize, weight: .bold)
         } else {
-            messageLabel.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+            messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize, weight: .regular)
         }
     }
     
@@ -57,6 +61,14 @@ class NITInboxCell: UITableViewCell {
             moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .bold)
         } else {
             moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .regular)
+        }
+    }
+    
+    func makeBoldDate(_ bold: Bool) {
+        if bold {
+            dateLabel.font = UIFont.systemFont(ofSize: dateLabel.font.pointSize, weight: .bold)
+        } else {
+            dateLabel.font = UIFont.systemFont(ofSize: dateLabel.font.pointSize, weight: .regular)
         }
     }
     
@@ -76,28 +88,40 @@ class NITInboxCell: UITableViewCell {
         moreIcon.isHidden = !show
     }
     
+    func setLabelsColor(_ color: UIColor) {
+        dateLabel.textColor = color
+        moreLabel.textColor = color
+        moreIcon.tintColor = unreadColor
+    }
+    
     func changeStateUI() {
         switch state {
         case .read:
             selectionStyle = .default
             makeBoldMessage(false)
             makeBoldMore(false)
-            shadowOpacity = 0.15
+            shadowOpacity = 0.25
             makeShadow(true)
             showMore()
+            setLabelsColor(readColor)
+            contentView.backgroundColor = cardBackgroundReadColor
         case .unread:
             selectionStyle = .default
             makeBoldMessage(true)
             makeBoldMore(true)
-            shadowOpacity = 0.35
+            shadowOpacity = 0.25
             makeShadow(true)
             showMore()
+            setLabelsColor(unreadColor)
+            contentView.backgroundColor = UIColor.white
         case .notReadable:
             selectionStyle = .none
             makeBoldMessage(false)
             makeBoldMore(false)
             makeShadow(false)
             showMore(false)
+            setLabelsColor(readColor)
+            contentView.backgroundColor = cardBackgroundReadColor
         }
     }
 }
