@@ -79,18 +79,21 @@ class NITInboxCell: UITableViewCell {
     func changeStateUI() {
         switch state {
         case .read:
+            selectionStyle = .default
             makeBoldMessage(false)
             makeBoldMore(false)
             shadowOpacity = 0.15
             makeShadow(true)
             showMore()
         case .unread:
+            selectionStyle = .default
             makeBoldMessage(true)
             makeBoldMore(true)
             shadowOpacity = 0.35
             makeShadow(true)
             showMore()
         case .notReadable:
+            selectionStyle = .none
             makeBoldMessage(false)
             makeBoldMore(false)
             makeShadow(false)
