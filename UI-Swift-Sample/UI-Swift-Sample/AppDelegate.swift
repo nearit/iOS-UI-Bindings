@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NITManager.setup(withApiKey: " - ")
         NITManager.default().start()
         
+        enableStubForCoupons(true)
         enableStubForInbox(true)
         
         return true
@@ -66,6 +67,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }) { (request) -> OHHTTPStubsResponse in
             if let path = Bundle.main.path(forResource: "inbox_pushes", ofType: "json") {
+                return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+            } else {
+                return OHHTTPStubsResponse()
+            }
+        }
+    }
+    
+    func enableStubForCoupons(_ enabled: Bool) {
+        stub(condition: { (request) -> Bool in
+            if let urlString = request.url?.absoluteString {
+                if urlString.contains("/coupons") {
+                    return true
+                }
+            }
+            return false
+        }) { (request) -> OHHTTPStubsResponse in
+            if let path = Bundle.main.path(forResource: "coupon", ofType: "json") {
                 return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
             } else {
                 return OHHTTPStubsResponse()

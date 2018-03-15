@@ -291,7 +291,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.value.textColor = valueExpiredColor
                 }
 
-                if let url = coupon.icon.smallSizeURL() {
+                if let url = coupon.icon?.smallSizeURL() {
                     cell.applyImage(fromURL: url)
                 }
 

@@ -24,7 +24,7 @@ class NITInboxCell: UITableViewCell {
     var unreadColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
     var readColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
     private var cardBackgroundReadColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
-    var shadowOpacity: Float = 0.35
+    var shadowOpacity: Float = 0.15
     var state: NITInboxCellState = .unread {
         didSet {
             changeStateUI()
@@ -100,7 +100,7 @@ class NITInboxCell: UITableViewCell {
             selectionStyle = .default
             makeBoldMessage(false)
             makeBoldMore(false)
-            shadowOpacity = 0.25
+            shadowOpacity = 0.15
             makeShadow(true)
             showMore()
             setLabelsColor(readColor)
@@ -109,7 +109,7 @@ class NITInboxCell: UITableViewCell {
             selectionStyle = .default
             makeBoldMessage(true)
             makeBoldMore(true)
-            shadowOpacity = 0.25
+            shadowOpacity = 0.15
             makeShadow(true)
             showMore()
             setLabelsColor(unreadColor)
