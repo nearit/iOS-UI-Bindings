@@ -273,8 +273,6 @@ class ViewController: UIViewController {
         aViewController.presentCoupon = .popover
         aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
-        aViewController.cellBackground = UIImage.init(named: "customCell")
-        aViewController.selectedCellBackground = nil
         aViewController.show()
     }
 
@@ -327,6 +325,7 @@ class ViewController: UIViewController {
                 view.backgroundColor = UIColor.blue
                 inbox.noContentView = view
             }
+            inbox.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
             inbox.show(navigationController: navigationController!)
         case Code.objectiveC.rawValue:
             if customNoContent {

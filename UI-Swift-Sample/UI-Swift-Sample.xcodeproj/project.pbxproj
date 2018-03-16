@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */; };
+		26461880205AA77C0017F3D4 /* inbox_pushes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2646187F205AA77C0017F3D4 /* inbox_pushes.json */; };
 		26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */; };
 		26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3211F56D220009DDDF2 /* ViewController.swift */; };
 		26CAC3251F56D220009DDDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3231F56D220009DDDF2 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		2645FE0C1FB5BBD000C814FA /* UI-Swift-Sample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UI-Swift-Sample-Bridging-Header.h"; sourceTree = "<group>"; };
 		2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCUIManager.h; sourceTree = "<group>"; };
 		2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUIManager.m; sourceTree = "<group>"; };
+		2646187F205AA77C0017F3D4 /* inbox_pushes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = inbox_pushes.json; sourceTree = "<group>"; };
 		26CAC31C1F56D220009DDDF2 /* UI-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26CAC3211F56D220009DDDF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				8A4CA2881FA94E1D0043C4C3 /* coupon.json */,
 				8A4CA28B1FA951E30043C4C3 /* contents1.json */,
 				8AB187261FA96809009E6959 /* response_content_reaction.json */,
+				2646187F205AA77C0017F3D4 /* inbox_pushes.json */,
 			);
 			name = Fixtures;
 			path = "New Group";
@@ -210,6 +213,7 @@
 				8AB187271FA96809009E6959 /* response_content_reaction.json in Resources */,
 				8A4CA28C1FA951E30043C4C3 /* contents1.json in Resources */,
 				26CAC3271F56D220009DDDF2 /* Assets.xcassets in Resources */,
+				26461880205AA77C0017F3D4 /* inbox_pushes.json in Resources */,
 				26CAC3251F56D220009DDDF2 /* Main.storyboard in Resources */,
 				8A4CA2891FA94E1D0043C4C3 /* coupon.json in Resources */,
 			);
@@ -226,10 +230,12 @@
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-UI-Swift-Sample/Pods-UI-Swift-Sample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

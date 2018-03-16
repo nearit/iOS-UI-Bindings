@@ -76,12 +76,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var validColor = UIColor.nearCouponValid
     @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
 
-    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearCouponTitleGray
     @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    @objc public var titleDisabledColor = UIColor.nearCouponListGray
-    @objc public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleExpiredColor = UIColor.nearCouponListGray
+    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
+    @objc public var titleExpiredFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
 
     @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueColor = UIColor.nearBlack
@@ -94,9 +94,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var disabledText: String!
     @objc public var validText: String!
     @objc public var noCoupons: String!
-
-    @objc public var cellBackground: UIImage!
-    @objc public var selectedCellBackground:  UIImage!
 
     @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
@@ -142,8 +139,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
-        cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
-        selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
 
         expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
         disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
@@ -254,8 +249,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
         if let cell = cell as? NITCouponCell {
             cell.backgroundColor = .clear
-            cell.backgroundView = UIImageView.init(image: cellBackground)
-            cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
+            cell.clipsToBounds = false
+            cell.contentView.layer.cornerRadius = 5
+            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+            cell.contentView.layer.shadowColor = UIColor.black.cgColor
+            cell.contentView.layer.shadowRadius = 5;
+            cell.contentView.layer.shadowOpacity = 0.15;
 
             if let coupons = coupons, coupons.count > 0 {
                 let coupon = coupons[indexPath.section]
@@ -291,7 +290,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.value.textColor = valueExpiredColor
                 }
 
-                if let url = coupon.icon.smallSizeURL() {
+                if let url = coupon.icon?.smallSizeURL() {
                     cell.applyImage(fromURL: url)
                 }
 

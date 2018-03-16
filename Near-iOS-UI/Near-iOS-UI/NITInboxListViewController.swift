@@ -30,6 +30,7 @@ public class NITInboxListViewController: NITBaseViewController {
     let dateFormatter = DateFormatter()
     var availableItems: NITInboxAvailableItems = .all
     @objc public var noContentView: UIView?
+    @objc public var unreadColor: UIColor?
     
     @objc public convenience init () {
         self.init(manager: NITManager.default())
@@ -184,6 +185,9 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
                 let date = Date(timeIntervalSince1970: item.timestamp)
                 cell.dateLabel.text = dateFormatter.string(from: date)
                 cell.messageLabel.text = item.reactionBundle.notificationMessage
+                if let color = unreadColor {
+                    cell.unreadColor = color
+                }
                 
                 if let _ = item.reactionBundle as? NITSimpleNotification {
                     cell.state = .notReadable

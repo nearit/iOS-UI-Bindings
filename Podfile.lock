@@ -11,6 +11,19 @@ PODS:
   - Nimble-Snapshots/Core (6.3.0):
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
   - Quick (1.2.0)
 
 DEPENDENCIES:
@@ -18,6 +31,7 @@ DEPENDENCIES:
   - NearITSDK (from `~/Documents/projects/Near-iOS-SDK`)
   - Nimble
   - Nimble-Snapshots
+  - OHHTTPStubs/Swift
   - Quick
 
 EXTERNAL SOURCES:
@@ -29,8 +43,9 @@ SPEC CHECKSUMS:
   NearITSDK: 6d20f827e702dea272b17b98ce0bf7aeb965fa89
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
-PODFILE CHECKSUM: ad6fceb0569124f2d019f05c21476fb91475a7f8
+PODFILE CHECKSUM: aa5553e1bebb1a60b69b2c56b58410be22932700
 
 COCOAPODS: 1.4.0
