@@ -95,9 +95,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var validText: String!
     @objc public var noCoupons: String!
 
-    @objc public var cellBackground: UIImage!
-    @objc public var selectedCellBackground:  UIImage!
-
     @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
     @objc public convenience init () {
@@ -142,8 +139,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
-        cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
-        selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
 
         expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
         disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
@@ -254,8 +249,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
         if let cell = cell as? NITCouponCell {
             cell.backgroundColor = .clear
-            cell.backgroundView = UIImageView.init(image: cellBackground)
-            cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
+            cell.clipsToBounds = false
+            cell.contentView.layer.cornerRadius = 5
+            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+            cell.contentView.layer.shadowColor = UIColor.black.cgColor
+            cell.contentView.layer.shadowRadius = 5;
+            cell.contentView.layer.shadowOpacity = 0.15;
 
             if let coupons = coupons, coupons.count > 0 {
                 let coupon = coupons[indexPath.section]

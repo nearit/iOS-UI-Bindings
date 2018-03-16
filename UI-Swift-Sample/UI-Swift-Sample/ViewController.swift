@@ -273,8 +273,6 @@ class ViewController: UIViewController {
         aViewController.presentCoupon = .popover
         aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
-        aViewController.cellBackground = UIImage.init(named: "customCell")
-        aViewController.selectedCellBackground = nil
         aViewController.show()
     }
 
