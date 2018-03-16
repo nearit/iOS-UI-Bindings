@@ -76,12 +76,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var validColor = UIColor.nearCouponValid
     @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
 
-    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearCouponTitleGray
     @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    @objc public var titleDisabledColor = UIColor.nearCouponListGray
-    @objc public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleExpiredColor = UIColor.nearCouponListGray
+    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
+    @objc public var titleExpiredFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
 
     @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueColor = UIColor.nearBlack
