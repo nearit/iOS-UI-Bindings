@@ -18,6 +18,10 @@ struct NITInboxAvailableItems: OptionSet {
     static let all: NITInboxAvailableItems = [.customJSON, .feedback]
 }
 
+public protocol NITInboxListViewControllerDelegate: class {
+    func inboxListViewController(_ inboxListVC: NITInboxListViewController, willShowViewController: UIViewController)
+}
+
 public class NITInboxListViewController: NITBaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +35,7 @@ public class NITInboxListViewController: NITBaseViewController {
     var availableItems: NITInboxAvailableItems = .all
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
+    public var delegate: NITInboxListViewControllerDelegate?
     
     @objc public convenience init () {
         self.init(manager: NITManager.default())
@@ -212,9 +217,11 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
             
             if let feedback = item.reactionBundle as? NITFeedback {
                 let feedbackVC = NITFeedbackViewController(feedback: feedback)
+                delegate?.inboxListViewController(self, willShowViewController: feedbackVC)
                 feedbackVC.show(fromViewController: self, configureDialog: nil)
             } else if let content = item.reactionBundle as? NITContent {
                 let contentVC = NITContentViewController(content: content)
+                delegate?.inboxListViewController(self, willShowViewController: contentVC)
                 contentVC.show(fromViewController: self, configureDialog: nil)
             }
         }
