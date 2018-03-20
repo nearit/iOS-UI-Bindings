@@ -56,6 +56,10 @@ import CoreBluetooth
     }
 }
 
+public protocol NITPermissionsViewDelegate: class {
+    func permissionView(_ permissionView: NITPermissionsView, didGrant granted: Bool)
+}
+
 public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
     @IBOutlet weak var button: UIButton!
@@ -70,6 +74,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private var heightConstraint: NSLayoutConstraint?
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
+    
+    public weak var delegate: NITPermissionsViewDelegate?
 
     @objc public var messageText: String? {
         didSet {
@@ -217,6 +223,9 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         iconBluetooth.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
 
         button.isHidden = permissionsRequired.toNITPermission() == nil
+        
+        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, btManager: btManager)
+        delegate?.permissionView(self, didGrant: granted)
 
         debounceResize()
     }
