@@ -56,6 +56,11 @@ import CoreBluetooth
     }
 }
 
+@objc public enum NITPermissionsViewAlignement: NSInteger {
+    case center
+    case bottom
+}
+
 public protocol NITPermissionsViewDelegate: class {
     func permissionView(_ permissionView: NITPermissionsView, didGrant granted: Bool)
 }
@@ -68,6 +73,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet weak var iconNotifications: UIImageView!
     @IBOutlet weak var iconBluetooth: UIImageView!
     @IBOutlet var backgroundView: UIView!
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
     private var btManager: CBPeripheralManager!
     private var permissionManager = NITPermissionsManager()
@@ -76,6 +83,11 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private var debouncer: Timer?
     
     public weak var delegate: NITPermissionsViewDelegate?
+    public var alignement: NITPermissionsViewAlignement = .center {
+        didSet {
+            align()
+        }
+    }
 
     @objc public var messageText: String? {
         didSet {
@@ -195,7 +207,19 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
 
         refresh()
+        align()
         setNeedsLayout()
+    }
+    
+    private func align() {
+        switch alignement {
+        case .center:
+            centerConstraint.priority = UILayoutPriority(rawValue: 1000)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 250)
+        case .bottom:
+            centerConstraint.priority = UILayoutPriority(rawValue: 250)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 1000)
+        }
     }
 
     private func refresh() {
