@@ -19,7 +19,7 @@ public class NITContentViewController: NITBaseViewController {
     @objc public var callToActionHandler: ((NITContentViewController, URL) -> Void)?
     @objc public var drawSeparator = true
     @objc public var hideCloseButton = false
-    @objc public var imagePlaceholder: UIImage!
+    @objc public var imagePlaceholder: UIImage?
     @objc public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
     @objc public var titleColor = UIColor.nearBlack
     @objc public var callToActionButton: UIImage!
@@ -86,7 +86,6 @@ public class NITContentViewController: NITBaseViewController {
 
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
-        imagePlaceholder = UIImage(named: "imgSegnaposto", in: bundle, compatibleWith: nil)
         let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
         callToActionButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
     }
@@ -116,7 +115,14 @@ public class NITContentViewController: NITBaseViewController {
         closeContainer.isHidden = hideCloseButton
         topMarginContainer.isHidden = !hideCloseButton
 
-        image.image = imagePlaceholder
+        if let placeholder = imagePlaceholder {
+            image.image = placeholder
+            imageContainer.isHidden = false
+        } else {
+            image.image = nil
+            imageContainer.isHidden = true
+        }
+        
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
             applyImage(fromURL: url, toImageView: image)
