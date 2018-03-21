@@ -66,6 +66,7 @@ public class NITContentViewController: NITBaseViewController {
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
 
             let dialog = NITDialogController(viewController: self)
+            dialog.contentWidth = .container
             if let configureDialog = configureDialog {
                 configureDialog(dialog)
             }
