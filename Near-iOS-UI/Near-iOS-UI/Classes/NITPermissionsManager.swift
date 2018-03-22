@@ -59,7 +59,17 @@ class NITPermissionsManager: NSObject {
     }
     
     func requestLocationPermission() {
-        locationManager.requestAlwaysAuthorization()
+        if isLocationNotDetermined() {
+            locationManager.requestAlwaysAuthorization()
+        } else if !isLocationPartiallyGranted() {
+            if let url = URL(string: UIApplicationOpenSettingsURLString) {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else{
+                    UIApplication.shared.openURL(url)
+                }
+            }
+        }
     }
     
     func requestNotificationsPermission() {
@@ -110,12 +120,20 @@ class NITPermissionsManager: NSObject {
         let authStatus = CLLocationManager.authorizationStatus()
         return (authStatus == .authorizedAlways || authStatus == .authorizedWhenInUse)
     }
+    
+    func isLocationNotDetermined() -> Bool {
+        let authStatus = CLLocationManager.authorizationStatus()
+        if authStatus == .notDetermined {
+            return true
+        }
+        return false
+    }
 }
 
 extension NITPermissionsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .notDetermined {
+        if isLocationPartiallyGranted() {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: true)
         } else {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: false)
