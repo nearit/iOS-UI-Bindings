@@ -82,6 +82,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
     
+    @objc public var refreshOnAppActivation: Bool = true
     public weak var delegate: NITPermissionsViewDelegate?
     public var alignement: NITPermissionsViewAlignement = .center {
         didSet {
@@ -209,6 +210,18 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         refresh()
         align()
         setNeedsLayout()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification: Notification) {
+        if refreshOnAppActivation {
+            shouldRefresh()
+        }
     }
     
     private func align() {
