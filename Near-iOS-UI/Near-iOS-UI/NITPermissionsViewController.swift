@@ -71,6 +71,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var grantedIcon: UIImage!
     @objc public var headerImage: UIImage!
     @objc public var textColor: UIColor!
+    @objc public var notificationsIcon: UIImage!
+    @objc public var locationIcon: UIImage!
 
     @objc public var locationText: String!
     @objc public var notificationsText: String!
@@ -78,6 +80,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var closeText: String!
     @objc public var notNowText: String!
 
+    @objc public var refreshOnAppActivation: Bool = true
     @objc public weak var delegate: NITPermissionsViewControllerDelegate?
 
     override public func viewDidLoad() {
@@ -85,6 +88,7 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +98,7 @@ public class NITPermissionsViewController: NITBaseViewController {
             manager.start()
         }
         callClosingDelegate()
+        NotificationCenter.default.removeObserver(self)
     }
 
     @objc public func checkPermissions() -> Bool {
@@ -104,6 +109,13 @@ public class NITPermissionsViewController: NITBaseViewController {
             return permissionsManager.isLocationPartiallyGranted()
         case .locationAndNotifications:
             return permissionsManager.isNotificationAvailable() && permissionsManager.isLocationPartiallyGranted()
+        }
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification: Notification) {
+        if refreshOnAppActivation {
+            refreshButtons()
+            eventuallyClose()
         }
     }
 
@@ -153,6 +165,8 @@ public class NITPermissionsViewController: NITBaseViewController {
         grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
         grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
+        notificationsIcon = UIImage(named: "notifications", in: bundle, compatibleWith: nil)
+        locationIcon = UIImage(named: "location", in: bundle, compatibleWith: nil)
         textColor = UIColor.nearWarmGrey
 
         locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
@@ -187,15 +201,25 @@ public class NITPermissionsViewController: NITBaseViewController {
         notification.setTitle(notificationsText, for: .normal)
         header.image = headerImage
         
+        refreshButtons()
+
+        footer.setTitle(notNowText, for: .normal)
+    }
+    
+    private func refreshButtons() {
         if #available(iOS 10.0, *) {
             permissionsManager.isNotificationAvailable({ (available) in
                 if available {
                     self.confirmNotificationButton()
+                } else {
+                    self.unconfirmNotificationButton()
                 }
             })
         } else {
             if permissionsManager.isNotificationAvailable() {
                 confirmNotificationButton()
+            } else {
+                unconfirmNotificationButton()
             }
         }
         
@@ -209,9 +233,9 @@ public class NITPermissionsViewController: NITBaseViewController {
         
         if permissionsManager.isLocationGranted(status: authorizationStatus) {
             confirmLocationButton()
+        } else {
+            unconfirmLocationButton()
         }
-
-        footer.setTitle(notNowText, for: .normal)
     }
 
     @IBAction func tapFooter(_ sender: Any) {
@@ -241,11 +265,23 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.setTitle(closeText, for: .normal)
     }
     
+    func unconfirmLocationButton() {
+        location.setBackgroundImage(unknownButton, for: .normal)
+        location.setTitleColor(UIColor.black, for: .normal)
+        location.setImage(locationIcon, for: .normal)
+    }
+    
     func confirmNotificationButton() {
         notification.setBackgroundImage(grantedButton, for: .normal)
         notification.setTitleColor(UIColor.white, for: .normal)
         notification.setImage(grantedIcon, for: .normal)
         footer.setTitle(closeText, for: .normal)
+    }
+    
+    func unconfirmNotificationButton() {
+        notification.setBackgroundImage(unknownButton, for: .normal)
+        notification.setTitleColor(UIColor.black, for: .normal)
+        notification.setImage(notificationsIcon, for: .normal)
     }
     
     @objc public func show() {
