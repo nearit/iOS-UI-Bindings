@@ -221,6 +221,10 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             bottomConstraint.priority = UILayoutPriority(rawValue: 1000)
         }
     }
+    
+    public func shouldRefresh() {
+        refresh()
+    }
 
     private func refresh() {
         if permissionManager.isLocationPartiallyGranted() {
