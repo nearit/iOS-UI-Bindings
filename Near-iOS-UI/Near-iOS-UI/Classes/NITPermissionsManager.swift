@@ -59,16 +59,29 @@ class NITPermissionsManager: NSObject {
     }
     
     func requestLocationPermission() {
-        locationManager.requestAlwaysAuthorization()
+        if isLocationNotDetermined() {
+            locationManager.requestAlwaysAuthorization()
+        } else if !isLocationPartiallyGranted() {
+            self.openAppSettings()
+        }
     }
     
     func requestNotificationsPermission() {
         if #available(iOS 10.0, *) {
-            notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
-                OperationQueue.main.addOperation({ 
-                    self.delegate?.permissionsManagerDidRequestNotificationPermissions(self)
-                })
-            })
+            notificationCenter.getNotificationSettings { (settings) in
+                DispatchQueue.main.async {
+                    if settings.authorizationStatus == .notDetermined {
+                        self.notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
+                            OperationQueue.main.addOperation({
+                                self.delegate?.permissionsManagerDidRequestNotificationPermissions(self)
+                            })
+                        })
+                    } else if settings.authorizationStatus == .denied {
+                        self.openAppSettings()
+                    }
+                }
+            }
+            
         } else {
             let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
@@ -110,12 +123,30 @@ class NITPermissionsManager: NSObject {
         let authStatus = CLLocationManager.authorizationStatus()
         return (authStatus == .authorizedAlways || authStatus == .authorizedWhenInUse)
     }
+    
+    func isLocationNotDetermined() -> Bool {
+        let authStatus = CLLocationManager.authorizationStatus()
+        if authStatus == .notDetermined {
+            return true
+        }
+        return false
+    }
+    
+    func openAppSettings() {
+        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else{
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
 }
 
 extension NITPermissionsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status != .notDetermined {
+        if isLocationPartiallyGranted() {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: true)
         } else {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: false)
