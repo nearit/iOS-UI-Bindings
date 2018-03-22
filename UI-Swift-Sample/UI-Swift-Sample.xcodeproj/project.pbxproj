@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */; };
 		26461880205AA77C0017F3D4 /* inbox_pushes.json in Resources */ = {isa = PBXBuildFile; fileRef = 2646187F205AA77C0017F3D4 /* inbox_pushes.json */; };
+		2683541A2063D16900AEAD82 /* MockContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268354192063D16900AEAD82 /* MockContent.swift */; };
+		2683541C2063E6C800AEAD82 /* MockImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2683541B2063E6C800AEAD82 /* MockImage.swift */; };
 		26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */; };
 		26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3211F56D220009DDDF2 /* ViewController.swift */; };
 		26CAC3251F56D220009DDDF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3231F56D220009DDDF2 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCUIManager.h; sourceTree = "<group>"; };
 		2645FE0E1FB5BBD000C814FA /* ObjCUIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCUIManager.m; sourceTree = "<group>"; };
 		2646187F205AA77C0017F3D4 /* inbox_pushes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = inbox_pushes.json; sourceTree = "<group>"; };
+		268354192063D16900AEAD82 /* MockContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContent.swift; sourceTree = "<group>"; };
+		2683541B2063E6C800AEAD82 /* MockImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImage.swift; sourceTree = "<group>"; };
 		26CAC31C1F56D220009DDDF2 /* UI-Swift-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UI-Swift-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26CAC3211F56D220009DDDF2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		268354182063D14800AEAD82 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				268354192063D16900AEAD82 /* MockContent.swift */,
+				2683541B2063E6C800AEAD82 /* MockImage.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		26CAC3131F56D220009DDDF2 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +108,7 @@
 		26CAC31E1F56D220009DDDF2 /* UI-Swift-Sample */ = {
 			isa = PBXGroup;
 			children = (
+				268354182063D14800AEAD82 /* Mocks */,
 				26CAC31F1F56D220009DDDF2 /* AppDelegate.swift */,
 				26CAC3211F56D220009DDDF2 /* ViewController.swift */,
 				2645FE0D1FB5BBD000C814FA /* ObjCUIManager.h */,
@@ -229,7 +243,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-UI-Swift-Sample/Pods-UI-Swift-Sample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NearITSDK/NearITSDK.framework",
+				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -283,7 +297,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2645FE0F1FB5BBD000C814FA /* ObjCUIManager.m in Sources */,
+				2683541A2063D16900AEAD82 /* MockContent.swift in Sources */,
 				26CAC3221F56D220009DDDF2 /* ViewController.swift in Sources */,
+				2683541C2063E6C800AEAD82 /* MockImage.swift in Sources */,
 				26CAC3201F56D220009DDDF2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

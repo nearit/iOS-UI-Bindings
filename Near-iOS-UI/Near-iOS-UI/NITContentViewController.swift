@@ -127,6 +127,7 @@ public class NITContentViewController: NITBaseViewController {
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
             applyImage(fromURL: url, toImageView: image)
+            imageContainer.isHidden = false
         }
 
         contentTitle.textColor = titleColor

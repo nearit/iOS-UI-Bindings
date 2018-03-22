@@ -9,6 +9,7 @@
 import UIKit
 import NearITSDK
 import OHHTTPStubs
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

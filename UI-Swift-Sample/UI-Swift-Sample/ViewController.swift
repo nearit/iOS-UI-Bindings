@@ -46,22 +46,6 @@ class ViewController: UIViewController {
                 print("Code undefined")
         }
     }
-
-    func recipeWithContentsOf(filename: String) -> NITReactionBundle? {
-        let bundle = Bundle.main
-
-        guard let path = bundle.path(forResource: filename,
-                                     ofType: "json",
-                                     inDirectory: nil) else { return nil }
-
-        guard let japi = try? NITJSONAPI.init(contentsOfFile: path) else { return nil }
-        japi.register(NITContent.self, forType: "contents")
-        japi.register(NITCoupon.self, forType: "coupons")
-        japi.register(NITImage.self, forType: "images")
-
-        let reactions = japi.parseToArrayOfObjects()
-        return reactions.last as? NITReactionBundle
-    }
     
     func showPermissionsDialogCustom() -> NITPermissionsViewController {
         let baseUnknownImage = UIImage(named: "gray-button")
@@ -536,20 +520,32 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 content.title = "Content title"
                 showContentDialog(content: content)
             case 1:
-                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
-                if let content = reaction as? NITContent {
-                    showContentDialog(content: content)
-                }
+                let content = MockContent()
+                content.title = "My Title"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                content.mockLink = NITContentLink()
+                content.mockLink?.label = "Eat the cake"
+                content.mockLink?.url = URL(string: "http://www.eatBigCakes.com")!
+                let mockImage = MockImage()
+                mockImage.mockUrl = URL(string: "https://images-na.ssl-images-amazon.com/images/I/71B4TCc3gFL._SL1000_.jpg")
+                content.mockImage = mockImage
+                showContentDialog(content: content)
             case 2:
-                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
-                if let content = reaction as? NITContent {
-                    showCustomContentDialog(content: content)
-                }
+                let content = MockContent()
+                content.title = "My Title"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                content.mockLink = NITContentLink()
+                content.mockLink?.label = "Eat the cake"
+                content.mockLink?.url = URL(string: "http://www.eatBigCakes.com")!
+                showCustomContentDialog(content: content)
             case 3:
-                let reaction = recipeWithContentsOf(filename: "contents1")
-                if let content = reaction as? NITContent {
-                    pushContent(content: content)
-                }
+                let content = MockContent()
+                content.title = "Navigation content"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                let mockImage = MockImage()
+                mockImage.mockUrl = URL(string: "https://images-na.ssl-images-amazon.com/images/I/71B4TCc3gFL._SL1000_.jpg")
+                content.mockImage = mockImage
+                pushContent(content: content)
             default:
                 break
             }
