@@ -14,7 +14,7 @@ Content related:
 - [Feedback request](DOCS/FEEDBACK.md)
 - [Content detail](DOCS/CONTENT.md)
 - [Coupon list](DOCS/COUPON_LIST.md)
-- [Inbox list](DOCS/INBOX.md)
+- [Inbox](DOCS/INBOX.md)
 
 ## Installation
 
