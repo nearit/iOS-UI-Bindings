@@ -9,13 +9,17 @@
 import UIKit
 import NearITSDK
 
-struct NITInboxAvailableItems: OptionSet {
-    let rawValue: Int
+public struct NITInboxAvailableItems: OptionSet {
+    public let rawValue: Int
     
-    static let customJSON = NITInboxAvailableItems(rawValue: 1 << 0)
-    static let feedback = NITInboxAvailableItems(rawValue: 1 << 1)
+    public static let customJSON = NITInboxAvailableItems(rawValue: 1 << 0)
+    public static let feedback = NITInboxAvailableItems(rawValue: 1 << 1)
     
-    static let all: NITInboxAvailableItems = [.customJSON, .feedback]
+    public static let all: NITInboxAvailableItems = [.customJSON, .feedback]
+    
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
 }
 
 public protocol NITInboxListViewControllerDelegate: class {
@@ -32,7 +36,7 @@ public class NITInboxListViewController: NITBaseViewController {
     var nearManager: NITManager
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
-    var availableItems: NITInboxAvailableItems = .all
+    public var availableItems: NITInboxAvailableItems = .all
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
     public var delegate: NITInboxListViewControllerDelegate?
@@ -128,6 +132,19 @@ public class NITInboxListViewController: NITBaseViewController {
                     self?.showNoContentViewIfAvailable(false)
                 }
             }
+        }
+    }
+    
+    @objc public func show() {
+        show(fromViewController: nil)
+    }
+    
+    @objc public func show(fromViewController: UIViewController? = nil) {
+        
+        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
+            
+            let navigation = UINavigationController.init(rootViewController: self)
+            fromViewController.present(navigation, animated: true, completion: nil)
         }
     }
     
