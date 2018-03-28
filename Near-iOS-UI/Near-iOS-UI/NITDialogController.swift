@@ -19,6 +19,11 @@ public class NITDialogController: UIViewController {
         case middle = 0
         case full
     }
+    
+    @objc public enum NITDialogControllerContentWidth : Int {
+        case intrinsic = 0
+        case container
+    }
 
     // Background
     @objc public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
@@ -44,6 +49,20 @@ public class NITDialogController: UIViewController {
             }
         }
     }
+    @objc public var horizontalMargin: CGFloat = 0 {
+        didSet {
+            if isViewLoaded {
+                applyHorizontalMargin()
+            }
+        }
+    }
+    @objc public var contentWidth = NITDialogControllerContentWidth.intrinsic {
+        didSet {
+            if isViewLoaded {
+                applyContentWidth()
+            }
+        }
+    }
 
     @objc var isEnableTapToClose = true
     
@@ -52,6 +71,7 @@ public class NITDialogController: UIViewController {
     @IBOutlet weak var scrollHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var backgroundBlurView: UIVisualEffectView?
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
 
     private var viewController: UIViewController!
     fileprivate var offset : CGFloat = 0
@@ -95,6 +115,8 @@ public class NITDialogController: UIViewController {
         containerView.addGestureRecognizer(tapGesture)
 
         applyBackgroundStyle()
+        applyHorizontalMargin()
+        applyContentWidth()
         
         offset = bottomConstraint.constant
 
@@ -204,6 +226,21 @@ public class NITDialogController: UIViewController {
             viewController.view.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
             containerBottomMarginConstraint.constant = 0
             containerTopMarginConstraint.constant = 0
+        }
+    }
+    
+    func applyHorizontalMargin() {
+        for sideConstraint in containerSideMarginConstraints {
+            sideConstraint.constant = horizontalMargin
+        }
+    }
+    
+    func applyContentWidth() {
+        switch contentWidth {
+        case .intrinsic:
+            widthConstraint.isActive = false
+        case .container:
+            widthConstraint.isActive = true
         }
     }
 

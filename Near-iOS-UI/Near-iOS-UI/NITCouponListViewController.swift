@@ -56,6 +56,8 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     var nearManager: NITManager
     var coupons: [NITCoupon]?
     var isLoading = false
+    @objc public var noContentView: UIView?
+    var refreshControl: UIRefreshControl?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -74,12 +76,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var validColor = UIColor.nearCouponValid
     @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
 
-    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleColor = UIColor.nearCouponTitleGray
     @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    @objc public var titleDisabledColor = UIColor.nearCouponListGray
-    @objc public var titleExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
-    @objc public var titleExpiredColor = UIColor.nearCouponListGray
+    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
+    @objc public var titleExpiredFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
 
     @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueColor = UIColor.nearBlack
@@ -92,9 +94,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var disabledText: String!
     @objc public var validText: String!
     @objc public var noCoupons: String!
-
-    @objc public var cellBackground: UIImage!
-    @objc public var selectedCellBackground:  UIImage!
 
     @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
@@ -140,8 +139,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
-        cellBackground = UIImage(named: "cell", in: bundle, compatibleWith: nil)
-        selectedCellBackground = UIImage(named: "selectedCell", in: bundle, compatibleWith: nil)
 
         expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
         disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
@@ -151,11 +148,22 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+        showNoContentViewIfAvailable()
         setupUI()
         refreshCoupons()
     }
 
     internal func setupUI() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(self.refreshControl(_:)), for: .valueChanged)
+        if let refreshControl = refreshControl {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = refreshControl
+            } else {
+                tableView.addSubview(refreshControl)
+            }
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         let bundle = Bundle.NITBundle(for: NITCouponCell.self)
@@ -165,6 +173,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     internal func refreshCoupons() {
         isLoading = true
+        refreshControl?.beginRefreshing()
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
             if error == nil {
                 DispatchQueue.main.async {
@@ -175,12 +184,44 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                         if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
                         return wself.filterOption.filter(coupon.status)
                     }
+                    if let coupons = wself.coupons {
+                        if coupons.count == 0 {
+                            wself.showNoContentViewIfAvailable()
+                        } else {
+                            wself.showNoContentViewIfAvailable(false)
+                        }
+                    } else {
+                        wself.showNoContentViewIfAvailable()
+                    }
                     wself.tableView.reloadData()
                 }
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    self?.refreshCoupons()
+                DispatchQueue.main.async {
+                    self?.showNoContentViewIfAvailable()
                 }
+            }
+            DispatchQueue.main.async {
+                self?.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+    @objc func refreshControl(_ refreshControl: UIRefreshControl) {
+        refreshCoupons()
+    }
+    
+    func showNoContentViewIfAvailable(_ show: Bool = true) {
+        if let noContentView = noContentView {
+            if show && noContentView.superview == nil {
+                noContentView.translatesAutoresizingMaskIntoConstraints = false
+                noContentView.isUserInteractionEnabled = false
+                view.addSubview(noContentView)
+                noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+                noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+                noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+                noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+            } else if !show {
+                noContentView.removeFromSuperview()
             }
         }
     }
@@ -208,8 +249,12 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
         if let cell = cell as? NITCouponCell {
             cell.backgroundColor = .clear
-            cell.backgroundView = UIImageView.init(image: cellBackground)
-            cell.selectedBackgroundView = UIImageView.init(image: selectedCellBackground)
+            cell.clipsToBounds = false
+            cell.contentView.layer.cornerRadius = 5
+            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+            cell.contentView.layer.shadowColor = UIColor.black.cgColor
+            cell.contentView.layer.shadowRadius = 5;
+            cell.contentView.layer.shadowOpacity = 0.15;
 
             if let coupons = coupons, coupons.count > 0 {
                 let coupon = coupons[indexPath.section]
@@ -245,7 +290,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.value.textColor = valueExpiredColor
                 }
 
-                if let url = coupon.icon.smallSizeURL() {
+                if let url = coupon.icon?.smallSizeURL() {
                     cell.applyImage(fromURL: url)
                 }
 
@@ -264,6 +309,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let coupons = coupons else { return }
+        if coupons.count == 0 {
+            return
+        }
         let coupon = coupons[indexPath.section]
         let couponController = NITCouponViewController.init(coupon: coupon)
         if let couponViewControllerConfiguration = couponViewControllerConfiguration {

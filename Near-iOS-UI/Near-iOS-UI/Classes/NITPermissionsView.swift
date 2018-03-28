@@ -56,6 +56,15 @@ import CoreBluetooth
     }
 }
 
+@objc public enum NITPermissionsViewAlignement: NSInteger {
+    case center
+    case bottom
+}
+
+public protocol NITPermissionsViewDelegate: class {
+    func permissionView(_ permissionView: NITPermissionsView, didGrant granted: Bool)
+}
+
 public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
     @IBOutlet weak var button: UIButton!
@@ -64,12 +73,22 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet weak var iconNotifications: UIImageView!
     @IBOutlet weak var iconBluetooth: UIImageView!
     @IBOutlet var backgroundView: UIView!
+    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
     private var btManager: CBPeripheralManager!
     private var permissionManager = NITPermissionsManager()
     private var heightConstraint: NSLayoutConstraint?
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
+    
+    @objc public var refreshOnAppActivation: Bool = true
+    public weak var delegate: NITPermissionsViewDelegate?
+    public var alignement: NITPermissionsViewAlignement = .center {
+        didSet {
+            align()
+        }
+    }
 
     @objc public var messageText: String? {
         didSet {
@@ -138,7 +157,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     @objc override public init(frame: CGRect) {
         super.init(frame: frame)
-        btManager = CBPeripheralManager.init(delegate: self, queue: nil)
+        btManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
@@ -147,13 +166,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
          btManager: CBPeripheralManager?) {
         super.init(frame: frame)
         self.permissionManager = permissionManager ?? NITPermissionsManager()
-        self.btManager = btManager ?? CBPeripheralManager.init(delegate: self, queue: nil)
+        self.btManager = btManager ?? CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        btManager = CBPeripheralManager.init(delegate: self, queue: nil)
+        btManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
@@ -189,7 +208,35 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
 
         refresh()
+        align()
         setNeedsLayout()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func applicationDidBecomeActive(_ notification: Notification) {
+        if refreshOnAppActivation {
+            shouldRefresh()
+        }
+    }
+    
+    private func align() {
+        switch alignement {
+        case .center:
+            centerConstraint.priority = UILayoutPriority(rawValue: 1000)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 250)
+        case .bottom:
+            centerConstraint.priority = UILayoutPriority(rawValue: 250)
+            bottomConstraint.priority = UILayoutPriority(rawValue: 1000)
+        }
+    }
+    
+    public func shouldRefresh() {
+        refresh()
     }
 
     private func refresh() {
@@ -217,6 +264,9 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         iconBluetooth.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
 
         button.isHidden = permissionsRequired.toNITPermission() == nil
+        
+        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, btManager: btManager)
+        delegate?.permissionView(self, didGrant: granted)
 
         debounceResize()
     }

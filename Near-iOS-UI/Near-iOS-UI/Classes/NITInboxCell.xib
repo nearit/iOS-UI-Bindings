@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="inbox" rowHeight="200" id="NIa-Dz-foh" customClass="NITInboxCell" customModule="NearUIBinding" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NIa-Dz-foh" id="nOL-lJ-4BE">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5y-ZC-i1n">
+                        <rect key="frame" x="20" y="15" width="335" height="164.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 settembre 2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-op-Tgt">
+                                <rect key="frame" x="0.0" y="0.0" width="335" height="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifica, testo della notifica, testo notifica." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bP9-1h-e4I">
+                                <rect key="frame" x="0.0" y="23" width="335" height="19.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scopri di più" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2k-7Q-643">
+                                <rect key="frame" x="245.5" y="149.5" width="76" height="15"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.62352941176470589" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scopriBold" translatesAutoresizingMaskIntoConstraints="NO" id="0Ty-Zr-SVd">
+                                <rect key="frame" x="328" y="151.5" width="7" height="10"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bP9-1h-e4I" firstAttribute="top" secondItem="R4L-op-Tgt" secondAttribute="bottom" constant="8" id="1gp-bY-Px0"/>
+                            <constraint firstItem="r2k-7Q-643" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bP9-1h-e4I" secondAttribute="bottom" constant="7" id="HFA-Ke-Wce"/>
+                            <constraint firstItem="0Ty-Zr-SVd" firstAttribute="leading" secondItem="r2k-7Q-643" secondAttribute="trailing" constant="7" id="OnS-AL-mNF"/>
+                            <constraint firstItem="R4L-op-Tgt" firstAttribute="leading" secondItem="Q5y-ZC-i1n" secondAttribute="leading" id="UKf-74-cww"/>
+                            <constraint firstItem="bP9-1h-e4I" firstAttribute="leading" secondItem="Q5y-ZC-i1n" secondAttribute="leading" id="c2l-bf-Ueh"/>
+                            <constraint firstItem="R4L-op-Tgt" firstAttribute="top" secondItem="Q5y-ZC-i1n" secondAttribute="top" id="dxZ-Xl-9ch"/>
+                            <constraint firstAttribute="trailing" secondItem="R4L-op-Tgt" secondAttribute="trailing" id="hhQ-YU-uUl"/>
+                            <constraint firstAttribute="trailing" secondItem="bP9-1h-e4I" secondAttribute="trailing" id="oGR-rc-qju"/>
+                            <constraint firstAttribute="bottom" secondItem="r2k-7Q-643" secondAttribute="bottom" id="tak-kG-3wi"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ty-Zr-SVd" secondAttribute="trailing" id="vrs-iO-pzl"/>
+                            <constraint firstItem="0Ty-Zr-SVd" firstAttribute="baseline" secondItem="r2k-7Q-643" secondAttribute="baseline" id="zdJ-Mk-0FS"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="Q5y-ZC-i1n" firstAttribute="leading" secondItem="nOL-lJ-4BE" secondAttribute="leading" constant="20" id="87X-FU-9nQ"/>
+                    <constraint firstAttribute="trailing" secondItem="Q5y-ZC-i1n" secondAttribute="trailing" constant="20" id="HlH-ce-RhY"/>
+                    <constraint firstAttribute="bottom" secondItem="Q5y-ZC-i1n" secondAttribute="bottom" constant="20" id="XrM-4b-F49"/>
+                    <constraint firstItem="Q5y-ZC-i1n" firstAttribute="top" secondItem="nOL-lJ-4BE" secondAttribute="top" constant="15" id="xa5-LU-tEY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="R4L-op-Tgt" id="L69-pJ-YrD"/>
+                <outlet property="messageLabel" destination="bP9-1h-e4I" id="M8G-XO-oCm"/>
+                <outlet property="moreIcon" destination="0Ty-Zr-SVd" id="Q7D-70-LdS"/>
+                <outlet property="moreLabel" destination="r2k-7Q-643" id="Egw-Ny-2dU"/>
+                <outlet property="subContent" destination="Q5y-ZC-i1n" id="UPE-4a-Tik"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="163"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="scopriBold" width="7" height="10"/>
+    </resources>
+</document>

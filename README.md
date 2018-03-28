@@ -10,11 +10,11 @@ Permissions related:
 - [Missing permissions alert bar](DOCS/PERMISSIONS_BAR.md)
 
 Content related:
-- Handle in-app content
 - [Coupon detail](DOCS/COUPON.md)
 - [Feedback request](DOCS/FEEDBACK.md)
 - [Content detail](DOCS/CONTENT.md)
 - [Coupon list](DOCS/COUPON_LIST.md)
+- [Inbox](DOCS/INBOX.md)
 
 ## Installation
 

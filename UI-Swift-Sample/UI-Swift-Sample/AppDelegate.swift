@@ -8,6 +8,8 @@
 
 import UIKit
 import NearITSDK
+import OHHTTPStubs
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+        } else {
+            // Fallback on earlier versions
+        }
+        NITLog.setLogEnabled(true)
+        NITManager.setup(withApiKey: " - ")
+        NITManager.default().start()
+        
+        enableStubForCoupons(true)
+        enableStubForInbox(true)
+        
         return true
     }
 
@@ -44,6 +58,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func enableStubForInbox(_ enabled: Bool) {
+        stub(condition: { (request) -> Bool in
+            if let urlString = request.url?.absoluteString {
+                if urlString.contains("/plugins/push-machine/notifications/inbox") {
+                    return true
+                }
+            }
+            return false
+        }) { (request) -> OHHTTPStubsResponse in
+            if let path = Bundle.main.path(forResource: "inbox_pushes", ofType: "json") {
+                return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+            } else {
+                return OHHTTPStubsResponse()
+            }
+        }
+    }
+    
+    func enableStubForCoupons(_ enabled: Bool) {
+        stub(condition: { (request) -> Bool in
+            if let urlString = request.url?.absoluteString {
+                if urlString.contains("/coupons") {
+                    return true
+                }
+            }
+            return false
+        }) { (request) -> OHHTTPStubsResponse in
+            if let path = Bundle.main.path(forResource: "coupon", ofType: "json") {
+                return OHHTTPStubsResponse(fileAtPath: path, statusCode: 200, headers: nil)
+            } else {
+                return OHHTTPStubsResponse()
+            }
+        }
+    }
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
 }
 

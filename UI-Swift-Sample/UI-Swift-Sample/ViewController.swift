@@ -46,22 +46,6 @@ class ViewController: UIViewController {
                 print("Code undefined")
         }
     }
-
-    func recipeWithContentsOf(filename: String) -> NITReactionBundle? {
-        let bundle = Bundle.main
-
-        guard let path = bundle.path(forResource: filename,
-                                     ofType: "json",
-                                     inDirectory: nil) else { return nil }
-
-        guard let japi = try? NITJSONAPI.init(contentsOfFile: path) else { return nil }
-        japi.register(NITContent.self, forType: "contents")
-        japi.register(NITCoupon.self, forType: "coupons")
-        japi.register(NITImage.self, forType: "images")
-
-        let reactions = japi.parseToArrayOfObjects()
-        return reactions.last as? NITReactionBundle
-    }
     
     func showPermissionsDialogCustom() -> NITPermissionsViewController {
         let baseUnknownImage = UIImage(named: "gray-button")
@@ -273,8 +257,6 @@ class ViewController: UIViewController {
         aViewController.presentCoupon = .popover
         aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
-        aViewController.cellBackground = UIImage.init(named: "customCell")
-        aViewController.selectedCellBackground = nil
         aViewController.show()
     }
 
@@ -317,12 +299,37 @@ class ViewController: UIViewController {
 
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func showInboxListInNavigationController(_ customNoContent: Bool = false) {
+        switch codeSegment.selectedSegmentIndex {
+        case Code.swift.rawValue:
+            let inbox = NITInboxListViewController()
+            if customNoContent {
+                let view = UIView()
+                view.backgroundColor = UIColor.blue
+                inbox.noContentView = view
+            }
+            inbox.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
+            inbox.show(navigationController: navigationController!)
+        case Code.objectiveC.rawValue:
+            if customNoContent {
+                let view = UIView()
+                view.backgroundColor = UIColor.orange
+                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!, customNoContent: view)
+            } else {
+                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
+            }
+            
+        default:
+            print("Code undefined")
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -339,6 +346,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return 3
         case 5:
             return 1
+        case 6:
+            return 2
         default:
             return 0
         }
@@ -437,6 +446,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5: // Permission bar
             title?.text = "Coupon permission bar"
             description?.text = "Creted by code"
+        case 6: // Inbox
+            switch indexPath.row {
+            case 0:
+                title?.text = "Inbox list"
+                description?.text = "Navigation controller"
+            case 1:
+                title?.text = "Inbox list"
+                description?.text = "Navigation controller with no content view"
+            default:
+                title?.text = "Undefined Inbox"
+                description?.text = " - "
+            }
         default:
             title?.text = "Undefined"
             description?.text = " - "
@@ -499,20 +520,32 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 content.title = "Content title"
                 showContentDialog(content: content)
             case 1:
-                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
-                if let content = reaction as? NITContent {
-                    showContentDialog(content: content)
-                }
+                let content = MockContent()
+                content.title = "My Title"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                content.mockLink = NITContentLink()
+                content.mockLink?.label = "Eat the cake"
+                content.mockLink?.url = URL(string: "http://www.eatBigCakes.com")!
+                let mockImage = MockImage()
+                mockImage.mockUrl = URL(string: "https://images-na.ssl-images-amazon.com/images/I/71B4TCc3gFL._SL1000_.jpg")
+                content.mockImage = mockImage
+                showContentDialog(content: content)
             case 2:
-                let reaction = recipeWithContentsOf(filename: "response_content_reaction")
-                if let content = reaction as? NITContent {
-                    showCustomContentDialog(content: content)
-                }
+                let content = MockContent()
+                content.title = "My Title"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                content.mockLink = NITContentLink()
+                content.mockLink?.label = "Eat the cake"
+                content.mockLink?.url = URL(string: "http://www.eatBigCakes.com")!
+                showCustomContentDialog(content: content)
             case 3:
-                let reaction = recipeWithContentsOf(filename: "contents1")
-                if let content = reaction as? NITContent {
-                    pushContent(content: content)
-                }
+                let content = MockContent()
+                content.title = "Navigation content"
+                content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
+                let mockImage = MockImage()
+                mockImage.mockUrl = URL(string: "https://images-na.ssl-images-amazon.com/images/I/71B4TCc3gFL._SL1000_.jpg")
+                content.mockImage = mockImage
+                pushContent(content: content)
             default:
                 break
             }
@@ -529,6 +562,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         case 5:
             permissionBar()
+        case 6:
+            switch indexPath.row {
+            case 0:
+                showInboxListInNavigationController()
+            case 1:
+                showInboxListInNavigationController(true)
+            default:
+                break
+            }
+            
         default:
             break
         }
@@ -550,6 +593,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             return "Coupon list"
         case 5:
             return "Permission bar"
+        case 6:
+            return "Inbox list"
         default:
             return nil
         }
