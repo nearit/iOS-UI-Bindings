@@ -517,7 +517,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             case 0:
                 let content = NITContent()
                 content.content = "<a href='https://www.nearit.com'>LINK</a></br>\(lorem())"
-                content.title = "Content title"
+                content.title = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis"
                 showContentDialog(content: content)
             case 1:
                 let content = MockContent()
