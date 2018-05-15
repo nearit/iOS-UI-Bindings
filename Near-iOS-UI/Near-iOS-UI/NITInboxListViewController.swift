@@ -228,7 +228,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let item = items?[indexPath.section] {
-            nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeEngaged)
+            nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeOpened)
             item.read = true
             tableView.reloadRows(at: [indexPath], with: .automatic)
             
