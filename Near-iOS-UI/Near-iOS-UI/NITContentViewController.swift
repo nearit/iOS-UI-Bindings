@@ -13,6 +13,7 @@ import WebKit
 
 public class NITContentViewController: NITBaseViewController {
     var content: NITContent!
+    var trackingInfo: NITTrackingInfo?
     var nearManager: NITManager
 
     @objc public var linkHandler: ((NITContentViewController, URLRequest) -> WKNavigationActionPolicy)?
@@ -40,14 +41,14 @@ public class NITContentViewController: NITBaseViewController {
 
     @IBOutlet var constantConstraints: [NSLayoutConstraint]!
 
-    @objc public convenience init(content: NITContent) {
-        self.init(content: content, manager: NITManager.default())
+    @objc public convenience init(content: NITContent, trackingInfo: NITTrackingInfo? = nil) {
+      self.init(content: content, trackingInfo: trackingInfo, manager: NITManager.default())
     }
 
-
-    init(content: NITContent, manager: NITManager?) {
+    init(content: NITContent, trackingInfo : NITTrackingInfo?, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.content = content
+        self.trackingInfo = trackingInfo
         self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITContentViewController", bundle: bundle)
         setupDefaultElements()
@@ -162,6 +163,9 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     @IBAction func tapCallToAction(_ sender: Any) {
+        if let trackingInfo = trackingInfo {
+          nearManager.sendTracking(with: trackingInfo, event: NITRecipeCtaTapped)
+        }
         if let ctaHandler = callToActionHandler {
             ctaHandler(self, content.link!.url)
         } else {
