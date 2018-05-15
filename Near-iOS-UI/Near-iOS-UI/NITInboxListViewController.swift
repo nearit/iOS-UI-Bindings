@@ -237,7 +237,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
                 delegate?.inboxListViewController(self, willShowViewController: feedbackVC)
                 feedbackVC.show(fromViewController: self, configureDialog: nil)
             } else if let content = item.reactionBundle as? NITContent {
-                let contentVC = NITContentViewController(content: content)
+              let contentVC = NITContentViewController(content: content, trackingInfo: item.trackingInfo)
                 delegate?.inboxListViewController(self, willShowViewController: contentVC)
                 contentVC.show(fromViewController: self, configureDialog: nil)
             }
