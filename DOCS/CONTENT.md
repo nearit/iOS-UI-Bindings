@@ -5,7 +5,7 @@ If you want your app to display a NearIT content in a pop-up dialog, use this si
 Swift version
 ```swift
 // ...
-let vc = NITContentViewController(content: content)
+let vc = NITContentViewController(content: content, trackingInfo: trackingInfo)
 vc.show()
 
 ```
@@ -13,7 +13,7 @@ vc.show()
 Objc version
 ```objc
 // ...
-NITContentViewController *vc = [[NITContentViewController alloc] initWithContent:content];
+NITContentViewController *vc = [[NITContentViewController alloc] initWithContent:content trackingInfo:trackingInfo];
 [vc show];
 ```
 

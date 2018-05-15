@@ -91,6 +91,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+  
+  func handleNearContent(content : NITReactionBundle , trackingInfo: NITTrackingInfo) {
+    // handle near content
+  }
 
 }
 
@@ -101,9 +105,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler(.alert)
     }
     
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        completionHandler()
+  @available(iOS 10.0, *)
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    let userInfo = response.notification.request.content.userInfo
+    if let ui = userInfo as? [String : Any] {
+      NITManager.default().processRecipe(userInfo: ui, completion: { (content, trackingInfo, error) in
+        self.handleNearContent(content: content!, trackingInfo: trackingInfo!)
+      })
     }
+  }
 }
 
