@@ -48,8 +48,8 @@ static ObjCUIManager *sharedManager;
     }
 }
 
-- (void)showContenDialog:(NITContent *)content {
-    NITContentViewController *vc = [[NITContentViewController alloc] initWithContent:content];
+- (void)showContenDialog:(NITContent *)content trackingInfo:(NITTrackingInfo *)trackingInfo {
+    NITContentViewController *vc = [[NITContentViewController alloc] initWithContent:content trackingInfo:trackingInfo];
     [vc showFromViewController:nil configureDialog:nil];
 }
 
