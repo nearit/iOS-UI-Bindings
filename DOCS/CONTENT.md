@@ -17,7 +17,7 @@ NITContentViewController *vc = [[NITContentViewController alloc] initWithContent
 [vc show];
 ```
 
-where, `content` is an instance of NearIT SDK `Content` class. Further information on contents and other in-app content can be found [here](http://nearit-android.readthedocs.io/en/latest/in-app-content/).
+where, `content` is an instance of NearIT SDK `NITContent` class and `trackingInfo` is an instance of `NITTrackingInfo`. The Content detail window will automatically track user tap on the content CTA Button. Further information on contents and other in-app content can be found [here](http://nearit-android.readthedocs.io/en/latest/in-app-content/).
 
 ![NearIT-UI content dialog](content.png)![NearIT-UI content dialog customized](content_cta.png)
 
