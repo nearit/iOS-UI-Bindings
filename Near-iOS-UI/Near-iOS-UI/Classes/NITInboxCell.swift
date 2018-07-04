@@ -47,28 +47,42 @@ class NITInboxCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    private func getBoldFont(size: CGFloat) -> UIFont {
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: size) ?? UIFont.boldSystemFont(ofSize: size)
+        }
+        return UIFont.boldSystemFont(ofSize: size)
+    }
+    
+    private func getRegularFont(size: CGFloat) -> UIFont {
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: size) ?? UIFont.systemFont(ofSize: size)
+        }
+        return UIFont.systemFont(ofSize: size)
+    }
 
     func makeBoldMessage(_ bold: Bool) {
         if bold {
-            messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize, weight: .bold)
+            messageLabel.font = getBoldFont(size: messageLabel.font.pointSize)
         } else {
-            messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize, weight: .regular)
+            messageLabel.font = getRegularFont(size: messageLabel.font.pointSize)
         }
     }
     
     func makeBoldMore(_ bold: Bool) {
         if bold {
-            moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .bold)
+            moreLabel.font = getBoldFont(size: moreLabel.font.pointSize)
         } else {
-            moreLabel.font = UIFont.systemFont(ofSize: moreLabel.font.pointSize, weight: .regular)
+            moreLabel.font = getRegularFont(size: moreLabel.font.pointSize)
         }
     }
     
     func makeBoldDate(_ bold: Bool) {
         if bold {
-            dateLabel.font = UIFont.systemFont(ofSize: dateLabel.font.pointSize, weight: .bold)
+            dateLabel.font = getBoldFont(size: dateLabel.font.pointSize)
         } else {
-            dateLabel.font = UIFont.systemFont(ofSize: dateLabel.font.pointSize, weight: .regular)
+            dateLabel.font = getRegularFont(size: dateLabel.font.pointSize)
         }
     }
     
