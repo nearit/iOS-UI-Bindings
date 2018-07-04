@@ -21,17 +21,24 @@ public class NITContentViewController: NITBaseViewController {
     @objc public var drawSeparator = true
     @objc public var hideCloseButton = false
     @objc public var imagePlaceholder: UIImage?
-    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
     @objc public var titleColor = UIColor.nearBlack
     @objc public var callToActionButton: UIImage!
-    @objc public var contentMainFont = UIFont.systemFont(ofSize: 15.0)
+    
+    let defaultTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var titleFont: UIFont?
+    
+    let defaultContentMainFont = UIFont.systemFont(ofSize: 13.0)
+    @objc public var contentMainFont: UIFont?
+    
+    let defaultCTAFont = UIFont.boldSystemFont(ofSize: 18.0)
+    @objc public var ctaFont: UIFont?
 
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageContainer: UIView!
     @IBOutlet weak var contentTitle: UILabel!
     @IBOutlet weak var titleContainer: UIView!
-    @IBOutlet weak var webviewContainer: NITWKWebViewContainer!
+    @IBOutlet weak var mainContent: UILabel!
     @IBOutlet weak var stackviewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackview: UIStackView!
     @IBOutlet weak var callToAction: UIButton!
@@ -132,27 +139,30 @@ public class NITContentViewController: NITBaseViewController {
         }
 
         contentTitle.textColor = titleColor
-        contentTitle.font = titleFont
+        contentTitle.font = getTitleFont()
         contentTitle.text = content.title
 
-        webviewContainer.linkHandler = { [weak self](request) in
-            if let wself = self, let url = request.url {
-                if let lh = wself.linkHandler {
-                    return lh(wself, request)
-                }
-                let s = SFSafariViewController(url: url)
-                wself.present(s, animated: true, completion: nil)
-                return .cancel
-            }
-            return .allow
-        }
+//        webviewContainer.linkHandler = { [weak self](request) in
+//            if let wself = self, let url = request.url {
+//                if let lh = wself.linkHandler {
+//                    return lh(wself, request)
+//                }
+//                let s = SFSafariViewController(url: url)
+//                wself.present(s, animated: true, completion: nil)
+//                return .cancel
+//            }
+//            return .allow
+//        }
 
-        webviewContainer.font = contentMainFont
-        webviewContainer.loadContent(content: content)
+        let stringContent = content?.content ?? ""
+        mainContent.setHTMLFromString(htmlText: stringContent)
+//        webviewContainer.font = getContentMainFont()
+//        webviewContainer.loadContent(content: content)
 
         if let contentLink = content.link {
             callToAction.setTitle(contentLink.label, for: .normal)
             callToAction.setBackgroundImage(callToActionButton, for: .normal)
+            callToAction.titleLabel?.font = getCTAFont()
         } else {
             ctaContainer.isHidden = true
         }
@@ -172,5 +182,51 @@ public class NITContentViewController: NITBaseViewController {
             let s = SFSafariViewController(url: content.link!.url)
             present(s, animated: true, completion: nil)
         }
+    }
+    
+    private func getCTAFont() -> UIFont {
+        if let ctaFont = self.ctaFont {
+            return ctaFont
+        }
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultCTAFont.pointSize) ?? defaultCTAFont
+        }
+        return defaultCTAFont
+    }
+    
+    private func getTitleFont() -> UIFont {
+        if let titleFont = self.titleFont {
+            return titleFont
+        }
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultTitleFont.pointSize) ?? defaultTitleFont
+        }
+        return defaultTitleFont
+    }
+    
+    private func getContentMainFont() -> UIFont {
+        if let contentMainFont = self.contentMainFont {
+            return contentMainFont
+        }
+        if let font = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: font, size: defaultContentMainFont.pointSize) ?? defaultContentMainFont
+        }
+        return defaultContentMainFont
+    }
+}
+
+extension UILabel {
+    func setHTMLFromString(htmlText: String) {
+        let modifiedFont = String(format:"<span style=\"font-family:'Raleway'; font-size: \(self.font.pointSize)\">%@</span>", htmlText)
+        
+        
+        //process collection values
+        let attrStr = try! NSAttributedString(
+            data: modifiedFont.data(using: .unicode, allowLossyConversion: true)!,
+            options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+            documentAttributes: nil)
+        
+        
+        self.attributedText = attrStr
     }
 }
