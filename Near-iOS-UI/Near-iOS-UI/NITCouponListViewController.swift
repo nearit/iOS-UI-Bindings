@@ -15,6 +15,11 @@ import NearITSDK
     case custom
 }
 
+@objc public enum NITCouponListViewControllerCouponBackground: NSInteger {
+    case normalBorders
+    case jaggedBorders
+}
+
 @objc public enum NITCouponListViewControllerFilterOptions: NSInteger {
     case none = 0b000
     case valid = 0b001
@@ -64,8 +69,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
     @objc public var filterOption = NITCouponListViewControllerFilterOptions.all
     @objc public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
+    
+    @objc public var couponBackground = NITCouponListViewControllerCouponBackground.jaggedBorders
 
     @objc public var iconPlaceholder: UIImage!
+    @objc public var jaggedBackground: UIImage!
 
     @objc public var expiredColor = UIColor.nearCouponExpired
     @objc public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
@@ -139,6 +147,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
+        jaggedBackground = UIImage(named: "jaggedCouponBg", in: bundle, compatibleWith: nil)
 
         expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
         disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
@@ -249,13 +258,20 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
         if let cell = cell as? NITCouponCell {
             cell.backgroundColor = .clear
-            cell.clipsToBounds = false
-            cell.contentView.layer.cornerRadius = 5
-            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
-            cell.contentView.layer.shadowColor = UIColor.black.cgColor
-            cell.contentView.layer.shadowRadius = 5;
-            cell.contentView.layer.shadowOpacity = 0.15;
-
+            
+            if (couponBackground == .jaggedBorders) {
+                cell.backgroundView = UIImageView.init(image: jaggedBackground)
+                cell.selectedBackgroundView = UIImageView.init(image: jaggedBackground.alpha(0.5))
+            } else {
+                cell.clipsToBounds = false
+                cell.contentView.backgroundColor = .white
+                cell.contentView.layer.cornerRadius = 5
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+                cell.contentView.layer.shadowColor = UIColor.black.cgColor
+                cell.contentView.layer.shadowRadius = 5;
+                cell.contentView.layer.shadowOpacity = 0.15;
+            }
+            
             if let coupons = coupons, coupons.count > 0 {
                 let coupon = coupons[indexPath.section]
 
@@ -305,9 +321,28 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
         return cell
     }
-
+    
+    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        //  add alpha on card
+        cell?.alpha = 0.5
+        if couponBackground == .normalBorders {
+            cell?.contentView.backgroundColor = .white
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        //  restore alpha on card
+        cell?.alpha = 1
+        if couponBackground == .normalBorders {
+            cell?.contentView.backgroundColor = .white
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
         guard let coupons = coupons else { return }
         if coupons.count == 0 {
             return
@@ -326,5 +361,16 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         }
     }
 
+}
+
+extension UIImage {
+    
+    func alpha(_ value:CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
 }
 

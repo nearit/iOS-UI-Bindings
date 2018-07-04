@@ -242,6 +242,7 @@ class ViewController: UIViewController {
             let aViewController = NITCouponListViewController()
             if modal {
                 aViewController.show()
+                aViewController.couponBackground = .normalBorders
             } else {
                 aViewController.show(navigationController: navigationController!)
             }
