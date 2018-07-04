@@ -49,7 +49,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
-                                    <rect key="frame" x="278" y="10" width="12" height="22"/>
+                                    <rect key="frame" x="248" y="10" width="52" height="42"/>
+                                    <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                    <inset key="imageEdgeInsets" minX="-20" minY="-10" maxX="-20" maxY="-10"/>
                                     <state key="normal" image="chiudi"/>
                                     <connections>
                                         <action selector="tapClose:" destination="-1" eventType="touchUpInside" id="Qx2-SW-f4m"/>
@@ -61,7 +63,7 @@
                                 <constraint firstItem="LYP-Bz-c2Q" firstAttribute="leading" secondItem="ev8-Gt-iyV" secondAttribute="leading" constant="25" id="8OA-Mn-scd"/>
                                 <constraint firstAttribute="trailing" secondItem="LYP-Bz-c2Q" secondAttribute="trailing" constant="25" id="A1k-uq-cqg"/>
                                 <constraint firstAttribute="bottom" secondItem="LYP-Bz-c2Q" secondAttribute="bottom" constant="20" id="BIh-yd-lxH"/>
-                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" constant="10" id="Wj4-KZ-l6l"/>
+                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" id="Wj4-KZ-l6l"/>
                                 <constraint firstItem="LYP-Bz-c2Q" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="45" id="euP-Ry-qZ9"/>
                                 <constraint firstItem="Ne0-9U-dZG" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="10" id="vJj-Sh-hbL"/>
                             </constraints>

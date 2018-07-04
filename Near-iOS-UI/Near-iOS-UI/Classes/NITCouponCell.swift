@@ -31,6 +31,10 @@ class NITCouponCell : UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        icon.layer.borderColor = UIColor.init(red: 51/255, green: 51/255, blue: 51/255, alpha: 1).cgColor
+        icon.layer.borderWidth = 1.0
+        
         selectionStyle = .default
         loader.isHidden = true
         subContent.isHidden = false

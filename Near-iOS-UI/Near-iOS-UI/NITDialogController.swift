@@ -125,6 +125,10 @@ public class NITDialogController: UIViewController {
 
     }
     
+    public override func viewWillDisappear(_ animated: Bool) {
+        scrollView.removeObserver(self, forKeyPath: "contentSize")
+    }
+    
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
