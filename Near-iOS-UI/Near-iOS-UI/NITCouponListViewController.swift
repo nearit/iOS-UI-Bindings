@@ -85,6 +85,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var valueDisabledColor = UIColor.nearCouponListGray
     @objc public var valueExpiredColor = UIColor.nearCouponListGray
     
+    let defaultEmptyListFont = UIFont.italicSystemFont(ofSize: 16.0)
+    @objc public var emptyListFont: UIFont?
+    
     let defaultExpiredFont = UIFont.italicSystemFont(ofSize: 12.0)
     @objc public var expiredFont: UIFont?
     
@@ -328,7 +331,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 if isLoading {
                     cell.setLoading()
                 } else {
-                    cell.setMessage(noCoupons, color: .nearWarmGrey, font: .systemFont(ofSize: 15.0))
+                    cell.setMessage(noCoupons, color: .nearWarmGrey, font: getEmptyListFont())
                 }
             }
         }
@@ -337,6 +340,17 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
     
     //  FONTS
+    
+    private func getEmptyListFont() -> UIFont {
+        if let emptyListFont = self.emptyListFont {
+            return emptyListFont
+        } else {
+            if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+                return UIFont.init(name: italicFont, size: defaultEmptyListFont.pointSize) ?? defaultEmptyListFont
+            }
+            return defaultEmptyListFont
+        }
+    }
     
     private func getDisabledFont() -> UIFont {
         if let disabledFont = self.disabledFont {
