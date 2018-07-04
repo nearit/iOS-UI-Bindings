@@ -324,20 +324,18 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        //  remove cell background to show the selected one
-        if couponBackground == .jaggedBorders {
-            cell?.backgroundView = nil
-        } else {
-            cell?.contentView.backgroundColor = cell?.contentView.backgroundColor?.withAlphaComponent(0.1)
+        //  add alpha on card
+        cell?.alpha = 0.5
+        if couponBackground == .normalBorders {
+            cell?.contentView.backgroundColor = .white
         }
     }
     
     public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        //  restore cell background
-        if couponBackground == .jaggedBorders {
-            cell?.backgroundView = UIImageView.init(image: jaggedBackground)
-        } else {
+        //  restore alpha on card
+        cell?.alpha = 1
+        if couponBackground == .normalBorders {
             cell?.contentView.backgroundColor = .white
         }
     }
