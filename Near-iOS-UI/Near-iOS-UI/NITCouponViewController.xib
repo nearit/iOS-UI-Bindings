@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITCouponViewController" customModule="NeariOSUI" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITCouponViewController" customModule="NearUIBinding" customModuleProvider="target">
             <connections>
                 <outlet property="alternative" destination="ii2-lE-hBr" id="E6B-CL-eXv"/>
                 <outlet property="close" destination="Ne0-9U-dZG" id="vla-v9-inb"/>
@@ -49,7 +49,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
-                                    <rect key="frame" x="278" y="10" width="12" height="22"/>
+                                    <rect key="frame" x="248" y="10" width="52" height="42"/>
+                                    <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
+                                    <inset key="imageEdgeInsets" minX="-20" minY="-10" maxX="-20" maxY="-10"/>
                                     <state key="normal" image="chiudi"/>
                                     <connections>
                                         <action selector="tapClose:" destination="-1" eventType="touchUpInside" id="Qx2-SW-f4m"/>
@@ -61,7 +63,7 @@
                                 <constraint firstItem="LYP-Bz-c2Q" firstAttribute="leading" secondItem="ev8-Gt-iyV" secondAttribute="leading" constant="25" id="8OA-Mn-scd"/>
                                 <constraint firstAttribute="trailing" secondItem="LYP-Bz-c2Q" secondAttribute="trailing" constant="25" id="A1k-uq-cqg"/>
                                 <constraint firstAttribute="bottom" secondItem="LYP-Bz-c2Q" secondAttribute="bottom" constant="20" id="BIh-yd-lxH"/>
-                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" constant="10" id="Wj4-KZ-l6l"/>
+                                <constraint firstAttribute="trailing" secondItem="Ne0-9U-dZG" secondAttribute="trailing" id="Wj4-KZ-l6l"/>
                                 <constraint firstItem="LYP-Bz-c2Q" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="45" id="euP-Ry-qZ9"/>
                                 <constraint firstItem="Ne0-9U-dZG" firstAttribute="top" secondItem="ev8-Gt-iyV" secondAttribute="top" constant="10" id="vJj-Sh-hbL"/>
                             </constraints>
@@ -96,10 +98,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6A-Pl-joA" userLabel="Serial Container">
-                            <rect key="frame" x="0.0" y="199" width="300" height="64"/>
+                            <rect key="frame" x="0.0" y="199" width="300" height="54"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEFGBHI" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da9-vt-ysy" userLabel="serial">
-                                    <rect key="frame" x="25" y="10" width="250" height="34"/>
+                                    <rect key="frame" x="25" y="10" width="250" height="24"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -114,10 +116,10 @@
                             </constraints>
                         </view>
                         <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Tjk-P1-2Xl">
-                            <rect key="frame" x="0.0" y="263" width="300" height="0.0"/>
+                            <rect key="frame" x="0.0" y="253" width="300" height="20"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-eZ-rUo">
-                            <rect key="frame" x="0.0" y="263" width="300" height="191"/>
+                            <rect key="frame" x="0.0" y="273" width="300" height="191"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="couponPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="3CX-1j-QpA" userLabel="icon">
                                     <rect key="frame" x="25" y="20" width="60" height="60"/>
@@ -163,7 +165,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yki-Vp-tiU" userLabel="Trick view: keep XCode from warning about constraints">
-                            <rect key="frame" x="0.0" y="454" width="300" height="113"/>
+                            <rect key="frame" x="0.0" y="464" width="300" height="103"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="olb-no-Kif"/>

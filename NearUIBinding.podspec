@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name                  = 'NearUIBinding'
-s.version               = '1.1.3'
+s.version               = '1.1.5'
 s.summary               = 'nearit.com iOS UI Bindings'
 s.description           = 'nearit.com iOS UI Bindings for Swift and Objective-C'
 
@@ -10,7 +10,8 @@ s.license               = 'MIT'
 
 s.author                = {
 'Francesco Leoni' => 'francesco@nearit.com',
-'Stefano Cattaneo' => 'stefano@nearit.com'
+'Stefano Cattaneo' => 'stefano@nearit.com',
+'Federico Boschini' => 'federico@nearit.com'
 }
 s.source                = { :git => "https://github.com/nearit/iOS-UI-Bindings.git", :tag => s.version.to_s }
 s.source_files          = 'Near-iOS-UI/Near-iOS-UI/**/*.{h,swift}'
