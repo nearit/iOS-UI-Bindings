@@ -49,7 +49,7 @@ import CoreBluetooth
         let hasBluetooth = contains(NITPermissionsViewPermissions.bluetooth)
 
         if hasBluetooth && btManager.state != .poweredOn { return false }
-        if hasLocation && !permissionManager.isLocationPartiallyGranted() { return false }
+        if hasLocation && !permissionManager.isLocationGranted(status: .authorizedAlways) { return false }
         if hasNotification && !permissionManager.isNotificationAvailable() { return false }
 
         return true

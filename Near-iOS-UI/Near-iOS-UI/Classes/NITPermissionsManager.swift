@@ -61,7 +61,7 @@ class NITPermissionsManager: NSObject {
     func requestLocationPermission() {
         if isLocationNotDetermined() {
             locationManager.requestAlwaysAuthorization()
-        } else if !isLocationPartiallyGranted() {
+        } else if !isLocationGranted(status: .authorizedAlways) {
             self.openAppSettings()
         }
     }
@@ -146,7 +146,7 @@ class NITPermissionsManager: NSObject {
 extension NITPermissionsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if isLocationPartiallyGranted() {
+        if isLocationGranted(status: .authorizedAlways) {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: true)
         } else {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: false)
