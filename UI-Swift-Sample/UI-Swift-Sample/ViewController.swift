@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func showPermissionsDialogCustom() -> NITPermissionsViewController {
+    func getPermissionDialogCustom() -> NITPermissionsViewController {
         let baseUnknownImage = UIImage(named: "gray-button")
         let unknownImage = baseUnknownImage?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
         
@@ -79,11 +79,16 @@ class ViewController: UIViewController {
         aViewController.notificationsText = "Turn on notications"
         aViewController.explainText = "We'll notify you of content that's interesting"
         aViewController.autoCloseDialog = .on
-        aViewController.show { (dialogController: NITDialogController) in
+        return aViewController
+    }
+    
+    func showPermissionsDialogCustom() -> NITPermissionsViewController {
+        let permissionViewControler = getPermissionDialogCustom()
+        permissionViewControler.show { (dialogController: NITDialogController) in
             dialogController.backgroundStyle = .blur
         }
 
-        return aViewController
+        return permissionViewControler
     }
     
     func showPermissionsDialogLocationsOnly() {
@@ -280,6 +285,7 @@ class ViewController: UIViewController {
         vc.view.backgroundColor = .white
 
         let permissionViewA = NITPermissionsView.init(frame: CGRect.zero)
+        permissionViewA.locationType = .always
         vc.view.addSubview(permissionViewA)
 
         NSLayoutConstraint.activate([
@@ -290,6 +296,7 @@ class ViewController: UIViewController {
 
         let permissionViewB = NITPermissionsView.init(frame: CGRect.zero)
         permissionViewB.permissionsRequired = .locationAndNotifications
+        permissionViewB.locationType = .whenInUse
         permissionViewB.backgroundColor = .gray
         permissionViewB.messageColor = .black
         permissionViewB.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
@@ -300,9 +307,11 @@ class ViewController: UIViewController {
         permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 10.0)
         permissionViewB.buttonBackgroundImage = UIImage(named: "blue-button")
         permissionViewB.callbackOnPermissions = { (view) in
-            let vc = self.showPermissionsDialogCustom()
+            let vc = self.getPermissionDialogCustom()
             vc.autoCloseDialog = .off
+            vc.locationType = .whenInUse
             vc.delegate = view
+            vc.show()
         }
         vc.view.addSubview(permissionViewB)
 
