@@ -81,6 +81,12 @@ let permissionView = NITPermissionsView.init(frame: CGRect.zero)
 permissionView.permissionsRequired = .locationAndNotifications
 ```
 
+When asking for location permission, you can customize the minimum grant level (*.always* or *.whenInUse*) for the permission to be considered granted. This will influence both the permission bar and permission dialog behavior. The default value is *.always*.
+
+```swift
+permissionView.locationType = .always
+```
+
 While the default behavior on button tap is to show the default `NITPermissionViewController`, a custom callback can be provided:
 
 ```swift
