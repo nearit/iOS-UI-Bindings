@@ -118,6 +118,16 @@ class NITPermissionsManager: NSObject {
         }
         return false
     }
+    
+    func isLocationGrantedAtLeast(minStatus: CLAuthorizationStatus) -> Bool {
+        let currentStatus = CLLocationManager.authorizationStatus()
+        if minStatus == .authorizedWhenInUse {
+            return currentStatus == .authorizedWhenInUse || currentStatus == .authorizedAlways
+        } else if minStatus == .authorizedAlways {
+            return currentStatus == .authorizedAlways
+        }
+        return false
+    }
 
     func isLocationPartiallyGranted() -> Bool {
         let authStatus = CLLocationManager.authorizationStatus()
