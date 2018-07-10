@@ -83,6 +83,18 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private var debouncer: Timer?
     
     @objc public var refreshOnAppActivation: Bool = true
+    
+    @objc public var messageFont: UIFont? {
+        didSet {
+            message.font = messageFont
+        }
+    }
+    @objc public var buttonFont: UIFont? {
+        didSet {
+            button.titleLabel?.font = buttonFont
+        }
+    }
+    
     public weak var delegate: NITPermissionsViewDelegate?
     public var alignement: NITPermissionsViewAlignement = .center {
         didSet {
@@ -103,12 +115,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @objc public var messageFont: UIFont? {
-        didSet {
-            message.font = messageFont
-        }
-    }
-
     @objc @IBInspectable public var buttonText: String? {
         didSet {
             button.setTitle(buttonText, for: .normal)
@@ -118,12 +124,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @objc @IBInspectable public var buttonColor: UIColor? {
         didSet {
             button.setTitleColor(buttonColor, for: .normal)
-        }
-    }
-
-    @objc public var buttonFont: UIFont? {
-        didSet {
-            button.titleLabel?.font = buttonFont
         }
     }
 
@@ -207,11 +207,30 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
 
+        applyFont()
         refresh()
         align()
         setNeedsLayout()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+    }
+    
+    private func applyFont() {
+        if let messageFont = self.messageFont {
+            message.font = messageFont
+        } else {
+            if let mediumFont = NITUIAppearance.sharedInstance.mediumFontName {
+                message.font = UIFont.init(name: mediumFont, size: 13.0)
+            }
+        }
+        
+        if let buttonFont = self.buttonFont {
+            button.titleLabel?.font = buttonFont
+        } else {
+            if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+                button.titleLabel?.font = UIFont.init(name: boldFont, size: 15.0)
+            }
+        }
     }
     
     deinit {

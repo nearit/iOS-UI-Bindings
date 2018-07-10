@@ -28,6 +28,20 @@ class ViewController: UIViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
+
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
+        
+        NITUIAppearance.sharedInstance.regularFontName = "Raleway-Regular"
+        NITUIAppearance.sharedInstance.mediumFontName = "Raleway-Medium"
+        NITUIAppearance.sharedInstance.boldFontName = "Raleway-Bold"
+        NITUIAppearance.sharedInstance.italicFontName = "Raleway-Italic"
+        NITUIAppearance.sharedInstance.mediumItalicFontName = "Raleway-MediumItalic"
+        NITUIAppearance.sharedInstance.boldItalicFontName = "Raleway-BoldItalic"
+        
+        // Raleway-Regular
     }
 
     override func didReceiveMemoryWarning() {
@@ -172,7 +186,7 @@ class ViewController: UIViewController {
         let ctaButton = blueButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
 
         aViewController.callToActionButton = ctaButton
-        aViewController.contentMainFont = UIFont.systemFont(ofSize: 20.0)
+//        aViewController.contentMainFont = UIFont.systemFont(ofSize: 20.0)
         aViewController.imagePlaceholder = UIImage.init(named: "NearIT")
         aViewController.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
             let ui = UIAlertController.init(title: "Link tapped", message: "URL: \(request.url!)", preferredStyle: UIAlertControllerStyle.alert)
@@ -283,7 +297,7 @@ class ViewController: UIViewController {
         permissionViewB.permissionNotAvailableColor = .red
         permissionViewB.buttonText = "Roger"
         permissionViewB.buttonColor = .white
-        permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 20.0)
+        permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 10.0)
         permissionViewB.buttonBackgroundImage = UIImage(named: "blue-button")
         permissionViewB.callbackOnPermissions = { (view) in
             let vc = self.showPermissionsDialogCustom()

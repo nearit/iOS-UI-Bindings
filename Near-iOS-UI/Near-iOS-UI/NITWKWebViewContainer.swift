@@ -22,7 +22,7 @@ fileprivate enum NITWKWebViewContainerSizeType: Int {
 }
 
 internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
-    public var font: UIFont = UIFont.systemFont(ofSize: 15.0)
+    public var font: UIFont = UIFont.init(name: "Helvetica", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)
     public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
 
     @objc var wkWebView: WKWebView = {

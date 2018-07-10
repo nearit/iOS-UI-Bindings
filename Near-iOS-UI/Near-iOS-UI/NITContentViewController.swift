@@ -21,11 +21,15 @@ public class NITContentViewController: NITBaseViewController {
     @objc public var drawSeparator = true
     @objc public var hideCloseButton = false
     @objc public var imagePlaceholder: UIImage?
-    @objc public var titleFont = UIFont.boldSystemFont(ofSize: 18.0)
     @objc public var titleColor = UIColor.nearBlack
     @objc public var callToActionButton: UIImage!
-    @objc public var contentMainFont = UIFont.systemFont(ofSize: 15.0)
-
+    
+    let defaultTitleFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var titleFont: UIFont?
+    
+    let defaultCTAFont = UIFont.boldSystemFont(ofSize: 18.0)
+    @objc public var ctaFont: UIFont?
+    
     @IBOutlet weak var close: UIButton!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageContainer: UIView!
@@ -132,7 +136,7 @@ public class NITContentViewController: NITBaseViewController {
         }
 
         contentTitle.textColor = titleColor
-        contentTitle.font = titleFont
+        contentTitle.font = getTitleFont()
         contentTitle.text = content.title
 
         webviewContainer.linkHandler = { [weak self](request) in
@@ -147,12 +151,12 @@ public class NITContentViewController: NITBaseViewController {
             return .allow
         }
 
-        webviewContainer.font = contentMainFont
         webviewContainer.loadContent(content: content)
 
         if let contentLink = content.link {
             callToAction.setTitle(contentLink.label, for: .normal)
             callToAction.setBackgroundImage(callToActionButton, for: .normal)
+            callToAction.titleLabel?.font = getCTAFont()
         } else {
             ctaContainer.isHidden = true
         }
@@ -172,5 +176,25 @@ public class NITContentViewController: NITBaseViewController {
             let s = SFSafariViewController(url: content.link!.url)
             present(s, animated: true, completion: nil)
         }
+    }
+    
+    private func getCTAFont() -> UIFont {
+        if let ctaFont = self.ctaFont {
+            return ctaFont
+        }
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultCTAFont.pointSize) ?? defaultCTAFont
+        }
+        return defaultCTAFont
+    }
+    
+    private func getTitleFont() -> UIFont {
+        if let titleFont = self.titleFont {
+            return titleFont
+        }
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultTitleFont.pointSize) ?? defaultTitleFont
+        }
+        return defaultTitleFont
     }
 }

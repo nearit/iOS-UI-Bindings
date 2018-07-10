@@ -157,23 +157,42 @@ public class NITFeedbackViewController: NITBaseViewController {
         error.text = errorText
         error.textColor = errorColor
         errorContainer.isHidden = true
-        if let errorFont = errorFont {
-            error.font = errorFont
-        }
+        
 
         okContainer.isHidden = true
         ok.text = okText
         ok.textColor = textColor
 
-        if let textFont = textFont {
-            explanation.font = textFont
-            ok.font = textFont
-        }
-
+        applyFont()
+        
         setupCommentVisibility(hidden: commentVisibility != .visible)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.onViewTap(_:)))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func applyFont() {
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            explanation.changeFont(to: regularFont)
+            ok.changeFont(to: regularFont)
+            error.changeFont(to: regularFont)
+        }
+        if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+            commentDescription.changeFont(to: italicFont)
+            close.changeFont(to: italicFont)
+        }
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            send.changeFont(to: boldFont)
+        }
+        
+        
+        if let textFont = textFont {
+            explanation.font = textFont
+            ok.font = textFont
+        }
+        if let errorFont = errorFont {
+            error.font = errorFont
+        }
     }
     
     @objc func onViewTap(_ gesture: UITapGestureRecognizer) {
