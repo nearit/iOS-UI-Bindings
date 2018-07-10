@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import CoreBluetooth
 
 @objc public enum NITPermissionsViewPermissions: NSInteger {
@@ -43,13 +44,13 @@ import CoreBluetooth
         }
     }
 
-    fileprivate func isGranted(permissionManager: NITPermissionsManager, btManager: CBPeripheralManager) -> Bool {
+    fileprivate func isGranted(permissionManager: NITPermissionsManager, minStatus: CLAuthorizationStatus ,btManager: CBPeripheralManager) -> Bool {
         let hasLocation = contains(NITPermissionsViewPermissions.location)
         let hasNotification = contains(NITPermissionsViewPermissions.notifications)
         let hasBluetooth = contains(NITPermissionsViewPermissions.bluetooth)
 
         if hasBluetooth && btManager.state != .poweredOn { return false }
-        if hasLocation && !permissionManager.isLocationPartiallyGranted() { return false }
+        if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: minStatus) { return false }
         if hasNotification && !permissionManager.isNotificationAvailable() { return false }
 
         return true
@@ -75,6 +76,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var centerConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @objc public var locationType : NITPermissionsLocationType = .always
 
     private var btManager: CBPeripheralManager!
     private var permissionManager = NITPermissionsManager()
@@ -259,7 +262,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
 
     private func refresh() {
-        if permissionManager.isLocationPartiallyGranted() {
+        if permissionManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
             iconLocation.tintColor = permissionAvailableColor
         } else {
             iconLocation.tintColor = permissionNotAvailableColor
@@ -284,7 +287,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         button.isHidden = permissionsRequired.toNITPermission() == nil
         
-        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, btManager: btManager)
+        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, minStatus: locationType.authorizationStatus, btManager: btManager)
         delegate?.permissionView(self, didGrant: granted)
 
         debounceResize()
@@ -300,7 +303,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
 
     @objc private func resize() {
-        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, btManager: btManager)
+        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, minStatus: locationType.authorizationStatus , btManager: btManager)
         let newHeight = granted ? 0.0 : height
 
         if animateView {
@@ -319,7 +322,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         refresh()
     }
 
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
+    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
         refresh()
     }
 

@@ -106,9 +106,10 @@ public class NITPermissionsViewController: NITBaseViewController {
         case .notificationsOnly:
             return permissionsManager.isNotificationAvailable()
         case .locationOnly:
-            return permissionsManager.isLocationPartiallyGranted()
+            return permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
         case .locationAndNotifications:
-            return permissionsManager.isNotificationAvailable() && permissionsManager.isLocationPartiallyGranted()
+            return permissionsManager.isNotificationAvailable() &&
+                permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
         }
     }
     
@@ -246,7 +247,7 @@ public class NITPermissionsViewController: NITBaseViewController {
             authorizationStatus = .authorizedWhenInUse
         }
         
-        if permissionsManager.isLocationGranted(status: authorizationStatus) {
+        if permissionsManager.isLocationGrantedAtLeast(minStatus: authorizationStatus) {
             confirmLocationButton()
         } else {
             unconfirmLocationButton()
@@ -258,7 +259,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
 
     fileprivate func callClosingDelegate() {
-        let location = permissionsManager.isLocationPartiallyGranted()
+        let location = permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
         let notifications = permissionsManager.isNotificationAvailable()
         delegate?.dialogClosed?(locationGranted: location, notificationsGranted: notifications)
     }
@@ -266,7 +267,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     // MARK: - Permission buttons
     
     @IBAction func tapLocation(_ sender: Any) {
-        permissionsManager.requestLocationPermission()
+        permissionsManager.requestLocationPermission(minStatus: locationType.authorizationStatus)
     }
     
     @IBAction func tapNotifications(_ sender: Any) {
@@ -336,9 +337,8 @@ public class NITPermissionsViewController: NITBaseViewController {
 }
 
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
-    
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
-        if (granted) {
+    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
+        if (granted && permissionsManager.status(status, isAtLeast: locationType.authorizationStatus)) {
             confirmLocationButton()
         }
         delegate?.locationGranted?(granted)
