@@ -11,7 +11,7 @@ import CoreLocation
 import UserNotifications
 
 protocol NITPermissionsManagerDelegate: class {
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool)
+    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus)
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager)
 }
 
@@ -58,10 +58,10 @@ class NITPermissionsManager: NSObject {
         self.locationManager.delegate = self
     }
     
-    func requestLocationPermission() {
+    func requestLocationPermission(minStatus: CLAuthorizationStatus) {
         if isLocationNotDetermined() {
             locationManager.requestAlwaysAuthorization()
-        } else if !isLocationGranted(status: .authorizedAlways) {
+        } else if !isLocationGranted(status: minStatus) {
             self.openAppSettings()
         }
     }
@@ -111,6 +111,15 @@ class NITPermissionsManager: NSObject {
         return false
     }
     
+    func status(_ actualStatus: CLAuthorizationStatus, isAtLeast minStatus: CLAuthorizationStatus) -> Bool {
+        if minStatus == .authorizedWhenInUse {
+            return actualStatus == .authorizedWhenInUse || actualStatus == .authorizedAlways
+        } else if minStatus == .authorizedAlways {
+            return actualStatus == .authorizedAlways
+        }
+        return false
+    }
+    
     func isLocationGranted(status: CLAuthorizationStatus) -> Bool {
         let osStatus = CLLocationManager.authorizationStatus()
         if (osStatus == status) {
@@ -121,12 +130,7 @@ class NITPermissionsManager: NSObject {
     
     func isLocationGrantedAtLeast(minStatus: CLAuthorizationStatus) -> Bool {
         let currentStatus = CLLocationManager.authorizationStatus()
-        if minStatus == .authorizedWhenInUse {
-            return currentStatus == .authorizedWhenInUse || currentStatus == .authorizedAlways
-        } else if minStatus == .authorizedAlways {
-            return currentStatus == .authorizedAlways
-        }
-        return false
+        return self.status(currentStatus, isAtLeast: minStatus)
     }
 
     func isLocationPartiallyGranted() -> Bool {
@@ -157,9 +161,9 @@ extension NITPermissionsManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if isLocationGranted(status: .authorizedAlways) {
-            delegate?.permissionsManager(self, didGrantLocationAuthorization: true)
+            delegate?.permissionsManager(self, didGrantLocationAuthorization: true, withStatus: status)
         } else {
-            delegate?.permissionsManager(self, didGrantLocationAuthorization: false)
+            delegate?.permissionsManager(self, didGrantLocationAuthorization: false, withStatus: status)
         }
     }
     

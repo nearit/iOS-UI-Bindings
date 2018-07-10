@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import CoreBluetooth
 
 @objc public enum NITPermissionsViewPermissions: NSInteger {
@@ -319,7 +320,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         refresh()
     }
 
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool) {
+    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
         refresh()
     }
 
