@@ -193,6 +193,8 @@ public class NITPermissionsViewController: NITBaseViewController {
         explain.text = explainText
         footer.tintColor = textColor
         
+        applyFont()
+        
         location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         location.setBackgroundImage(unknownButton, for: .normal)
         location.setTitle(locationText, for: .normal)
@@ -204,6 +206,19 @@ public class NITPermissionsViewController: NITBaseViewController {
         refreshButtons()
 
         footer.setTitle(notNowText, for: .normal)
+    }
+    
+    private func applyFont() {
+        if let regularFontName = NITUIAppearance.sharedInstance.regularFontName {
+            explain.changeFont(to: regularFontName)
+        }
+        if let boldFontName = NITUIAppearance.sharedInstance.boldFontName {
+            location.changeFont(to: boldFontName)
+            notification.changeFont(to: boldFontName)
+        }
+        if let italicFontName = NITUIAppearance.sharedInstance.italicFontName {
+            footer.changeFont(to: italicFontName)
+        }
     }
     
     private func refreshButtons() {

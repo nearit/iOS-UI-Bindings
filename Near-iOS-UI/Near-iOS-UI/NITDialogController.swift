@@ -107,7 +107,6 @@ public class NITDialogController: UIViewController {
         
         viewController.didMove(toParentViewController: self)
         
-        scrollView?.addObserver(self, forKeyPath: "contentSize", options: [.new, .old, .prior], context: nil)
         scrollView?.keyboardDismissMode = .interactive
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapOutside(_:)))
@@ -125,8 +124,20 @@ public class NITDialogController: UIViewController {
 
     }
     
+    public override func viewWillAppear(_ animated: Bool) {
+        scrollView?.addObserver(self, forKeyPath: "contentSize", options: [.new, .old, .prior], context: nil)
+    }
+    
     public override func viewWillDisappear(_ animated: Bool) {
-        scrollView.removeObserver(self, forKeyPath: "contentSize")
+        do {
+            try removeObserver()
+        } catch {
+            
+        }
+    }
+    
+    private func removeObserver() throws {
+        scrollView?.removeObserver(self, forKeyPath: "contentSize")
     }
     
     override public func viewDidAppear(_ animated: Bool) {

@@ -76,27 +76,44 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var jaggedBackground: UIImage!
 
     @objc public var expiredColor = UIColor.nearCouponExpired
-    @objc public var expiredFont = UIFont.italicSystemFont(ofSize: 12.0)
-
     @objc public var disabledColor = UIColor.nearCouponDisabled
-    @objc public var disabledFont = UIFont.italicSystemFont(ofSize: 12.0)
-
     @objc public var validColor = UIColor.nearCouponValid
-    @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
-
-    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
     @objc public var titleColor = UIColor.nearCouponTitleGray
-    @objc public var titleDisabledFont = UIFont.systemFont(ofSize: 16.0)
-    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
-    @objc public var titleExpiredFont = UIFont.systemFont(ofSize: 16.0)
-    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
-
-    @objc public var valueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueColor = UIColor.nearBlack
-    @objc public var valueDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
+    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
     @objc public var valueDisabledColor = UIColor.nearCouponListGray
-    @objc public var valueExpiredFont = UIFont.boldSystemFont(ofSize: 16.0)
     @objc public var valueExpiredColor = UIColor.nearCouponListGray
+    
+    let defaultEmptyListFont = UIFont.italicSystemFont(ofSize: 16.0)
+    @objc public var emptyListFont: UIFont?
+    
+    let defaultExpiredFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var expiredFont: UIFont?
+    
+    let defaultDisabledFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var disabledFont: UIFont?
+    
+    let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
+    @objc public var validFont: UIFont?
+    
+    let defaultTitleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleFont: UIFont?
+    
+    let defaultTitleDisabledFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleDisabledFont: UIFont?
+    
+    let defaultTitleExpiredFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleExpiredFont: UIFont?
+    
+    let defaultValueFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var valueFont: UIFont?
+    
+    let defaultValueDisabledFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var valueDisabledFont: UIFont?
+    
+    let defaultValueExpiredFont = UIFont.boldSystemFont(ofSize: 20.0)
+    @objc public var valueExpiredFont: UIFont?
 
     @objc public var expiredText: String!
     @objc public var disabledText: String!
@@ -283,26 +300,26 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 case .disabled:
                     cell.status.text = disabledText
                     cell.status.textColor = disabledColor
-                    cell.status.font = disabledFont
-                    cell.name.font = titleDisabledFont
+                    cell.status.font = getDisabledFont()
+                    cell.name.font = getTitleDisabledFont()
                     cell.name.textColor = titleDisabledColor
-                    cell.value.font = valueDisabledFont
+                    cell.value.font = getValueDisabledFont()
                     cell.value.textColor = valueDisabledColor
                 case .valid:
                     cell.status.text = validText
                     cell.status.textColor = validColor
-                    cell.status.font = validFont
-                    cell.name.font = titleFont
+                    cell.status.font = getValidFont()
+                    cell.name.font = getTitleFont()
                     cell.name.textColor = titleColor
-                    cell.value.font = valueFont
+                    cell.value.font = getValueFont()
                     cell.value.textColor = valueColor
                 case .expired:
                     cell.status.text = expiredText
                     cell.status.textColor = expiredColor
-                    cell.status.font = expiredFont
-                    cell.name.font = titleExpiredFont
+                    cell.status.font = getExpiredFont()
+                    cell.name.font = getTitleExpiredFont()
                     cell.name.textColor = titleExpiredColor
-                    cell.value.font = valueExpiredFont
+                    cell.value.font = getValueExpiredFont()
                     cell.value.textColor = valueExpiredColor
                 }
 
@@ -314,13 +331,117 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 if isLoading {
                     cell.setLoading()
                 } else {
-                    cell.setMessage(noCoupons, color: .nearWarmGrey, font: .systemFont(ofSize: 15.0))
+                    cell.setMessage(noCoupons, color: .nearWarmGrey, font: getEmptyListFont())
                 }
             }
         }
 
         return cell
     }
+    
+    //  FONTS
+    
+    private func getEmptyListFont() -> UIFont {
+        if let emptyListFont = self.emptyListFont {
+            return emptyListFont
+        } else {
+            if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+                return UIFont.init(name: italicFont, size: defaultEmptyListFont.pointSize) ?? defaultEmptyListFont
+            }
+            return defaultEmptyListFont
+        }
+    }
+    
+    private func getDisabledFont() -> UIFont {
+        if let disabledFont = self.disabledFont {
+            return disabledFont
+        }
+        if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: italicFont, size: defaultDisabledFont.pointSize) ?? defaultDisabledFont
+        }
+        return defaultDisabledFont
+    }
+    
+    private func getTitleDisabledFont() -> UIFont {
+        if let titleDisabledFont = self.titleDisabledFont {
+            return titleDisabledFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultTitleDisabledFont.pointSize) ?? defaultTitleDisabledFont
+        }
+        return defaultTitleDisabledFont
+    }
+    
+    private func getValueDisabledFont() -> UIFont {
+        if let valueDisabledFont = self.valueDisabledFont {
+            return valueDisabledFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultValueDisabledFont.pointSize) ?? defaultValueDisabledFont
+        }
+        return defaultValueDisabledFont
+    }
+    
+    private func getExpiredFont() -> UIFont {
+        if let expiredFont = self.expiredFont {
+            return expiredFont
+        }
+        if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: italicFont, size: defaultExpiredFont.pointSize) ?? defaultExpiredFont
+        }
+        return defaultExpiredFont
+    }
+    
+    private func getTitleExpiredFont() -> UIFont {
+        if let titleExpiredFont = self.titleExpiredFont {
+            return titleExpiredFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultTitleExpiredFont.pointSize) ?? defaultTitleExpiredFont
+        }
+        return defaultTitleExpiredFont
+    }
+    
+    private func getValueExpiredFont() -> UIFont {
+        if let valueExpiredFont = self.valueExpiredFont {
+            return valueExpiredFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultValueExpiredFont.pointSize) ?? defaultValueExpiredFont
+        }
+        return defaultValueExpiredFont
+    }
+    
+    private func getValidFont() -> UIFont {
+        if let validFont = self.validFont {
+            return validFont
+        }
+        if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: italicFont, size: defaultValidFont.pointSize) ?? defaultValidFont
+        }
+        return defaultValidFont
+    }
+    
+    private func getTitleFont() -> UIFont {
+        if let titleFont = self.titleFont {
+            return titleFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultTitleFont.pointSize) ?? defaultTitleFont
+        }
+        return defaultTitleFont
+    }
+    
+    private func getValueFont() -> UIFont {
+        if let valueFont = self.valueFont {
+            return valueFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultValueFont.pointSize) ?? defaultValueFont
+        }
+        return defaultValueFont
+    }
+    
     
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)

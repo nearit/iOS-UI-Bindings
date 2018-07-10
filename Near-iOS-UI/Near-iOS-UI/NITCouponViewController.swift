@@ -28,16 +28,32 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var couponValidColor = UIColor.nearCouponValid
     @objc public var couponDisabledColor = UIColor.nearCouponDisabled
     @objc public var couponExpiredColor = UIColor.nearCouponExpired
-    @objc public var validFont = UIFont.systemFont(ofSize: 12.0)
-    @objc public var fromToFont = UIFont.italicSystemFont(ofSize: 12.0)
-    @objc public var alternativeFont = UIFont.systemFont(ofSize: 20.0)
-    @objc public var titleFont = UIFont.systemFont(ofSize: 16.0)
+    
+    let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
+    @objc public var validFont: UIFont?
+    
+    let defaultFromToFont = UIFont.italicSystemFont(ofSize: 12.0)
+    @objc public var fromToFont: UIFont?
+    
+    let defaultAlternativeFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var alternativeFont: UIFont?
+    
+    let defaultTitleFont = UIFont.systemFont(ofSize: 16.0)
+    @objc public var titleFont: UIFont?
+    
+    let defaultDescriptionFont = UIFont.systemFont(ofSize: 13.0)
+    @objc public var descriptionFont: UIFont?
+    
+    let defaultSerialFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var serialFont: UIFont?
+    
+    let defaultValueFont = UIFont.systemFont(ofSize: 20.0)
+    @objc public var valueFont: UIFont?
+    
+    
     @objc public var titleColor = UIColor.nearBlack
-    @objc public var descriptionFont = UIFont.systemFont(ofSize: 13.0)
     @objc public var descriptionColor = UIColor.nearWarmGrey
-    @objc public var serialFont = UIFont.systemFont(ofSize: 20.0)
     @objc public var serialColor = UIColor.nearBlack
-    @objc public var valueFont = UIFont.systemFont(ofSize: 20.0)
     @objc public var valueColor = UIColor.nearBlack
 
     @IBOutlet weak var dates: UILabel!
@@ -139,12 +155,12 @@ public class NITCouponViewController: NITBaseViewController {
 
     internal func setupDates(color: UIColor) {
         let validAttrs: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: validFont,
+            NSAttributedStringKey.font: getValidFont(),
             NSAttributedStringKey.foregroundColor: color
         ]
 
         let fromToAttrs: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: fromToFont,
+            NSAttributedStringKey.font: getFromToFont(),
             NSAttributedStringKey.foregroundColor: UIColor.nearWarmGrey
         ]
 
@@ -173,19 +189,19 @@ public class NITCouponViewController: NITBaseViewController {
 
         setupQRCode()
         serial.text = coupon.qrCodeValue
-        serial.font = serialFont
+        serial.font = getSerialFont()
         serial.textColor = serialColor
 
         couponTitle.text = coupon.title ?? "Title"
         couponTitle.textColor = titleColor
-        couponTitle.font = titleFont
+        couponTitle.font = getTitleFont()
 
         longDescription.text = coupon.couponDescription
-        longDescription.font = descriptionFont
+        longDescription.font = getDescriptionFont()
         longDescription.textColor = descriptionColor
 
         value.text = coupon.value
-        value.font = valueFont
+        value.font = getValueFont()
         value.textColor = valueColor
 
         separator.isHidden = !drawSeparator
@@ -197,7 +213,7 @@ public class NITCouponViewController: NITBaseViewController {
         icon.layer.borderColor = UIColor.init(red: 51/255, green: 51/255, blue: 51/255, alpha: 1).cgColor
         icon.layer.borderWidth = 1.0
 
-        alternative.font = alternativeFont
+        alternative.font = getAlternativeFont()
 
         if let iconURL = coupon.icon?.smallSizeURL() {
             applyImage(fromURL: iconURL, toImageView: icon)
@@ -232,6 +248,81 @@ public class NITCouponViewController: NITBaseViewController {
 
     @IBAction func tapClose(_ sender: Any) {
         dialogController?.dismiss()
+    }
+    
+    private func getValidFont() -> UIFont {
+        if let validFont = self.validFont {
+            return validFont
+        }
+        if let globalItalic = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: globalItalic, size: defaultValidFont.pointSize) ?? defaultValidFont
+        }
+        return defaultValidFont
+    }
+    
+    private func getFromToFont() -> UIFont {
+        if let fromToFont = self.fromToFont {
+            return fromToFont
+        }
+        if let globalItalic = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: globalItalic, size: defaultFromToFont.pointSize) ?? defaultFromToFont
+        }
+        return defaultFromToFont
+    }
+    
+    private func getAlternativeFont() -> UIFont {
+        if let alternativeFont = self.alternativeFont {
+            return alternativeFont
+        }
+        if let globalItalic = NITUIAppearance.sharedInstance.italicFontName {
+            return UIFont.init(name: globalItalic, size: defaultAlternativeFont.pointSize) ??
+                defaultAlternativeFont
+        }
+        return defaultAlternativeFont
+    }
+    
+    private func getTitleFont() -> UIFont {
+        if let titleFont = self.titleFont {
+            return titleFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultTitleFont.pointSize) ??
+                defaultTitleFont
+        }
+        return defaultTitleFont
+    }
+    
+    private func getDescriptionFont() -> UIFont {
+        if let descriptionFont = self.descriptionFont {
+            return descriptionFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultDescriptionFont.pointSize) ??
+                defaultDescriptionFont
+        }
+        return defaultDescriptionFont
+    }
+    
+    private func getSerialFont() -> UIFont {
+        if let serialFont = self.serialFont {
+            return serialFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultSerialFont.pointSize) ??
+                defaultSerialFont
+        }
+        return defaultSerialFont
+    }
+    
+    private func getValueFont() -> UIFont {
+        if let valueFont = self.valueFont {
+            return valueFont
+        }
+        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
+            return UIFont.init(name: regularFont, size: defaultValueFont.pointSize) ??
+                defaultValueFont
+        }
+        return defaultValueFont
     }
 
 }
