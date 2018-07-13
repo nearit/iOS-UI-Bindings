@@ -135,6 +135,10 @@ public class NITPermissionsManager: NSObject {
         return false
     }
     
+    public func locationStatus() -> CLAuthorizationStatus {
+        return CLLocationManager.authorizationStatus()
+    }
+    
     public func isLocationGranted(status: CLAuthorizationStatus) -> Bool {
         let osStatus = CLLocationManager.authorizationStatus()
         if (osStatus == status) {
