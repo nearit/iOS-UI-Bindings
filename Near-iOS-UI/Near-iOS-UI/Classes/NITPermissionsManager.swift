@@ -89,6 +89,21 @@ public class NITPermissionsManager: NSObject {
         }
     }
     
+    
+    public func allPermissionsGranted(minLevel: CLAuthorizationStatus = .authorizedAlways, completionHandler: @escaping (Bool) -> Void) {
+        isNotificationAvailable { (available) in
+            if available {
+                if self.isLocationGranted(status: minLevel){
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            } else {
+                completionHandler(false)
+            }
+        }
+    }
+    
     @available(iOS 10.0, *)
     public func isNotificationAvailable(_ completionHandler: @escaping (Bool) -> Void) {
         notificationCenter.getNotificationSettings { (settings) in
