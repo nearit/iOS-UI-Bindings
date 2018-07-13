@@ -44,16 +44,26 @@ import CoreBluetooth
         }
     }
 
-    fileprivate func isGranted(permissionManager: NITPermissionsManager, minStatus: CLAuthorizationStatus ,btManager: CBPeripheralManager) -> Bool {
+    fileprivate func isGranted(permissionManager: NITPermissionsManager, minStatus: CLAuthorizationStatus ,btManager: CBPeripheralManager, completionHandler: @escaping (Bool) -> Void) {
         let hasLocation = contains(NITPermissionsViewPermissions.location)
         let hasNotification = contains(NITPermissionsViewPermissions.notifications)
         let hasBluetooth = contains(NITPermissionsViewPermissions.bluetooth)
 
-        if hasBluetooth && btManager.state != .poweredOn { return false }
-        if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: minStatus) { return false }
-        if hasNotification && !permissionManager.isNotificationAvailable() { return false }
-
-        return true
+        if hasBluetooth && btManager.state != .poweredOn {
+            completionHandler(false)
+            return
+        }
+        if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: minStatus) {
+            completionHandler(false)
+            return
+        }
+        if hasNotification {
+            permissionManager.isNotificationAvailable { (granted) in
+                completionHandler(granted)
+            }
+        } else {
+            completionHandler(false)
+        }
     }
 }
 
@@ -275,11 +285,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             iconBluetooth.tintColor = permissionNotAvailableColor
         }
 
-        if permissionManager.isNotificationAvailable() {
-            iconNotifications.tintColor = permissionAvailableColor
-        } else {
-            iconNotifications.tintColor = permissionNotAvailableColor
-        }
+        permissionManager.isNotificationAvailable({ (granted) in
+            if granted {
+                self.iconNotifications.tintColor = self.permissionAvailableColor
+            } else {
+                self.iconNotifications.tintColor = self.permissionNotAvailableColor
+            }
+        })
 
         iconLocation.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.location)
         iconNotifications.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
@@ -287,9 +299,14 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         button.isHidden = permissionsRequired.toNITPermission() == nil
         
-        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, minStatus: locationType.authorizationStatus, btManager: btManager)
-        delegate?.permissionView(self, didGrant: granted)
-
+        permissionsRequired.isGranted(permissionManager: permissionManager,
+                                      minStatus: locationType.authorizationStatus,
+                                      btManager: btManager,
+                                      completionHandler:
+            { (granted) in
+                self.delegate?.permissionView(self, didGrant: granted)
+        })
+        
         debounceResize()
     }
 
@@ -303,18 +320,19 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
 
     @objc private func resize() {
-        let granted = permissionsRequired.isGranted(permissionManager: permissionManager, minStatus: locationType.authorizationStatus , btManager: btManager)
-        let newHeight = granted ? 0.0 : height
-
-        if animateView {
-            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: { [weak self] () -> Void in
-                if let wself = self {
-                    wself.heightConstraint!.constant = newHeight
-                    wself.superview?.layoutIfNeeded()
-                }
-                }, completion: { _ in })
-        } else {
-            heightConstraint = heightAnchor.constraint(equalToConstant: newHeight)
+        permissionsRequired.isGranted(permissionManager: permissionManager, minStatus: locationType.authorizationStatus , btManager: btManager) { (granted) in
+            let newHeight = granted ? 0.0 : self.height
+            
+            if self.animateView {
+                UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: { [weak self] () -> Void in
+                    if let wself = self {
+                        wself.heightConstraint!.constant = newHeight
+                        wself.superview?.layoutIfNeeded()
+                    }
+                    }, completion: { _ in })
+            } else {
+                self.heightConstraint = self.heightAnchor.constraint(equalToConstant: newHeight)
+            }
         }
     }
 
@@ -348,3 +366,4 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 }
+

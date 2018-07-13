@@ -89,7 +89,6 @@ public class NITPermissionsManager: NSObject {
         }
     }
     
-    
     public func allPermissionsGranted(minLevel: CLAuthorizationStatus = .authorizedAlways, completionHandler: @escaping (Bool) -> Void) {
         isNotificationAvailable { (available) in
             if available {
@@ -104,26 +103,27 @@ public class NITPermissionsManager: NSObject {
         }
     }
     
-    @available(iOS 10.0, *)
     public func isNotificationAvailable(_ completionHandler: @escaping (Bool) -> Void) {
-        notificationCenter.getNotificationSettings { (settings) in
-            DispatchQueue.main.async {
-                if settings.authorizationStatus == .authorized {
+        if #available(iOS 10.0, *) {
+            notificationCenter.getNotificationSettings { (settings) in
+                DispatchQueue.main.async {
+                    if settings.authorizationStatus == .authorized {
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                }
+            }
+        } else {
+            if let settings = application.currentUserNotificationSettings {
+                if (settings.types.contains(.alert) || settings.types.contains(.badge) || settings.types.contains(.sound)) {
                     completionHandler(true)
                 } else {
                     completionHandler(false)
                 }
             }
+            completionHandler(false)
         }
-    }
-    
-    public func isNotificationAvailable() -> Bool {
-        if let settings = application.currentUserNotificationSettings {
-            if (settings.types.contains(.alert) || settings.types.contains(.badge) || settings.types.contains(.sound)) {
-                return true
-            }
-        }
-        return false
     }
     
     public func status(_ actualStatus: CLAuthorizationStatus, isAtLeast minStatus: CLAuthorizationStatus) -> Bool {

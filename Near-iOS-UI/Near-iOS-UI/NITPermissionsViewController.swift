@@ -93,23 +93,30 @@ public class NITPermissionsViewController: NITBaseViewController {
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if autoStartRadar == .on && checkPermissions() {
-            let manager = NITManager.default()
-            manager.start()
+        if autoStartRadar == .on {
+            checkPermissions { (granted) in
+                if granted {
+                    let manager = NITManager.default()
+                    manager.start()
+                }
+            }
         }
         callClosingDelegate()
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc public func checkPermissions() -> Bool {
+    @objc public func checkPermissions(_ completionHandler: @escaping (Bool) -> Void) {
         switch type {
         case .notificationsOnly:
-            return permissionsManager.isNotificationAvailable()
+            permissionsManager.isNotificationAvailable(completionHandler)
         case .locationOnly:
-            return permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
+            completionHandler(permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus))
         case .locationAndNotifications:
-            return permissionsManager.isNotificationAvailable() &&
-                permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
+            if permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
+                permissionsManager.isNotificationAvailable(completionHandler)
+            } else {
+                completionHandler(false)
+            }
         }
     }
     
@@ -223,21 +230,13 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     private func refreshButtons() {
-        if #available(iOS 10.0, *) {
-            permissionsManager.isNotificationAvailable({ (available) in
-                if available {
-                    self.confirmNotificationButton()
-                } else {
-                    self.unconfirmNotificationButton()
-                }
-            })
-        } else {
-            if permissionsManager.isNotificationAvailable() {
-                confirmNotificationButton()
+        permissionsManager.isNotificationAvailable({ (available) in
+            if available {
+                self.confirmNotificationButton()
             } else {
-                unconfirmNotificationButton()
+                self.unconfirmNotificationButton()
             }
-        }
+        })
         
         var authorizationStatus: CLAuthorizationStatus!
         switch locationType {
@@ -260,8 +259,9 @@ public class NITPermissionsViewController: NITBaseViewController {
 
     fileprivate func callClosingDelegate() {
         let location = permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
-        let notifications = permissionsManager.isNotificationAvailable()
-        delegate?.dialogClosed?(locationGranted: location, notificationsGranted: notifications)
+        permissionsManager.isNotificationAvailable { (granted) in
+            self.delegate?.dialogClosed?(locationGranted: location, notificationsGranted: granted)
+        }
     }
     
     // MARK: - Permission buttons
@@ -347,13 +347,20 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     
     public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
-        delegate?.notificationsGranted?(manager.isNotificationAvailable())
-        eventuallyClose()
+        manager.isNotificationAvailable { (granted) in
+            self.delegate?.notificationsGranted?(granted)
+            self.eventuallyClose()
+        }
+        
     }
 
     func eventuallyClose() {
-        if autoCloseDialog == .on && checkPermissions() {
-            dismiss(animated: true, completion: nil)
+        if autoCloseDialog == .on  {
+            checkPermissions { (granted) in
+                if granted {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
 
