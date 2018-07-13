@@ -142,7 +142,9 @@ public class NITPermissionsManager: NSObject {
     public func isNotificationStatusDetermined(_ completionHandler:@escaping (Bool) -> Void) {
         if #available(iOS 10.0, *) {
             notificationCenter.getNotificationSettings { (settings) in
-                completionHandler(settings.authorizationStatus == .notDetermined)
+                DispatchQueue.main.async {
+                    completionHandler(settings.authorizationStatus == .notDetermined)
+                }
             }
         } else {
             completionHandler(false)
