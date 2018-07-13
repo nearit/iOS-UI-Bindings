@@ -139,6 +139,16 @@ public class NITPermissionsManager: NSObject {
         return CLLocationManager.authorizationStatus()
     }
     
+    public func isNotificationStatusDetermined(_ completionHandler:@escaping (Bool) -> Void) {
+        if #available(iOS 10.0, *) {
+            notificationCenter.getNotificationSettings { (settings) in
+                completionHandler(settings.authorizationStatus == .notDetermined)
+            }
+        } else {
+            completionHandler(false)
+        }
+    }
+    
     public func isLocationGranted(status: CLAuthorizationStatus) -> Bool {
         let osStatus = CLLocationManager.authorizationStatus()
         if (osStatus == status) {
