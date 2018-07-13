@@ -322,11 +322,11 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         refresh()
     }
 
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
+    public func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
         refresh()
     }
 
-    func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
+    public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         refresh()
     }
 

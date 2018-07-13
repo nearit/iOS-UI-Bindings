@@ -337,7 +337,7 @@ public class NITPermissionsViewController: NITBaseViewController {
 }
 
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
+    public func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
         if (granted && permissionsManager.status(status, isAtLeast: locationType.authorizationStatus)) {
             confirmLocationButton()
         }
@@ -345,7 +345,7 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
         eventuallyClose()
     }
     
-    func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
+    public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
         confirmNotificationButton()
         delegate?.notificationsGranted?(manager.isNotificationAvailable())
         eventuallyClose()
