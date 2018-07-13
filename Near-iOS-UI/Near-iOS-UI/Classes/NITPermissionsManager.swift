@@ -147,7 +147,7 @@ public class NITPermissionsManager: NSObject {
                 }
             }
         } else {
-            completionHandler(false)
+            completionHandler(true)
         }
     }
     
