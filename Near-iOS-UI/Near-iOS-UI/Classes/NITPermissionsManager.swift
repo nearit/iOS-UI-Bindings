@@ -143,7 +143,7 @@ public class NITPermissionsManager: NSObject {
         if #available(iOS 10.0, *) {
             notificationCenter.getNotificationSettings { (settings) in
                 DispatchQueue.main.async {
-                    completionHandler(settings.authorizationStatus == .notDetermined)
+                    completionHandler(settings.authorizationStatus != .notDetermined)
                 }
             }
         } else {
