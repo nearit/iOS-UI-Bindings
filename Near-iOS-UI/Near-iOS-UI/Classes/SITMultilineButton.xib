@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITMultilineButton" customModule="NearUIBinding" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Vmd-Kx-rJS"/>
+                <outlet property="firstLineLabel" destination="YY3-zw-cTM" id="kBM-8R-FG4"/>
+                <outlet property="leftImageView" destination="7Aq-iS-O3I" id="2jh-gV-9Zk"/>
+                <outlet property="rightImageView" destination="ysB-Gy-K2r" id="VXq-Uu-jXy"/>
+                <outlet property="secondLineLabel" destination="vbQ-bZ-KOt" id="MQz-L6-1xu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Mak-c3-6kt">
+                    <rect key="frame" x="0.0" y="313" width="375" height="41"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY3-zw-cTM" userLabel="First Line">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbQ-bZ-KOt" userLabel="Second Line">
+                            <rect key="frame" x="0.0" y="20.5" width="375" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Aq-iS-O3I" userLabel="Left Image">
+                    <rect key="frame" x="22" y="323.5" width="19" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="19" id="7jP-M4-CvP"/>
+                        <constraint firstAttribute="width" constant="19" id="Ck6-Ta-s0h"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ysB-Gy-K2r">
+                    <rect key="frame" x="337" y="321.5" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="23" id="WjD-T1-qHI"/>
+                        <constraint firstAttribute="width" constant="23" id="noF-Lz-k55"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ysB-Gy-K2r" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3Hz-BN-3C0"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ysB-Gy-K2r" secondAttribute="trailing" constant="15" id="AQB-R0-Saa"/>
+                <constraint firstItem="Mak-c3-6kt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SWu-ok-UMJ"/>
+                <constraint firstItem="7Aq-iS-O3I" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="22" id="aB9-QV-Rzt"/>
+                <constraint firstItem="Mak-c3-6kt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="oIH-D8-T5V"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Mak-c3-6kt" secondAttribute="trailing" id="wXq-hg-YZF"/>
+                <constraint firstItem="7Aq-iS-O3I" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zQ9-vY-bEy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
