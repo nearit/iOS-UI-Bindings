@@ -54,8 +54,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     let permissionsManager = NITPermissionsManager()
 
     @IBOutlet weak var explain: UILabel!
-    @IBOutlet weak var location: UIButton!
-    @IBOutlet weak var notification: UIButton!
+    @IBOutlet weak var location: NITMultilineButton!
+    @IBOutlet weak var notification: NITMultilineButton!
     @IBOutlet weak var footer: UIButton!
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
@@ -66,8 +66,6 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var autoStartRadar: NITPermissionsAutoStartRadarType
     @objc public var autoCloseDialog: NITPermissionsAutoCloseDialog
 
-    @objc public var unknownButton: UIImage!
-    @objc public var grantedButton: UIImage!
     @objc public var grantedIcon: UIImage!
     @objc public var headerImage: UIImage!
     @objc public var textColor: UIColor!
@@ -75,6 +73,9 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var locationIcon: UIImage!
 
     @objc public var locationText: String!
+    @objc public var locationAlways: String!
+    @objc public var locationInUse: String!
+    @objc public var locationNever: String!
     @objc public var notificationsText: String!
     @objc public var explainText: String!
     @objc public var closeText: String!
@@ -167,21 +168,19 @@ public class NITPermissionsViewController: NITBaseViewController {
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
 
-        let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
-        unknownButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
-        grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
+        grantedIcon = UIImage(named: "charcoalTick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
-        notificationsIcon = UIImage(named: "notifications", in: bundle, compatibleWith: nil)
-        locationIcon = UIImage(named: "location", in: bundle, compatibleWith: nil)
+        
         textColor = UIColor.nearWarmGrey
 
-        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
-        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
         explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
         closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
         notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, bundle: bundle, value: "Not now", comment: "Permissios popup: Not now")
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+        locationNever = NSLocalizedString("Permission popup: LOCATION NEVER", tableName: nil, bundle: bundle, value: "never", comment: "Permission popup: LOCATION NEVER")
+        locationInUse = NSLocalizedString("Permission popup: LOCATION IN USE", tableName: nil, bundle: bundle, value: "while using the app", comment: "Permission popup: LOCATION IN USE")
+        locationAlways = NSLocalizedString("Permission popup: LOCATION ALWAYS", tableName: nil, bundle: bundle, value: "always", comment: "Permission popup: LOCATION ALWAYS")
     }
     
     internal func setupUI() {
@@ -200,15 +199,11 @@ public class NITPermissionsViewController: NITBaseViewController {
         explain.textColor = textColor
         explain.text = explainText
         footer.tintColor = textColor
+        notification.setLabel(notificationsText)
+        location.setLabel(locationText)
         
         applyFont()
         
-        location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        location.setBackgroundImage(unknownButton, for: .normal)
-        location.setTitle(locationText, for: .normal)
-        notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        notification.setBackgroundImage(unknownButton, for: .normal)
-        notification.setTitle(notificationsText, for: .normal)
         header.image = headerImage
         
         refreshButtons()
@@ -246,9 +241,21 @@ public class NITPermissionsViewController: NITBaseViewController {
             authorizationStatus = .authorizedWhenInUse
         }
         
-        if permissionsManager.isLocationGrantedAtLeast(minStatus: authorizationStatus) {
+        let locationStatus = permissionsManager.locationStatus()
+        switch locationStatus {
+        case .notDetermined:
+            setLocationNotDetermined()
+        case .authorizedAlways:
             confirmLocationButton()
-        } else {
+        case .authorizedWhenInUse:
+            if locationType == .always {
+                setLocationOnlyInUse()
+            } else {
+                confirmLocationButton()
+            }
+        case .denied:
+            unconfirmLocationButton()
+        default:
             unconfirmLocationButton()
         }
     }
@@ -275,29 +282,56 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func confirmLocationButton() {
-        location.setBackgroundImage(grantedButton, for: .normal)
-        location.setTitleColor(UIColor.white, for: .normal)
-        location.setImage(grantedIcon, for: .normal)
+        // permission is granted
+        location.setColor(UIColor.gray242)
+        location.firstLineLabel.textColor = UIColor.charcoalGray
+        location.secondLineLabel.textColor = UIColor.charcoalGray
+        location.leftImage = grantedIcon
+        location.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
+        location.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
+        location.makeHappy()
+        location.setLabel(locationText, secondLine: locationAlways)
         footer.setTitle(closeText, for: .normal)
     }
     
     func unconfirmLocationButton() {
-        location.setBackgroundImage(unknownButton, for: .normal)
-        location.setTitleColor(UIColor.black, for: .normal)
-        location.setImage(locationIcon, for: .normal)
+        location.setColor(UIColor.charcoalGray)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.makeSad()
+        location.setLabel(locationText, secondLine: locationNever)
+    }
+    
+    func setLocationNotDetermined() {
+        location.setColor(UIColor.charcoalGray)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.rightImage = nil
+        location.setLabel(locationText)
+    }
+    
+    func setLocationOnlyInUse() {
+        location.setColor(UIColor.charcoalGray)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.makeWorried()
+        location.setLabel(locationText, secondLine: locationInUse)
     }
     
     func confirmNotificationButton() {
-        notification.setBackgroundImage(grantedButton, for: .normal)
-        notification.setTitleColor(UIColor.white, for: .normal)
-        notification.setImage(grantedIcon, for: .normal)
+        notification.firstLineLabel.textColor = UIColor.charcoalGray
+        notification.setColor(UIColor.gray242)
+        notification.leftImage = grantedIcon
+        notification.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
+        notification.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
+        notification.makeHappy()
         footer.setTitle(closeText, for: .normal)
     }
     
     func unconfirmNotificationButton() {
-        notification.setBackgroundImage(unknownButton, for: .normal)
-        notification.setTitleColor(UIColor.black, for: .normal)
-        notification.setImage(notificationsIcon, for: .normal)
+        notification.setColor(UIColor.charcoalGray)
+        notification.firstLineLabel.textColor = UIColor.white
+        notification.makeSad()
     }
     
     @objc public func show() {

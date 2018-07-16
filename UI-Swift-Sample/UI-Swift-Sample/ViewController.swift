@@ -72,8 +72,8 @@ class ViewController: UIViewController {
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
         aViewController.isEnableTapToClose = true
-        aViewController.unknownButton = unknownImage
-        aViewController.grantedButton = grantedImage
+        // aViewController.unknownButton = unknownImage
+        // aViewController.grantedButton = grantedImage
         aViewController.grantedIcon = UIImage(named: "green-dot")
         aViewController.locationText = "Turn on location"
         aViewController.notificationsText = "Turn on notications"

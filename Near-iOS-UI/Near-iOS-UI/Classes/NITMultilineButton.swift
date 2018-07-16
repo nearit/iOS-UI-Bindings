@@ -39,7 +39,7 @@ public class NITMultilineButton: UIButton {
     
     func commonInit() {
         let bundle = Bundle.NITBundle(for: NITMultilineButton.self)
-        bundle.loadNibNamed("SITMultilineButton", owner: self, options: nil)
+        bundle.loadNibNamed("NITMultilineButton", owner: self, options: nil)
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -51,6 +51,13 @@ public class NITMultilineButton: UIButton {
         contentView.backgroundColor = UIColor.charcoalGray
         contentView.layer.masksToBounds = true
         
+        if let regularFontName = NITUIAppearance.sharedInstance.regularFontName {
+            secondLineLabel.changeFont(to: regularFontName)
+        }
+        
+        if let boldFontName = NITUIAppearance.sharedInstance.boldFontName {
+            firstLineLabel.changeFont(to: boldFontName)
+        }
         
     }
     
@@ -77,7 +84,6 @@ public class NITMultilineButton: UIButton {
     public func makeHappy() {
         let happy = UIImage(named: "happyGreen", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
         rightImage = happy
-        leftImage = #imageLiteral(resourceName: "charcoalTick")
         firstLineLabel.textColor = UIColor.charcoalGray
         secondLineLabel.textColor = UIColor.charcoalGray
         setColor(UIColor.gray242)

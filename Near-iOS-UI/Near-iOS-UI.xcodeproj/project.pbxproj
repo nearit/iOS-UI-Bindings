@@ -59,7 +59,7 @@
 		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
 		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 		D77EF6EF20FCA73B00198922 /* NITMultilineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */; };
-		D77EF6F120FCAA1400198922 /* SITMultilineButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EF6F020FCAA1400198922 /* SITMultilineButton.xib */; };
+		D77EF6F120FCAA1400198922 /* NITMultilineButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */; };
 		D7B0C7D820EB6CA30076FA92 /* NITUIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B0C7D720EB6CA30076FA92 /* NITUIAppearance.swift */; };
 /* End PBXBuildFile section */
 
@@ -176,7 +176,7 @@
 		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
 		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
 		D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITMultilineButton.swift; sourceTree = "<group>"; };
-		D77EF6F020FCAA1400198922 /* SITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SITMultilineButton.xib; sourceTree = "<group>"; };
+		D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITMultilineButton.xib; sourceTree = "<group>"; };
 		D7B0C7D720EB6CA30076FA92 /* NITUIAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITUIAppearance.swift; sourceTree = "<group>"; };
 		D859458097C3BBE84F88ADBE /* Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F8AB7D394C663472BFB8DF6E /* Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 				26BA34982040228E000B7CB4 /* NITInboxCell.xib */,
 				D7B0C7D720EB6CA30076FA92 /* NITUIAppearance.swift */,
 				D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */,
-				D77EF6F020FCAA1400198922 /* SITMultilineButton.xib */,
+				D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -521,7 +521,7 @@
 			files = (
 				26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */,
 				8A5ECD5F1FB983CA00C099BB /* NITCouponCell.xib in Resources */,
-				D77EF6F120FCAA1400198922 /* SITMultilineButton.xib in Resources */,
+				D77EF6F120FCAA1400198922 /* NITMultilineButton.xib in Resources */,
 				8A5ECD5D1FB982DE00C099BB /* NITCouponListViewController.xib in Resources */,
 				26BA34992040228E000B7CB4 /* NITInboxCell.xib in Resources */,
 				26BA349520401FEE000B7CB4 /* NITInboxListViewController.xib in Resources */,
