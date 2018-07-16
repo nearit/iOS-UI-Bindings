@@ -225,20 +225,18 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     private func refreshButtons() {
-        permissionsManager.isNotificationAvailable({ (available) in
-            if available {
-                self.confirmNotificationButton()
+        permissionsManager.isNotificationStatusDetermined { (isDetermined) in
+            if isDetermined {
+                self.permissionsManager.isNotificationAvailable({ (available) in
+                    if available {
+                        self.confirmNotificationButton()
+                    } else {
+                        self.unconfirmNotificationButton()
+                    }
+                })
             } else {
-                self.unconfirmNotificationButton()
+                self.setNotificationUndetermined()
             }
-        })
-        
-        var authorizationStatus: CLAuthorizationStatus!
-        switch locationType {
-        case .always:
-            authorizationStatus = .authorizedAlways
-        case .whenInUse:
-            authorizationStatus = .authorizedWhenInUse
         }
         
         let locationStatus = permissionsManager.locationStatus()
@@ -328,6 +326,11 @@ public class NITPermissionsViewController: NITBaseViewController {
         footer.setTitle(closeText, for: .normal)
     }
     
+    func setNotificationUndetermined() {
+        notification.setColor(UIColor.charcoalGray)
+        notification.firstLineLabel.textColor = UIColor.white
+    }
+    
     func unconfirmNotificationButton() {
         notification.setColor(UIColor.charcoalGray)
         notification.firstLineLabel.textColor = UIColor.white
@@ -380,7 +383,7 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     }
     
     public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
-        confirmNotificationButton()
+        refreshButtons()
         manager.isNotificationAvailable { (granted) in
             self.delegate?.notificationsGranted?(granted)
             self.eventuallyClose()
