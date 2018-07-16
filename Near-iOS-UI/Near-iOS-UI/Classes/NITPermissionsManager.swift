@@ -191,6 +191,9 @@ public class NITPermissionsManager: NSObject {
 extension NITPermissionsManager: CLLocationManagerDelegate {
     
     public func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .notDetermined {
+            return
+        }
         if isLocationGranted(status: .authorizedAlways) {
             delegate?.permissionsManager(self, didGrantLocationAuthorization: true, withStatus: status)
         } else {
