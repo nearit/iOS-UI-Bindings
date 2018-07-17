@@ -308,9 +308,12 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private func setBarStyle(strongFailure: Bool, lightFailure: Bool) {
         if (strongFailure) {
             backgroundColor = UIColor.sadRed
+            delegate?.permissionView(self, didGrant: false)
         } else if (lightFailure) {
             backgroundColor = UIColor.worriedYellow
+            delegate?.permissionView(self, didGrant: false)
         } else {
+            delegate?.permissionView(self, didGrant: true)
             // all good
         }
         
