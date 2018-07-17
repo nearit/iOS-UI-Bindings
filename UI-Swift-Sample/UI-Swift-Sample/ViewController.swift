@@ -29,19 +29,6 @@ class ViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
 
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Family: \(family) Font names: \(names)")
-        }
-        
-        NITUIAppearance.sharedInstance.regularFontName = "Raleway-Regular"
-        NITUIAppearance.sharedInstance.mediumFontName = "Raleway-Medium"
-        NITUIAppearance.sharedInstance.boldFontName = "Raleway-Bold"
-        NITUIAppearance.sharedInstance.italicFontName = "Raleway-Italic"
-        NITUIAppearance.sharedInstance.mediumItalicFontName = "Raleway-MediumItalic"
-        NITUIAppearance.sharedInstance.boldItalicFontName = "Raleway-BoldItalic"
-        
-        // Raleway-Regular
     }
 
     override func didReceiveMemoryWarning() {
@@ -300,10 +287,10 @@ class ViewController: UIViewController {
         permissionViewB.backgroundColor = .gray
         permissionViewB.messageColor = .black
         permissionViewB.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
-        permissionViewB.permissionAvailableColor = .green
-        permissionViewB.permissionNotAvailableColor = .red
-        permissionViewB.buttonText = "Roger"
-        permissionViewB.buttonColor = .white
+//        permissionViewB.permissionAvailableColor = .green
+//        permissionViewB.permissionNotAvailableColor = .red
+//        permissionViewB.buttonText = "Roger"r
+//        permissionViewB.buttonColor = .white
         permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 10.0)
         permissionViewB.buttonBackgroundImage = UIImage(named: "blue-button")
         permissionViewB.callbackOnPermissions = { (view) in

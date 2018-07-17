@@ -22,11 +22,15 @@ class NITPermissionBarButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        backgroundColor = UIColor.charcoalGray
+        
         let halfHeight = layer.frame.height / 2
         layer.cornerRadius = halfHeight
         
         addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.spacing = 8.0
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }

@@ -9,6 +9,7 @@
 import UIKit
 import NearITSDK
 import OHHTTPStubs
+import NearUIBinding
 import UserNotifications
 
 @UIApplicationMain
@@ -30,6 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         enableStubForCoupons(true)
         enableStubForInbox(true)
+        
+        for family in UIFont.familyNames.sorted() {
+            let names = UIFont.fontNames(forFamilyName: family)
+            print("Family: \(family) Font names: \(names)")
+        }
+        
+        NITUIAppearance.sharedInstance.regularFontName = "Raleway-Regular"
+        NITUIAppearance.sharedInstance.mediumFontName = "Raleway-Medium"
+        NITUIAppearance.sharedInstance.boldFontName = "Raleway-Bold"
+        NITUIAppearance.sharedInstance.italicFontName = "Raleway-Italic"
+        NITUIAppearance.sharedInstance.mediumItalicFontName = "Raleway-MediumItalic"
+        NITUIAppearance.sharedInstance.boldItalicFontName = "Raleway-BoldItalic"
         
         return true
     }
