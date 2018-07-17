@@ -72,6 +72,12 @@ import CoreBluetooth
     case bottom
 }
 
+enum NITPermissionsViewSatisfaction: NSInteger {
+    case happy
+    case worried
+    case sad
+}
+
 public protocol NITPermissionsViewDelegate: class {
     func permissionView(_ permissionView: NITPermissionsView, didGrant granted: Bool)
     func permissionView(_ permissionView: NITPermissionsView, colorDidChangeTo: UIColor)
@@ -93,7 +99,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private var heightConstraint: NSLayoutConstraint?
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
-    private var satisfied: Bool = true
+    private var satisfied: NITPermissionsViewSatisfaction = .sad
     
     @objc public var refreshOnAppActivation: Bool = true
     
@@ -266,25 +272,49 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     private func refresh() {
         // button.isHidden = permissionsRequired.toNITPermission() == nil
-        permissionsRequired.isGranted(permissionManager: permissionManager,
-                                      minStatus: locationType.authorizationStatus,
-                                      btManager: btManager,
-                                      completionHandler:
-            { (granted) in
-                self.delegate?.permissionView(self, didGrant: granted)
-                if !granted {
-                    self.satisfied = false
-                    self.setBarStatus()
-                }
-        })
+        var strongFailure = false
+        var lightFailure = false
         
-        debounceResize()
+        let hasLocation = permissionsRequired.contains(NITPermissionsViewPermissions.location)
+        let hasNotification = permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
+        let hasBluetooth = permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
+        
+        
+        if hasBluetooth && btManager.state != .poweredOn {
+            strongFailure = true
+        }
+        if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
+            let minRequirement = locationType
+            let actualPermission = permissionManager.locationStatus()
+            switch minRequirement {
+            case .always:
+                strongFailure = strongFailure || (actualPermission != .authorizedAlways && actualPermission != .authorizedWhenInUse)
+                lightFailure = lightFailure || (actualPermission == .authorizedWhenInUse)
+            case .whenInUse:
+                strongFailure = strongFailure || (actualPermission != .authorizedAlways && actualPermission != .authorizedWhenInUse)
+            }
+        }
+        
+        if hasNotification {
+            permissionManager.isNotificationAvailable { (granted) in
+                strongFailure = strongFailure || !granted
+                self.setBarStyle(strongFailure: strongFailure, lightFailure: lightFailure)
+            }
+        } else {
+            setBarStyle(strongFailure: strongFailure, lightFailure: lightFailure)
+        }
     }
     
-    private func setBarStatus() {
-        if !satisfied {
+    private func setBarStyle(strongFailure: Bool, lightFailure: Bool) {
+        if (strongFailure) {
             backgroundColor = UIColor.sadRed
+        } else if (lightFailure) {
+            backgroundColor = UIColor.worriedYellow
+        } else {
+            // all good
         }
+        
+        debounceResize()
     }
 
     private func debounceResize() {
