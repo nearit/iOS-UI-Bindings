@@ -74,18 +74,14 @@ import CoreBluetooth
 
 public protocol NITPermissionsViewDelegate: class {
     func permissionView(_ permissionView: NITPermissionsView, didGrant granted: Bool)
+    func permissionView(_ permissionView: NITPermissionsView, colorDidChangeTo: UIColor)
 }
 
 public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var permissionButton: NITPermissionBarButton!
     @IBOutlet weak var message: UILabel!
-    @IBOutlet weak var iconLocation: UIImageView!
-    @IBOutlet weak var iconNotifications: UIImageView!
-    @IBOutlet weak var iconBluetooth: UIImageView!
     @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var centerConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @objc public var locationType : NITPermissionsLocationType = .always
 
@@ -104,7 +100,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
     @objc public var buttonFont: UIFont? {
         didSet {
-            button.titleLabel?.font = buttonFont
+            // button.titleLabel?.font = buttonFont
         }
     }
     
@@ -121,34 +117,9 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-
     @objc @IBInspectable public var messageColor: UIColor? {
         didSet {
             message.textColor = messageColor
-        }
-    }
-
-    @objc @IBInspectable public var buttonText: String? {
-        didSet {
-            button.setTitle(buttonText, for: .normal)
-        }
-    }
-
-    @objc @IBInspectable public var buttonColor: UIColor? {
-        didSet {
-            button.setTitleColor(buttonColor, for: .normal)
-        }
-    }
-
-    @objc @IBInspectable public var permissionAvailableColor: UIColor? = UIColor.white {
-        didSet {
-            refresh()
-        }
-    }
-
-    @objc @IBInspectable public var permissionNotAvailableColor: UIColor? = UIColor.nearRed {
-        didSet {
-            refresh()
         }
     }
 
@@ -164,7 +135,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     @objc @IBInspectable public var buttonBackgroundImage: UIImage? {
         didSet {
-            button.setBackgroundImage(buttonBackgroundImage, for: .normal)
+            // button.setBackgroundImage(buttonBackgroundImage, for: .normal)
         }
     }
 
@@ -193,12 +164,10 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
         permissionManager.delegate = self
-        backgroundColor = backgroundColor ?? UIColor.nearBlack
 
         let bundle = Bundle.NITBundle(for: NITPermissionsView.self)
         bundle.loadNibNamed("NITPermissionsView", owner: self, options: nil)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.backgroundColor = .clear
         addSubview(backgroundView)
 
         heightConstraint = heightAnchor.constraint(equalToConstant: 0.0)
@@ -212,18 +181,22 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Please provide all required permissions", comment: "Permission bar message: provide all permissions")
 
-        buttonText = NSLocalizedString("Permission bar button", tableName: nil, bundle: bundle, value: "OK", comment: "Permission bar button: OK")
-
         callbackOnPermissions = { (view: NITPermissionsView) -> Void in
             view.defaultCallback()
         }
 
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
 
+        backgroundView.backgroundColor = UIColor.sadRed
+        
         applyFont()
-        refresh()
+        // refresh()
         align()
         setNeedsLayout()
+        
+        permissionButton.addMissingConstraint(.notification)
+        permissionButton.addMissingConstraint(.blueTooth)
+        permissionButton.addMissingConstraint(.location)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
@@ -237,13 +210,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             }
         }
         
-        if let buttonFont = self.buttonFont {
-            button.titleLabel?.font = buttonFont
-        } else {
-            if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
-                button.titleLabel?.font = UIFont.init(name: boldFont, size: 15.0)
-            }
-        }
+//        if let buttonFont = self.buttonFont {
+//            button.titleLabel?.font = buttonFont
+//        } else {
+//            if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+//                button.titleLabel?.font = UIFont.init(name: boldFont, size: 15.0)
+//            }
+//        }
     }
     
     deinit {
@@ -257,14 +230,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
     
     private func align() {
-        switch alignement {
-        case .center:
-            centerConstraint.priority = UILayoutPriority(rawValue: 1000)
-            bottomConstraint.priority = UILayoutPriority(rawValue: 250)
-        case .bottom:
-            centerConstraint.priority = UILayoutPriority(rawValue: 250)
-            bottomConstraint.priority = UILayoutPriority(rawValue: 1000)
-        }
+        
     }
     
     public func shouldRefresh() {
@@ -272,32 +238,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
 
     private func refresh() {
-        if permissionManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
-            iconLocation.tintColor = permissionAvailableColor
-        } else {
-            iconLocation.tintColor = permissionNotAvailableColor
-        }
-
-        switch btManager.state {
-        case .poweredOn:
-            iconBluetooth.tintColor = permissionAvailableColor
-        default:
-            iconBluetooth.tintColor = permissionNotAvailableColor
-        }
-
-        permissionManager.isNotificationAvailable({ (granted) in
-            if granted {
-                self.iconNotifications.tintColor = self.permissionAvailableColor
-            } else {
-                self.iconNotifications.tintColor = self.permissionNotAvailableColor
-            }
-        })
-
-        iconLocation.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.location)
-        iconNotifications.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
-        iconBluetooth.isHidden = !permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
-
-        button.isHidden = permissionsRequired.toNITPermission() == nil
+        // button.isHidden = permissionsRequired.toNITPermission() == nil
         
         permissionsRequired.isGranted(permissionManager: permissionManager,
                                       minStatus: locationType.authorizationStatus,
