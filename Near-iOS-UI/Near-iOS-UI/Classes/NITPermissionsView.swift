@@ -86,7 +86,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet weak var centeredConstraint: NSLayoutConstraint!
     @IBOutlet weak var alignToBottomConstraint: NSLayoutConstraint!
     
-    
     @objc public var locationType : NITPermissionsLocationType = .always
 
     private var btManager: CBPeripheralManager!
@@ -94,6 +93,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private var heightConstraint: NSLayoutConstraint?
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
+    private var satisfied: Bool = true
     
     @objc public var refreshOnAppActivation: Bool = true
     
@@ -105,6 +105,14 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @objc public var buttonFont: UIFont? {
         didSet {
             // button.titleLabel?.font = buttonFont
+        }
+    }
+    
+    @objc public override var backgroundColor: UIColor? {
+        didSet {
+            if backgroundColor != oldValue, let UNWRPbackgroundColor = backgroundColor {
+                delegate?.permissionView(self, colorDidChangeTo: UNWRPbackgroundColor)
+            }
         }
     }
     
@@ -250,16 +258,25 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
     private func refresh() {
         // button.isHidden = permissionsRequired.toNITPermission() == nil
-        
         permissionsRequired.isGranted(permissionManager: permissionManager,
                                       minStatus: locationType.authorizationStatus,
                                       btManager: btManager,
                                       completionHandler:
             { (granted) in
                 self.delegate?.permissionView(self, didGrant: granted)
+                if !granted {
+                    self.satisfied = false
+                    self.setBarStatus()
+                }
         })
         
         debounceResize()
+    }
+    
+    private func setBarStatus() {
+        if !satisfied {
+            backgroundColor = UIColor.sadRed
+        }
     }
 
     private func debounceResize() {
