@@ -167,10 +167,14 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @objc public var sadImage: UIImage? {
+    @objc public var sadImage: UIImage?
+    @objc public var worriedImage: UIImage?
+    
+    private var actualSadImage: UIImage? {
         get { return sadImage ?? defaultSadImage }
     }
-    @objc public var worriedImage: UIImage? {
+    
+    private var actualWorriedImage: UIImage? {
         get { return worriedImage ?? defaultWorriedImage }
     }
     
@@ -319,11 +323,11 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private func setBarStyle(strongFailure: Bool, lightFailure: Bool) {
         if (strongFailure) {
             backgroundColor = UIColor.sadRed
-            leftImageView.image = sadImage
+            leftImageView.image = actualSadImage
             delegate?.permissionView(self, didGrant: false)
         } else if (lightFailure) {
             backgroundColor = UIColor.worriedYellow
-            leftImageView.image = worriedImage
+            leftImageView.image = actualWorriedImage
             delegate?.permissionView(self, didGrant: false)
         } else {
             delegate?.permissionView(self, didGrant: true)
