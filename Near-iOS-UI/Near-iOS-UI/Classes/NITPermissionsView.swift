@@ -201,6 +201,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Please provide all required permissions", comment: "Permission bar message: provide all permissions")
 
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapBar(_:)))
+        addGestureRecognizer(tapRecognizer)
         callbackOnPermissions = { (view: NITPermissionsView) -> Void in
             view.defaultCallback()
         }
@@ -335,7 +337,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @IBAction private func tapOK(_ sender: Any) {
+    @IBAction private func tapBar(_ sender: Any) {
         if let callbackOnPermissions = callbackOnPermissions {
             callbackOnPermissions(self)
         }
