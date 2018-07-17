@@ -116,7 +116,15 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
     
-    public weak var delegate: NITPermissionsViewDelegate?
+    public weak var delegate: NITPermissionsViewDelegate? {
+        didSet {
+            if let backColor = backgroundColor {
+                delegate?.permissionView(self, colorDidChangeTo: backColor)
+            }
+        }
+    }
+    
+    
     public var alignement: NITPermissionsViewAlignement = .center {
         didSet {
             align()
@@ -198,8 +206,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
 
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
-
-        backgroundView.backgroundColor = UIColor.sadRed
         
         applyFont()
         // refresh()
