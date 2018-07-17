@@ -83,6 +83,10 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet weak var message: UILabel!
     @IBOutlet var backgroundView: UIView!
     
+    @IBOutlet weak var centeredConstraint: NSLayoutConstraint!
+    @IBOutlet weak var alignToBottomConstraint: NSLayoutConstraint!
+    
+    
     @objc public var locationType : NITPermissionsLocationType = .always
 
     private var btManager: CBPeripheralManager!
@@ -230,7 +234,14 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     }
     
     private func align() {
-        
+        switch alignement {
+        case .center:
+            centeredConstraint.priority = UILayoutPriority(rawValue: 1000)
+            alignToBottomConstraint.priority = UILayoutPriority(rawValue: 250)
+        case .bottom:
+            centeredConstraint.priority = UILayoutPriority(rawValue: 250)
+            alignToBottomConstraint.priority = UILayoutPriority(rawValue: 1000)
+        }
     }
     
     public func shouldRefresh() {

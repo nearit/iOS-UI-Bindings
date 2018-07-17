@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NITPermissionsView" customModule="NearUIBinding" customModuleProvider="target">
             <connections>
+                <outlet property="alignToBottomConstraint" destination="DhV-as-vw9" id="HMY-Gi-eoA"/>
                 <outlet property="backgroundView" destination="Yzn-0J-3jA" id="Dgd-hf-VSb"/>
+                <outlet property="centeredConstraint" destination="67q-kR-RWc" id="oEc-RX-ETr"/>
                 <outlet property="message" destination="vmc-sc-QSN" id="iye-xk-hhq"/>
                 <outlet property="permissionButton" destination="ubK-Bj-Q2R" id="YMA-8T-Kh2"/>
             </connections>
@@ -21,38 +23,51 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteSad" translatesAutoresizingMaskIntoConstraints="NO" id="q6e-Mv-NId">
-                    <rect key="frame" x="13" y="10" width="30" height="30"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="V3h-nL-MZl"/>
-                        <constraint firstAttribute="width" constant="30" id="ZhY-Em-0N4"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmc-sc-QSN">
-                    <rect key="frame" x="54" y="17" width="199" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubK-Bj-Q2R" userLabel="Permission Button" customClass="NITPermissionBarButton" customModule="NearUIBinding" customModuleProvider="target">
-                    <rect key="frame" x="263" y="10" width="100" height="30"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JrR-v9-k8I">
+                    <rect key="frame" x="0.0" y="10" width="375" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteSad" translatesAutoresizingMaskIntoConstraints="NO" id="q6e-Mv-NId">
+                            <rect key="frame" x="13" y="0.0" width="30" height="30"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="V3h-nL-MZl"/>
+                                <constraint firstAttribute="width" constant="30" id="ZhY-Em-0N4"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmc-sc-QSN">
+                            <rect key="frame" x="54" y="7" width="198" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubK-Bj-Q2R" userLabel="Permission Button" customClass="NITPermissionBarButton" customModule="NearUIBinding" customModuleProvider="target">
+                            <rect key="frame" x="262" y="0.0" width="100" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="60v-KV-huO"/>
+                                <constraint firstAttribute="height" constant="30" id="BMQ-Zb-2VA"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="60v-KV-huO"/>
-                        <constraint firstAttribute="height" constant="30" id="BMQ-Zb-2VA"/>
+                        <constraint firstItem="q6e-Mv-NId" firstAttribute="leading" secondItem="JrR-v9-k8I" secondAttribute="leading" constant="13" id="Fao-IN-6pg"/>
+                        <constraint firstItem="ubK-Bj-Q2R" firstAttribute="leading" secondItem="vmc-sc-QSN" secondAttribute="trailing" constant="10" id="HzZ-PW-LQe"/>
+                        <constraint firstItem="vmc-sc-QSN" firstAttribute="leading" secondItem="q6e-Mv-NId" secondAttribute="trailing" constant="11" id="JCo-ls-6IO"/>
+                        <constraint firstAttribute="bottom" secondItem="q6e-Mv-NId" secondAttribute="bottom" id="Xru-v9-mKl"/>
+                        <constraint firstItem="vmc-sc-QSN" firstAttribute="centerY" secondItem="JrR-v9-k8I" secondAttribute="centerY" id="YtE-nG-nxf"/>
+                        <constraint firstAttribute="trailing" secondItem="ubK-Bj-Q2R" secondAttribute="trailing" constant="13" id="hGd-KA-kAu"/>
+                        <constraint firstItem="q6e-Mv-NId" firstAttribute="top" secondItem="JrR-v9-k8I" secondAttribute="top" id="wJF-mA-L23"/>
+                        <constraint firstItem="ubK-Bj-Q2R" firstAttribute="centerY" secondItem="JrR-v9-k8I" secondAttribute="centerY" id="zUi-mj-zUQ"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="q6e-Mv-NId" firstAttribute="leading" secondItem="Yzn-0J-3jA" secondAttribute="leading" constant="13" id="HOX-hl-s7g"/>
-                <constraint firstItem="vmc-sc-QSN" firstAttribute="leading" secondItem="q6e-Mv-NId" secondAttribute="trailing" constant="11" id="cEq-2D-Von"/>
-                <constraint firstAttribute="trailing" secondItem="ubK-Bj-Q2R" secondAttribute="trailing" constant="12" id="ccg-Qn-x4i"/>
-                <constraint firstItem="ubK-Bj-Q2R" firstAttribute="leading" secondItem="vmc-sc-QSN" secondAttribute="trailing" constant="10" id="oKQ-Dz-zqS"/>
-                <constraint firstItem="vmc-sc-QSN" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="rWP-U6-Km3"/>
-                <constraint firstItem="q6e-Mv-NId" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="yAk-i8-ld5"/>
-                <constraint firstItem="ubK-Bj-Q2R" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="yhe-xo-7a5"/>
+                <constraint firstItem="JrR-v9-k8I" firstAttribute="centerY" secondItem="Yzn-0J-3jA" secondAttribute="centerY" id="67q-kR-RWc" userLabel="Bar content is centered"/>
+                <constraint firstAttribute="bottom" secondItem="JrR-v9-k8I" secondAttribute="bottom" priority="250" constant="10" id="DhV-as-vw9" userLabel="Bar content aligns to bottom"/>
+                <constraint firstAttribute="trailing" secondItem="JrR-v9-k8I" secondAttribute="trailing" id="VcU-cW-MRb"/>
+                <constraint firstItem="JrR-v9-k8I" firstAttribute="leading" secondItem="Yzn-0J-3jA" secondAttribute="leading" id="qRG-Gf-J2R"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="42.5" y="-343"/>
