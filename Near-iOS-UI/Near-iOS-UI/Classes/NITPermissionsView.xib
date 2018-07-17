@@ -14,6 +14,7 @@
                 <outlet property="alignToBottomConstraint" destination="DhV-as-vw9" id="HMY-Gi-eoA"/>
                 <outlet property="backgroundView" destination="Yzn-0J-3jA" id="Dgd-hf-VSb"/>
                 <outlet property="centeredConstraint" destination="67q-kR-RWc" id="oEc-RX-ETr"/>
+                <outlet property="leftImageView" destination="q6e-Mv-NId" id="hid-mE-Ugf"/>
                 <outlet property="message" destination="vmc-sc-QSN" id="iye-xk-hhq"/>
                 <outlet property="permissionButton" destination="ubK-Bj-Q2R" id="YMA-8T-Kh2"/>
             </connections>

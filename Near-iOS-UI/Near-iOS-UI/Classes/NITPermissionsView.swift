@@ -88,6 +88,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     @IBOutlet weak var permissionButton: NITPermissionBarButton!
     @IBOutlet weak var message: UILabel!
     @IBOutlet var backgroundView: UIView!
+    @IBOutlet weak var leftImageView: UIImageView!
     
     @IBOutlet weak var centeredConstraint: NSLayoutConstraint!
     @IBOutlet weak var alignToBottomConstraint: NSLayoutConstraint!
@@ -100,6 +101,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private let height: CGFloat = 50.0
     private var debouncer: Timer?
     private var satisfied: NITPermissionsViewSatisfaction = .sad
+    private var defaultSadImage: UIImage?
+    private var defaultWorriedImage: UIImage?
     
     @objc public var refreshOnAppActivation: Bool = true
     
@@ -129,7 +132,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             }
         }
     }
-    
     
     public var alignement: NITPermissionsViewAlignement = .center {
         didSet {
@@ -165,6 +167,13 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
+    @objc public var sadImage: UIImage? {
+        get { return sadImage ?? defaultSadImage }
+    }
+    @objc public var worriedImage: UIImage? {
+        get { return worriedImage ?? defaultWorriedImage }
+    }
+    
     @objc override public init(frame: CGRect) {
         super.init(frame: frame)
         btManager = CBPeripheralManager(delegate: self, queue: nil, options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
@@ -214,6 +223,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
 
         buttonBackgroundImage = UIImage.init(named: "filledWhite", in: bundle, compatibleWith: nil)
+        defaultSadImage = UIImage.init(named: "whiteSad", in: bundle, compatibleWith: nil)
+        defaultWorriedImage = UIImage.init(named: "whiteWorried", in: bundle, compatibleWith: nil)
         
         applyFont()
         // refresh()
@@ -308,9 +319,11 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
     private func setBarStyle(strongFailure: Bool, lightFailure: Bool) {
         if (strongFailure) {
             backgroundColor = UIColor.sadRed
+            leftImageView.image = sadImage
             delegate?.permissionView(self, didGrant: false)
         } else if (lightFailure) {
             backgroundColor = UIColor.worriedYellow
+            leftImageView.image = worriedImage
             delegate?.permissionView(self, didGrant: false)
         } else {
             delegate?.permissionView(self, didGrant: true)
