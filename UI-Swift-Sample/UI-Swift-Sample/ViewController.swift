@@ -292,7 +292,7 @@ class ViewController: UIViewController {
 //        permissionViewB.buttonText = "Roger"r
 //        permissionViewB.buttonColor = .white
         permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 10.0)
-        permissionViewB.buttonBackgroundImage = UIImage(named: "blue-button")
+       
         permissionViewB.callbackOnPermissions = { (view) in
             let vc = self.getPermissionDialogCustom()
             vc.autoCloseDialog = .off

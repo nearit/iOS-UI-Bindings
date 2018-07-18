@@ -19,6 +19,37 @@ class NITPermissionBarButton: UIView {
     let permissionManager = NITPermissionsManager()
     let stackView = UIStackView()
     
+    @objc @IBInspectable public var missingLocationIcon: UIImage?
+    @objc @IBInspectable public var missingBluetoothIcon: UIImage?
+    @objc @IBInspectable public var missingNotificationIcon: UIImage?
+    
+    private var defaultMissingLocationIcon: UIImage?
+    private var defaultMissingBluetoothIcon: UIImage?
+    private var defaultMissingNotificationIcon: UIImage?
+    
+    private func getMissingLocationIcon() -> UIImage? {
+        return missingLocationIcon ?? defaultMissingLocationIcon
+    }
+    
+    private func getMissingBluetoothIcon() -> UIImage? {
+        return missingBluetoothIcon ?? defaultMissingBluetoothIcon
+    }
+    
+    private func getMissingNotificationIcon() -> UIImage? {
+        return missingNotificationIcon ?? defaultMissingNotificationIcon
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+       defaultMissingBluetoothIcon = UIImage(named: "bluetoothBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+        defaultMissingLocationIcon = UIImage(named: "localizzazioneBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+        defaultMissingNotificationIcon = UIImage(named: "notificheBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -55,11 +86,11 @@ class NITPermissionBarButton: UIView {
     func imageFrom(_ permissionInfo : NITPermissionInfo) -> UIImage? {
         switch permissionInfo {
         case .blueTooth:
-            return UIImage(named: "bluetoothBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+            return getMissingBluetoothIcon()
         case .location:
-            return UIImage(named: "localizzazioneBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+            return getMissingLocationIcon()
         case .notification:
-            return UIImage(named: "notificheBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+            return getMissingNotificationIcon()
         }
     }
     
