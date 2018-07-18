@@ -5,7 +5,8 @@ Your app should ask the user to grant location permission, notifications and to 
 If you want to show a persistent bar that alert the user if any permission is missing, this library provides a convenient `NITPermissionsView`.
 This bar visually specifies what is missing and will automatically hide itself when every permission has been granted.
 
-![All missing](permissions_bar_all_missing.jpg)
+![All missing](missing_permission_bar.jpg)
+![Almost permission](almost_permission.jpg)
 
 The bar can be allocated by code or added using the Interface Builder.
 
@@ -104,14 +105,15 @@ permissionView.callbackOnPermissions = { (view) in
 More UI customizations
 
 ```swift
-permissionView.backgroundColor = .gray
-permissionView.messageColor = .black
-permissionView.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
-permissionView.permissionAvailableColor = .green
-permissionView.permissionNotAvailableColor = .red
-permissionView.buttonText = "Roger"
-permissionView.buttonColor = .white
-permissionView.buttonFont = UIFont.italicSystemFont(ofSize: 20.0)
-permissionView.buttonBackgroundImage = UIImage(named: "custom-button")
+permissionViewA.backgroundColor = .gray
+permissionViewA.messageColor = .black
+permissionViewA.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
+permissionViewA.missingBluetoothIcon = UIImage(named: "missingBluetooth")
+permissionViewA.missingLocationIcon = UIImage(named: "missingLocation")
+permissionViewA.missingNotificationIcon = UIImage(named: "missingNotification")
+permissionViewA.sadColor = UIColor.red
+permissionViewA.worriedColor = UIColor.yellow
+permissionViewA.sadImage = UIImage(named: "sadImage")
+permissionViewA.worriedImage = UIImage(named: "worriedImage")
 ```
 
