@@ -247,7 +247,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             message.font = messageFont
         } else {
             if let mediumFont = NITUIAppearance.sharedInstance.mediumFontName {
-                message.font = UIFont.init(name: mediumFont, size: 13.0)
+                message.font = UIFont.init(name: mediumFont, size: message.font.pointSize)
             }
         }
         
