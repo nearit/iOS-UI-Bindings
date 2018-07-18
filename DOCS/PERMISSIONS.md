@@ -80,12 +80,19 @@ Swift version
     vc.headerImage = UIImage(named: "header")
     vc.textColor = .black
     vc.isEnableTapToClose = true
-    vc.unknownButton = UIImage(named: "button")
-    vc.grantedButton = UIImage(named: "button")
-    vc.grantedIcon = UIImage(named: "icon")
+    vc.checkedButtonColor = UIColor.blue
+    vc.uncheckedButtonColor = UIColor.brown
     vc.locationText = "Turn on location"
     vc.notificationsText = "Turn on notications"
     vc.explainText = "We'll notify you of content that's interesting"
+    vc.locationInUse = "only in use"
+    vc.locationAlways = "always"
+    vc.locationNever = "never"
+    vc.happyImage = UIImage(named: "happy")
+    vc.worriedImage = UIImage(named: "worried")
+    vc.sadImage = UIImage(named: "sad")
+    vc.notificationsIcon = UIImage(named: "notifications")
+    vc.locationIcon = UIImage(named: "location")
     vc.autoCloseDialog = .on
     vc.show { (dialogController: NITDialogController) in
         dialogController.backgroundStyle = .blur
