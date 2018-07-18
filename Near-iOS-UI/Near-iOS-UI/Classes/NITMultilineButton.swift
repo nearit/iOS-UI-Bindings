@@ -27,6 +27,25 @@ public class NITMultilineButton: UIButton {
     @IBOutlet weak var firstLineLabel: UILabel!
     @IBOutlet weak var secondLineLabel: UILabel!
     
+    @IBInspectable public var happyImage: UIImage?
+    @IBInspectable public var worriedImage: UIImage?
+    @IBInspectable public var sadImage: UIImage?
+    private var defaultHappyImage: UIImage?
+    private var defaultWorriedImage: UIImage?
+    private var defaultSadImage: UIImage?
+    
+    private func getHappyImage() -> UIImage? {
+        return happyImage ?? defaultHappyImage
+    }
+    
+    private func getWorriedImage() -> UIImage? {
+        return worriedImage ?? defaultWorriedImage
+    }
+    
+    private func getSadImage() -> UIImage? {
+        return sadImage ?? defaultSadImage
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -40,6 +59,10 @@ public class NITMultilineButton: UIButton {
     func commonInit() {
         let bundle = Bundle.NITBundle(for: NITMultilineButton.self)
         bundle.loadNibNamed("NITMultilineButton", owner: self, options: nil)
+        defaultSadImage = UIImage(named: "sad", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
+        defaultWorriedImage = UIImage(named: "worried", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
+        defaultHappyImage = UIImage(named: "happyGreen", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
+        
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -82,22 +105,18 @@ public class NITMultilineButton: UIButton {
     }
     
     public func makeHappy() {
-        let happy = UIImage(named: "happyGreen", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
-        rightImage = happy
+        rightImage = getHappyImage()
         firstLineLabel.textColor = UIColor.charcoalGray
         secondLineLabel.textColor = UIColor.charcoalGray
-        setColor(UIColor.gray242)
     }
     
     public func makeSad() {
-        let sad = UIImage(named: "sad", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
-        rightImage = sad
+        rightImage = getSadImage()
         secondLineLabel.textColor = UIColor.sadRed
     }
     
     public func makeWorried() {
-        let worried = UIImage(named: "worried", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
-        rightImage = worried
+        rightImage = getWorriedImage()
         secondLineLabel.textColor = UIColor.worriedYellow
     }
 

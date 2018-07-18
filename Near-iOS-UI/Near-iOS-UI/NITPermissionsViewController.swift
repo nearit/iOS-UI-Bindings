@@ -80,6 +80,13 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var explainText: String!
     @objc public var closeText: String!
     @objc public var notNowText: String!
+    
+    @objc public var happyImage: UIImage?
+    @objc public var worriedImage: UIImage?
+    @objc public var sadImage: UIImage?
+    
+    @objc public var checkedButtonColor: UIColor = UIColor.gray242
+    @objc public var uncheckedButtonColor: UIColor = UIColor.charcoalGray
 
     @objc public var refreshOnAppActivation: Bool = true
     @objc public weak var delegate: NITPermissionsViewControllerDelegate?
@@ -202,6 +209,13 @@ public class NITPermissionsViewController: NITBaseViewController {
         notification.setLabel(notificationsText)
         location.setLabel(locationText)
         
+        notification.happyImage = happyImage
+        notification.worriedImage = worriedImage
+        notification.sadImage = sadImage
+        location.happyImage = happyImage
+        location.worriedImage = worriedImage
+        location.sadImage = sadImage
+        
         applyFont()
         
         header.image = headerImage
@@ -281,7 +295,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     
     func confirmLocationButton() {
         // permission is granted
-        location.setColor(UIColor.gray242)
+        location.setColor(checkedButtonColor)
         location.firstLineLabel.textColor = UIColor.charcoalGray
         location.secondLineLabel.textColor = UIColor.charcoalGray
         location.leftImage = grantedIcon
@@ -293,7 +307,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func unconfirmLocationButton() {
-        location.setColor(UIColor.charcoalGray)
+        location.setColor(uncheckedButtonColor)
         location.firstLineLabel.textColor = UIColor.white
         location.secondLineLabel.textColor = UIColor.white
         location.makeSad()
@@ -301,7 +315,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func setLocationNotDetermined() {
-        location.setColor(UIColor.charcoalGray)
+        location.setColor(uncheckedButtonColor)
         location.firstLineLabel.textColor = UIColor.white
         location.secondLineLabel.textColor = UIColor.white
         location.rightImage = nil
@@ -309,7 +323,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func setLocationOnlyInUse() {
-        location.setColor(UIColor.charcoalGray)
+        location.setColor(uncheckedButtonColor)
         location.firstLineLabel.textColor = UIColor.white
         location.secondLineLabel.textColor = UIColor.white
         location.makeWorried()
@@ -318,7 +332,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     
     func confirmNotificationButton() {
         notification.firstLineLabel.textColor = UIColor.charcoalGray
-        notification.setColor(UIColor.gray242)
+        notification.setColor(checkedButtonColor)
         notification.leftImage = grantedIcon
         notification.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
         notification.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
@@ -327,12 +341,12 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func setNotificationUndetermined() {
-        notification.setColor(UIColor.charcoalGray)
+        notification.setColor(uncheckedButtonColor)
         notification.firstLineLabel.textColor = UIColor.white
     }
     
     func unconfirmNotificationButton() {
-        notification.setColor(UIColor.charcoalGray)
+        notification.setColor(uncheckedButtonColor)
         notification.firstLineLabel.textColor = UIColor.white
         notification.makeSad()
     }

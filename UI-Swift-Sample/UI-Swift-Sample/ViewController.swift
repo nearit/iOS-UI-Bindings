@@ -59,8 +59,12 @@ class ViewController: UIViewController {
         aViewController.headerImage = UIImage(named: "NearIT")
         aViewController.textColor = UIColor.black
         aViewController.isEnableTapToClose = true
-        // aViewController.unknownButton = unknownImage
-        // aViewController.grantedButton = grantedImage
+        
+        aViewController.checkedButtonColor = UIColor.green
+        
+        aViewController.happyImage = unknownImage
+        aViewController.sadImage = grantedImage
+        
         aViewController.grantedIcon = UIImage(named: "green-dot")
         aViewController.locationText = "Turn on location"
         aViewController.notificationsText = "Turn on notications"
@@ -291,7 +295,7 @@ class ViewController: UIViewController {
 //        permissionViewB.permissionNotAvailableColor = .red
 //        permissionViewB.buttonText = "Roger"r
 //        permissionViewB.buttonColor = .white
-        permissionViewB.buttonFont = UIFont.italicSystemFont(ofSize: 10.0)
+
        
         permissionViewB.callbackOnPermissions = { (view) in
             let vc = self.getPermissionDialogCustom()
