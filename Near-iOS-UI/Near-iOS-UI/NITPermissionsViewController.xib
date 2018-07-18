@@ -55,45 +55,24 @@
                                 <constraint firstItem="Xhc-ir-PNg" firstAttribute="top" secondItem="jDt-gH-q5V" secondAttribute="top" constant="25" id="xgk-qN-IxF"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
-                            <rect key="frame" x="0.0" y="302" width="375" height="61"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG" customClass="NITPermissionButton" customModule="NearUIBinding" customModuleProvider="target">
-                                    <rect key="frame" x="25" y="8" width="325" height="45"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="Ybr-DK-9i4"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="LOCATION" image="location">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="tapLocation:" destination="-1" eventType="touchUpInside" id="yIC-rz-n1z"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="0n5-Fd-HeG" firstAttribute="leading" secondItem="oZ1-Ie-aZy" secondAttribute="leading" constant="25" id="3vr-zh-H8r"/>
-                                <constraint firstItem="0n5-Fd-HeG" firstAttribute="top" secondItem="oZ1-Ie-aZy" secondAttribute="top" constant="8" id="Bx3-Oi-0yc"/>
-                                <constraint firstAttribute="trailing" secondItem="0n5-Fd-HeG" secondAttribute="trailing" constant="25" id="rKU-cm-7Pk"/>
-                                <constraint firstAttribute="bottom" secondItem="0n5-Fd-HeG" secondAttribute="bottom" constant="8" id="uap-ek-qZu"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rWf-k7-rDY">
-                            <rect key="frame" x="0.0" y="363" width="375" height="61"/>
+                            <rect key="frame" x="0.0" y="360" width="375" height="58"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs" customClass="NITPermissionButton" customModule="NearUIBinding" customModuleProvider="target">
-                                    <rect key="frame" x="25" y="8" width="325" height="45"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-wf-3Rs" customClass="NITMultilineButton" customModule="NearUIBinding" customModuleProvider="target">
+                                    <rect key="frame" x="25" y="5" width="325" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="6Ki-3j-CtS"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="NOTIFICATIONS" image="notifications">
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="notificheBianco"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <action selector="tapNotifications:" destination="-1" eventType="touchUpInside" id="KTv-c1-A74"/>
+                                        <action selector="tapNotifications:" destination="-1" eventType="touchUpInside" id="zQn-sh-B5E"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -101,15 +80,44 @@
                             <constraints>
                                 <constraint firstItem="8dB-wf-3Rs" firstAttribute="leading" secondItem="rWf-k7-rDY" secondAttribute="leading" constant="25" id="6wh-9r-NLc"/>
                                 <constraint firstItem="8dB-wf-3Rs" firstAttribute="top" secondItem="rWf-k7-rDY" secondAttribute="top" constant="8" id="EpA-BX-QUe"/>
-                                <constraint firstAttribute="bottom" secondItem="8dB-wf-3Rs" secondAttribute="bottom" constant="8" id="wBV-sd-qBV"/>
+                                <constraint firstAttribute="bottom" secondItem="8dB-wf-3Rs" secondAttribute="bottom" constant="5" id="wBV-sd-qBV"/>
                                 <constraint firstAttribute="trailing" secondItem="8dB-wf-3Rs" secondAttribute="trailing" constant="25" id="zOu-gs-E6E"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ1-Ie-aZy">
+                            <rect key="frame" x="0.0" y="302" width="375" height="58"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0n5-Fd-HeG" customClass="NITMultilineButton" customModule="NearUIBinding" customModuleProvider="target">
+                                    <rect key="frame" x="25" y="8" width="325" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="Ybr-DK-9i4"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <state key="normal">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="localizzazioneBianco"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="tapLocation:" destination="-1" eventType="touchUpInside" id="bhT-hg-ucV"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="0n5-Fd-HeG" firstAttribute="leading" secondItem="oZ1-Ie-aZy" secondAttribute="leading" constant="25" id="3vr-zh-H8r"/>
+                                <constraint firstItem="0n5-Fd-HeG" firstAttribute="top" secondItem="oZ1-Ie-aZy" secondAttribute="top" constant="5" id="Bx3-Oi-0yc"/>
+                                <constraint firstAttribute="trailing" secondItem="0n5-Fd-HeG" secondAttribute="trailing" constant="25" id="rKU-cm-7Pk"/>
+                                <constraint firstAttribute="bottom" secondItem="0n5-Fd-HeG" secondAttribute="bottom" constant="8" id="uap-ek-qZu"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-Yd-uxf">
-                            <rect key="frame" x="0.0" y="424" width="375" height="80"/>
+                            <rect key="frame" x="0.0" y="418" width="375" height="86"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-zD-bbD">
-                                    <rect key="frame" x="25" y="25" width="325" height="30"/>
+                                    <rect key="frame" x="25" y="16" width="325" height="45"/>
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                     <state key="normal" title="Not now"/>
                                     <connections>
@@ -121,7 +129,7 @@
                             <constraints>
                                 <constraint firstItem="gsv-zD-bbD" firstAttribute="leading" secondItem="N9S-Yd-uxf" secondAttribute="leading" constant="25" id="Ot7-HJ-CcJ"/>
                                 <constraint firstAttribute="bottom" secondItem="gsv-zD-bbD" secondAttribute="bottom" constant="25" id="PNS-e4-TAE"/>
-                                <constraint firstItem="gsv-zD-bbD" firstAttribute="top" secondItem="N9S-Yd-uxf" secondAttribute="top" constant="25" id="k5G-ba-79H"/>
+                                <constraint firstItem="gsv-zD-bbD" firstAttribute="top" secondItem="N9S-Yd-uxf" secondAttribute="top" constant="16" id="k5G-ba-79H"/>
                                 <constraint firstAttribute="trailing" secondItem="gsv-zD-bbD" secondAttribute="trailing" constant="25" id="rzx-ko-ZUP"/>
                             </constraints>
                         </view>
@@ -140,8 +148,8 @@
         </view>
     </objects>
     <resources>
-        <image name="location" width="17" height="19"/>
-        <image name="notifications" width="17" height="17"/>
+        <image name="localizzazioneBianco" width="15" height="19"/>
+        <image name="notificheBianco" width="16" height="17"/>
         <image name="permissionsBanner" width="300" height="110"/>
     </resources>
 </document>

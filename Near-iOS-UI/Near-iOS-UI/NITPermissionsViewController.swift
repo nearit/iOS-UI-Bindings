@@ -54,8 +54,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     let permissionsManager = NITPermissionsManager()
 
     @IBOutlet weak var explain: UILabel!
-    @IBOutlet weak var location: UIButton!
-    @IBOutlet weak var notification: UIButton!
+    @IBOutlet weak var location: NITMultilineButton!
+    @IBOutlet weak var notification: NITMultilineButton!
     @IBOutlet weak var footer: UIButton!
     @IBOutlet weak var header: UIImageView!
     @IBOutlet weak var locationContainer: UIView!
@@ -66,8 +66,6 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var autoStartRadar: NITPermissionsAutoStartRadarType
     @objc public var autoCloseDialog: NITPermissionsAutoCloseDialog
 
-    @objc public var unknownButton: UIImage!
-    @objc public var grantedButton: UIImage!
     @objc public var grantedIcon: UIImage!
     @objc public var headerImage: UIImage!
     @objc public var textColor: UIColor!
@@ -75,10 +73,20 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var locationIcon: UIImage!
 
     @objc public var locationText: String!
+    @objc public var locationAlways: String!
+    @objc public var locationInUse: String!
+    @objc public var locationNever: String!
     @objc public var notificationsText: String!
     @objc public var explainText: String!
     @objc public var closeText: String!
     @objc public var notNowText: String!
+    
+    @objc public var happyImage: UIImage?
+    @objc public var worriedImage: UIImage?
+    @objc public var sadImage: UIImage?
+    
+    @objc public var checkedButtonColor: UIColor = UIColor.gray242
+    @objc public var uncheckedButtonColor: UIColor = UIColor.charcoalGray
 
     @objc public var refreshOnAppActivation: Bool = true
     @objc public weak var delegate: NITPermissionsViewControllerDelegate?
@@ -93,23 +101,30 @@ public class NITPermissionsViewController: NITBaseViewController {
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if autoStartRadar == .on && checkPermissions() {
-            let manager = NITManager.default()
-            manager.start()
+        if autoStartRadar == .on {
+            checkPermissions { (granted) in
+                if granted {
+                    let manager = NITManager.default()
+                    manager.start()
+                }
+            }
         }
         callClosingDelegate()
         NotificationCenter.default.removeObserver(self)
     }
 
-    @objc public func checkPermissions() -> Bool {
+    @objc public func checkPermissions(_ completionHandler: @escaping (Bool) -> Void) {
         switch type {
         case .notificationsOnly:
-            return permissionsManager.isNotificationAvailable()
+            permissionsManager.isNotificationAvailable(completionHandler)
         case .locationOnly:
-            return permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
+            completionHandler(permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus))
         case .locationAndNotifications:
-            return permissionsManager.isNotificationAvailable() &&
-                permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
+            if permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
+                permissionsManager.isNotificationAvailable(completionHandler)
+            } else {
+                completionHandler(false)
+            }
         }
     }
     
@@ -160,21 +175,19 @@ public class NITPermissionsViewController: NITBaseViewController {
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
 
-        let emptyOutline = UIImage(named: "outlinedButton", in: bundle, compatibleWith: nil)
-        unknownButton = emptyOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
-        grantedButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
-        grantedIcon = UIImage(named: "tick", in: bundle, compatibleWith: nil)
+        grantedIcon = UIImage(named: "charcoalTick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
-        notificationsIcon = UIImage(named: "notifications", in: bundle, compatibleWith: nil)
-        locationIcon = UIImage(named: "location", in: bundle, compatibleWith: nil)
+        
         textColor = UIColor.nearWarmGrey
 
-        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
-        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
         explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
         closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
         notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, bundle: bundle, value: "Not now", comment: "Permissios popup: Not now")
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
+        locationNever = NSLocalizedString("Permission popup: LOCATION NEVER", tableName: nil, bundle: bundle, value: "never", comment: "Permission popup: LOCATION NEVER")
+        locationInUse = NSLocalizedString("Permission popup: LOCATION IN USE", tableName: nil, bundle: bundle, value: "while using the app", comment: "Permission popup: LOCATION IN USE")
+        locationAlways = NSLocalizedString("Permission popup: LOCATION ALWAYS", tableName: nil, bundle: bundle, value: "always", comment: "Permission popup: LOCATION ALWAYS")
     }
     
     internal func setupUI() {
@@ -193,15 +206,18 @@ public class NITPermissionsViewController: NITBaseViewController {
         explain.textColor = textColor
         explain.text = explainText
         footer.tintColor = textColor
+        notification.setLabel(notificationsText)
+        location.setLabel(locationText)
+        
+        notification.happyImage = happyImage
+        notification.worriedImage = worriedImage
+        notification.sadImage = sadImage
+        location.happyImage = happyImage
+        location.worriedImage = worriedImage
+        location.sadImage = sadImage
         
         applyFont()
         
-        location.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        location.setBackgroundImage(unknownButton, for: .normal)
-        location.setTitle(locationText, for: .normal)
-        notification.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        notification.setBackgroundImage(unknownButton, for: .normal)
-        notification.setTitle(notificationsText, for: .normal)
         header.image = headerImage
         
         refreshButtons()
@@ -223,33 +239,35 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     private func refreshButtons() {
-        if #available(iOS 10.0, *) {
-            permissionsManager.isNotificationAvailable({ (available) in
-                if available {
-                    self.confirmNotificationButton()
-                } else {
-                    self.unconfirmNotificationButton()
-                }
-            })
-        } else {
-            if permissionsManager.isNotificationAvailable() {
-                confirmNotificationButton()
+        permissionsManager.isNotificationStatusDetermined { (isDetermined) in
+            if isDetermined {
+                self.permissionsManager.isNotificationAvailable({ (available) in
+                    if available {
+                        self.confirmNotificationButton()
+                    } else {
+                        self.unconfirmNotificationButton()
+                    }
+                })
             } else {
-                unconfirmNotificationButton()
+                self.setNotificationUndetermined()
             }
         }
         
-        var authorizationStatus: CLAuthorizationStatus!
-        switch locationType {
-        case .always:
-            authorizationStatus = .authorizedAlways
-        case .whenInUse:
-            authorizationStatus = .authorizedWhenInUse
-        }
-        
-        if permissionsManager.isLocationGrantedAtLeast(minStatus: authorizationStatus) {
+        let locationStatus = permissionsManager.locationStatus()
+        switch locationStatus {
+        case .notDetermined:
+            setLocationNotDetermined()
+        case .authorizedAlways:
             confirmLocationButton()
-        } else {
+        case .authorizedWhenInUse:
+            if locationType == .always {
+                setLocationOnlyInUse()
+            } else {
+                confirmLocationButton()
+            }
+        case .denied:
+            unconfirmLocationButton()
+        default:
             unconfirmLocationButton()
         }
     }
@@ -260,8 +278,9 @@ public class NITPermissionsViewController: NITBaseViewController {
 
     fileprivate func callClosingDelegate() {
         let location = permissionsManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus)
-        let notifications = permissionsManager.isNotificationAvailable()
-        delegate?.dialogClosed?(locationGranted: location, notificationsGranted: notifications)
+        permissionsManager.isNotificationAvailable { (granted) in
+            self.delegate?.dialogClosed?(locationGranted: location, notificationsGranted: granted)
+        }
     }
     
     // MARK: - Permission buttons
@@ -275,29 +294,61 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     func confirmLocationButton() {
-        location.setBackgroundImage(grantedButton, for: .normal)
-        location.setTitleColor(UIColor.white, for: .normal)
-        location.setImage(grantedIcon, for: .normal)
+        // permission is granted
+        location.setColor(checkedButtonColor)
+        location.firstLineLabel.textColor = UIColor.charcoalGray
+        location.secondLineLabel.textColor = UIColor.charcoalGray
+        location.leftImage = grantedIcon
+        location.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
+        location.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
+        location.makeHappy()
+        location.setLabel(locationText, secondLine: locationAlways)
         footer.setTitle(closeText, for: .normal)
     }
     
     func unconfirmLocationButton() {
-        location.setBackgroundImage(unknownButton, for: .normal)
-        location.setTitleColor(UIColor.black, for: .normal)
-        location.setImage(locationIcon, for: .normal)
+        location.setColor(uncheckedButtonColor)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.makeSad()
+        location.setLabel(locationText, secondLine: locationNever)
+    }
+    
+    func setLocationNotDetermined() {
+        location.setColor(uncheckedButtonColor)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.rightImage = nil
+        location.setLabel(locationText)
+    }
+    
+    func setLocationOnlyInUse() {
+        location.setColor(uncheckedButtonColor)
+        location.firstLineLabel.textColor = UIColor.white
+        location.secondLineLabel.textColor = UIColor.white
+        location.makeWorried()
+        location.setLabel(locationText, secondLine: locationInUse)
     }
     
     func confirmNotificationButton() {
-        notification.setBackgroundImage(grantedButton, for: .normal)
-        notification.setTitleColor(UIColor.white, for: .normal)
-        notification.setImage(grantedIcon, for: .normal)
+        notification.firstLineLabel.textColor = UIColor.charcoalGray
+        notification.setColor(checkedButtonColor)
+        notification.leftImage = grantedIcon
+        notification.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
+        notification.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
+        notification.makeHappy()
         footer.setTitle(closeText, for: .normal)
     }
     
+    func setNotificationUndetermined() {
+        notification.setColor(uncheckedButtonColor)
+        notification.firstLineLabel.textColor = UIColor.white
+    }
+    
     func unconfirmNotificationButton() {
-        notification.setBackgroundImage(unknownButton, for: .normal)
-        notification.setTitleColor(UIColor.black, for: .normal)
-        notification.setImage(notificationsIcon, for: .normal)
+        notification.setColor(uncheckedButtonColor)
+        notification.firstLineLabel.textColor = UIColor.white
+        notification.makeSad()
     }
     
     @objc public func show() {
@@ -337,7 +388,7 @@ public class NITPermissionsViewController: NITBaseViewController {
 }
 
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
+    public func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
         if (granted && permissionsManager.status(status, isAtLeast: locationType.authorizationStatus)) {
             confirmLocationButton()
         }
@@ -345,15 +396,22 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
         eventuallyClose()
     }
     
-    func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
-        confirmNotificationButton()
-        delegate?.notificationsGranted?(manager.isNotificationAvailable())
-        eventuallyClose()
+    public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
+        refreshButtons()
+        manager.isNotificationAvailable { (granted) in
+            self.delegate?.notificationsGranted?(granted)
+            self.eventuallyClose()
+        }
+        
     }
 
     func eventuallyClose() {
-        if autoCloseDialog == .on && checkPermissions() {
-            dismiss(animated: true, completion: nil)
+        if autoCloseDialog == .on  {
+            checkPermissions { (granted) in
+                if granted {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
     }
 
