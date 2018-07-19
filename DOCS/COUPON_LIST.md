@@ -33,14 +33,14 @@ Optionally, you can display the content in your `UINavigationController`:
 Swift version
 ```swift
 // ...
-let vc = NITCouponListViewController(content: content)
+let vc = NITCouponListViewController()
 vc.show(navigationController: navigationController!)
 ```
 
 Objc version
 ```Objc
 // ...
-NITCouponListViewController *vc = [[NITCouponListViewController alloc] initWithContent:content];
+NITCouponListViewController *vc = [[NITCouponListViewController alloc] init];
 [vc showWithNavigationController:self.navigationController];
 ```
 
