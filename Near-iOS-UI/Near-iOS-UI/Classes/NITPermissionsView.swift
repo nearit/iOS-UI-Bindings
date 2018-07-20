@@ -226,7 +226,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             heightConstraint!
         ])
 
-        messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Please provide all required permissions", comment: "Permission bar message: provide all permissions")
+        messageText = NSLocalizedString("Permission bar message", tableName: nil, bundle: bundle, value: "Check all missing permissions", comment: "Permission bar message: provide all permissions")
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapBar(_:)))
         addGestureRecognizer(tapRecognizer)
