@@ -234,8 +234,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             view.defaultCallback()
         }
 
-        defaultSadImage = UIImage.init(named: "whiteSad", in: bundle, compatibleWith: nil)
-        defaultWorriedImage = UIImage.init(named: "whiteWorried", in: bundle, compatibleWith: nil)
+        defaultSadImage = UIImage.init(named: "sadWhite", in: bundle, compatibleWith: nil)
+        defaultWorriedImage = UIImage.init(named: "worriedWhite", in: bundle, compatibleWith: nil)
         
         applyFont()
         // refresh()

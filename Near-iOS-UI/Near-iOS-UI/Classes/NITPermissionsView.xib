@@ -27,7 +27,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JrR-v9-k8I">
                     <rect key="frame" x="0.0" y="10" width="375" height="30"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteSad" translatesAutoresizingMaskIntoConstraints="NO" id="q6e-Mv-NId">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sadWhite" translatesAutoresizingMaskIntoConstraints="NO" id="q6e-Mv-NId">
                             <rect key="frame" x="13" y="0.0" width="30" height="30"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -75,6 +75,6 @@
         </view>
     </objects>
     <resources>
-        <image name="whiteSad" width="28" height="28"/>
+        <image name="sadWhite" width="30" height="30"/>
     </resources>
 </document>
