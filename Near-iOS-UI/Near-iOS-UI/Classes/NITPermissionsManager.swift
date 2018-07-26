@@ -121,8 +121,9 @@ public class NITPermissionsManager: NSObject {
                 } else {
                     completionHandler(false)
                 }
+            } else {
+                completionHandler(false)
             }
-            completionHandler(false)
         }
     }
     
