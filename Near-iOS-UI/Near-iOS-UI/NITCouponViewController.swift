@@ -52,7 +52,7 @@ public class NITCouponViewController: NITBaseViewController {
     
     
     @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
-    @objc public var descriptionColor = UIColor.nearWarmGrey
+    @objc public var descriptionColor = NITUIAppearance.sharedInstance.nearGrey()
     @objc public var serialColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
@@ -161,7 +161,7 @@ public class NITCouponViewController: NITBaseViewController {
 
         let fromToAttrs: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.font: getFromToFont(),
-            NSAttributedStringKey.foregroundColor: UIColor.nearWarmGrey
+            NSAttributedStringKey.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
         ]
 
         let text = NSMutableAttributedString()
