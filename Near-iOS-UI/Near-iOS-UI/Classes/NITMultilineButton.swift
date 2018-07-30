@@ -71,7 +71,7 @@ public class NITMultilineButton: UIButton {
         contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         
-        contentView.backgroundColor = UIColor.charcoalGray
+        contentView.backgroundColor = NITUIAppearance.sharedInstance.nearBlack()
         contentView.layer.masksToBounds = true
         
         if let regularFontName = NITUIAppearance.sharedInstance.regularFontName {
