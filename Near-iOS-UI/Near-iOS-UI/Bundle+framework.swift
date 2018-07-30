@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public extension Bundle {
     static func NITBundle(for aClass: Swift.AnyClass) -> Bundle {
@@ -15,5 +16,15 @@ public extension Bundle {
             return Bundle(url: bundleUrl)!
         }
         return bundle
+    }
+}
+
+public extension UIButton {
+    func setRoundedButtonOf(color: UIColor) {
+        layer.masksToBounds = true
+        backgroundColor = color
+        let number = layer.frame.height / 2
+        layer.cornerRadius = number
+        layoutIfNeeded()
     }
 }
