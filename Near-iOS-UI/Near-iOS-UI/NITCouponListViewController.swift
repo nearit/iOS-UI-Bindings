@@ -75,15 +75,15 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc public var iconPlaceholder: UIImage!
     @objc public var jaggedBackground: UIImage!
 
-    @objc public var expiredColor = UIColor.nearCouponExpired
-    @objc public var disabledColor = UIColor.nearCouponDisabled
-    @objc public var validColor = UIColor.nearCouponValid
-    @objc public var titleColor = UIColor.nearCouponTitleGray
-    @objc public var valueColor = UIColor.nearBlack
-    @objc public var titleDisabledColor = UIColor.nearCouponTitleGray
-    @objc public var titleExpiredColor = UIColor.nearCouponTitleGray
-    @objc public var valueDisabledColor = UIColor.nearCouponListGray
-    @objc public var valueExpiredColor = UIColor.nearCouponListGray
+    @objc public var validColor = NITUIAppearance.sharedInstance.nearGreen()
+    @objc public var titleValidColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var valueValidColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var expiredColor = NITUIAppearance.sharedInstance.nearRed()
+    @objc public var titleExpiredColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var valueExpiredColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var disabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var titleDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var valueDisabledColor = NITUIAppearance.sharedInstance.nearBlack()
     
     let defaultEmptyListFont = UIFont.italicSystemFont(ofSize: 16.0)
     @objc public var emptyListFont: UIFont?
@@ -310,9 +310,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.status.textColor = validColor
                     cell.status.font = getValidFont()
                     cell.name.font = getTitleFont()
-                    cell.name.textColor = titleColor
+                    cell.name.textColor = titleValidColor
                     cell.value.font = getValueFont()
-                    cell.value.textColor = valueColor
+                    cell.value.textColor = valueValidColor
                 case .expired:
                     cell.status.text = expiredText
                     cell.status.textColor = expiredColor
