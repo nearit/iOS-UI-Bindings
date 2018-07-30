@@ -27,6 +27,7 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var toText: String!
     @objc public var couponValidColor = NITUIAppearance.sharedInstance.nearGreen()
     @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var couponDisabledAlternativeColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
@@ -35,7 +36,7 @@ public class NITCouponViewController: NITBaseViewController {
     let defaultFromToFont = UIFont.italicSystemFont(ofSize: 12.0)
     @objc public var fromToFont: UIFont?
     
-    let defaultAlternativeFont = UIFont.systemFont(ofSize: 20.0)
+    let defaultAlternativeFont = UIFont.italicSystemFont(ofSize: 20.0)
     @objc public var alternativeFont: UIFont?
     
     let defaultTitleFont = UIFont.systemFont(ofSize: 16.0)
@@ -230,12 +231,12 @@ public class NITCouponViewController: NITBaseViewController {
             alternative.isHidden = false
             qrcode.isHidden = true
             alternative.text = disabledText
-            alternative.textColor = couponDisabledColor
-            value.textColor = couponDisabledColor
-            longDescription.textColor = couponDisabledColor
-            couponTitle.textColor = couponDisabledColor
+            alternative.textColor = couponDisabledAlternativeColor
+            value.textColor = couponDisabledColor.withAlphaComponent(0.35)
+            longDescription.textColor = couponDisabledColor.withAlphaComponent(0.35)
+            couponTitle.textColor = couponDisabledColor.withAlphaComponent(0.35)
             serial.isHidden = true
-            setupDates(color: couponExpiredColor)
+            setupDates(color: couponDisabledColor)
         case .expired:
             alternative.isHidden = false
             qrcode.isHidden = true
