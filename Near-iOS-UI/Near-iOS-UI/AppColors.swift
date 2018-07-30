@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    @nonobjc class var nearWarmGrey: UIColor {
-        return UIColor(white: 119.0 / 255.0, alpha: 1.0)
-    }
 
     @nonobjc class var nearRed: UIColor {
         return UIColor(red: 229.0 / 255.0, green: 77.0 / 255.0, blue: 76.0 / 255.0, alpha: 1.0)
@@ -36,10 +33,6 @@ extension UIColor {
     
     @nonobjc class var nearGrey: UIColor {
         return UIColor(white: 119 / 255, alpha: 1.0)
-    }
-    
-    @nonobjc class var charcoalGray: UIColor {
-        return UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
     }
     
     @nonobjc class var worriedYellow: UIColor {

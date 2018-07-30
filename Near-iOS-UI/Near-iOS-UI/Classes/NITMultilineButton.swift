@@ -106,13 +106,12 @@ public class NITMultilineButton: UIButton {
     
     public func makeHappy() {
         rightImage = getHappyImage()
-        firstLineLabel.textColor = UIColor.charcoalGray
-        secondLineLabel.textColor = UIColor.charcoalGray
+        secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearBlack()
     }
     
     public func makeSad() {
         rightImage = getSadImage()
-        secondLineLabel.textColor = UIColor.sadRed
+        secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearRed()
     }
     
     public func makeWorried() {
