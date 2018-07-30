@@ -22,7 +22,9 @@ class NITInboxCell: UITableViewCell {
     @IBOutlet weak var moreLabel: UILabel!
     @IBOutlet weak var moreIcon: UIImageView!
     var unreadColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
-    var readColor = UIColor(red: 119.0/255.0, green: 119.0/255.0, blue: 119.0/255.0, alpha: 1.0)
+    var readColor = NITUIAppearance.sharedInstance.nearGrey()
+    var dateColor = NITUIAppearance.sharedInstance.nearGrey()
+    var messageColor = NITUIAppearance.sharedInstance.nearBlack()
     private var cardBackgroundReadColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
     var shadowOpacity: Float = 0.15
     var state: NITInboxCellState = .unread {
@@ -40,6 +42,9 @@ class NITInboxCell: UITableViewCell {
         let bundle = Bundle.NITBundle(for: NITInboxCell.self)
         let icon = UIImage(named: "scopriBold", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         moreIcon.image = icon
+        
+        messageLabel.textColor = messageColor
+        dateLabel.textColor = dateColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
