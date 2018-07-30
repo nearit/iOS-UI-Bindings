@@ -25,11 +25,12 @@ public class NITFeedbackViewController: NITBaseViewController {
     @objc public var sendButton: UIImage!
     @objc public var rateFullButton: UIImage!
     @objc public var rateEmptyButton: UIImage!
-    @objc public var textColor: UIColor = UIColor.nearWarmGrey
+    @objc public var textColor: UIColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var textFont: UIFont?
-    @objc public var errorColor: UIColor = UIColor.nearRed
+    @objc public var commentDescriptionTextColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var errorColor: UIColor = NITUIAppearance.sharedInstance.nearRed()
     @objc public var errorFont: UIFont?
-    @objc public var retryButton: UIImage!
+
     @objc public var commentVisibility: NITFeedbackCommentVisibility = .onRating {
         didSet {
             if isViewLoaded {
@@ -105,12 +106,9 @@ public class NITFeedbackViewController: NITBaseViewController {
 
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
-        let filledButton = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
-        sendButton = filledButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
+        
         rateFullButton = UIImage(named: "star", in: bundle, compatibleWith: nil)
         rateEmptyButton = UIImage(named: "starEmpty", in: bundle, compatibleWith: nil)
-        let filledRedButton = UIImage(named: "filledRedButton", in: bundle, compatibleWith: nil)
-        retryButton = filledRedButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
 
         closeText = NSLocalizedString("Feedback dialog: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Feedback dialog: Close")
         commentDescriptionText = NSLocalizedString("Feedback dialog: Leave a comment (optional):", tableName: nil, bundle: bundle, value: "Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
@@ -135,6 +133,7 @@ public class NITFeedbackViewController: NITBaseViewController {
         send.setBackgroundImage(sendButton, for: .normal)
         send.setTitle(sendText, for: .normal)
         sendContainer.isHidden = true
+        send.setRoundedButtonOf(color: NITUIAppearance.sharedInstance.nearBlack())
 
         comment.layer.cornerRadius = 5.0
         comment.layer.borderWidth = 1.0
@@ -151,7 +150,7 @@ public class NITFeedbackViewController: NITBaseViewController {
         commentDescription.text = commentDescriptionText
 
         explanation.textColor = textColor
-        commentDescription.textColor = textColor
+        commentDescription.textColor = commentDescriptionTextColor
         close.setTitleColor(textColor, for: .normal)
 
         error.text = errorText
@@ -275,7 +274,7 @@ public class NITFeedbackViewController: NITBaseViewController {
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
             guard let wself = self else { return }
             wself.errorContainer.isHidden = false
-            wself.send.setBackgroundImage(wself.retryButton, for: .normal)
+            wself.send.setRoundedButtonOf(color: NITUIAppearance.sharedInstance.nearRed())
             wself.send.setTitle(wself.retryText, for: .normal)
             wself.view.layoutIfNeeded()
         }, completion: { _ in })

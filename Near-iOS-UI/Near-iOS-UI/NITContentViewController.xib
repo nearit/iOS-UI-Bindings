@@ -90,7 +90,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iiy-TW-xUc" userLabel="Title">
                                     <rect key="frame" x="25" y="20" width="295" height="27.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                    <color key="textColor" red="0.011764705882352941" green="0.011764705882352941" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -131,7 +131,7 @@
                                         <constraint firstAttribute="height" constant="45" id="GrT-un-rRM"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <state key="normal" title="CTA" backgroundImage="filledButton"/>
+                                    <state key="normal" title="CTA"/>
                                     <connections>
                                         <action selector="tapCallToAction:" destination="-1" eventType="touchUpInside" id="lvf-M2-slr"/>
                                     </connections>
@@ -175,7 +175,6 @@
     </objects>
     <resources>
         <image name="chiudi" width="12" height="12"/>
-        <image name="filledButton" width="250" height="45"/>
         <image name="imgSegnaposto" width="340" height="200"/>
     </resources>
 </document>

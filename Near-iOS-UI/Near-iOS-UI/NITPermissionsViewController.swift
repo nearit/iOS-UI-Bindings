@@ -86,7 +86,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var sadImage: UIImage?
     
     @objc public var checkedButtonColor: UIColor = UIColor.gray242
-    @objc public var uncheckedButtonColor: UIColor = UIColor.charcoalGray
+    @objc public var uncheckedButtonColor: UIColor = NITUIAppearance.sharedInstance.nearBlack()
 
     @objc public var refreshOnAppActivation: Bool = true
     @objc public weak var delegate: NITPermissionsViewControllerDelegate?
@@ -178,7 +178,7 @@ public class NITPermissionsViewController: NITBaseViewController {
         grantedIcon = UIImage(named: "charcoalTick", in: bundle, compatibleWith: nil)
         headerImage = UIImage(named: "permissionsBanner", in: bundle, compatibleWith: nil)
         
-        textColor = UIColor.nearWarmGrey
+        textColor = NITUIAppearance.sharedInstance.nearGrey()
 
         explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
         closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
@@ -296,8 +296,8 @@ public class NITPermissionsViewController: NITBaseViewController {
     func confirmLocationButton() {
         // permission is granted
         location.setColor(checkedButtonColor)
-        location.firstLineLabel.textColor = UIColor.charcoalGray
-        location.secondLineLabel.textColor = UIColor.charcoalGray
+        location.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearBlack()
+        location.secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearBlack()
         location.leftImage = grantedIcon
         location.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
         location.leftImageView.widthAnchor.constraint(equalToConstant: 15.0).isActive = true
@@ -308,30 +308,30 @@ public class NITPermissionsViewController: NITBaseViewController {
     
     func unconfirmLocationButton() {
         location.setColor(uncheckedButtonColor)
-        location.firstLineLabel.textColor = UIColor.white
-        location.secondLineLabel.textColor = UIColor.white
+        location.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
+        location.secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
         location.makeSad()
         location.setLabel(locationText, secondLine: locationNever)
     }
     
     func setLocationNotDetermined() {
         location.setColor(uncheckedButtonColor)
-        location.firstLineLabel.textColor = UIColor.white
-        location.secondLineLabel.textColor = UIColor.white
+        location.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
+        location.secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
         location.rightImage = nil
         location.setLabel(locationText)
     }
     
     func setLocationOnlyInUse() {
         location.setColor(uncheckedButtonColor)
-        location.firstLineLabel.textColor = UIColor.white
-        location.secondLineLabel.textColor = UIColor.white
+        location.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
+        location.secondLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
         location.makeWorried()
         location.setLabel(locationText, secondLine: locationInUse)
     }
     
     func confirmNotificationButton() {
-        notification.firstLineLabel.textColor = UIColor.charcoalGray
+        notification.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearBlack()
         notification.setColor(checkedButtonColor)
         notification.leftImage = grantedIcon
         notification.leftImageView.heightAnchor.constraint(equalToConstant: 15.0).isActive = true
@@ -342,12 +342,12 @@ public class NITPermissionsViewController: NITBaseViewController {
     
     func setNotificationUndetermined() {
         notification.setColor(uncheckedButtonColor)
-        notification.firstLineLabel.textColor = UIColor.white
+        notification.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
     }
     
     func unconfirmNotificationButton() {
         notification.setColor(uncheckedButtonColor)
-        notification.firstLineLabel.textColor = UIColor.white
+        notification.firstLineLabel.textColor = NITUIAppearance.sharedInstance.nearWhite()
         notification.makeSad()
     }
     

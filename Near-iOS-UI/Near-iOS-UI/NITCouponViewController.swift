@@ -25,9 +25,9 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var validText: String!
     @objc public var fromText: String!
     @objc public var toText: String!
-    @objc public var couponValidColor = UIColor.nearCouponValid
-    @objc public var couponDisabledColor = UIColor.nearCouponDisabled
-    @objc public var couponExpiredColor = UIColor.nearCouponExpired
+    @objc public var couponValidColor = NITUIAppearance.sharedInstance.nearGreen()
+    @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
     @objc public var validFont: UIFont?
@@ -51,10 +51,10 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var valueFont: UIFont?
     
     
-    @objc public var titleColor = UIColor.nearBlack
-    @objc public var descriptionColor = UIColor.nearWarmGrey
-    @objc public var serialColor = UIColor.nearBlack
-    @objc public var valueColor = UIColor.nearBlack
+    @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var descriptionColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var serialColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
     @IBOutlet weak var dates: UILabel!
     @IBOutlet weak var qrcode: UIImageView!
@@ -161,7 +161,7 @@ public class NITCouponViewController: NITBaseViewController {
 
         let fromToAttrs: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.font: getFromToFont(),
-            NSAttributedStringKey.foregroundColor: UIColor.nearWarmGrey
+            NSAttributedStringKey.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
         ]
 
         let text = NSMutableAttributedString()

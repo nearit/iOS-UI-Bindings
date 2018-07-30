@@ -178,11 +178,6 @@ class ViewController: UIViewController {
     func showCustomContentDialog(content: NITContent) {
         let aViewController = NITContentViewController(content: content)
 
-        let blueButton = UIImage(named: "blue-button")
-        let ctaButton = blueButton?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 35))
-
-        aViewController.callToActionButton = ctaButton
-//        aViewController.contentMainFont = UIFont.systemFont(ofSize: 20.0)
         aViewController.imagePlaceholder = UIImage.init(named: "NearIT")
         aViewController.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
             let ui = UIAlertController.init(title: "Link tapped", message: "URL: \(request.url!)", preferredStyle: UIAlertControllerStyle.alert)

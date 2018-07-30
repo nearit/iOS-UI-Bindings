@@ -21,8 +21,11 @@ public class NITContentViewController: NITBaseViewController {
     @objc public var drawSeparator = true
     @objc public var hideCloseButton = false
     @objc public var imagePlaceholder: UIImage?
-    @objc public var titleColor = UIColor.nearBlack
-    @objc public var callToActionButton: UIImage!
+    @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var htmlColor = NITUIAppearance.sharedInstance.nearBlack()
+
+    @objc public var callToActionColor: UIColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var callToActionTextColor = NITUIAppearance.sharedInstance.nearWhite()
     
     let defaultTitleFont = UIFont.boldSystemFont(ofSize: 30.0)
     @objc public var titleFont: UIFont?
@@ -58,7 +61,6 @@ public class NITContentViewController: NITBaseViewController {
         self.trackingInfo = trackingInfo
         self.nearManager = manager ?? NITManager.default()
         super.init(nibName: "NITContentViewController", bundle: bundle)
-        setupDefaultElements()
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -91,12 +93,6 @@ public class NITContentViewController: NITBaseViewController {
         dialog.backgroundColor = .white
         dialog.contentPosition = .full
         navigationController.pushViewController(dialog, animated: true)
-    }
-
-    func setupDefaultElements() {
-        let bundle = Bundle.NITBundle(for: NITDialogController.self)
-        let filledOutline = UIImage(named: "filledButton", in: bundle, compatibleWith: nil)
-        callToActionButton = filledOutline?.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: 45))
     }
 
     override public func viewDidLoad() {
@@ -148,8 +144,9 @@ public class NITContentViewController: NITBaseViewController {
     
         if let contentLink = content.link {
             callToAction.setTitle(contentLink.label, for: .normal)
-            callToAction.setBackgroundImage(callToActionButton, for: .normal)
             callToAction.titleLabel?.font = getCTAFont()
+            callToAction.setTitleColor(callToActionTextColor, for: .normal)
+            callToAction.setRoundedButtonOf(color: callToActionColor)
         } else {
             ctaContainer.isHidden = true
         }
@@ -202,6 +199,7 @@ public class NITContentViewController: NITBaseViewController {
                 options: [ .documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
                 documentAttributes: nil)
             htmlContent.attributedText = attrStr
+            htmlContent.textColor = htmlColor
         } catch _ {
             print("error while formatting html")
         }

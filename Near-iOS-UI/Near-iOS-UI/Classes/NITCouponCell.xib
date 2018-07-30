@@ -96,6 +96,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="couponPlaceholder" width="200" height="200"/>
+        <image name="couponPlaceholder" width="50" height="50"/>
     </resources>
 </document>
