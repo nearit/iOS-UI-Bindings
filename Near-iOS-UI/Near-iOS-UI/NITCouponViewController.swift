@@ -51,10 +51,10 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var valueFont: UIFont?
     
     
-    @objc public var titleColor = UIColor.nearBlack
+    @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var descriptionColor = UIColor.nearWarmGrey
-    @objc public var serialColor = UIColor.nearBlack
-    @objc public var valueColor = UIColor.nearBlack
+    @objc public var serialColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
     @IBOutlet weak var dates: UILabel!
     @IBOutlet weak var qrcode: UIImageView!

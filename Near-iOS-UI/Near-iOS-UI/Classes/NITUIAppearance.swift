@@ -21,6 +21,12 @@ public class NITUIAppearance {
     public var mediumItalicFontName: String?
     public var boldItalicFontName : String?
     
+    public var globalBlackColor : UIColor?
+    private let defaultGlobalBlackColor = UIColor.init(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+    public func nearBlack() -> UIColor {
+        return globalBlackColor ?? defaultGlobalBlackColor
+    }
+    
 }
 
 public extension UILabel {
