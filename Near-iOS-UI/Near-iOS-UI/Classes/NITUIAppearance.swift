@@ -27,6 +27,12 @@ public class NITUIAppearance {
         return globalBlackColor ?? defaultGlobalBlackColor
     }
     
+    public var globalWhiteColor : UIColor?
+    private let defaultGlobalWhiteColor = UIColor.white
+    public func nearWhite() -> UIColor {
+        return globalWhiteColor ?? defaultGlobalWhiteColor
+    }
+    
 }
 
 public extension UILabel {
