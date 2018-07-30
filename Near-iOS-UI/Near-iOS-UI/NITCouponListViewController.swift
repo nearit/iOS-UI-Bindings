@@ -331,7 +331,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 if isLoading {
                     cell.setLoading()
                 } else {
-                    cell.setMessage(noCoupons, color: .nearWarmGrey, font: getEmptyListFont())
+                    cell.setMessage(noCoupons, color: NITUIAppearance.sharedInstance.nearGrey(), font: getEmptyListFont())
                 }
             }
         }

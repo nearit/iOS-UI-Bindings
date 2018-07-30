@@ -9,43 +9,43 @@
 import Foundation
 import UIKit
 
-public class NITUIAppearance {
+public class NITUIAppearance: NSObject {
     
-    public static let sharedInstance = NITUIAppearance()
+    @objc public static let sharedInstance = NITUIAppearance()
     
-    public var regularFontName : String?
-    public var mediumFontName : String?
-    public var boldFontName : String?
+    @objc public var regularFontName : String?
+    @objc public var mediumFontName : String?
+    @objc public var boldFontName : String?
     
-    public var italicFontName : String?
-    public var mediumItalicFontName: String?
-    public var boldItalicFontName : String?
+    @objc public var italicFontName : String?
+    @objc public var mediumItalicFontName: String?
+    @objc public var boldItalicFontName : String?
     
-    public var globalBlackColor : UIColor?
+    @objc public var globalBlackColor : UIColor?
     private let defaultGlobalBlackColor = UIColor.nearBlack
     public func nearBlack() -> UIColor {
         return globalBlackColor ?? defaultGlobalBlackColor
     }
     
-    public var globalWhiteColor : UIColor?
+    @objc public var globalWhiteColor : UIColor?
     private let defaultGlobalWhiteColor = UIColor.white
     public func nearWhite() -> UIColor {
         return globalWhiteColor ?? defaultGlobalWhiteColor
     }
     
-    public var globalGreyColor : UIColor?
+    @objc public var globalGreyColor : UIColor?
     private let defaultGlobalGreyColor = UIColor.nearGrey
     public func nearGrey() -> UIColor {
         return globalGreyColor ?? defaultGlobalGreyColor
     }
     
-    public var globalGreenColor : UIColor?
+    @objc public var globalGreenColor : UIColor?
     private let defaultGlobalGreenColor = UIColor.nearGreen
     public func nearGreen() -> UIColor {
         return globalGreenColor ?? defaultGlobalGreenColor
     }
     
-    public var globalRedColor : UIColor?
+    @objc public var globalRedColor : UIColor?
     private let defaultGlobalRedColor = UIColor.nearRed
     public func nearRed() -> UIColor {
         return globalRedColor ?? defaultGlobalRedColor

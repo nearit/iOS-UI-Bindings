@@ -44,9 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NITUIAppearance.sharedInstance.mediumItalicFontName = "Raleway-MediumItalic"
         NITUIAppearance.sharedInstance.boldItalicFontName = "Raleway-BoldItalic"
         
-        NITUIAppearance.sharedInstance.globalBlackColor = UIColor.blue
-        NITUIAppearance.sharedInstance.globalWhiteColor = UIColor.purple
-        
         return true
     }
 
