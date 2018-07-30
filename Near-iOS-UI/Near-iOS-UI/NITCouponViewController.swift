@@ -25,9 +25,9 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var validText: String!
     @objc public var fromText: String!
     @objc public var toText: String!
-    @objc public var couponValidColor = UIColor.nearCouponValid
-    @objc public var couponDisabledColor = UIColor.nearCouponDisabled
-    @objc public var couponExpiredColor = UIColor.nearCouponExpired
+    @objc public var couponValidColor = NITUIAppearance.sharedInstance.nearGreen()
+    @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
     @objc public var validFont: UIFont?

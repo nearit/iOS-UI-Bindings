@@ -103,7 +103,6 @@ class NITInboxCell: UITableViewCell {
     }
     
     func setLabelsColor(_ color: UIColor) {
-        dateLabel.textColor = color
         moreLabel.textColor = color
         moreIcon.tintColor = unreadColor
     }
@@ -114,6 +113,7 @@ class NITInboxCell: UITableViewCell {
             selectionStyle = .default
             makeBoldMessage(false)
             makeBoldMore(false)
+            makeBoldDate(false)
             shadowOpacity = 0.15
             makeShadow(true)
             showMore()
@@ -123,6 +123,7 @@ class NITInboxCell: UITableViewCell {
             selectionStyle = .default
             makeBoldMessage(true)
             makeBoldMore(true)
+            makeBoldDate(true)
             shadowOpacity = 0.15
             makeShadow(true)
             showMore()
@@ -132,6 +133,7 @@ class NITInboxCell: UITableViewCell {
             selectionStyle = .none
             makeBoldMessage(false)
             makeBoldMore(false)
+            makeBoldDate(false)
             makeShadow(false)
             showMore(false)
             setLabelsColor(readColor)
