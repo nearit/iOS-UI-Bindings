@@ -25,9 +25,10 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var validText: String!
     @objc public var fromText: String!
     @objc public var toText: String!
-    @objc public var couponValidColor = UIColor.nearCouponValid
-    @objc public var couponDisabledColor = UIColor.nearCouponDisabled
-    @objc public var couponExpiredColor = UIColor.nearCouponExpired
+    @objc public var couponValidColor = NITUIAppearance.sharedInstance.nearGreen()
+    @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var couponDisabledAlternativeColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
     @objc public var validFont: UIFont?
@@ -35,7 +36,7 @@ public class NITCouponViewController: NITBaseViewController {
     let defaultFromToFont = UIFont.italicSystemFont(ofSize: 12.0)
     @objc public var fromToFont: UIFont?
     
-    let defaultAlternativeFont = UIFont.systemFont(ofSize: 20.0)
+    let defaultAlternativeFont = UIFont.italicSystemFont(ofSize: 20.0)
     @objc public var alternativeFont: UIFont?
     
     let defaultTitleFont = UIFont.systemFont(ofSize: 16.0)
@@ -47,14 +48,14 @@ public class NITCouponViewController: NITBaseViewController {
     let defaultSerialFont = UIFont.systemFont(ofSize: 20.0)
     @objc public var serialFont: UIFont?
     
-    let defaultValueFont = UIFont.systemFont(ofSize: 20.0)
+    let defaultValueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueFont: UIFont?
     
     
-    @objc public var titleColor = UIColor.nearBlack
-    @objc public var descriptionColor = UIColor.nearWarmGrey
-    @objc public var serialColor = UIColor.nearBlack
-    @objc public var valueColor = UIColor.nearBlack
+    @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var descriptionColor = NITUIAppearance.sharedInstance.nearGrey()
+    @objc public var serialColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
     @IBOutlet weak var dates: UILabel!
     @IBOutlet weak var qrcode: UIImageView!
@@ -161,7 +162,7 @@ public class NITCouponViewController: NITBaseViewController {
 
         let fromToAttrs: [NSAttributedStringKey: Any] = [
             NSAttributedStringKey.font: getFromToFont(),
-            NSAttributedStringKey.foregroundColor: UIColor.nearWarmGrey
+            NSAttributedStringKey.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
         ]
 
         let text = NSMutableAttributedString()
@@ -230,12 +231,12 @@ public class NITCouponViewController: NITBaseViewController {
             alternative.isHidden = false
             qrcode.isHidden = true
             alternative.text = disabledText
-            alternative.textColor = couponDisabledColor
-            value.textColor = couponDisabledColor
-            longDescription.textColor = couponDisabledColor
-            couponTitle.textColor = couponDisabledColor
+            alternative.textColor = couponDisabledAlternativeColor
+            value.textColor = couponDisabledColor.withAlphaComponent(0.35)
+            longDescription.textColor = couponDisabledColor.withAlphaComponent(0.35)
+            couponTitle.textColor = couponDisabledColor.withAlphaComponent(0.35)
             serial.isHidden = true
-            setupDates(color: couponExpiredColor)
+            setupDates(color: couponDisabledColor)
         case .expired:
             alternative.isHidden = false
             qrcode.isHidden = true
@@ -318,8 +319,8 @@ public class NITCouponViewController: NITBaseViewController {
         if let valueFont = self.valueFont {
             return valueFont
         }
-        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
-            return UIFont.init(name: regularFont, size: defaultValueFont.pointSize) ??
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultValueFont.pointSize) ??
                 defaultValueFont
         }
         return defaultValueFont

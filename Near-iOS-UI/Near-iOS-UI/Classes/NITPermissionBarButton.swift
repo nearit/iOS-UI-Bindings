@@ -53,7 +53,7 @@ class NITPermissionBarButton: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundColor = UIColor.charcoalGray
+        backgroundColor = NITUIAppearance.sharedInstance.nearBlack()
         
         let halfHeight = layer.frame.height / 2
         layer.cornerRadius = halfHeight

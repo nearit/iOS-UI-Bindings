@@ -138,7 +138,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
         }
     }
 
-    @objc @IBInspectable public var messageColor: UIColor? {
+    @objc @IBInspectable public var messageColor: UIColor = NITUIAppearance.sharedInstance.nearWhite() {
         didSet {
             message.textColor = messageColor
         }
@@ -236,6 +236,8 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
 
         defaultSadImage = UIImage.init(named: "sadWhite", in: bundle, compatibleWith: nil)
         defaultWorriedImage = UIImage.init(named: "worriedWhite", in: bundle, compatibleWith: nil)
+        
+        message.textColor = messageColor
         
         applyFont()
         // refresh()
