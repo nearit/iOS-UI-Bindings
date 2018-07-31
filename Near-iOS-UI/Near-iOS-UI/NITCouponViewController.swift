@@ -48,7 +48,7 @@ public class NITCouponViewController: NITBaseViewController {
     let defaultSerialFont = UIFont.systemFont(ofSize: 20.0)
     @objc public var serialFont: UIFont?
     
-    let defaultValueFont = UIFont.systemFont(ofSize: 20.0)
+    let defaultValueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueFont: UIFont?
     
     
@@ -319,8 +319,8 @@ public class NITCouponViewController: NITBaseViewController {
         if let valueFont = self.valueFont {
             return valueFont
         }
-        if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
-            return UIFont.init(name: regularFont, size: defaultValueFont.pointSize) ??
+        if let boldFont = NITUIAppearance.sharedInstance.boldFontName {
+            return UIFont.init(name: boldFont, size: defaultValueFont.pointSize) ??
                 defaultValueFont
         }
         return defaultValueFont
