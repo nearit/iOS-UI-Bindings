@@ -167,6 +167,9 @@ class ViewController: UIViewController {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
             let aViewController = NITContentViewController(content: content)
+            aViewController.openLinksInWebView = true
+            aViewController.webViewBarColor = UIColor.black
+            aViewController.webViewControlColor = UIColor.white
             aViewController.show()
         case Code.objectiveC.rawValue:
             ObjCUIManager.sharedInstance().showContenDialog(content)
