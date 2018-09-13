@@ -14,8 +14,9 @@ public struct NITInboxAvailableItems: OptionSet {
     
     public static let customJSON = NITInboxAvailableItems(rawValue: 1 << 0)
     public static let feedback = NITInboxAvailableItems(rawValue: 1 << 1)
+    public static let coupon = NITInboxAvailableItems(rawValue: 1 << 2)
     
-    public static let all: NITInboxAvailableItems = [.customJSON, .feedback]
+    public static let all: NITInboxAvailableItems = [.customJSON, .feedback, .coupon]
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
@@ -117,6 +118,12 @@ public class NITInboxListViewController: NITBaseViewController {
                         if let feedbackAvailable = self?.availableItems.contains(.feedback) {
                             if !feedbackAvailable {
                                 continue
+                            }
+                        }
+                    } else if let _ = item.reactionBundle as? NITCoupon {
+                        if let couponAvailable = self?.availableItems.contains(.coupon) {
+                            if !couponAvailable {
+                                continue;
                             }
                         }
                     }
