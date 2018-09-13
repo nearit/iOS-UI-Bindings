@@ -147,7 +147,6 @@ public class NITInboxListViewController: NITBaseViewController {
     }
     
     @objc public func show(fromViewController: UIViewController? = nil) {
-        
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
             
             let navigation = UINavigationController.init(rootViewController: self)
@@ -261,6 +260,10 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
               let contentVC = NITContentViewController(content: content, trackingInfo: item.trackingInfo)
                 delegate?.inboxListViewController(self, willShowViewController: contentVC)
                 contentVC.show(fromViewController: self, configureDialog: nil)
+            } else if let coupon = item.reactionBundle as? NITCoupon {
+                let couponVC = NITCouponViewController(coupon: coupon)
+                delegate?.inboxListViewController(self, willShowViewController: couponVC)
+                couponVC.show(fromViewController: self, configureDialog: nil)
             }
         }
     }
