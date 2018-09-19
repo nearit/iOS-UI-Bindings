@@ -22,7 +22,7 @@
 - (void)showContenDialog:(NITContent *)content;
 - (void)showCouponDialog:(NITCoupon *)coupon;
 - (void)showFeedbackDialog:(NITFeedback *)feedback;
-- (void)showInboxListWithNavigationController:(UINavigationController*)navController;
-- (void)showInboxListWithNavigationController:(UINavigationController*)navController customNoContent:(UIView*)noContentView;
+- (void)showHistoryWithNavigationController:(UINavigationController*)navController;
+- (void)showHistoryWithNavigationController:(UINavigationController*)navController customNoContent:(UIView*)noContentView;
 
 @end

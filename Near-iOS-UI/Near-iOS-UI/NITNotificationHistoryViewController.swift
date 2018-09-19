@@ -1,5 +1,5 @@
 //
-//  NITInboxListViewController.swift
+//  NITNotificationHistoryViewController.swift
 //  NearUIBinding
 //
 //  Created by francesco.leoni on 23/02/18.
@@ -9,25 +9,25 @@
 import UIKit
 import NearITSDK
 
-public struct NITInboxAvailableItems: OptionSet {
+public struct NITAvailableNotification: OptionSet {
     public let rawValue: Int
     
-    public static let customJSON = NITInboxAvailableItems(rawValue: 1 << 0)
-    public static let feedback = NITInboxAvailableItems(rawValue: 1 << 1)
-    public static let coupon = NITInboxAvailableItems(rawValue: 1 << 2)
+    public static let customJSON = NITAvailableNotification(rawValue: 1 << 0)
+    public static let feedback = NITAvailableNotification(rawValue: 1 << 1)
+    public static let coupon = NITAvailableNotification(rawValue: 1 << 2)
     
-    public static let all: NITInboxAvailableItems = [.customJSON, .feedback, .coupon]
+    public static let all: NITAvailableNotification = [.customJSON, .feedback, .coupon]
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
 }
 
-public protocol NITInboxListViewControllerDelegate: class {
-    func inboxListViewController(_ inboxListVC: NITInboxListViewController, willShowViewController: UIViewController)
+public protocol NITNotificationHistoryViewControllerDelegate: class {
+    func historyViewController(_ viewController: NITNotificationHistoryViewController, willShowViewController: UIViewController)
 }
 
-public class NITInboxListViewController: NITBaseViewController {
+public class NITNotificationHistoryViewController: NITBaseViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var refreshControl: UIRefreshControl?
@@ -37,10 +37,10 @@ public class NITInboxListViewController: NITBaseViewController {
     var nearManager: NITManager
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
-    public var availableItems: NITInboxAvailableItems = .all
+    public var availableItems: NITAvailableNotification = .all
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
-    public var delegate: NITInboxListViewControllerDelegate?
+    public var delegate: NITNotificationHistoryViewControllerDelegate?
     
     @objc public convenience init () {
         self.init(manager: NITManager.default())
@@ -49,7 +49,7 @@ public class NITInboxListViewController: NITBaseViewController {
     init(manager: NITManager = NITManager.default()) {
         self.nearManager = manager
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
-        super.init(nibName: "NITInboxListViewController", bundle: bundle)
+        super.init(nibName: "NITNotificationHistoryViewController", bundle: bundle)
         //setupDefaultElements()
     }
     
@@ -65,7 +65,7 @@ public class NITInboxListViewController: NITBaseViewController {
         dateFormatter.timeStyle = .none
         
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(NITInboxListViewController.refreshControl(_:)), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(NITNotificationHistoryViewController.refreshControl(_:)), for: .valueChanged)
         if let refreshControl = refreshControl {
             if #available(iOS 10.0, *) {
                 tableView.refreshControl = refreshControl
@@ -77,7 +77,7 @@ public class NITInboxListViewController: NITBaseViewController {
         showNoContentViewIfAvailable()
         setupUI()
         setupDefaultElements()
-        refreshInbox()
+        refreshHistory()
     }
 
     override public func didReceiveMemoryWarning() {
@@ -89,8 +89,8 @@ public class NITInboxListViewController: NITBaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         let bundle = Bundle.NITBundle(for: NITNotificationCell.self)
-        let nib = UINib.init(nibName: "NITInboxCell", bundle: bundle)
-        tableView.register(nib, forCellReuseIdentifier: "inbox")
+        let nib = UINib.init(nibName: "NITNotificationCell", bundle: bundle)
+        tableView.register(nib, forCellReuseIdentifier: "history")
     }
     
     func setupDefaultElements() {
@@ -98,7 +98,7 @@ public class NITInboxListViewController: NITBaseViewController {
         selectedCellBackground.layer.cornerRadius = 5.0
     }
     
-    func refreshInbox() {
+    func refreshHistory() {
         refreshControl?.beginRefreshing()
         nearManager.inbox {[weak self] (items, error) in
             if let _ = error {
@@ -177,7 +177,7 @@ public class NITInboxListViewController: NITBaseViewController {
     // MARK: - Refresh control
     
     @objc func refreshControl(_ refreshControl: UIRefreshControl) {
-        refreshInbox()
+        refreshHistory()
     }
 
     /*
@@ -192,7 +192,7 @@ public class NITInboxListViewController: NITBaseViewController {
 
 }
 
-extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate {
+extension NITNotificationHistoryViewController: UITableViewDataSource, UITableViewDelegate {
     
     public func numberOfSections(in tableView: UITableView) -> Int {
         return (items ?? []).count
@@ -203,7 +203,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "inbox", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath)
         
         if let cell = cell as? NITNotificationCell {
             cell.backgroundColor = .clear
@@ -254,15 +254,15 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
             
             if let feedback = item.reactionBundle as? NITFeedback {
                 let feedbackVC = NITFeedbackViewController(feedback: feedback)
-                delegate?.inboxListViewController(self, willShowViewController: feedbackVC)
+                delegate?.historyViewController(self, willShowViewController: feedbackVC)
                 feedbackVC.show(fromViewController: self, configureDialog: nil)
             } else if let content = item.reactionBundle as? NITContent {
               let contentVC = NITContentViewController(content: content, trackingInfo: item.trackingInfo)
-                delegate?.inboxListViewController(self, willShowViewController: contentVC)
+                delegate?.historyViewController(self, willShowViewController: contentVC)
                 contentVC.show(fromViewController: self, configureDialog: nil)
             } else if let coupon = item.reactionBundle as? NITCoupon {
                 let couponVC = NITCouponViewController(coupon: coupon)
-                delegate?.inboxListViewController(self, willShowViewController: couponVC)
+                delegate?.historyViewController(self, willShowViewController: couponVC)
                 couponVC.show(fromViewController: self, configureDialog: nil)
             }
         }

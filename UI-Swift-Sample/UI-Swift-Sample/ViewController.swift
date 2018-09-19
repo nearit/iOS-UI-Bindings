@@ -310,24 +310,24 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    func showInboxListInNavigationController(_ customNoContent: Bool = false) {
+    func showHistoryInNavigationController(_ customNoContent: Bool = false) {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
-            let inbox = NITInboxListViewController()
+            let history = NITNotificationHistoryViewController()
             if customNoContent {
                 let view = UIView()
                 view.backgroundColor = UIColor.blue
-                inbox.noContentView = view
+                history.noContentView = view
             }
-            inbox.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
-            inbox.show(navigationController: navigationController!)
+            history.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
+            history.show(navigationController: navigationController!)
         case Code.objectiveC.rawValue:
             if customNoContent {
                 let view = UIView()
                 view.backgroundColor = UIColor.orange
-                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!, customNoContent: view)
+                ObjCUIManager.sharedInstance().showHistory(with: navigationController!, customNoContent: view)
             } else {
-                ObjCUIManager.sharedInstance().showInboxList(with: navigationController!)
+                ObjCUIManager.sharedInstance().showHistory(with: navigationController!)
             }
             
         default:
@@ -456,16 +456,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5: // Permission bar
             title?.text = "Coupon permission bar"
             description?.text = "Creted by code"
-        case 6: // Inbox
+        case 6: // History
             switch indexPath.row {
             case 0:
-                title?.text = "Inbox list"
+                title?.text = "Notification history"
                 description?.text = "Navigation controller"
             case 1:
-                title?.text = "Inbox list"
+                title?.text = "Notification history"
                 description?.text = "Navigation controller with no content view"
             default:
-                title?.text = "Undefined Inbox"
+                title?.text = "Undefined History"
                 description?.text = " - "
             }
         default:
@@ -575,9 +575,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 6:
             switch indexPath.row {
             case 0:
-                showInboxListInNavigationController()
+                showHistoryInNavigationController()
             case 1:
-                showInboxListInNavigationController(true)
+                showHistoryInNavigationController(true)
             default:
                 break
             }
@@ -604,7 +604,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         case 5:
             return "Permission bar"
         case 6:
-            return "Inbox list"
+            return "History list"
         default:
             return nil
         }

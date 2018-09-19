@@ -1,5 +1,5 @@
 //
-//  NITInboxCell.swift
+//  NITNotificationCell.swift
 //  NearUIBinding
 //
 //  Created by francesco.leoni on 23/02/18.
