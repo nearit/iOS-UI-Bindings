@@ -22,7 +22,7 @@
 		26B85B0D1F98A02A00087BEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B85B0B1F98A02A00087BEE /* LaunchScreen.storyboard */; };
 		26BA349420401FEE000B7CB4 /* NITInboxListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA349220401FEE000B7CB4 /* NITInboxListViewController.swift */; };
 		26BA349520401FEE000B7CB4 /* NITInboxListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26BA349320401FEE000B7CB4 /* NITInboxListViewController.xib */; };
-		26BA349720402229000B7CB4 /* NITInboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA349620402229000B7CB4 /* NITInboxCell.swift */; };
+		26BA349720402229000B7CB4 /* NITNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BA349620402229000B7CB4 /* NITNotificationCell.swift */; };
 		26BA34992040228E000B7CB4 /* NITInboxCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26BA34982040228E000B7CB4 /* NITInboxCell.xib */; };
 		26CAC3081F56BB4E009DDDF2 /* Near-iOS-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC30F1F56C7D1009DDDF2 /* NITDialogController.swift */; };
@@ -135,7 +135,7 @@
 		26BA349120401C7D000B7CB4 /* NearUIBinding.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NearUIBinding.podspec; path = ../NearUIBinding.podspec; sourceTree = "<group>"; };
 		26BA349220401FEE000B7CB4 /* NITInboxListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITInboxListViewController.swift; sourceTree = "<group>"; };
 		26BA349320401FEE000B7CB4 /* NITInboxListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITInboxListViewController.xib; sourceTree = "<group>"; };
-		26BA349620402229000B7CB4 /* NITInboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITInboxCell.swift; sourceTree = "<group>"; };
+		26BA349620402229000B7CB4 /* NITNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITNotificationCell.swift; sourceTree = "<group>"; };
 		26BA34982040228E000B7CB4 /* NITInboxCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITInboxCell.xib; sourceTree = "<group>"; };
 		26CAC3031F56BB4E009DDDF2 /* NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Near-iOS-UI.h"; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 				8A5ECD621FB9A0B500C099BB /* NITCouponCell.swift */,
 				8A5ECD5E1FB983CA00C099BB /* NITCouponCell.xib */,
 				8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */,
-				26BA349620402229000B7CB4 /* NITInboxCell.swift */,
+				26BA349620402229000B7CB4 /* NITNotificationCell.swift */,
 				26BA34982040228E000B7CB4 /* NITInboxCell.xib */,
 				D7B0C7D720EB6CA30076FA92 /* NITUIAppearance.swift */,
 				D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */,
@@ -646,7 +646,7 @@
 				8A6BE7CE1FC0A09F00678C21 /* Bundle+framework.swift in Sources */,
 				8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */,
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
-				26BA349720402229000B7CB4 /* NITInboxCell.swift in Sources */,
+				26BA349720402229000B7CB4 /* NITNotificationCell.swift in Sources */,
 				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,
 				D77EF6F320FCF6A600198922 /* NITPermissionBarButton.swift in Sources */,
 				8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */,

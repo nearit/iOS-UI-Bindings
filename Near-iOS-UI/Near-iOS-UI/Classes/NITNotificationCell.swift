@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum NITInboxCellState: Int {
+enum NITNotificationCellState: Int {
     case read
     case unread
     case notReadable
 }
 
-class NITInboxCell: UITableViewCell {
+class NITNotificationCell: UITableViewCell {
     
     @IBOutlet weak var subContent: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -27,7 +27,7 @@ class NITInboxCell: UITableViewCell {
     var messageColor = NITUIAppearance.sharedInstance.nearBlack()
     private var cardBackgroundReadColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
     var shadowOpacity: Float = 0.15
-    var state: NITInboxCellState = .unread {
+    var state: NITNotificationCellState = .unread {
         didSet {
             changeStateUI()
         }
@@ -39,7 +39,7 @@ class NITInboxCell: UITableViewCell {
         
         clipsToBounds = false
         contentView.layer.cornerRadius = 5
-        let bundle = Bundle.NITBundle(for: NITInboxCell.self)
+        let bundle = Bundle.NITBundle(for: NITNotificationCell.self)
         let icon = UIImage(named: "scopriBold", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         moreIcon.image = icon
         

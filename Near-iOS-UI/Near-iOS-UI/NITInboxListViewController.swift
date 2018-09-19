@@ -88,7 +88,7 @@ public class NITInboxListViewController: NITBaseViewController {
     func setupUI() {
         tableView.dataSource = self
         tableView.delegate = self
-        let bundle = Bundle.NITBundle(for: NITInboxCell.self)
+        let bundle = Bundle.NITBundle(for: NITNotificationCell.self)
         let nib = UINib.init(nibName: "NITInboxCell", bundle: bundle)
         tableView.register(nib, forCellReuseIdentifier: "inbox")
     }
@@ -205,7 +205,7 @@ extension NITInboxListViewController: UITableViewDataSource, UITableViewDelegate
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "inbox", for: indexPath)
         
-        if let cell = cell as? NITInboxCell {
+        if let cell = cell as? NITNotificationCell {
             cell.backgroundColor = .clear
             cell.selectedBackgroundView = selectedCellBackground
             
