@@ -19,6 +19,8 @@ class NITPermissionBarButton: UIView {
     let permissionManager = NITPermissionsManager()
     let stackView = UIStackView()
     
+    var alreadyMissing = [NITPermissionInfo]()
+    
     @objc @IBInspectable public var missingLocationIcon: UIImage?
     @objc @IBInspectable public var missingBluetoothIcon: UIImage?
     @objc @IBInspectable public var missingNotificationIcon: UIImage?
@@ -67,12 +69,17 @@ class NITPermissionBarButton: UIView {
     }
     
     public func resetConstraints() {
+        alreadyMissing = [NITPermissionInfo]()
         for view in stackView.arrangedSubviews {
             view.removeFromSuperview()
         }
     }
     
     public func addMissingConstraint(_ permissionInfo : NITPermissionInfo) {
+        if (alreadyMissing.contains(permissionInfo)) {
+            return;
+        }
+        alreadyMissing.append(permissionInfo)
         if let image = imageFrom(permissionInfo) {
             let imageView = UIImageView()
             imageView.heightAnchor.constraint(equalToConstant: 18.0).isActive = true
