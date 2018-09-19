@@ -6,7 +6,6 @@ workspace 'Near-iOS-UI'
 target 'NearUIBinding' do
     project 'Near-iOS-UI/Near-iOS-UI.xcodeproj'
     pod 'NearITSDK', '~> 2.9.3'
-
     abstract_target 'Tests' do
         target "NeariOSUITests"
 
