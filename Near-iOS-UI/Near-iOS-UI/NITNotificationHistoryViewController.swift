@@ -9,20 +9,6 @@
 import UIKit
 import NearITSDK
 
-public struct NITAvailableNotification: OptionSet {
-    public let rawValue: Int
-    
-    public static let customJSON = NITAvailableNotification(rawValue: 1 << 0)
-    public static let feedback = NITAvailableNotification(rawValue: 1 << 1)
-    public static let coupon = NITAvailableNotification(rawValue: 1 << 2)
-    
-    public static let all: NITAvailableNotification = [.customJSON, .feedback, .coupon]
-    
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
-    }
-}
-
 public protocol NITNotificationHistoryViewControllerDelegate: class {
     func historyViewController(_ viewController: NITNotificationHistoryViewController, willShowViewController: UIViewController)
 }
@@ -34,10 +20,14 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     
     var selectedCellBackground: UIView!
     
+    @objc public var includeCustomJson = false
+    @objc public var includeCoupons = true
+    @objc public var includeFeedbacks = true
+    
     var nearManager: NITManager
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
-    public var availableItems: NITAvailableNotification = [.feedback, .coupon]
+    
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
     public var delegate: NITNotificationHistoryViewControllerDelegate?
@@ -109,20 +99,20 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
                     if let _ = item.reactionBundle as? NITSimpleNotification {
                         item.read = true
                     } else if let _ = item.reactionBundle as? NITCustomJSON {
-                        if let jsonAvailable = self?.availableItems.contains(.customJSON) {
-                            if !jsonAvailable {
+                        if let includeCustomJson = self?.includeCustomJson {
+                            if !includeCustomJson {
                                 continue
                             }
                         }
                     } else if let _ = item.reactionBundle as? NITFeedback {
-                        if let feedbackAvailable = self?.availableItems.contains(.feedback) {
-                            if !feedbackAvailable {
+                        if let includeFeedbacks = self?.includeFeedbacks {
+                            if !includeFeedbacks {
                                 continue
                             }
                         }
                     } else if let _ = item.reactionBundle as? NITCoupon {
-                        if let couponAvailable = self?.availableItems.contains(.coupon) {
-                            if !couponAvailable {
+                        if let includeCoupons = self?.includeCoupons {
+                            if !includeCoupons {
                                 continue;
                             }
                         }
