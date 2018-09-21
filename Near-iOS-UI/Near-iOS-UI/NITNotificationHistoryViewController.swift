@@ -37,7 +37,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     var nearManager: NITManager
     var items: [NITInboxItem]?
     let dateFormatter = DateFormatter()
-    public var availableItems: NITAvailableNotification = .all
+    public var availableItems: NITAvailableNotification = [.feedback, .coupon]
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
     public var delegate: NITNotificationHistoryViewControllerDelegate?
