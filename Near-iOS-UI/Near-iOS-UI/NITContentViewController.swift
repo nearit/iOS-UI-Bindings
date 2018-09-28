@@ -84,14 +84,21 @@ public class NITContentViewController: NITBaseViewController {
             fromViewController.present(dialog, animated: true, completion: nil)
         }
     }
-
+    
     @objc public func show(navigationController: UINavigationController) {
+        show(navigationController: navigationController, title: nil)
+    }
+
+    @objc public func show(navigationController: UINavigationController, title: String? = nil) {
         hideCloseButton = true
         let dialog = NITDialogController(viewController: self)
         dialog.hidesBottomBarWhenPushed = true
         dialog.backgroundStyle = .plain
         dialog.backgroundColor = .white
         dialog.contentPosition = .full
+        if let title = title {
+            dialog.title = title
+        }
         navigationController.pushViewController(dialog, animated: true)
     }
 
