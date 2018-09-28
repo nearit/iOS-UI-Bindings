@@ -153,7 +153,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         }
     }
 
-    @objc public func show(navigationController: UINavigationController) {
+    @objc public func show(navigationController: UINavigationController, title: String? = nil) {
+        if let title = title {
+            self.title = title
+        }
         navigationController.pushViewController(self, animated: true)
     }
 
