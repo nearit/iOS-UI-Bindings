@@ -229,18 +229,26 @@ public class NITContentViewController: NITBaseViewController {
     private func openUrl(url: URL?) {
         guard let link = url else { return }
         if (UIApplication.shared.canOpenURL(link)) {
-            let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
-            if #available(iOS 10.0, *) {
-                if let barColor = self.webViewBarColor {
-                    svc.preferredBarTintColor = barColor
+            if (openLinksInWebView) {
+                let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
+                if #available(iOS 10.0, *) {
+                    if let barColor = self.webViewBarColor {
+                        svc.preferredBarTintColor = barColor
+                    }
+                    if let controlColor = self.webViewControlColor {
+                        svc.preferredControlTintColor = controlColor
+                    }
+                } else {
+                    // Fallback on earlier versions
                 }
-                if let controlColor = self.webViewControlColor {
-                    svc.preferredControlTintColor = controlColor
-                }
+                present(svc, animated: true, completion: nil)
             } else {
-                // Fallback on earlier versions
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(link, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(link)
+                }
             }
-            present(svc, animated: true, completion: nil)
         } else {
             print("CAN'T OPEN URL: " + link.absoluteString)
         }
