@@ -23,6 +23,9 @@ public class NITContentViewController: NITBaseViewController {
     @objc public var imagePlaceholder: UIImage?
     @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var htmlColor = NITUIAppearance.sharedInstance.nearBlack()
+    @objc public var openLinksInWebView = false
+    @objc public var webViewBarColor: UIColor?
+    @objc public var webViewControlColor: UIColor?
 
     @objc public var callToActionColor: UIColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var callToActionTextColor = NITUIAppearance.sharedInstance.nearWhite()
@@ -170,8 +173,7 @@ public class NITContentViewController: NITBaseViewController {
         if let ctaHandler = callToActionHandler {
             ctaHandler(self, content.link!.url)
         } else {
-            let s = SFSafariViewController(url: content.link!.url)
-            present(s, animated: true, completion: nil)
+            self.openUrl(url: content.link?.url)
         }
     }
     
@@ -207,6 +209,7 @@ public class NITContentViewController: NITBaseViewController {
                 documentAttributes: nil)
             htmlContent.attributedText = attrStr
             htmlContent.textColor = htmlColor
+            htmlContent.delegate = self
         } catch _ {
             print("error while formatting html")
         }
@@ -228,5 +231,40 @@ public class NITContentViewController: NITBaseViewController {
             return "Helvetica"
         }
         return regularFontName
+    }
+    
+    private func openUrl(url: URL?) {
+        guard let link = url else { return }
+        if (UIApplication.shared.canOpenURL(link)) {
+            if (openLinksInWebView) {
+                let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
+                if #available(iOS 10.0, *) {
+                    if let barColor = self.webViewBarColor {
+                        svc.preferredBarTintColor = barColor
+                    }
+                    if let controlColor = self.webViewControlColor {
+                        svc.preferredControlTintColor = controlColor
+                    }
+                } else {
+                    // Fallback on earlier versions
+                }
+                present(svc, animated: true, completion: nil)
+            } else {
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(link, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(link)
+                }
+            }
+        } else {
+            print("CAN'T OPEN URL: " + link.absoluteString)
+        }
+    }
+}
+
+extension NITContentViewController : UITextViewDelegate {
+    public func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
+        self.openUrl(url: url)
+        return false
     }
 }
