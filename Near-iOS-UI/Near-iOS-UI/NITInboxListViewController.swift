@@ -149,6 +149,13 @@ public class NITInboxListViewController: NITBaseViewController {
     }
     
     @objc public func show(navigationController: UINavigationController) {
+        show(navigationController: navigationController, title: nil)
+    }
+    
+    @objc public func show(navigationController: UINavigationController, title: String? = nil) {
+        if let title = title {
+            self.title = title
+        }
         navigationController.pushViewController(self, animated: true)
     }
     

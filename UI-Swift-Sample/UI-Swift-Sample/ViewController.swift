@@ -252,7 +252,7 @@ class ViewController: UIViewController {
                 aViewController.show()
                 aViewController.couponBackground = .normalBorders
             } else {
-                aViewController.show(navigationController: navigationController!)
+                aViewController.show(navigationController: navigationController!, title: "my coupons")
             }
         case Code.objectiveC.rawValue:
             ObjCUIManager.sharedInstance().showListOfCoupons()
