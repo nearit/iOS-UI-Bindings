@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name                  = 'NearUIBinding'
-s.version               = '1.1.10'
+s.version               = '1.1.11'
 s.summary               = 'nearit.com iOS UI Bindings'
 s.description           = 'nearit.com iOS UI Bindings for Swift and Objective-C'
 
@@ -19,6 +19,6 @@ s.resource_bundles      = { 'NearUIBinding' => ['Near-iOS-UI/Near-iOS-UI/**/*.xi
 
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
-s.dependency            'NearITSDK', '~> 2.9.3'
+s.dependency            'NearITSDK', '~> 2.9.5'
 
 end
