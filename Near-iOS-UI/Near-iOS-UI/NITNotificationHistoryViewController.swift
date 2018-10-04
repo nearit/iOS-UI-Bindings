@@ -25,7 +25,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     @objc public var includeFeedbacks = true
     
     var nearManager: NITManager
-    var items: [NITInboxItem]?
+    var items: [NITHistoryItem]?
     let dateFormatter = DateFormatter()
     
     @objc public var noContentView: UIView?
@@ -90,11 +90,11 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     
     func refreshHistory() {
         refreshControl?.beginRefreshing()
-        nearManager.inbox {[weak self] (items, error) in
+        nearManager.history {[weak self] (items, error) in
             if let _ = error {
                 
             } else {
-                var filteredItems = [NITInboxItem]()
+                var filteredItems = [NITHistoryItem]()
                 for item in items ?? [] {
                     if let _ = item.reactionBundle as? NITSimpleNotification {
                         item.read = true

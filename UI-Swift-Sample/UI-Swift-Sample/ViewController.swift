@@ -317,6 +317,7 @@ class ViewController: UIViewController {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
             let history = NITNotificationHistoryViewController()
+            history.includeCoupons = true;
             if customNoContent {
                 let view = UIView()
                 view.backgroundColor = UIColor.blue
