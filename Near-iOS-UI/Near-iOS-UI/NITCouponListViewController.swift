@@ -167,6 +167,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc func onDone() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    @objc public func refreshList() {
+        refreshCoupons()
+    }
 
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
