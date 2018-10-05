@@ -248,7 +248,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
             if show && noContentView.superview == nil {
                 noContentView.translatesAutoresizingMaskIntoConstraints = false
                 noContentView.isUserInteractionEnabled = false
-                view.addSubview(noContentView)
+                view.insertSubview(noContentView, at: 0)
                 noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
                 noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
                 noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -264,7 +264,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return max((coupons ?? []).count, 1)
+        return (coupons ?? []).count
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
