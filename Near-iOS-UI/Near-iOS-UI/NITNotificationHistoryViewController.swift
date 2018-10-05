@@ -160,7 +160,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
             if show && noContentView.superview == nil {
                 noContentView.translatesAutoresizingMaskIntoConstraints = false
                 noContentView.isUserInteractionEnabled = false
-                view.addSubview(noContentView)
+                view.insertSubview(noContentView, at: 0)
                 noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
                 noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
                 noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

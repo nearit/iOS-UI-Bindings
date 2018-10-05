@@ -291,7 +291,7 @@ class ViewController: UIViewController {
         permissionViewB.messageFont = UIFont.boldSystemFont(ofSize: 15.0)
 //        permissionViewB.permissionAvailableColor = .green
 //        permissionViewB.permissionNotAvailableColor = .red
-//        permissionViewB.buttonText = "Roger"r
+//        permissionViewB.buttonText = "Roger"
 //        permissionViewB.buttonColor = .white
 
        
