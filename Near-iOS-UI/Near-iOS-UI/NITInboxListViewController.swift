@@ -159,6 +159,10 @@ public class NITInboxListViewController: NITBaseViewController {
         navigationController.pushViewController(self, animated: true)
     }
     
+    @objc public func refreshList() {
+        refreshInbox()
+    }
+    
     func showNoContentViewIfAvailable(_ show: Bool = true) {
         if let noContentView = noContentView {
             if show && noContentView.superview == nil {
