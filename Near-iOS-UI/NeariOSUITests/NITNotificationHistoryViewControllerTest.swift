@@ -1,5 +1,5 @@
 //
-//  NITInboxListViewControllerTest.swift
+//  NITNotificationHistoryViewControllerTest.swift
 //  NeariOSUITests
 //
 //  Created by francesco.leoni on 27/02/18.
@@ -10,16 +10,16 @@ import XCTest
 import NearITSDK
 @testable import NearUIBinding
 
-class NITInboxListViewControllerTest: XCTestCase {
+class NITNotificationHistoryViewControllerTest: XCTestCase {
     
-    var inboxVC: NITInboxListViewController!
-    let mockManager = MockInboxManager()
+    var historyVC: NITNotificationHistoryViewController!
+    let mockManager = MockHistoryManager()
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        inboxVC = NITInboxListViewController(manager: mockManager)
-        let _ = inboxVC.view
+        historyVC = NITNotificationHistoryViewController(manager: mockManager)
+        let _ = historyVC.view
     }
     
     override func tearDown() {
@@ -29,62 +29,66 @@ class NITInboxListViewControllerTest: XCTestCase {
     
     func testAvailableItemsAll() {
         mockManager.items = itemsJSONAndFeedback()
-        inboxVC.availableItems = .all
+        historyVC.includeCoupons = true
+        historyVC.includeFeedbacks = true
+        historyVC.includeCustomJson = true
         
-        inboxVC.refreshInbox()
+        historyVC.refreshHistory()
         
-        let numberOfSections = inboxVC.numberOfSections(in: inboxVC.tableView)
+        let numberOfSections = historyVC.numberOfSections(in: historyVC.tableView)
         XCTAssertTrue(numberOfSections == 2)
     }
     
     func testAvailableItemsOnlyJSON() {
         mockManager.items = itemsJSONAndFeedback()
-        inboxVC.availableItems = .customJSON
+        historyVC.includeCustomJson = true
         
-        inboxVC.refreshInbox()
+        historyVC.refreshHistory()
         
-        let numberOfSections = inboxVC.numberOfSections(in: inboxVC.tableView)
+        let numberOfSections = historyVC.numberOfSections(in: historyVC.tableView)
         XCTAssertTrue(numberOfSections == 1)
     }
     
     func testAvailableItemsOnlyFeedback() {
         mockManager.items = itemsJSONAndFeedback()
-        inboxVC.availableItems = .feedback
+        historyVC.includeFeedbacks = true
         
-        inboxVC.refreshInbox()
+        historyVC.refreshHistory()
         
-        let numberOfSections = inboxVC.numberOfSections(in: inboxVC.tableView)
+        let numberOfSections = historyVC.numberOfSections(in: historyVC.tableView)
         XCTAssertTrue(numberOfSections == 1)
     }
     
     func testAvailableItemsNoJSONAndFeedback() {
         mockManager.items = itemsJSONAndFeedback()
-        inboxVC.availableItems = []
+        historyVC.includeCoupons = false
+        historyVC.includeFeedbacks = false
+        historyVC.includeCustomJson = false
         
-        inboxVC.refreshInbox()
+        historyVC.refreshHistory()
         
-        let numberOfSections = inboxVC.numberOfSections(in: inboxVC.tableView)
+        let numberOfSections = historyVC.numberOfSections(in: historyVC.tableView)
         XCTAssertTrue(numberOfSections == 0)
     }
     
-    func itemsJSONAndFeedback() -> [NITInboxItem] {
+    func itemsJSONAndFeedback() -> [NITHistoryItem] {
         let customJson = NITCustomJSON()
         let feedback = NITFeedback()
         
-        let itemJson = NITInboxItem()
+        let itemJson = NITHistoryItem()
         itemJson.reactionBundle = customJson
-        let itemFeedback = NITInboxItem()
+        let itemFeedback = NITHistoryItem()
         itemFeedback.reactionBundle = feedback
         
         return [itemJson, itemFeedback]
     }
 }
 
-class MockInboxManager: NITManager {
+class MockHistoryManager: NITManager {
     
-    var items: [NITInboxItem]?
+    var items: [NITHistoryItem]?
     
-    override func inbox(completion: @escaping ([NITInboxItem]?, Error?) -> Void) {
+    override func history(completion: @escaping ([NITHistoryItem]?, Error?) -> Void) {
         completion(items, nil)
     }
 }
