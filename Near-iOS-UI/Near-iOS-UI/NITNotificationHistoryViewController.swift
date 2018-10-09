@@ -92,7 +92,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
         refreshControl?.beginRefreshing()
         nearManager.history {[weak self] (items, error) in
             if let _ = error {
-                
+                self?.showNoContentViewIfAvailable()
             } else {
                 var filteredItems = [NITHistoryItem]()
                 for item in items ?? [] {
