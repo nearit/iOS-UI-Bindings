@@ -156,7 +156,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     }
     
     @objc public func refreshList() {
-        refreshInbox()
+        refreshHistory()
     }
     
     func showNoContentViewIfAvailable(_ show: Bool = true) {
