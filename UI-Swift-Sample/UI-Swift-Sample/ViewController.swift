@@ -323,8 +323,9 @@ class ViewController: UIViewController {
                 view.backgroundColor = UIColor.blue
                 history.noContentView = view
             }
-            history.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
-            history.show(navigationController: navigationController!)
+            inbox.unreadColor = UIColor(red: 99.0/255.0, green: 182.0/255.0, blue: 1.0, alpha: 1.0)
+            // inbox.show(navigationController: navigationController!)
+            inbox.show(navigationController: navigationController!, title: "my notifications")
         case Code.objectiveC.rawValue:
             if customNoContent {
                 let view = UIView()
