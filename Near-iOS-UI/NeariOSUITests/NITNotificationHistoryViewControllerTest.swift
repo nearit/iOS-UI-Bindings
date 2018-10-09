@@ -29,7 +29,9 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
     
     func testAvailableItemsAll() {
         mockManager.items = itemsJSONAndFeedback()
-        historyVC.availableItems = .all
+        historyVC.includeCoupons = true
+        historyVC.includeFeedbacks = true
+        historyVC.includeCustomJson = true
         
         historyVC.refreshHistory()
         
@@ -39,7 +41,7 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
     
     func testAvailableItemsOnlyJSON() {
         mockManager.items = itemsJSONAndFeedback()
-        historyVC.availableItems = .customJSON
+        historyVC.includeCustomJson = true
         
         historyVC.refreshHistory()
         
@@ -49,7 +51,7 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
     
     func testAvailableItemsOnlyFeedback() {
         mockManager.items = itemsJSONAndFeedback()
-        historyVC.availableItems = .feedback
+        historyVC.includeFeedbacks = true
         
         historyVC.refreshHistory()
         
@@ -59,7 +61,9 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
     
     func testAvailableItemsNoJSONAndFeedback() {
         mockManager.items = itemsJSONAndFeedback()
-        historyVC.availableItems = []
+        historyVC.includeCoupons = false
+        historyVC.includeFeedbacks = false
+        historyVC.includeCustomJson = false
         
         historyVC.refreshHistory()
         
@@ -67,13 +71,13 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
         XCTAssertTrue(numberOfSections == 0)
     }
     
-    func itemsJSONAndFeedback() -> [NITInboxItem] {
+    func itemsJSONAndFeedback() -> [NITHistoryItem] {
         let customJson = NITCustomJSON()
         let feedback = NITFeedback()
         
-        let itemJson = NITInboxItem()
+        let itemJson = NITHistoryItem()
         itemJson.reactionBundle = customJson
-        let itemFeedback = NITInboxItem()
+        let itemFeedback = NITHistoryItem()
         itemFeedback.reactionBundle = feedback
         
         return [itemJson, itemFeedback]
@@ -82,9 +86,9 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
 
 class MockHistoryManager: NITManager {
     
-    var items: [NITInboxItem]?
+    var items: [NITHistoryItem]?
     
-    override func inbox(completion: @escaping ([NITInboxItem]?, Error?) -> Void) {
+    override func history(completion: @escaping ([NITHistoryItem]?, Error?) -> Void) {
         completion(items, nil)
     }
 }
