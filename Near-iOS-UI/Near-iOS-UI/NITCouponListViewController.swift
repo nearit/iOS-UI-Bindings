@@ -335,6 +335,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 }
 
             } else {
+                // TODO this appears to not be called anymore, if that's true, away with it!
                 if isLoading {
                     cell.setLoading()
                 } else {
