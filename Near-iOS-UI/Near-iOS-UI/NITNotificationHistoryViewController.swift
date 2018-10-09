@@ -89,6 +89,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     }
     
     func refreshHistory() {
+        tableView.setContentOffset(CGPoint.init(x: 0.0, y: -60.0), animated: true)
         refreshControl?.beginRefreshing()
         nearManager.history {[weak self] (items, error) in
             if let _ = error {
@@ -153,6 +154,10 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
             self.title = title
         }
         navigationController.pushViewController(self, animated: true)
+    }
+    
+    @objc public func refreshList() {
+        refreshHistory()
     }
     
     func showNoContentViewIfAvailable(_ show: Bool = true) {
