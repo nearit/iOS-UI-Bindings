@@ -167,6 +167,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @objc func onDone() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
+    
+    @objc public func refreshList() {
+        refreshCoupons()
+    }
 
     func setupDefaultElements() {
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
@@ -206,6 +210,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
     internal func refreshCoupons() {
         isLoading = true
+        tableView.setContentOffset(CGPoint.init(x: 0.0, y: -60.0), animated: true)
         refreshControl?.beginRefreshing()
         nearManager.coupons { [weak self](coupons: [NITCoupon]?, error: Error?) in
             if error == nil {
@@ -335,6 +340,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 }
 
             } else {
+                // TODO this appears to not be called anymore, if that's true, away with it!
                 if isLoading {
                     cell.setLoading()
                 } else {

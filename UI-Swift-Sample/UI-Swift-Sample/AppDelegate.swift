@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NITManager.default().start()
         
         enableStubForCoupons(true)
-        enableStubForInbox(true)
+        enableStubForHistory(true)
         
         for family in UIFont.familyNames.sorted() {
             let names = UIFont.fontNames(forFamilyName: family)
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func enableStubForInbox(_ enabled: Bool) {
+    func enableStubForHistory(_ enabled: Bool) {
         stub(condition: { (request) -> Bool in
             if let urlString = request.url?.absoluteString {
                 if urlString.contains("/plugins/push-machine/notifications/inbox") {
