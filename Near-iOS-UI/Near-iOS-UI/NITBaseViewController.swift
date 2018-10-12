@@ -39,7 +39,7 @@ public class NITBaseViewController: UIViewController {
             if let imageData = data, let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
                     UIView.transition(with: toImageView,
-                                      duration: 0.3,
+                                      duration: 0.0,
                                       options: .transitionCrossDissolve,
                                       animations: {
                                         toImageView.image = image
