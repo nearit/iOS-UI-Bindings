@@ -53,6 +53,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var closeContainer: UIView!
 
     @IBOutlet var constantConstraints: [NSLayoutConstraint]!
+    
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
     @objc public convenience init(content: NITContent, trackingInfo: NITTrackingInfo? = nil) {
       self.init(content: content, trackingInfo: trackingInfo, manager: NITManager.default())
