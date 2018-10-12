@@ -140,7 +140,9 @@ public class NITContentViewController: NITBaseViewController {
         
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
-            applyImage(fromURL: url, toImageView: image)
+            applyImage(fromURL: url, toImageView: image, completionHandler: {(_) in
+                self.fixImageView()
+            })
             imageContainer.isHidden = false
         }
 
@@ -174,6 +176,14 @@ public class NITContentViewController: NITBaseViewController {
             ctaHandler(self, content.link!.url)
         } else {
             self.openUrl(url: content.link?.url)
+        }
+    }
+    
+    private func fixImageView() {
+        if let image = self.image.image {
+            if self.image.frame.size.width < image.size.width {
+                self.imageHeightConstraint?.constant = self.image.frame.size.width / image.size.width * image.size.height
+            }
         }
     }
     
