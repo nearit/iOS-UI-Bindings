@@ -138,10 +138,13 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     @objc public func show() {
-        show(fromViewController: nil)
+        show(fromViewController: nil, title: nil)
+    }
+    @objc public func show(title: String? = nil) {
+        show(fromViewController: nil, title: title)
     }
 
-    @objc public func show(fromViewController: UIViewController? = nil) {
+    @objc public func show(fromViewController: UIViewController? = nil, title: String? = nil) {
 
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
 
