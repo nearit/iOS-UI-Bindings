@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,6 +19,7 @@
                 <outlet property="htmlContent" destination="dyy-XS-msT" id="z7N-fN-WIa"/>
                 <outlet property="image" destination="B6c-Vs-QdP" id="JTO-jS-YeT"/>
                 <outlet property="imageContainer" destination="Wna-fR-M9t" id="2YO-LC-few"/>
+                <outlet property="imageHeightConstraint" destination="ncc-e3-ekr" id="Ggb-60-9pt"/>
                 <outlet property="stackview" destination="2vb-n1-al8" id="E1E-Es-atZ"/>
                 <outlet property="stackviewWidthConstraint" destination="hUg-qA-Yzf" id="nKv-QZ-k9Z"/>
                 <outlet property="titleContainer" destination="hrc-rQ-TQQ" id="8xK-dp-TeL"/>
@@ -40,10 +40,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="345" height="778"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ev8-Gt-iyV">
-                            <rect key="frame" x="0.0" y="0.0" width="345" height="304"/>
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="205.5"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
-                                    <rect key="frame" x="293" y="10" width="52" height="274"/>
+                                    <rect key="frame" x="293" y="10" width="52" height="175.5"/>
                                     <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                     <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="-20" maxY="0.0"/>
                                     <state key="normal" image="chiudi"/>
@@ -60,27 +60,27 @@
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9N-Tu-RSe">
-                            <rect key="frame" x="0.0" y="304" width="345" height="15"/>
+                            <rect key="frame" x="0.0" y="205.5" width="345" height="15"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="ZOd-Nn-ekR"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-fR-M9t" userLabel="Image container">
-                            <rect key="frame" x="0.0" y="304" width="345" height="196.5"/>
+                        <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Wna-fR-M9t" userLabel="Image container">
+                            <rect key="frame" x="0.0" y="205.5" width="345" height="295"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgSegnaposto" translatesAutoresizingMaskIntoConstraints="NO" id="B6c-Vs-QdP">
-                                    <rect key="frame" x="25" y="0.0" width="295" height="196.5"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B6c-Vs-QdP">
+                                    <rect key="frame" x="25" y="0.0" width="295" height="295"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="B6c-Vs-QdP" secondAttribute="height" multiplier="3:2" id="s9K-4h-z7u"/>
+                                        <constraint firstAttribute="height" constant="295" id="ncc-e3-ekr"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="B6c-Vs-QdP" firstAttribute="top" secondItem="Wna-fR-M9t" secondAttribute="top" id="2ho-wK-Iyt"/>
                                 <constraint firstAttribute="trailing" secondItem="B6c-Vs-QdP" secondAttribute="trailing" constant="25" id="C3p-bv-aqA"/>
-                                <constraint firstAttribute="bottom" secondItem="B6c-Vs-QdP" secondAttribute="bottom" id="MLm-d3-liB"/>
-                                <constraint firstItem="B6c-Vs-QdP" firstAttribute="top" secondItem="Wna-fR-M9t" secondAttribute="top" id="W2b-LM-wmi"/>
+                                <constraint firstAttribute="height" secondItem="B6c-Vs-QdP" secondAttribute="height" id="lpa-M2-9bl"/>
                                 <constraint firstItem="B6c-Vs-QdP" firstAttribute="leading" secondItem="Wna-fR-M9t" secondAttribute="leading" constant="25" id="sXV-fT-dpZ"/>
                             </constraints>
                         </view>
@@ -175,6 +175,5 @@
     </objects>
     <resources>
         <image name="chiudi" width="12" height="12"/>
-        <image name="imgSegnaposto" width="340" height="200"/>
     </resources>
 </document>

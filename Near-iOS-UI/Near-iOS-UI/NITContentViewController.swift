@@ -53,6 +53,8 @@ public class NITContentViewController: NITBaseViewController {
     @IBOutlet weak var closeContainer: UIView!
 
     @IBOutlet var constantConstraints: [NSLayoutConstraint]!
+    
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
     @objc public convenience init(content: NITContent, trackingInfo: NITTrackingInfo? = nil) {
       self.init(content: content, trackingInfo: trackingInfo, manager: NITManager.default())
@@ -140,7 +142,9 @@ public class NITContentViewController: NITBaseViewController {
         
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
-            applyImage(fromURL: url, toImageView: image)
+            applyImage(fromURL: url, toImageView: image, completionHandler: {(_) in
+                self.fixImageView()
+            })
             imageContainer.isHidden = false
         }
 
@@ -174,6 +178,14 @@ public class NITContentViewController: NITBaseViewController {
             ctaHandler(self, content.link!.url)
         } else {
             self.openUrl(url: content.link?.url)
+        }
+    }
+    
+    private func fixImageView() {
+        if let image = self.image.image {
+            if self.image.frame.size.width < image.size.width {
+                self.imageHeightConstraint?.constant = self.image.frame.size.width / image.size.width * image.size.height
+            }
         }
     }
     

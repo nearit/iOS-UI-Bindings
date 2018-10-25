@@ -33,18 +33,18 @@ public class NITBaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    public func applyImage(fromURL: URL!, toImageView: UIImageView!) {
+    public func applyImage(fromURL: URL!, toImageView: UIImageView!, completionHandler: ((Bool) -> Void)? = nil ) {
         DispatchQueue.global(qos: .userInitiated).async {
             let data = try? Data(contentsOf: fromURL)
             if let imageData = data, let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
                     UIView.transition(with: toImageView,
-                                      duration: 0.3,
+                                      duration: 0.0,
                                       options: .transitionCrossDissolve,
                                       animations: {
                                         toImageView.image = image
                     },
-                                      completion: nil)
+                                      completion: completionHandler)
                 }
             }
         }
