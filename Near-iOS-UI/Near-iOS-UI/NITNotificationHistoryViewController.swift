@@ -24,6 +24,8 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     @objc public var includeCoupons = true
     @objc public var includeFeedbacks = true
     
+    @objc public var openLinksInWebView = false
+    
     var nearManager: NITManager
     var items: [NITHistoryItem]?
     let dateFormatter = DateFormatter()
@@ -277,6 +279,7 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
             } else if let content = item.reactionBundle as? NITContent {
               let contentVC = NITContentViewController(content: content, trackingInfo: item.trackingInfo)
                 delegate?.historyViewController(self, willShowViewController: contentVC)
+                contentVC.openLinksInWebView = self.openLinksInWebView
                 contentVC.show(fromViewController: self, configureDialog: nil)
             } else if let coupon = item.reactionBundle as? NITCoupon {
                 let couponVC = NITCouponViewController(coupon: coupon)
