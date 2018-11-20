@@ -95,7 +95,7 @@ public class NITDialogController: UIViewController {
         contentView.layer.cornerRadius = 5.0
         scrollView.layer.cornerRadius = 5.0
         
-        addChildViewController(viewController)
+        addChild(viewController)
         contentView.addSubview(viewController.view)
         viewController.view.translatesAutoresizingMaskIntoConstraints = false
         viewController.view.frame = contentView.bounds
@@ -105,7 +105,7 @@ public class NITDialogController: UIViewController {
         viewController.view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         viewController.view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         scrollView?.keyboardDismissMode = .interactive
         
@@ -119,8 +119,10 @@ public class NITDialogController: UIViewController {
         
         offset = bottomConstraint.constant
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShowNotification), name:
+            UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification), name:
+            UIResponder.keyboardWillHideNotification, object: nil)
 
     }
     
@@ -287,16 +289,16 @@ extension NITDialogController {
 
     @objc func keyboardWillShowNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let frameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            if let frameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 let frame = frameValue.cgRectValue
                 keyboardVisibleHeight = frame.size.height
             }
 
             self.updateConstant()
-            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
 
-                let options = UIViewAnimationOptions(rawValue: curve.uintValue)
+                let options = UIView.AnimationOptions(rawValue: curve.uintValue)
 
                 UIView.animate(
                     withDuration: TimeInterval(duration.doubleValue),
@@ -322,10 +324,10 @@ extension NITDialogController {
 
         if let userInfo = notification.userInfo {
 
-            switch (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
 
-                let options = UIViewAnimationOptions(rawValue: curve.uintValue)
+                let options = UIView.AnimationOptions(rawValue: curve.uintValue)
 
                 UIView.animate(
                     withDuration: TimeInterval(duration.doubleValue),

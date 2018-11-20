@@ -179,7 +179,7 @@ public class NITPermissionsManager: NSObject {
     }
     
     public func openAppSettings() {
-        if let url = URL(string: UIApplicationOpenSettingsURLString) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             } else{
