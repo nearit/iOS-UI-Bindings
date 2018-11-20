@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         title = "Sample"
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
 
     }
@@ -183,14 +183,14 @@ class ViewController: UIViewController {
 
         aViewController.imagePlaceholder = UIImage.init(named: "NearIT")
         aViewController.linkHandler = { (controller, request) -> WKNavigationActionPolicy in
-            let ui = UIAlertController.init(title: "Link tapped", message: "URL: \(request.url!)", preferredStyle: UIAlertControllerStyle.alert)
+            let ui = UIAlertController.init(title: "Link tapped", message: "URL: \(request.url!)", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "Ok", style: .default)
             ui.addAction(okAction)
             controller.present(ui, animated: true)
             return .cancel
         }
         aViewController.callToActionHandler = { (controller, url) -> Void in
-            let ui = UIAlertController.init(title: "Call To Action", message: "URL: \(url)", preferredStyle: UIAlertControllerStyle.alert)
+            let ui = UIAlertController.init(title: "Call To Action", message: "URL: \(url)", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "Ok", style: .default)
             ui.addAction(okAction)
             controller.present(ui, animated: true)

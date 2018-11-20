@@ -162,14 +162,14 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     internal func setupDates(color: UIColor) {
-        let validAttrs: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: getValidFont(),
-            NSAttributedStringKey.foregroundColor: color
+        let validAttrs: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: getValidFont(),
+            NSAttributedString.Key.foregroundColor: color
         ]
 
-        let fromToAttrs: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.font: getFromToFont(),
-            NSAttributedStringKey.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
+        let fromToAttrs: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font: getFromToFont(),
+            NSAttributedString.Key.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
         ]
 
         let text = NSMutableAttributedString()

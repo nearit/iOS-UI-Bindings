@@ -96,7 +96,8 @@ public class NITPermissionsViewController: NITBaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationDidBecomeActive(_:)), name:
+            UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     override public func viewWillDisappear(_ animated: Bool) {

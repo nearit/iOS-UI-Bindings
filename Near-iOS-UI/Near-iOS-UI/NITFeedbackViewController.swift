@@ -122,7 +122,8 @@ public class NITFeedbackViewController: NITBaseViewController {
         super.viewDidLoad()
         setupUI()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShowNotification), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShowNotification), name:
+            UIResponder.keyboardDidShowNotification, object: nil)
     }
     
     deinit {
