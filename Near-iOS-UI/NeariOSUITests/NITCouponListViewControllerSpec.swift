@@ -23,6 +23,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
             beforeEach {
                 manager = FakeNearManager()
                 couponListVC = NITCouponListViewController(manager: manager)
+                couponListVC.noContentView = UIView()
             }
 
             afterEach {
@@ -132,13 +133,8 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 expect(couponListVC.view).notTo(beNil())
 
                 expect(manager.isEventCalled).toEventually(beTrue())
-                expect(couponListVC.tableView.numberOfSections).to(equal(1))
-
-                let cell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? NITCouponCell
-                expect(cell).notTo(beNil())
-                expect(cell?.subContent.isHidden).to(beTrue())
-                expect(cell?.message.isHidden).to(beFalse())
-                expect(cell?.message.text).to(equal(couponListVC.noCoupons))
+                expect(couponListVC.tableView.numberOfSections).to(equal(0))
+                expect(couponListVC.noContentView?.isHidden).to(beFalse())
             }
 
             it("Nil") {
@@ -148,29 +144,8 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 expect(couponListVC.view).notTo(beNil())
 
                 expect(manager.isEventCalled).toEventually(beTrue())
-                expect(couponListVC.tableView.numberOfSections).to(equal(1))
-
-                let cell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? NITCouponCell
-                expect(cell).notTo(beNil())
-                expect(cell?.subContent.isHidden).to(beTrue())
-                expect(cell?.message.isHidden).to(beFalse())
-                expect(cell?.message.text).to(equal(couponListVC.noCoupons))
-            }
-
-            it("Retry in case of error") {
-                manager.fakeSendEventError = true
-
-                couponListVC.show()
-                expect(couponListVC.view).notTo(beNil())
-
-                expect(manager.isEventCalled).toEventually(beTrue())
-                expect(couponListVC.tableView.numberOfSections).to(equal(1))
-
-                let cell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? NITCouponCell
-                expect(cell).notTo(beNil())
-                expect(cell?.subContent.isHidden).to(beTrue())
-                expect(cell?.message.isHidden).to(beTrue())
-                expect(cell?.loader.isHidden).to(beFalse())
+                expect(couponListVC.tableView.numberOfSections).to(equal(0))
+                expect(couponListVC.noContentView?.isHidden).to(beFalse())
             }
         }
     }
