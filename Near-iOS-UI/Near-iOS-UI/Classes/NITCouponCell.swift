@@ -58,20 +58,13 @@ class NITCouponCell : UITableViewCell {
         message.font = font
     }
 
-    func applyImage(fromURL: URL!) {
+    func applyImage(fromURL: URL!, imageDownloader: NITImageDownloader) {
         url = fromURL
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let data = try? Data(contentsOf: fromURL)
-            if self?.url == fromURL, let imageData = data, let image = UIImage(data: imageData) {
-                DispatchQueue.main.async {
-                    guard let wself = self else { return }
-                    UIView.transition(with: wself.icon,
-                                      duration: 0.3,
-                                      options: .transitionCrossDissolve,
-                                      animations: {
-                                        wself.icon.image = image
-                    },
-                                      completion: nil)
+        
+        imageDownloader.downloadImageWithUrl(url: url) { (success, image, resultUrl) in
+            if success {
+                if self.url.absoluteString == resultUrl.absoluteString {
+                    self.icon.image = image
                 }
             }
         }
