@@ -12,6 +12,7 @@ import FBSnapshotTestCase
 import Nimble_Snapshots
 import UIKit
 import CoreBluetooth
+import CoreLocation
 @testable import NearITSDK
 @testable import NearUIBinding
 
@@ -41,9 +42,8 @@ class NITPermissionViewSpec: QuickSpec {
                 fakeCBPeripheralManager.bluetooth = false
 
                 view.permissionsRequired = .all
-                // expect(view.iconLocation.tintColor).to(equal(view.permissionNotAvailableColor))
-                // expect(view.iconNotifications.tintColor).to(equal(view.permissionNotAvailableColor))
-                // expect(view.iconBluetooth.tintColor).to(equal(view.permissionNotAvailableColor))
+                view.shouldRefresh()
+                expect(view.permissionButton.alreadyMissing).to(contain(.blueTooth, .location, .notification))
             }
 
             it("location/notification icons are availables") {
@@ -52,36 +52,10 @@ class NITPermissionViewSpec: QuickSpec {
                 fakeCBPeripheralManager.bluetooth = true
 
                 view.permissionsRequired = .all
-                // expect(view.iconLocation.tintColor).to(equal(view.permissionAvailableColor))
-                // expect(view.iconNotifications.tintColor).to(equal(view.permissionAvailableColor))
-                // expect(view.iconBluetooth.tintColor).to(equal(view.permissionAvailableColor))
-            }
-
-            it("permissions hide/show icons") {
-                view.permissionsRequired = .notifications
-                // expect(view.iconLocation.isHidden).to(beTrue())
-                // expect(view.iconNotifications.isHidden).to(beFalse())
-                // expect(view.iconBluetooth.isHidden).to(beTrue())
-
-                view.permissionsRequired = .bluetooth
-                // expect(view.iconLocation.isHidden).to(beTrue())
-                // expect(view.iconNotifications.isHidden).to(beTrue())
-                // expect(view.iconBluetooth.isHidden).to(beFalse())
-
-                view.permissionsRequired = .location
-                // expect(view.iconLocation.isHidden).to(beFalse())
-                // expect(view.iconNotifications.isHidden).to(beTrue())
-                // expect(view.iconBluetooth.isHidden).to(beTrue())
-            }
-
-            it("opens the permission controller") {
-                var tapped = false
-                view.permissionsRequired = .all
-                view.callbackOnPermissions = { _ in
-                    tapped = true
-                }
-                // view.button.sendActions(for: .touchUpInside)
-                expect(tapped).toEventually(beTrue())
+                view.shouldRefresh()
+                expect(view.permissionButton.alreadyMissing).toNot(contain(.location))
+                expect(view.permissionButton.alreadyMissing).toNot(contain(.blueTooth))
+                expect(view.permissionButton.alreadyMissing).toNot(contain(.notification))
             }
 
             it ("visible when permissions are missing") {
@@ -142,6 +116,13 @@ class NITPermissionViewSpec: QuickSpec {
         var location = true
         var notifications = true
 
+        override func isNotificationAvailable(_ completionHandler: @escaping (Bool) -> Void) {
+            completionHandler(notifications)
+        }
+        
+        override func isLocationGrantedAtLeast(minStatus: CLAuthorizationStatus) -> Bool {
+            return location
+        }
 //        override func isNotificationAvailable() -> Bool {
 //            return notifications
 //        }

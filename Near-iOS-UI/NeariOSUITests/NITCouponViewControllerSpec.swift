@@ -163,7 +163,7 @@ class NITCouponViewControllerSpec: NITCouponSpec {
                 expect(couponVC.serial.isHidden).to(beTrue())
                 expect(couponVC.alternative.isHidden).to(beFalse())
                 expect(couponVC.alternative.text).to(equal(couponVC.disabledText))
-                expect(couponVC.couponTitle.textColor).to(equal(couponVC.couponDisabledColor))
+                expect(couponVC.couponTitle.textColor).to(equal(couponVC.couponDisabledColor.withAlphaComponent(0.35)))
             }
         }
 
