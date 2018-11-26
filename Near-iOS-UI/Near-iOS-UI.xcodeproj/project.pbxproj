@@ -30,6 +30,7 @@
 		26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26CAC3361F56E996009DDDF2 /* NITPermissionsViewController.swift */; };
 		26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */; };
 		26CAC33E1F56EA46009DDDF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26CAC33D1F56EA46009DDDF2 /* Images.xcassets */; };
+		381DA36621ABFCAD00D76F55 /* NITImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DA36521ABFCAD00D76F55 /* NITImageDownloader.swift */; };
 		7093C5078BEAF5B12204F99A /* Pods_NearUIBinding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4C0C751FC46259000C9C7B /* Pods_NearUIBinding.framework */; };
 		75065E4A2B183D949D1F8960 /* Pods_NearUIBinding_Tests_NeariOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1994DFA4FB8983EA0C6AB6BD /* Pods_NearUIBinding_Tests_NeariOSUITests.framework */; };
 		8A1CEB241F826901008E9372 /* UIWindow+currentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */; };
@@ -147,6 +148,7 @@
 		26CAC3371F56E996009DDDF2 /* NITPermissionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITPermissionsViewController.xib; sourceTree = "<group>"; };
 		26CAC33D1F56EA46009DDDF2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		376B237DDB741B8CE878D3C5 /* Pods_NeariOSUI_Tests_NeariOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NeariOSUI_Tests_NeariOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		381DA36521ABFCAD00D76F55 /* NITImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITImageDownloader.swift; sourceTree = "<group>"; };
 		45CDDA549B63BD4D8A003D04 /* Pods-NeariOSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NeariOSUI.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NeariOSUI/Pods-NeariOSUI.release.xcconfig"; sourceTree = "<group>"; };
 		4B804832B1575735811A0AB4 /* Pods_NearUIBinding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54D48AA3B698890E9D96D476 /* Pods-NearUIBinding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding/Pods-NearUIBinding.debug.xcconfig"; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */,
 				D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */,
 				D77EF6F220FCF6A600198922 /* NITPermissionBarButton.swift */,
+				381DA36521ABFCAD00D76F55 /* NITImageDownloader.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				D77EF6EF20FCA73B00198922 /* NITMultilineButton.swift in Sources */,
 				D7B0C7D820EB6CA30076FA92 /* NITUIAppearance.swift in Sources */,
 				26441FFC1F57FA0A00A38740 /* AppColors.swift in Sources */,
+				381DA36621ABFCAD00D76F55 /* NITImageDownloader.swift in Sources */,
 				26CAC3101F56C7D1009DDDF2 /* NITDialogController.swift in Sources */,
 				26CAC3381F56E996009DDDF2 /* NITPermissionsViewController.swift in Sources */,
 				8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */,
