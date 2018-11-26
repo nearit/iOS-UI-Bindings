@@ -172,7 +172,7 @@ class ViewController: UIViewController {
             aViewController.webViewControlColor = UIColor.white
             aViewController.show()
         case Code.objectiveC.rawValue:
-            ObjCUIManager.sharedInstance().showContenDialog(content)
+            ObjCUIManager.sharedInstance().showContenDialog(content, trackingInfo: nil)
         default:
             print("Code undefined")
         }
