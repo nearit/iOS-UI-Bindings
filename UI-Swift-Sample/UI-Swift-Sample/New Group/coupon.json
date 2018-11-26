@@ -1,65 +1,350 @@
 {
-    "data" : [
-              {
-              "id" : "a2219054-6a9f-4764-aa7f-6763c076d5ec",
-              "relationships" : {
-              "claims" : {
-              "data" : [
+    "data": [
+        {
+            "id": "a512ebb9-9d7d-4d54-a319-138762e61089",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "Greek olive",
+                "internal_reference": "greco",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis ligula vitae dui cursus volutpat. Pellentesque tincidunt pharetra ante malesuada tincidunt. Pellentesque ac elit tempus, sollicitudin quam eu, facilisis mi. Aenean eget ullamcorper quam. Donec posuere arcu sed sollicitudin commodo. In hac habitasse platea dictumst. Aenean euismod tempor finibus. Suspendisse ornare ipsum sit amet tortor scelerisque, sit amet condimentum nunc facilisis. Sed faucibus diam vitae aliquet commodo. Aliquam erat volutpat. Etiam quis sem eu sem gravida eleifend.",
+                "value": "6 OLIVE!",
+                "expires_at": null,
+                "redeemable_from": null,
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-02-06T17:45:04.167Z",
+                "updated_at": "2018-07-20T10:59:46.719Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "it"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
                         {
-                        "id" : "bb2ac963-e61d-4110-821f-717a946bacdb",
-                        "type" : "claims"
+                            "id": "e33aafc7-fca6-4cc0-81c6-91b421da4031",
+                            "type": "claims"
                         }
-                        ]
-              },
-              "icon" : {
-              "data" : null
-              }
-              },
-              "meta" : {
-              "expired" : false,
-              "has_claim" : true,
-              "redeemable" : true
-              },
-              "type" : "coupons",
-              "attributes" : {
-              "app_id" : "e34a7d90-14d2-46b8-81f0-81a2c93dd4d0",
-              "icon_id" : null,
-              "redeemable_from" : "2017-03-10T00:00:00.000Z",
-              "expires_at" : "2018-09-12T23:59:59.999Z",
-              "created_at" : "2017-03-29T11:45:51.933Z",
-              "value" : "50 %",
-              "description" : "On every purchase.",
-              "updated_at" : "2017-03-29T11:45:51.933Z",
-              "owner_id" : "fa71a6e6-b091-48ee-b79e-bd893d673713",
-              "name" : "Discount on shoes"
-              }
-              }
-              ],
-    "included" : [
-                  {
-                  "id" : "bb2ac963-e61d-4110-821f-717a946bacdb",
-                  "relationships" : {
-                  "coupon" : {
-                  "data" : {
-                  "id" : "a2219054-6a9f-4764-aa7f-6763c076d5ec",
-                  "type" : "coupons"
-                  }
-                  }
-                  },
-                  "meta" : {
-                  "redeemed" : false,
-                  "expired" : false,
-                  "redeemable" : true
-                  },
-                  "type" : "claims",
-                  "attributes" : {
-                  "serial_number" : "C545845F590E",
-                  "claimed_at" : "2017-03-30T09:30:31.542Z",
-                  "redeemed_at" : null,
-                  "recipe_id" : "fe92307e-a3b8-4637-86d8-922bf7a53b5f",
-                  "profile_id" : "6a2490f4-28b9-4e36-b0f6-2c97c86b0002"
-                  }
-                  }
-                  ]
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 214,
+                "claims_left": 0
+            }
+        },
+        {
+            "id": "3a095ba4-393a-4633-bed5-b1f30bb3419f",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "PIZZA!",
+                "internal_reference": "PIZZA!",
+                "description": null,
+                "value": "50% discount on pizza",
+                "expires_at": "2020-05-01T21:59:59.000Z",
+                "redeemable_from": "2018-06-30T22:00:00.000Z",
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-07-20T11:04:46.713Z",
+                "updated_at": "2018-11-15T09:57:31.514Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "xx"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
+                        {
+                            "id": "dc4c9f21-a452-4445-b404-f5941fdfdfab",
+                            "type": "claims"
+                        }
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 215,
+                "claims_left": 0
+            }
+        },
+        {
+            "id": "f7bfbdb2-4383-487e-83ae-0e22e83e3004",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "Coupon 1",
+                "internal_reference": "coupon 1",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis ligula vitae dui cursus volutpat. Pellentesque tincidunt pharetra ante malesuada tincidunt. Pellentesque ac elit tempus, sollicitudin quam eu, facilisis mi. Aenean eget ullamcorper quam. Donec posuere arcu sed sollicitudin commodo. In hac habitasse platea dictumst. Aenean euismod tempor finibus. Suspendisse ornare ipsum sit amet tortor scelerisque, sit amet condimentum nunc facilisis. Sed faucibus diam vitae aliquet commodo. Aliquam erat volutpat. Etiam quis sem eu sem gravida eleifend.",
+                "value": "SEI",
+                "expires_at": null,
+                "redeemable_from": null,
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-02-07T12:26:22.599Z",
+                "updated_at": "2018-02-07T12:26:22.599Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "it"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
+                        {
+                            "id": "6be5d7e6-4e20-4751-967f-4966775a0cf7",
+                            "type": "claims"
+                        }
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 207,
+                "claims_left": 0
+            }
+        }
+    ],
+    "included": [
+        {
+            "id": "e33aafc7-fca6-4cc0-81c6-91b421da4031",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "e58a44c6-25ef-4919-862a-3c986181fca2",
+                "serial_number": "B4675F633649",
+                "claimed_at": "2018-10-22T14:24:06.919Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "a512ebb9-9d7d-4d54-a319-138762e61089",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+            "type": "images",
+            "attributes": {
+                "name": "Steve_Pizza.png",
+                "image": {
+                    "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/482fb24f-695d-4564-9902-cdf286fd27ff/file.png",
+                    "square_300": {
+                        "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/482fb24f-695d-4564-9902-cdf286fd27ff/square_300_file.png"
+                    },
+                    "max_1920_jpg": {
+                        "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/482fb24f-695d-4564-9902-cdf286fd27ff/file.png"
+                    }
+                },
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "creator_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "created_at": "2017-06-20T12:44:30.990Z",
+                "updated_at": "2017-06-20T12:44:32.518Z"
+            }
+        },
+        {
+            "id": "dc4c9f21-a452-4445-b404-f5941fdfdfab",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "8f89ffda-5483-4056-a09c-766fe61431e3",
+                "serial_number": "6FAF7840D010",
+                "claimed_at": "2018-10-22T14:25:30.299Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "3a095ba4-393a-4633-bed5-b1f30bb3419f",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "fe7f84b7-278b-4032-bd8f-ac1631e4b751",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "9f3f2dec-8b0e-4b5a-823a-e1ea2982ef83",
+                "serial_number": "20EF646DDC68",
+                "claimed_at": "2018-10-24T14:04:55.532Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "90d120cf-fe87-4fa8-b840-957dbb33a0ce",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "248c1e86-4194-445a-9fe1-f5744e76dec7",
+            "type": "images",
+            "attributes": {
+                "name": "Screen Shot 2018-01-12 at 09.59.47 (2).png",
+                "image": {
+                    "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/248c1e86-4194-445a-9fe1-f5744e76dec7/file.png",
+                    "square_300": {
+                        "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/248c1e86-4194-445a-9fe1-f5744e76dec7/square_300_file.png"
+                    },
+                    "max_1920_jpg": {
+                        "url": "https://prod-nearit-media.s3.amazonaws.com/uploads/image/image/248c1e86-4194-445a-9fe1-f5744e76dec7/file.png"
+                    }
+                },
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "creator_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "created_at": "2018-02-06T15:13:08.764Z",
+                "updated_at": "2018-02-06T15:13:08.764Z"
+            }
+        },
+        {
+            "id": "d057e647-253d-41c7-8b04-438dadecc2f5",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "19843c17-ef8f-4f21-9155-efda180536ca",
+                "serial_number": "67563AEEB459",
+                "claimed_at": "2018-10-24T14:06:43.994Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "d90171b5-83d5-4211-ae2a-38d076905934",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "6be5d7e6-4e20-4751-967f-4966775a0cf7",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "5c217352-0457-436d-8409-52b96b6662db",
+                "serial_number": "E37FFD05D6B5",
+                "claimed_at": "2018-11-13T09:02:35.213Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "f7bfbdb2-4383-487e-83ae-0e22e83e3004",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "2a98d6d0-1664-47f7-9b0c-c98201634bc9",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "7a942c06-620d-491c-9e21-8434d05fbf7a",
+                "serial_number": "B1A98F2FC9B8",
+                "claimed_at": "2018-11-13T09:03:58.534Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "14928218-ffb9-410c-b9c5-832600ca44d6",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        },
+        {
+            "id": "21e9a712-c948-49d9-a09c-64e9104d39d2",
+            "type": "claims",
+            "attributes": {
+                "profile_id": "4b4a5a0a-b557-479c-9476-924ea775e6fb",
+                "recipe_id": "ba766235-d9f9-497f-aa5a-204e164254d3",
+                "serial_number": "2A9D7ADE1B6B",
+                "claimed_at": "2018-11-13T09:06:06.094Z",
+                "redeemed_at": null,
+                "redeemer_id": null
+            },
+            "relationships": {
+                "coupon": {
+                    "data": {
+                        "id": "b69dc901-093c-4943-80a1-14e99da0672e",
+                        "type": "coupons"
+                    }
+                }
+            },
+            "meta": {
+                "redeemed": false,
+                "expired": false,
+                "redeemable": true
+            }
+        }
+    ]
 }
-

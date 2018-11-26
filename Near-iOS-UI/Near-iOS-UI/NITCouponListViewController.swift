@@ -339,7 +339,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 }
 
                 if let url = coupon.icon?.smallSizeURL() {
-                    cell.applyImage(fromURL: url)
+                    cell.applyImage(fromURL: url, imageDownloader: NITImageDownloader.sharedInstance)
+                } else {
+                    cell.icon.image = self.iconPlaceholder
                 }
 
             } else {

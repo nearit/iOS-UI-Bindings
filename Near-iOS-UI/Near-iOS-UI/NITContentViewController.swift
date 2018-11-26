@@ -142,7 +142,7 @@ public class NITContentViewController: NITBaseViewController {
         
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
-            applyImage(fromURL: url, toImageView: image, completionHandler: {(_) in
+            applyImage(fromURL: url, toImageView: image, imageDownloader: NITImageDownloader.sharedInstance, completionHandler: {(_) in
                 self.fixImageView()
             })
             imageContainer.isHidden = false

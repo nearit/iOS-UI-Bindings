@@ -224,7 +224,7 @@ public class NITCouponViewController: NITBaseViewController {
         alternative.font = getAlternativeFont()
 
         if let iconURL = coupon.icon?.smallSizeURL() {
-            applyImage(fromURL: iconURL, toImageView: icon)
+            applyImage(fromURL: iconURL, toImageView: icon, imageDownloader: NITImageDownloader.sharedInstance)
         }
 
         switch coupon.status {
