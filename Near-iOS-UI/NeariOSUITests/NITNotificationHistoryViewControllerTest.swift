@@ -42,6 +42,7 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
     func testAvailableItemsOnlyJSON() {
         mockManager.items = itemsJSONAndFeedback()
         historyVC.includeCustomJson = true
+        historyVC.includeFeedbacks = false
         
         historyVC.refreshHistory()
         
