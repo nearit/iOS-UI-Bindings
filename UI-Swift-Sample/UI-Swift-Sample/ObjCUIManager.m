@@ -65,7 +65,7 @@ static ObjCUIManager *sharedManager;
     }];
 }
 
-- (void)showInboxListWithNavigationController:(UINavigationController*)navController {
+- (void)showHistoryWithNavigationController:(UINavigationController*)navController {
     NITNotificationHistoryViewController *historyVC = [[NITNotificationHistoryViewController alloc] init];
     historyVC.unreadColor = [UIColor colorWithRed:99.0/255.0 green:182.0/255.0 blue:1.0 alpha:1.0];
     [historyVC showWithNavigationController:navController title:@"my coupons"];

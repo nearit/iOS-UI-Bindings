@@ -12,6 +12,7 @@
 @class NITContent;
 @class NITCoupon;
 @class NITFeedback;
+@class NITTrackingInfo;
 
 @interface ObjCUIManager : NSObject
 
@@ -19,7 +20,7 @@
 
 - (void)showPermissiongDialog;
 - (void)showListOfCoupons;
-- (void)showContenDialog:(NITContent *)content;
+- (void)showContenDialog:(NITContent *)content trackingInfo:(NITTrackingInfo *)trackingInfo;
 - (void)showCouponDialog:(NITCoupon *)coupon;
 - (void)showFeedbackDialog:(NITFeedback *)feedback;
 - (void)showHistoryWithNavigationController:(UINavigationController*)navController;
