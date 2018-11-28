@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func enableStubForHistory(_ enabled: Bool) {
         stub(condition: { (request) -> Bool in
             if let urlString = request.url?.absoluteString {
-                if urlString.contains("/plugins/push-machine/notifications/inbox") {
+                if urlString.contains("/notifications") {
                     return true
                 }
             }
