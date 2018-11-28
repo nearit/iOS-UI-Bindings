@@ -270,7 +270,11 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
         if let item = items?[indexPath.section] {
             nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeOpened)
             item.read = true
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+            // if we reload the row with the tableview method,the list will jump to top
+            if let cell = tableView.cellForRow(at: indexPath) as? NITNotificationCell {
+                cell.state = .read
+            }
             
             if let feedback = item.reactionBundle as? NITFeedback {
                 let feedbackVC = NITFeedbackViewController(feedback: feedback)

@@ -128,6 +128,135 @@
                 "claims_count": 207,
                 "claims_left": 0
             }
+        },
+        {
+            "id": "a512ebb9-9d7d-4d54-a319-138762e61089",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "Greek olive",
+                "internal_reference": "greco",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis ligula vitae dui cursus volutpat. Pellentesque tincidunt pharetra ante malesuada tincidunt. Pellentesque ac elit tempus, sollicitudin quam eu, facilisis mi. Aenean eget ullamcorper quam. Donec posuere arcu sed sollicitudin commodo. In hac habitasse platea dictumst. Aenean euismod tempor finibus. Suspendisse ornare ipsum sit amet tortor scelerisque, sit amet condimentum nunc facilisis. Sed faucibus diam vitae aliquet commodo. Aliquam erat volutpat. Etiam quis sem eu sem gravida eleifend.",
+                "value": "6 OLIVE!",
+                "expires_at": null,
+                "redeemable_from": null,
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-02-06T17:45:04.167Z",
+                "updated_at": "2018-07-20T10:59:46.719Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "it"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
+                        {
+                            "id": "e33aafc7-fca6-4cc0-81c6-91b421da4031",
+                            "type": "claims"
+                        }
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 214,
+                "claims_left": 0
+            }
+        },
+        {
+            "id": "a512ebb9-9d7d-4d54-a319-138762e61089",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "Greek olive",
+                "internal_reference": "greco",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis ligula vitae dui cursus volutpat. Pellentesque tincidunt pharetra ante malesuada tincidunt. Pellentesque ac elit tempus, sollicitudin quam eu, facilisis mi. Aenean eget ullamcorper quam. Donec posuere arcu sed sollicitudin commodo. In hac habitasse platea dictumst. Aenean euismod tempor finibus. Suspendisse ornare ipsum sit amet tortor scelerisque, sit amet condimentum nunc facilisis. Sed faucibus diam vitae aliquet commodo. Aliquam erat volutpat. Etiam quis sem eu sem gravida eleifend.",
+                "value": "6 OLIVE!",
+                "expires_at": null,
+                "redeemable_from": null,
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-02-06T17:45:04.167Z",
+                "updated_at": "2018-07-20T10:59:46.719Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "it"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
+                        {
+                            "id": "e33aafc7-fca6-4cc0-81c6-91b421da4031",
+                            "type": "claims"
+                        }
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 214,
+                "claims_left": 0
+            }
+        },
+        {
+            "id": "a512ebb9-9d7d-4d54-a319-138762e61089",
+            "type": "coupons",
+            "attributes": {
+                "owner_id": "57b30a04-dcc2-4ad6-97ff-9aa71d9ac18b",
+                "app_id": "ce6f1aee-812d-4fb9-8a6e-14fbdefbc546",
+                "name": "Greek olive",
+                "internal_reference": "greco",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis ligula vitae dui cursus volutpat. Pellentesque tincidunt pharetra ante malesuada tincidunt. Pellentesque ac elit tempus, sollicitudin quam eu, facilisis mi. Aenean eget ullamcorper quam. Donec posuere arcu sed sollicitudin commodo. In hac habitasse platea dictumst. Aenean euismod tempor finibus. Suspendisse ornare ipsum sit amet tortor scelerisque, sit amet condimentum nunc facilisis. Sed faucibus diam vitae aliquet commodo. Aliquam erat volutpat. Etiam quis sem eu sem gravida eleifend.",
+                "value": "6 OLIVE!",
+                "expires_at": null,
+                "redeemable_from": null,
+                "icon_id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                "created_at": "2018-02-06T17:45:04.167Z",
+                "updated_at": "2018-07-20T10:59:46.719Z",
+                "timezone": "Europe/Rome",
+                "cap": 0,
+                "default_language": "it"
+            },
+            "relationships": {
+                "claims": {
+                    "data": [
+                        {
+                            "id": "e33aafc7-fca6-4cc0-81c6-91b421da4031",
+                            "type": "claims"
+                        }
+                    ]
+                },
+                "icon": {
+                    "data": {
+                        "id": "482fb24f-695d-4564-9902-cdf286fd27ff",
+                        "type": "images"
+                    }
+                }
+            },
+            "meta": {
+                "expired": false,
+                "redeemable": true,
+                "has_claim": true,
+                "claims_count": 214,
+                "claims_left": 0
+            }
         }
     ],
     "included": [
