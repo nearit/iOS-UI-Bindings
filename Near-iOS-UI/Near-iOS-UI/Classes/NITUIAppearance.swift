@@ -52,6 +52,7 @@ public class NITUIAppearance: NSObject {
     }
     
     @objc public var couponDateFormatter : DateFormatter?
+    @objc public var historyDateFormatter : DateFormatter?
 }
 
 public extension UILabel {
