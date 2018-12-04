@@ -44,20 +44,25 @@ extension NITCoupon {
 
     var localizedRedeemable: String {
         guard let date = redeemable else { return "" }
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateStyle = DateFormatter.Style.medium
-        formatter.timeStyle = DateFormatter.Style.none
+        let formatter = couponLocale()
         return formatter.string(from: date)
     }
-
+    
     var localizedExpiredAt: String {
         guard let date = expires else { return "" }
+        let formatter = couponLocale()
+        return formatter.string(from: date)
+    }
+    
+    func couponLocale() -> DateFormatter {
+        if let couponFormatter = NITUIAppearance.sharedInstance.couponDateFormatter {
+            return couponFormatter
+        }
         let formatter = DateFormatter()
         formatter.locale = Locale.current
         formatter.dateStyle = DateFormatter.Style.medium
         formatter.timeStyle = DateFormatter.Style.none
-        return formatter.string(from: date)
+        return formatter
     }
 
     var isRedeemed: Bool {
