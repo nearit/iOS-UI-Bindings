@@ -179,6 +179,7 @@
 		8AE08CDF1FA8715100710B0B /* NITContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NITContentViewController.swift; sourceTree = "<group>"; };
 		8AE08CE01FA8715100710B0B /* NITContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NITContentViewController.xib; sourceTree = "<group>"; };
 		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
+		D70E09B521B7C9530073D0C0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		D71F1F382187236E0016BD1D /* how-to-release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "how-to-release.md"; path = "../how-to-release.md"; sourceTree = "<group>"; };
 		D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITMultilineButton.swift; sourceTree = "<group>"; };
 		D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITMultilineButton.xib; sourceTree = "<group>"; };
@@ -293,6 +294,7 @@
 		26CAC2F91F56BB4E009DDDF2 = {
 			isa = PBXGroup;
 			children = (
+				D70E09B521B7C9530073D0C0 /* changelog.md */,
 				D71F1F382187236E0016BD1D /* how-to-release.md */,
 				26BA349020401B99000B7CB4 /* Podfile */,
 				26BA349120401C7D000B7CB4 /* NearUIBinding.podspec */,
