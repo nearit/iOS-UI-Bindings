@@ -145,13 +145,17 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     @objc public func show(fromViewController: UIViewController? = nil, title: String? = nil) {
-
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
 
             let navigation = UINavigationController.init(rootViewController: self)
             navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
                                                                     target: self,
                                                                     action: #selector(self.onDone))
+            
+            if let title = title {
+                self.title = title
+            }
+            
             fromViewController.present(navigation, animated: true, completion: nil)
         }
     }
