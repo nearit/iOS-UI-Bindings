@@ -192,11 +192,14 @@ public class NITDialogController: UIViewController {
         DispatchQueue.main.async(execute: {() -> Void in
             if shouldAnimate {
                 // Animate height changes
-                UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
-                    // Animate
-                    animate!()
-                    // Relayout
-                    self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.4, delay: 0.0,
+                               usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                               options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                               animations: {() -> Void in
+                                // Animate
+                                animate!()
+                                // Relayout
+                                self.view.layoutIfNeeded()
                 }, completion: { _ in })
             }
             else {

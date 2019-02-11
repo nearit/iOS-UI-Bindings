@@ -111,11 +111,17 @@ public class NITFeedbackViewController: NITBaseViewController {
         rateEmptyButton = UIImage(named: "starEmpty", in: bundle, compatibleWith: nil)
 
         closeText = NSLocalizedString("Feedback dialog: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Feedback dialog: Close")
-        commentDescriptionText = NSLocalizedString("Feedback dialog: Leave a comment (optional):", tableName: nil, bundle: bundle, value: "Leave a comment (optional):", comment: "Feedback dialog: Leave a comment (optional):")
+        commentDescriptionText = NSLocalizedString("Feedback dialog: Leave a comment (optional):",
+                                                   tableName: nil, bundle: bundle,
+                                                   value: "Leave a comment (optional):",
+                                                   comment: "Feedback dialog: Leave a comment (optional):")
         sendText = NSLocalizedString("Feedback dialog: SEND", tableName: nil, bundle: bundle, value: "SEND", comment: "Feedback dialog: SEND")
         errorText = NSLocalizedString("Feedback dialog: oops, an error occured!", tableName: nil, bundle: bundle, value: "Oops, an error occured!", comment: "Feedback dialog: oops, an error occured!")
         retryText = NSLocalizedString("Feedback dialog: retry", tableName: nil, bundle: bundle, value: "Retry", comment: "Feedback dialog: retry")
-        okText = NSLocalizedString("Feedback dialog: Thank you for your feedback.", tableName: nil, bundle: bundle, value: "Thank you for your feedback.", comment: "Feedback dialog: Thank you for your feedback.")
+        okText = NSLocalizedString("Feedback dialog: Thank you for your feedback.",
+                                   tableName: nil, bundle: bundle,
+                                   value: "Thank you for your feedback.",
+                                   comment: "Feedback dialog: Thank you for your feedback.")
     }
 
     override public func viewDidLoad() {
@@ -219,7 +225,10 @@ public class NITFeedbackViewController: NITBaseViewController {
         sendContainer.isHidden = hideSendAndComment
 
         if commentVisibility == .onRating {
-            UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+            UIView.animate(withDuration: 0.4, delay: 0.0,
+                           usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                           options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                           animations: {[weak self]() -> Void in
                 self?.setupCommentVisibility(hidden: hideSendAndComment)
                 self?.view.layoutIfNeeded()
             })
@@ -254,7 +263,10 @@ public class NITFeedbackViewController: NITBaseViewController {
     }
 
     internal func nextOk() {
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                       options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                       animations: {[weak self]() -> Void in
             guard let wself = self else { return }
             wself.stackview.arrangedSubviews.forEach({ (view: UIView) in
                 view.isHidden = view != wself.okContainer
@@ -272,7 +284,10 @@ public class NITFeedbackViewController: NITBaseViewController {
     }
 
     internal func nextError() {
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {[weak self]() -> Void in
+        UIView.animate(withDuration: 0.4, delay: 0.0,
+                       usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                       options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                       animations: {[weak self]() -> Void in
             guard let wself = self else { return }
             wself.errorContainer.isHidden = false
             wself.send.setRoundedButtonOf(color: NITUIAppearance.sharedInstance.nearRed())

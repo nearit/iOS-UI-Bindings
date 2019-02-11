@@ -5,6 +5,7 @@
 //  Created by francesco.leoni on 04/09/17.
 //  Copyright © 2017 Near. All rights reserved.
 //
+// d
 
 import UIKit
 import CoreLocation
@@ -25,6 +26,7 @@ public class NITPermissionsManager: NSObject {
     @available(iOS 10.0, *)
     private var notificationCenter: UNUserNotificationCenter {
         get {
+            // swiftlint:disable force_cast
             return _notificationCenter as! UNUserNotificationCenter
         }
         set {

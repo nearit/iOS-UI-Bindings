@@ -26,9 +26,9 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
     public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
 
     @objc var wkWebView: WKWebView = {
-        let v = WKWebView.init()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
+        let view = WKWebView.init()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     var heightConstraint: NSLayoutConstraint!
@@ -83,6 +83,7 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
         webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
             if complete != nil {
                 webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { [weak self](height, error) in
+                    // swiftlint:disable force_cast
                     self?.heightConstraint.constant = height as! CGFloat
                 })
             }

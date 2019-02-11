@@ -366,11 +366,16 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate, NITPermiss
             let newHeight = granted ? 0.0 : self.height
             
             if self.animateView {
-                UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: { [weak self] () -> Void in
-                    if let wself = self {
-                        wself.heightConstraint!.constant = newHeight
-                        wself.superview?.layoutIfNeeded()
-                    }
+                UIView.animate(
+                    withDuration: 0.4, delay: 0.0,
+                    usingSpringWithDamping: 1.0,
+                    initialSpringVelocity: 0.0,
+                    options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                    animations: { [weak self] () -> Void in
+                        if let wself = self {
+                            wself.heightConstraint!.constant = newHeight
+                            wself.superview?.layoutIfNeeded()
+                        }
                     }, completion: { _ in })
             } else {
                 self.heightConstraint = self.heightAnchor.constraint(equalToConstant: newHeight)
