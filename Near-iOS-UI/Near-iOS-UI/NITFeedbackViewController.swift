@@ -15,7 +15,7 @@ import NearITSDK
     case onRating
 }
 
-public typealias NITFeedbackCallback = ((NITFeedbackViewController, Int, String?, @escaping (Bool)->(Void)) -> Void)
+public typealias NITFeedbackCallback = ((NITFeedbackViewController, Int, String?, @escaping (Bool) -> Void) -> Void)
 
 public class NITFeedbackViewController: NITBaseViewController {
     var feedback: NITFeedback!
@@ -62,7 +62,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     @IBOutlet weak var commentDescription: UILabel!
     @IBOutlet weak var error: UILabel!
     @IBOutlet weak var errorContainer: UIView!
-    @IBOutlet weak var ok: UILabel!
+    @IBOutlet weak var okLabel: UILabel!
     @IBOutlet var commentViews: [UIView]!
     @IBOutlet weak var sendContainer: UIView!
 
@@ -94,7 +94,8 @@ public class NITFeedbackViewController: NITBaseViewController {
         show(fromViewController: nil, configureDialog: nil)
     }
 
-    @objc public func show(fromViewController: UIViewController?, configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+    @objc public func show(fromViewController: UIViewController?,
+                           configureDialog: ((_ dialogController: NITDialogController) -> Void)?) {
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
             let dialog = NITDialogController(viewController: self)
             if let configDlg = configureDialog {
@@ -110,14 +111,26 @@ public class NITFeedbackViewController: NITBaseViewController {
         rateFullButton = UIImage(named: "star", in: bundle, compatibleWith: nil)
         rateEmptyButton = UIImage(named: "starEmpty", in: bundle, compatibleWith: nil)
 
-        closeText = NSLocalizedString("Feedback dialog: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Feedback dialog: Close")
+        closeText = NSLocalizedString("Feedback dialog: Close",
+                                      tableName: nil, bundle: bundle,
+                                      value: "Close",
+                                      comment: "Feedback dialog: Close")
         commentDescriptionText = NSLocalizedString("Feedback dialog: Leave a comment (optional):",
                                                    tableName: nil, bundle: bundle,
                                                    value: "Leave a comment (optional):",
                                                    comment: "Feedback dialog: Leave a comment (optional):")
-        sendText = NSLocalizedString("Feedback dialog: SEND", tableName: nil, bundle: bundle, value: "SEND", comment: "Feedback dialog: SEND")
-        errorText = NSLocalizedString("Feedback dialog: oops, an error occured!", tableName: nil, bundle: bundle, value: "Oops, an error occured!", comment: "Feedback dialog: oops, an error occured!")
-        retryText = NSLocalizedString("Feedback dialog: retry", tableName: nil, bundle: bundle, value: "Retry", comment: "Feedback dialog: retry")
+        sendText = NSLocalizedString("Feedback dialog: SEND",
+                                     tableName: nil, bundle: bundle,
+                                     value: "SEND",
+                                     comment: "Feedback dialog: SEND")
+        errorText = NSLocalizedString("Feedback dialog: oops, an error occured!",
+                                      tableName: nil, bundle: bundle,
+                                      value: "Oops, an error occured!",
+                                      comment: "Feedback dialog: oops, an error occured!")
+        retryText = NSLocalizedString("Feedback dialog: retry",
+                                      tableName: nil, bundle: bundle,
+                                      value: "Retry",
+                                      comment: "Feedback dialog: retry")
         okText = NSLocalizedString("Feedback dialog: Thank you for your feedback.",
                                    tableName: nil, bundle: bundle,
                                    value: "Thank you for your feedback.",
@@ -164,10 +177,9 @@ public class NITFeedbackViewController: NITBaseViewController {
         error.textColor = errorColor
         errorContainer.isHidden = true
         
-
         okContainer.isHidden = true
-        ok.text = okText
-        ok.textColor = textColor
+        okLabel.text = okText
+        okLabel.textColor = textColor
 
         applyFont()
         
@@ -180,7 +192,7 @@ public class NITFeedbackViewController: NITBaseViewController {
     private func applyFont() {
         if let regularFont = NITUIAppearance.sharedInstance.regularFontName {
             explanation.changeFont(to: regularFont)
-            ok.changeFont(to: regularFont)
+            okLabel.changeFont(to: regularFont)
             error.changeFont(to: regularFont)
         }
         if let italicFont = NITUIAppearance.sharedInstance.italicFontName {
@@ -191,10 +203,9 @@ public class NITFeedbackViewController: NITBaseViewController {
             send.changeFont(to: boldFont)
         }
         
-        
         if let textFont = textFont {
             explanation.font = textFont
-            ok.font = textFont
+            okLabel.font = textFont
         }
         if let errorFont = errorFont {
             error.font = errorFont
@@ -275,7 +286,9 @@ public class NITFeedbackViewController: NITBaseViewController {
             }, completion: { _ in })
 
         if let disappearTimer = disappearTimer {
-            Timer.scheduledTimer(timeInterval: disappearTimer, target: self, selector: #selector(closeController), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: disappearTimer,
+                                 target: self, selector: #selector(closeController),
+                                 userInfo: nil, repeats: false)
         }
     }
 

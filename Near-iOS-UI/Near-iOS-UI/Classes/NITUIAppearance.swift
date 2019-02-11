@@ -63,7 +63,8 @@ public extension UILabel {
 
 public extension UIButton {
     func changeFont(to fontName: String) {
-        guard let labelFont = self.titleLabel?.font, let customFont = UIFont(name: fontName, size: labelFont.pointSize) else {
+        guard let labelFont = self.titleLabel?.font,
+            let customFont = UIFont(name: fontName, size: labelFont.pointSize) else {
             return
         }
         self.titleLabel?.font = customFont

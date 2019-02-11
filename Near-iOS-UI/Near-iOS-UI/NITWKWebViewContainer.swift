@@ -54,7 +54,9 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
                         context: nil)
         }
 
-        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
+        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height,
+                                                   relatedBy: .equal, toItem: nil,
+                                                   attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
         addConstraint(heightConstraint)
 
         wkWebView.navigationDelegate = self
@@ -66,8 +68,11 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
         }
     }
 
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == #keyPath(wkWebView.scrollView.contentSize)) {
+    open override func observeValue(forKeyPath keyPath: String?,
+                                    of object: Any?,
+                                    change: [NSKeyValueChangeKey: Any]?,
+                                    context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(wkWebView.scrollView.contentSize) {
             if let change = change {
                 if let old = change[.oldKey] as? CGSize, let new = change[.newKey] as? CGSize {
                     if old != new {
@@ -80,9 +85,10 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if sizeType != .scrollHeight { return }
-        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, _) in
             if complete != nil {
-                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { [weak self](height, error) in
+                webView.evaluateJavaScript("document.body.scrollHeight",
+                                           completionHandler: { [weak self](height, _) in
                     // swiftlint:disable force_cast
                     self?.heightConstraint.constant = height as! CGFloat
                 })
@@ -90,8 +96,9 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
         })
     }
 
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
-    {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated, let linkHandler = linkHandler {
             decisionHandler(linkHandler(navigationAction.request))
         } else {

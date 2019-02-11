@@ -21,9 +21,9 @@ class NITPermissionBarButton: UIView {
     
     var alreadyMissing = [NITPermissionInfo]()
     
-    @objc @IBInspectable public var missingLocationIcon: UIImage?
-    @objc @IBInspectable public var missingBluetoothIcon: UIImage?
-    @objc @IBInspectable public var missingNotificationIcon: UIImage?
+    @IBInspectable public var missingLocationIcon: UIImage?
+    @IBInspectable public var missingBluetoothIcon: UIImage?
+    @IBInspectable public var missingNotificationIcon: UIImage?
     
     private var defaultMissingLocationIcon: UIImage?
     private var defaultMissingBluetoothIcon: UIImage?

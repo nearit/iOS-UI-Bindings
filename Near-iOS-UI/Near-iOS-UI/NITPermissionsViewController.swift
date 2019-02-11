@@ -22,13 +22,11 @@ import NearITSDK
     case whenInUse = 1
 
     var authorizationStatus: CLAuthorizationStatus {
-        get {
-            switch self {
-            case .always:
-                return .authorizedAlways
-            case .whenInUse:
-                return .authorizedWhenInUse
-            }
+        switch self {
+        case .always:
+            return .authorizedAlways
+        case .whenInUse:
+            return .authorizedWhenInUse
         }
     }
 }
