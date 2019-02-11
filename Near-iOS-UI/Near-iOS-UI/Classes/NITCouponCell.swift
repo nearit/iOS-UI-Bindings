@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NITCouponCell : UITableViewCell {
+class NITCouponCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var value: UILabel!

@@ -47,9 +47,15 @@ class NITPermissionBarButton: UIView {
     }
     
     private func setup() {
-       defaultMissingBluetoothIcon = UIImage(named: "bluetoothBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
-        defaultMissingLocationIcon = UIImage(named: "localizzazioneBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
-        defaultMissingNotificationIcon = UIImage(named: "notificheBianco", in: Bundle.NITBundle(for: NITPermissionBarButton.self), compatibleWith: nil)
+       defaultMissingBluetoothIcon = UIImage(named: "bluetoothBianco",
+                                             in: Bundle.NITBundle(for: NITPermissionBarButton.self),
+                                             compatibleWith: nil)
+        defaultMissingLocationIcon = UIImage(named: "localizzazioneBianco",
+                                             in: Bundle.NITBundle(for: NITPermissionBarButton.self),
+                                             compatibleWith: nil)
+        defaultMissingNotificationIcon = UIImage(named: "notificheBianco",
+                                                 in: Bundle.NITBundle(for: NITPermissionBarButton.self),
+                                                 compatibleWith: nil)
     }
     
     override func layoutSubviews() {
@@ -75,9 +81,9 @@ class NITPermissionBarButton: UIView {
         }
     }
     
-    public func addMissingConstraint(_ permissionInfo : NITPermissionInfo) {
-        if (alreadyMissing.contains(permissionInfo)) {
-            return;
+    public func addMissingConstraint(_ permissionInfo: NITPermissionInfo) {
+        if alreadyMissing.contains(permissionInfo) {
+            return
         }
         alreadyMissing.append(permissionInfo)
         if let image = imageFrom(permissionInfo) {
@@ -90,7 +96,7 @@ class NITPermissionBarButton: UIView {
         }
     }
     
-    func imageFrom(_ permissionInfo : NITPermissionInfo) -> UIImage? {
+    func imageFrom(_ permissionInfo: NITPermissionInfo) -> UIImage? {
         switch permissionInfo {
         case .blueTooth:
             return getMissingBluetoothIcon()
