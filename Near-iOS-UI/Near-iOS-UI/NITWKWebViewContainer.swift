@@ -16,7 +16,7 @@ import NearITSDK
 // actual content.
 // The second strategy is to read the scrollHeight from the DOM; usually correct
 // still it does not react to dynamic changes; not relevant with just texts and no js.
-fileprivate enum NITWKWebViewContainerSizeType: Int {
+private enum NITWKWebViewContainerSizeType: Int {
     case contentSize = 0
     case scrollHeight
 }
@@ -33,7 +33,7 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
 
     var heightConstraint: NSLayoutConstraint!
 
-    fileprivate let sizeType = NITWKWebViewContainerSizeType.scrollHeight
+    private let sizeType = NITWKWebViewContainerSizeType.scrollHeight
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -108,6 +108,7 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
 
     public func loadContent(content: NITContent?) {
         let content = content?.content ?? ""
+        // swiftlint:disable line_length
         let inputText = "<meta name='viewport' content='initial-scale=1.0'/><style>body { font-family: '\(font.fontName)'; font-size:\(font.pointSize)px; } </style>\(content)"
         wkWebView.loadHTMLString(inputText, baseURL: nil)
     }
