@@ -5,13 +5,16 @@
 //  Created by francesco.leoni on 04/09/17.
 //  Copyright © 2017 Near. All rights reserved.
 //
+// d
 
 import UIKit
 import CoreLocation
 import UserNotifications
 
 public protocol NITPermissionsManagerDelegate: class {
-    func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus)
+    func permissionsManager(_ manager: NITPermissionsManager,
+                            didGrantLocationAuthorization granted: Bool,
+                            withStatus status: CLAuthorizationStatus)
     func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager)
 }
 
@@ -25,6 +28,7 @@ public class NITPermissionsManager: NSObject {
     @available(iOS 10.0, *)
     private var notificationCenter: UNUserNotificationCenter {
         get {
+            // swiftlint:disable force_cast
             return _notificationCenter as! UNUserNotificationCenter
         }
         set {
@@ -35,7 +39,9 @@ public class NITPermissionsManager: NSObject {
     public override convenience init() {
         let locationManager = CLLocationManager()
         if #available(iOS 10.0, *) {
-            self.init(locationManager: locationManager, notificationCenter: UNUserNotificationCenter.current(), application: UIApplication.shared)
+            self.init(locationManager: locationManager,
+                      notificationCenter: UNUserNotificationCenter.current(),
+                      application: UIApplication.shared)
         } else {
             // Fallback on earlier versions
             self.init(locationManager: locationManager, application: UIApplication.shared)
@@ -43,7 +49,9 @@ public class NITPermissionsManager: NSObject {
     }
     
     @available(iOS 10.0, *)
-    public init(locationManager: CLLocationManager, notificationCenter: UNUserNotificationCenter, application: UIApplication) {
+    public init(locationManager: CLLocationManager,
+                notificationCenter: UNUserNotificationCenter,
+                application: UIApplication) {
         self.locationManager = locationManager
         _notificationCenter = notificationCenter
         self.application = application
@@ -71,7 +79,8 @@ public class NITPermissionsManager: NSObject {
             notificationCenter.getNotificationSettings { (settings) in
                 DispatchQueue.main.async {
                     if settings.authorizationStatus == .notDetermined {
-                        self.notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (granted, error) in
+                        self.notificationCenter.requestAuthorization(options: [.alert, .sound, .badge],
+                                                                     completionHandler: { (_, _) in
                             OperationQueue.main.addOperation({
                                 self.delegate?.permissionsManagerDidRequestNotificationPermissions(self)
                             })
@@ -89,10 +98,11 @@ public class NITPermissionsManager: NSObject {
         }
     }
     
-    public func allPermissionsGranted(minLevel: CLAuthorizationStatus = .authorizedAlways, completionHandler: @escaping (Bool) -> Void) {
+    public func allPermissionsGranted(minLevel: CLAuthorizationStatus = .authorizedAlways,
+                                      completionHandler: @escaping (Bool) -> Void) {
         isNotificationAvailable { (available) in
             if available {
-                if self.isLocationGranted(status: minLevel){
+                if self.isLocationGranted(status: minLevel) {
                     completionHandler(true)
                 } else {
                     completionHandler(false)
@@ -116,7 +126,9 @@ public class NITPermissionsManager: NSObject {
             }
         } else {
             if let settings = application.currentUserNotificationSettings {
-                if (settings.types.contains(.alert) || settings.types.contains(.badge) || settings.types.contains(.sound)) {
+                if settings.types.contains(.alert) ||
+                    settings.types.contains(.badge) ||
+                    settings.types.contains(.sound) {
                     completionHandler(true)
                 } else {
                     completionHandler(false)
@@ -154,7 +166,7 @@ public class NITPermissionsManager: NSObject {
     
     public func isLocationGranted(status: CLAuthorizationStatus) -> Bool {
         let osStatus = CLLocationManager.authorizationStatus()
-        if (osStatus == status) {
+        if osStatus == status {
             return true
         }
         return false
@@ -182,7 +194,7 @@ public class NITPermissionsManager: NSObject {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            } else{
+            } else {
                 UIApplication.shared.openURL(url)
             }
         }

@@ -16,7 +16,7 @@ import NearITSDK
 // actual content.
 // The second strategy is to read the scrollHeight from the DOM; usually correct
 // still it does not react to dynamic changes; not relevant with just texts and no js.
-fileprivate enum NITWKWebViewContainerSizeType: Int {
+private enum NITWKWebViewContainerSizeType: Int {
     case contentSize = 0
     case scrollHeight
 }
@@ -26,14 +26,14 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
     public var linkHandler: ((URLRequest) -> WKNavigationActionPolicy)?
 
     @objc var wkWebView: WKWebView = {
-        let v = WKWebView.init()
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
+        let view = WKWebView.init()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     var heightConstraint: NSLayoutConstraint!
 
-    fileprivate let sizeType = NITWKWebViewContainerSizeType.scrollHeight
+    private let sizeType = NITWKWebViewContainerSizeType.scrollHeight
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -54,7 +54,9 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
                         context: nil)
         }
 
-        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
+        heightConstraint = NSLayoutConstraint.init(item: self, attribute: .height,
+                                                   relatedBy: .equal, toItem: nil,
+                                                   attribute: .notAnAttribute, multiplier: 1.0, constant: 1)
         addConstraint(heightConstraint)
 
         wkWebView.navigationDelegate = self
@@ -66,8 +68,11 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
         }
     }
 
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == #keyPath(wkWebView.scrollView.contentSize)) {
+    open override func observeValue(forKeyPath keyPath: String?,
+                                    of object: Any?,
+                                    change: [NSKeyValueChangeKey: Any]?,
+                                    context: UnsafeMutableRawPointer?) {
+        if keyPath == #keyPath(wkWebView.scrollView.contentSize) {
             if let change = change {
                 if let old = change[.oldKey] as? CGSize, let new = change[.newKey] as? CGSize {
                     if old != new {
@@ -80,17 +85,20 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if sizeType != .scrollHeight { return }
-        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
+        webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, _) in
             if complete != nil {
-                webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: { [weak self](height, error) in
+                webView.evaluateJavaScript("document.body.scrollHeight",
+                                           completionHandler: { [weak self](height, _) in
+                    // swiftlint:disable force_cast
                     self?.heightConstraint.constant = height as! CGFloat
                 })
             }
         })
     }
 
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
-    {
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated, let linkHandler = linkHandler {
             decisionHandler(linkHandler(navigationAction.request))
         } else {
@@ -100,6 +108,7 @@ internal class NITWKWebViewContainer: UIView, WKNavigationDelegate {
 
     public func loadContent(content: NITContent?) {
         let content = content?.content ?? ""
+        // swiftlint:disable line_length
         let inputText = "<meta name='viewport' content='initial-scale=1.0'/><style>body { font-family: '\(font.fontName)'; font-size:\(font.pointSize)px; } </style>\(content)"
         wkWebView.loadHTMLString(inputText, baseURL: nil)
     }

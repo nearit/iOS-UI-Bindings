@@ -22,13 +22,11 @@ import NearITSDK
     case whenInUse = 1
 
     var authorizationStatus: CLAuthorizationStatus {
-        get {
-            switch self {
-            case .always:
-                return .authorizedAlways
-            case .whenInUse:
-                return .authorizedWhenInUse
-            }
+        switch self {
+        case .always:
+            return .authorizedAlways
+        case .whenInUse:
+            return .authorizedWhenInUse
         }
     }
 }
@@ -181,14 +179,30 @@ public class NITPermissionsViewController: NITBaseViewController {
         
         textColor = NITUIAppearance.sharedInstance.nearGrey()
 
-        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil, bundle: bundle, value: "Permissions explanation", comment: "Permissions popup: explanation")
-        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil, bundle: bundle, value: "Close", comment: "Permissions popup: Close")
-        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil, bundle: bundle, value: "Not now", comment: "Permissios popup: Not now")
-        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil, bundle: bundle, value: "LOCATION", comment: "Permissions popup: LOCATION")
-        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil, bundle: bundle, value: "NOTIFICATIONS", comment: "Permissions popup: NOTIFICATIONS")
-        locationNever = NSLocalizedString("Permission popup: LOCATION NEVER", tableName: nil, bundle: bundle, value: "never", comment: "Permission popup: LOCATION NEVER")
-        locationInUse = NSLocalizedString("Permission popup: LOCATION IN USE", tableName: nil, bundle: bundle, value: "while using the app", comment: "Permission popup: LOCATION IN USE")
-        locationAlways = NSLocalizedString("Permission popup: LOCATION ALWAYS", tableName: nil, bundle: bundle, value: "always", comment: "Permission popup: LOCATION ALWAYS")
+        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil,
+                                        bundle: bundle, value: "Permissions explanation",
+                                        comment: "Permissions popup: explanation")
+        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil,
+                                      bundle: bundle, value: "Close",
+                                      comment: "Permissions popup: Close")
+        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil,
+                                       bundle: bundle, value: "Not now",
+                                       comment: "Permissios popup: Not now")
+        locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil,
+                                         bundle: bundle, value: "LOCATION",
+                                         comment: "Permissions popup: LOCATION")
+        notificationsText = NSLocalizedString("Permissions popup: NOTIFICATIONS", tableName: nil,
+                                              bundle: bundle, value: "NOTIFICATIONS",
+                                              comment: "Permissions popup: NOTIFICATIONS")
+        locationNever = NSLocalizedString("Permission popup: LOCATION NEVER", tableName: nil,
+                                          bundle: bundle, value: "never",
+                                          comment: "Permission popup: LOCATION NEVER")
+        locationInUse = NSLocalizedString("Permission popup: LOCATION IN USE", tableName: nil,
+                                          bundle: bundle, value: "while using the app",
+                                          comment: "Permission popup: LOCATION IN USE")
+        locationAlways = NSLocalizedString("Permission popup: LOCATION ALWAYS", tableName: nil,
+                                           bundle: bundle, value: "always",
+                                           comment: "Permission popup: LOCATION ALWAYS")
     }
     
     internal func setupUI() {
@@ -359,7 +373,7 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     /// Present permissions view controller from the rootViewController if it exists
-    @objc public func show(configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil ) {
+    @objc public func show(configureDialog: ((_ dialogController: NITDialogController) -> Void)? = nil ) {
         if let viewController = UIApplication.shared.keyWindow?.currentController() {
             self.show(fromViewController: viewController, configureDialog: configureDialog)
         }
@@ -369,7 +383,8 @@ public class NITPermissionsViewController: NITBaseViewController {
      Present permissions view controller from a view controller
      - Parameter fromViewController: view controller used to present the permissions view controller
      */
-    @objc public func show(fromViewController: UIViewController, configureDialog: ((_ dialogController: NITDialogController) -> ())? = nil) {
+    @objc public func show(fromViewController: UIViewController,
+                           configureDialog: ((_ dialogController: NITDialogController) -> Void)? = nil) {
         let dialog = NITDialogController(viewController: self)
         if let configDlg = configureDialog {
             configDlg(dialog)
@@ -389,16 +404,21 @@ public class NITPermissionsViewController: NITBaseViewController {
 }
 
 extension NITPermissionsViewController: NITPermissionsManagerDelegate {
-    public func permissionsManager(_ manager: NITPermissionsManager, didGrantLocationAuthorization granted: Bool, withStatus status: CLAuthorizationStatus) {
-        if (granted && permissionsManager.status(status, isAtLeast: locationType.authorizationStatus)) {
+    public func permissionsManager(_ manager: NITPermissionsManager,
+                                   didGrantLocationAuthorization granted: Bool,
+                                   withStatus status: CLAuthorizationStatus) {
+        delegate?.locationGranted?(granted)
+        guard self.isViewLoaded else { return }
+        if granted && permissionsManager.status(status, isAtLeast: locationType.authorizationStatus) {
             confirmLocationButton()
         }
-        delegate?.locationGranted?(granted)
         eventuallyClose()
     }
     
     public func permissionsManagerDidRequestNotificationPermissions(_ manager: NITPermissionsManager) {
-        refreshButtons()
+        if self.isViewLoaded {
+            refreshButtons()
+        }
         manager.isNotificationAvailable { (granted) in
             self.delegate?.notificationsGranted?(granted)
             self.eventuallyClose()
@@ -407,7 +427,7 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
     }
 
     func eventuallyClose() {
-        if autoCloseDialog == .on  {
+        if autoCloseDialog == .on {
             checkPermissions { (granted) in
                 if granted {
                     self.dismiss(animated: true, completion: nil)
@@ -415,5 +435,4 @@ extension NITPermissionsViewController: NITPermissionsManagerDelegate {
             }
         }
     }
-
 }

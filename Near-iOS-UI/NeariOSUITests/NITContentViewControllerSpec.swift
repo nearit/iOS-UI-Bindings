@@ -40,7 +40,7 @@ class NITContentViewControllerSpec: QuickSpec {
                 // sleeping the thread is not enough
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 5.0))
 
-                if (self.recordingMode) {
+                if self.recordingMode {
                     expect(contentVC.dialogController?.view).to(recordSnapshot(named: "has a complete webview"))
                 } else {
                     expect(contentVC.dialogController?.view).to(haveValidSnapshot(named: "has a complete webview"))
@@ -51,4 +51,3 @@ class NITContentViewControllerSpec: QuickSpec {
         }
     }
 }
-
