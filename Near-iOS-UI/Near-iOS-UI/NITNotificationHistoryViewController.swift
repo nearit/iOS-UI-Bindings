@@ -273,7 +273,9 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
             
             // if we reload the row with the tableview method,the list will jump to top
             if let cell = tableView.cellForRow(at: indexPath) as? NITNotificationCell {
-                cell.state = .read
+                if !(item.reactionBundle is NITSimpleNotification) {
+                    cell.state = .read
+                }
             }
             
             if let feedback = item.reactionBundle as? NITFeedback {
