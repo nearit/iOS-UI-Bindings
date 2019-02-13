@@ -60,7 +60,7 @@ public class NITContentViewController: NITBaseViewController {
       self.init(content: content, trackingInfo: trackingInfo, manager: NITManager.default())
     }
 
-    init(content: NITContent, trackingInfo : NITTrackingInfo?, manager: NITManager?) {
+    init(content: NITContent, trackingInfo: NITTrackingInfo?, manager: NITManager?) {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         self.content = content
         self.trackingInfo = trackingInfo
@@ -77,7 +77,7 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     @objc public func show(fromViewController: UIViewController?,
-                     configureDialog: ((_ dialogController: NITDialogController) -> ())?) {
+                           configureDialog: ((_ dialogController: NITDialogController) -> Void )?) {
         if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
 
             let dialog = NITDialogController(viewController: self)
@@ -142,7 +142,9 @@ public class NITContentViewController: NITBaseViewController {
         
         if let contentImage = getImage(),
             let url = contentImage.url() ?? contentImage.smallSizeURL() {
-            applyImage(fromURL: url, toImageView: image, imageDownloader: NITImageDownloader.sharedInstance, completionHandler: {(_) in
+            applyImage(fromURL: url, toImageView: image,
+                       imageDownloader: NITImageDownloader.sharedInstance,
+                       completionHandler: {(_) in
                 self.fixImageView()
             })
             imageContainer.isHidden = false
@@ -184,7 +186,9 @@ public class NITContentViewController: NITBaseViewController {
     private func fixImageView() {
         if let image = self.image.image {
             if self.image.frame.size.width < image.size.width {
-                self.imageHeightConstraint?.constant = self.image.frame.size.width / image.size.width * image.size.height
+                self.imageHeightConstraint?.constant = self.image.frame.size.width /
+                                                        image.size.width *
+                                                        image.size.height
             }
         }
     }
@@ -210,14 +214,15 @@ public class NITContentViewController: NITBaseViewController {
     }
     
     private func loadHtmlContent(content: String) {
-        do{
+        do {
             var bodiedContent = "<body>"
             bodiedContent.append(content)
             bodiedContent.append("</body><style>body {font-family: \(getFontName()); font-size: 16px;}</style>")
             
             let attrStr = try NSAttributedString(
                 data: bodiedContent.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-                options: [ .documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue],
+                options: [ .documentType: NSAttributedString.DocumentType.html,
+                           .characterEncoding: String.Encoding.utf8.rawValue],
                 documentAttributes: nil)
             htmlContent.attributedText = attrStr
             htmlContent.textColor = htmlColor
@@ -247,34 +252,37 @@ public class NITContentViewController: NITBaseViewController {
     
     private func openUrl(url: URL?) {
         guard let link = url else { return }
-        if (UIApplication.shared.canOpenURL(link)) {
-            if (openLinksInWebView) {
-                let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
-                if #available(iOS 10.0, *) {
-                    if let barColor = self.webViewBarColor {
-                        svc.preferredBarTintColor = barColor
-                    }
-                    if let controlColor = self.webViewControlColor {
-                        svc.preferredControlTintColor = controlColor
-                    }
-                } else {
-                    // Fallback on earlier versions
-                }
-                present(svc, animated: true, completion: nil)
-            } else {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(link, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(link)
-                }
-            }
-        } else {
+        
+        if !UIApplication.shared.canOpenURL(link) {
             print("CAN'T OPEN URL: " + link.absoluteString)
+            return
         }
+        
+        if openLinksInWebView {
+            let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
+            if #available(iOS 10.0, *) {
+                if let barColor = self.webViewBarColor {
+                    svc.preferredBarTintColor = barColor
+                }
+                if let controlColor = self.webViewControlColor {
+                    svc.preferredControlTintColor = controlColor
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            present(svc, animated: true, completion: nil)
+        } else {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(link, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(link)
+            }
+        }
+        
     }
 }
 
-extension NITContentViewController : UITextViewDelegate {
+extension NITContentViewController: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         self.openUrl(url: url)
         return false

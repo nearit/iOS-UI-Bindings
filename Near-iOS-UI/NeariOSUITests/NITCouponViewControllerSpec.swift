@@ -60,8 +60,8 @@ class NITCouponSpec: QuickSpec {
                                      options: [CIDetectorAccuracy: "H"]) {
             let features = detector.features(in: image)
             for feature in features {
-                if let f = feature as? CIQRCodeFeature {
-                    return f.messageString
+                if let feature = feature as? CIQRCodeFeature {
+                    return feature.messageString
                 }
             }
         }

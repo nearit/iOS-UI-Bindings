@@ -16,11 +16,11 @@ import NearITSDK
 
 extension NITCoupon {
     var status: NITCouponUIStatus {
-        if let r = redeemable, r.timeIntervalSinceNow > 0.0 {
+        if let redeemable = redeemable, redeemable.timeIntervalSinceNow > 0.0 {
             return .disabled
         }
 
-        if let e = expires, e.timeIntervalSinceNow < 0.0 {
+        if let expires = expires, expires.timeIntervalSinceNow < 0.0 {
             return .expired
         }
 

@@ -13,10 +13,10 @@ class NITPermissionButton: UIButton {
         super.layoutSubviews()
         if let image = imageView?.image {
             let margin = 30.0 - image.size.width / 2
-            let tr = titleRect(forContentRect: bounds)
+            let tRect = titleRect(forContentRect: bounds)
             contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
             imageEdgeInsets = UIEdgeInsets(top: 0, left: margin, bottom: 0, right: 0)
-            titleEdgeInsets = UIEdgeInsets(top: 0, left: (bounds.width - tr.width -  image.size.width - margin) / 2,
+            titleEdgeInsets = UIEdgeInsets(top: 0, left: (bounds.width - tRect.width -  image.size.width - margin) / 2,
                                            bottom: 0, right: 0)
         }
     }

@@ -60,8 +60,12 @@ public class NITMultilineButton: UIButton {
         let bundle = Bundle.NITBundle(for: NITMultilineButton.self)
         bundle.loadNibNamed("NITMultilineButton", owner: self, options: nil)
         defaultSadImage = UIImage(named: "sad", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
-        defaultWorriedImage = UIImage(named: "worried", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
-        defaultHappyImage = UIImage(named: "happyGreen", in: Bundle.NITBundle(for: NITMultilineButton.self), compatibleWith: nil)
+        defaultWorriedImage = UIImage(named: "worried",
+                                      in: Bundle.NITBundle(for: NITMultilineButton.self),
+                                      compatibleWith: nil)
+        defaultHappyImage = UIImage(named: "happyGreen",
+                                    in: Bundle.NITBundle(for: NITMultilineButton.self),
+                                    compatibleWith: nil)
         
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false

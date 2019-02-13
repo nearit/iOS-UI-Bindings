@@ -93,12 +93,12 @@ class NITNotificationCell: UITableViewCell {
     
     func makeShadow(_ shadow: Bool) {
         if shadow {
-            contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+            contentView.layer.shadowOffset = CGSize(width: 0, height: 1)
             contentView.layer.shadowColor = UIColor.black.cgColor
-            contentView.layer.shadowRadius = 5;
-            contentView.layer.shadowOpacity = shadowOpacity;
+            contentView.layer.shadowRadius = 5
+            contentView.layer.shadowOpacity = shadowOpacity
         } else {
-            contentView.layer.shadowOpacity = 0;
+            contentView.layer.shadowOpacity = 0
         }
     }
     
