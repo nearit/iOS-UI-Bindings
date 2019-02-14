@@ -96,6 +96,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
         nearManager.history {[weak self] (items, error) in
             if let _ = error {
                 self?.showNoContentViewIfAvailable()
+                self?.refreshControl?.endRefreshing()
             } else {
                 var filteredItems = [NITHistoryItem]()
                 for item in items ?? [] {
@@ -292,6 +293,12 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
                 delegate?.historyViewController(self, willShowViewController: couponVC)
                 couponVC.show(fromViewController: self, configureDialog: nil)
             }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let item = items?[indexPath.section], item.reactionBundle is NITSimpleNotification {
+            nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeOpened)
         }
     }
     
