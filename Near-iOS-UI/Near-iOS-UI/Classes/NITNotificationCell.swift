@@ -25,7 +25,7 @@ class NITNotificationCell: UITableViewCell {
     var readColor = NITUIAppearance.sharedInstance.nearGrey()
     var dateColor = NITUIAppearance.sharedInstance.nearGrey()
     var messageColor = NITUIAppearance.sharedInstance.nearBlack()
-    private var cardBackgroundReadColor = UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
+    private var cardBackgroundReadColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 239.0/255.0, alpha: 1.0)
     var shadowOpacity: Float = 0.15
     var state: NITNotificationCellState = .unread {
         didSet {
@@ -115,7 +115,7 @@ class NITNotificationCell: UITableViewCell {
     func changeStateUI() {
         switch state {
         case .read:
-            selectionStyle = .default
+            selectionStyle = .none
             makeBoldMessage(false)
             makeBoldMore(false)
             makeBoldDate(false)
@@ -125,7 +125,7 @@ class NITNotificationCell: UITableViewCell {
             setLabelsColor(readColor)
             contentView.backgroundColor = cardBackgroundReadColor
         case .unread:
-            selectionStyle = .default
+            selectionStyle = .none
             makeBoldMessage(true)
             makeBoldMore(true)
             makeBoldDate(true)

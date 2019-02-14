@@ -256,14 +256,12 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
         //  add alpha on card
         let cell = tableView.cellForRow(at: indexPath)
         cell?.alpha = 0.5
-        cell?.contentView.backgroundColor = .white
     }
     
     public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         //  restore alpha on card
         let cell = tableView.cellForRow(at: indexPath)
         cell?.alpha = 1.0
-        cell?.contentView.backgroundColor = .white
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
