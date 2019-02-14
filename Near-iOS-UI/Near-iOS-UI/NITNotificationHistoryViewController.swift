@@ -296,6 +296,12 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
         }
     }
     
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let item = items?[indexPath.section], item.reactionBundle is NITSimpleNotification {
+            nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeOpened)
+        }
+    }
+    
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
     }
