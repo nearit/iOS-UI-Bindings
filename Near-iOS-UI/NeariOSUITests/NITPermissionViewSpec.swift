@@ -18,6 +18,7 @@ import CoreLocation
 
 class NITPermissionViewSpec: QuickSpec {
 
+    // swiftlint:disable function_body_length
     override func spec() {
         var view: NITPermissionsView!
         var fakePermissionManager: FakePermissionManager!
@@ -63,20 +64,20 @@ class NITPermissionViewSpec: QuickSpec {
                 fakePermissionManager.notifications = false
                 fakeCBPeripheralManager.bluetooth = false
 
-                let vc = UIViewController.init()
-                expect(vc.view).toNot(beNil())
+                let viewContr = UIViewController.init()
+                expect(viewContr.view).toNot(beNil())
 
-                vc.view.addSubview(view)
+                viewContr.view.addSubview(view)
                 NSLayoutConstraint.activate([
-                    view.leftAnchor.constraint(equalTo: vc.view.leftAnchor),
-                    view.rightAnchor.constraint(equalTo: vc.view.rightAnchor),
-                    view.topAnchor.constraint(equalTo: vc.topLayoutGuide.bottomAnchor),
+                    view.leftAnchor.constraint(equalTo: viewContr.view.leftAnchor),
+                    view.rightAnchor.constraint(equalTo: viewContr.view.rightAnchor),
+                    view.topAnchor.constraint(equalTo: viewContr.topLayoutGuide.bottomAnchor)
                     ])
 
                 view.permissionsRequired = .all
 
-                vc.beginAppearanceTransition(true, animated: false)
-                vc.endAppearanceTransition()
+                viewContr.beginAppearanceTransition(true, animated: false)
+                viewContr.endAppearanceTransition()
 
                 // anti debouncer
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 1.0))
@@ -89,20 +90,20 @@ class NITPermissionViewSpec: QuickSpec {
                 fakePermissionManager.notifications = true
                 fakeCBPeripheralManager.bluetooth = true
 
-                let vc = UIViewController.init()
-                expect(vc.view).toNot(beNil())
+                let viewContr = UIViewController.init()
+                expect(viewContr.view).toNot(beNil())
 
-                vc.view.addSubview(view)
+                viewContr.view.addSubview(view)
                 NSLayoutConstraint.activate([
-                    view.leftAnchor.constraint(equalTo: vc.view.leftAnchor),
-                    view.rightAnchor.constraint(equalTo: vc.view.rightAnchor),
-                    view.topAnchor.constraint(equalTo: vc.topLayoutGuide.bottomAnchor),
+                    view.leftAnchor.constraint(equalTo: viewContr.view.leftAnchor),
+                    view.rightAnchor.constraint(equalTo: viewContr.view.rightAnchor),
+                    view.topAnchor.constraint(equalTo: viewContr.topLayoutGuide.bottomAnchor)
                     ])
 
                 view.permissionsRequired = .all
 
-                vc.beginAppearanceTransition(true, animated: false)
-                vc.endAppearanceTransition()
+                viewContr.beginAppearanceTransition(true, animated: false)
+                viewContr.endAppearanceTransition()
 
                 // anti debouncer
                 RunLoop.current.run(until: Date(timeIntervalSinceNow: 1.0))
@@ -123,22 +124,13 @@ class NITPermissionViewSpec: QuickSpec {
         override func isLocationGrantedAtLeast(minStatus: CLAuthorizationStatus) -> Bool {
             return location
         }
-//        override func isNotificationAvailable() -> Bool {
-//            return notifications
-//        }
-//
-//        override func isLocationPartiallyGranted() -> Bool {
-//            return location
-//        }
     }
 
     class FakeCBPeripheralManager: CBPeripheralManager {
         var bluetooth = true
 
         override open var state: CBManagerState {
-            get {
-                return bluetooth ? .poweredOn : .poweredOff
-            }
+            return bluetooth ? .poweredOn : .poweredOff
         }
     }
 

@@ -67,7 +67,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createExpiredCoupon(),
                     NITCouponSpec.createInactiveCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -89,7 +89,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createInactiveCoupon(),
                     NITCouponSpec.createExpiredCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -111,7 +111,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createInactiveCoupon(),
                     NITCouponSpec.createExpiredCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -160,7 +160,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
         var coupons: [NITCoupon]?
 
         override func coupons(completionHandler handler: (([NITCoupon]?, Error?) -> Void)? = nil) {
-            if (fakeSendEventError) {
+            if fakeSendEventError {
                 handler?(nil, FakeManagerError.sendEventError)
             } else {
                 handler?(coupons, nil)

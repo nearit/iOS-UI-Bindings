@@ -117,8 +117,8 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 feedbackVC.stars[2].sendActions(for: .touchUpInside)
                 
                 waitUntil(timeout: 2) { done in
-                    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardDidShow, object: nil, queue: OperationQueue.main, using: { (notification) in
-                        if (self.recordingMode) {
+                    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardDidShow, object: nil, queue: OperationQueue.main, using: { (_) in
+                        if self.recordingMode {
                             expect(feedbackVC.dialogController?.view).to(recordSnapshot(named: "feedback keyboard"))
                         } else {
                             expect(feedbackVC.dialogController?.view).to(haveValidSnapshot(named: "feedback keyboard"))
@@ -144,7 +144,7 @@ class FakeNearManager: NITManager {
     
     override func sendEvent(with event: NITEvent, completionHandler handler: ((Error?) -> Void)? = nil) {
         isSendEventCalled = true
-        if (fakeSendEventError) {
+        if fakeSendEventError {
             handler?(FakeManagerError.sendEventError)
         } else {
             handler?(nil)

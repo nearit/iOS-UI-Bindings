@@ -25,6 +25,7 @@ class NITContentViewControllerSpec: QuickSpec {
         describe("content") {
             beforeEach {
                 let content = NITContent()
+                // swiftlint:disable line_length
                 content.content = "<a href='https://www.nearit.com'>LINK</a></br>Sopra la panca la capra campa sotto la panca la capra crepa."
                 content.title = "Content title"
                 contentVC = NITContentViewController(content: content)
