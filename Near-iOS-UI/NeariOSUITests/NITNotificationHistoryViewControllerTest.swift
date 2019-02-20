@@ -19,7 +19,7 @@ class NITNotificationHistoryViewControllerTest: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         historyVC = NITNotificationHistoryViewController(manager: mockManager)
-        let _ = historyVC.view
+        _ = historyVC.view
     }
     
     override func tearDown() {

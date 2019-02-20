@@ -10,24 +10,24 @@ import UIKit
 
 public class NITDialogController: UIViewController {
     
-    @objc public enum CFAlertControllerBackgroundStyle : Int {
+    @objc public enum CFAlertControllerBackgroundStyle: Int {
         case plain = 0
         case blur
     }
 
-    @objc public enum CFAlertControllerContentPosition : Int {
+    @objc public enum CFAlertControllerContentPosition: Int {
         case middle = 0
         case full
     }
     
-    @objc public enum NITDialogControllerContentWidth : Int {
+    @objc public enum NITDialogControllerContentWidth: Int {
         case intrinsic = 0
         case container
     }
 
     // Background
     @objc public var backgroundStyle = CFAlertControllerBackgroundStyle.plain {
-        didSet  {
+        didSet {
             if isViewLoaded {
                 applyBackgroundStyle()
             }
@@ -35,7 +35,7 @@ public class NITDialogController: UIViewController {
     }
 
     @objc public var backgroundColor: UIColor? {
-        didSet  {
+        didSet {
             if isViewLoaded {
                 view.backgroundColor = backgroundColor
             }
@@ -43,7 +43,7 @@ public class NITDialogController: UIViewController {
     }
 
     @objc public var contentPosition = CFAlertControllerContentPosition.middle {
-        didSet  {
+        didSet {
             if isViewLoaded {
                 applyBackgroundStyle()
             }
@@ -74,8 +74,8 @@ public class NITDialogController: UIViewController {
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
 
     private var viewController: UIViewController!
-    fileprivate var offset : CGFloat = 0
-    fileprivate var keyboardVisibleHeight : CGFloat = 0
+    fileprivate var offset: CGFloat = 0
+    fileprivate var keyboardVisibleHeight: CGFloat = 0
     fileprivate var keyboardIsVisible = false
 
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -171,8 +171,10 @@ public class NITDialogController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (keyPath == "contentSize") {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+                                    change: [NSKeyValueChangeKey : Any]?,
+                                    context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
             // Update Container View Frame Without Animation
             updateContainerViewFrame(withAnimation: false)
         }
@@ -182,7 +184,7 @@ public class NITDialogController: UIViewController {
         
         let animate: (() -> Void)? = {() -> Void in
             
-            if let scrollView = self.scrollView   {
+            if let scrollView = self.scrollView {
                 
                 // Update Content Size
                 self.scrollHeightConstraint.constant = scrollView.contentSize.height
@@ -192,14 +194,16 @@ public class NITDialogController: UIViewController {
         DispatchQueue.main.async(execute: {() -> Void in
             if shouldAnimate {
                 // Animate height changes
-                UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction], animations: {() -> Void in
-                    // Animate
-                    animate!()
-                    // Relayout
-                    self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.4, delay: 0.0,
+                               usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0,
+                               options: [.curveEaseOut, .beginFromCurrentState, .allowUserInteraction],
+                               animations: {() -> Void in
+                                // Animate
+                                animate!()
+                                // Relayout
+                                self.view.layoutIfNeeded()
                 }, completion: { _ in })
-            }
-            else {
+            } else {
                 UIView.performWithoutAnimation {
                     animate!()
                 }
@@ -295,7 +299,8 @@ extension NITDialogController {
             }
 
             self.updateConstant()
-            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+                    userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
 
                 let options = UIView.AnimationOptions(rawValue: curve.uintValue)
@@ -307,10 +312,8 @@ extension NITDialogController {
                     animations: {
                         UIApplication.shared.keyWindow?.layoutIfNeeded()
                         return
-                }, completion: { finished in
-                })
+                }, completion: { _ in })
             default:
-
                 break
             }
         }
@@ -324,7 +327,8 @@ extension NITDialogController {
 
         if let userInfo = notification.userInfo {
 
-            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber, userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
+            switch (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber,
+                    userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber) {
             case let (.some(duration), .some(curve)):
 
                 let options = UIView.AnimationOptions(rawValue: curve.uintValue)
@@ -336,8 +340,7 @@ extension NITDialogController {
                     animations: {
                         UIApplication.shared.keyWindow?.layoutIfNeeded()
                         return
-                }, completion: { finished in
-                })
+                }, completion: { _ in })
             default:
                 break
             }

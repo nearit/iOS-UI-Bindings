@@ -44,17 +44,20 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 expect(manager.isEventCalled).toEventually(beTrue())
                 expect(couponListVC.tableView.numberOfSections).to(equal(3))
 
-                let validCell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 0)) as? NITCouponCell
+                let validCell = couponListVC.tableView
+                    .cellForRow(at: IndexPath(item: 0, section: 0)) as? NITCouponCell
                 expect(validCell).notTo(beNil())
                 expect(validCell?.value.text).to(equal(coupons[0].value))
                 expect(validCell?.status.text).to(equal(couponListVC.validText))
 
-                let expiredCell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 1)) as? NITCouponCell
+                let expiredCell = couponListVC.tableView
+                    .cellForRow(at: IndexPath(item: 0, section: 1)) as? NITCouponCell
                 expect(expiredCell).notTo(beNil())
                 expect(expiredCell?.value.text).to(equal(coupons[1].value))
                 expect(expiredCell?.status.text).to(equal(couponListVC.expiredText))
 
-                let disabledCell = couponListVC.tableView.cellForRow(at: IndexPath(item: 0, section: 2)) as? NITCouponCell
+                let disabledCell = couponListVC.tableView
+                    .cellForRow(at: IndexPath(item: 0, section: 2)) as? NITCouponCell
                 expect(disabledCell).notTo(beNil())
                 expect(disabledCell?.value.text).to(equal(coupons[1].value))
                 expect(disabledCell?.status.text).to(equal(couponListVC.disabledText))
@@ -64,7 +67,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createExpiredCoupon(),
                     NITCouponSpec.createInactiveCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -86,7 +89,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createInactiveCoupon(),
                     NITCouponSpec.createExpiredCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -108,7 +111,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
                 let coupons = [
                     NITCouponSpec.createInactiveCoupon(),
                     NITCouponSpec.createExpiredCoupon(),
-                    NITCouponSpec.createValidCoupon(),
+                    NITCouponSpec.createValidCoupon()
                 ]
 
                 manager.coupons = coupons
@@ -157,7 +160,7 @@ class NITCouponListViewControllerSpec: NITCouponSpec {
         var coupons: [NITCoupon]?
 
         override func coupons(completionHandler handler: (([NITCoupon]?, Error?) -> Void)? = nil) {
-            if (fakeSendEventError) {
+            if fakeSendEventError {
                 handler?(nil, FakeManagerError.sendEventError)
             } else {
                 handler?(coupons, nil)

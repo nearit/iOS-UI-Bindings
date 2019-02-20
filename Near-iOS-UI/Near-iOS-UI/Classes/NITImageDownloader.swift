@@ -12,9 +12,10 @@ public class NITImageDownloader: NSObject {
     
     @objc public static let sharedInstance = NITImageDownloader()
     
-    var imageCache: [String : UIImage] = [:]
+    var imageCache: [String: UIImage] = [:]
     
-    func downloadImageWithUrl(url: URL, completionBlock: @escaping (_ succeeded: Bool, _ image: UIImage?, _ url: URL) -> Void) {
+    func downloadImageWithUrl(url: URL,
+                              completionBlock: @escaping (_ succeeded: Bool, _ image: UIImage?, _ url: URL) -> Void) {
         if let cachedImage = self.imageCache[url.absoluteString] {
             completionBlock(true, cachedImage, url)
         } else {
@@ -29,7 +30,7 @@ public class NITImageDownloader: NSObject {
                         return
                 }
                 
-                DispatchQueue.main.async() { () -> Void in
+                DispatchQueue.main.async { () -> Void in
                     completionBlock(true, image, url)
                     self.imageCache[url.absoluteString] = image
                 }

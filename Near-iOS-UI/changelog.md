@@ -1,3 +1,17 @@
+## 2.11.4 (2019-02-20)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* Avoid sending empty comment for Feedback answer.
+
 ## 2.11.3 (2019-02-14)
 
 ### API Breaking Changes

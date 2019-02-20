@@ -447,6 +447,7 @@
 				26CAC2FF1F56BB4E009DDDF2 /* Frameworks */,
 				26CAC3001F56BB4E009DDDF2 /* Headers */,
 				26CAC3011F56BB4E009DDDF2 /* Resources */,
+				D7B4340B2211E7830002E675 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -592,6 +593,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		D7B4340B2211E7830002E675 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		EA3E0B00CF78A0C236329F11 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
