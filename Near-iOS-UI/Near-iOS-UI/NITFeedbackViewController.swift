@@ -262,7 +262,8 @@ public class NITFeedbackViewController: NITBaseViewController {
             feedbackSendCallback(self, currentRating, comment.text, chain)
         } else {
             let manager = nearManager
-            let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: comment.text)
+            let commentText: String? = (comment.text.trimmingCharacters(in: .whitespacesAndNewlines) != "") ? comment.text : nil
+            let event = NITFeedbackEvent.init(feedback: feedback, rating: currentRating, comment: commentText)
             manager.sendEvent(with: event, completionHandler: { [weak self](error: Error?) in
                 if error != nil {
                     self?.nextError()
