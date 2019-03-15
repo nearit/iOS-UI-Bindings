@@ -41,13 +41,16 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     
     init(manager: NITManager = NITManager.default()) {
         self.nearManager = manager
-        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
+        let bundle = Bundle.NITBundle(for: NITNotificationHistoryViewController.self)
         super.init(nibName: "NITNotificationHistoryViewController", bundle: bundle)
         //setupDefaultElements()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.nearManager = NITManager.default()
+        super.init(coder: aDecoder)
+        let bundle = Bundle.NITBundle(for: NITNotificationHistoryViewController.self)
+        bundle.loadNibNamed("NITNotificationHistoryViewController", owner: self, options: nil)
     }
     
     override public func viewDidLoad() {
