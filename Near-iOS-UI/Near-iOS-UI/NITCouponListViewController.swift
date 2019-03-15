@@ -134,7 +134,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     }
 
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.nearManager = NITManager.default()
+        super.init(coder: aDecoder)
+        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
+        bundle.loadNibNamed("NITCouponListViewController", owner: self, options: nil)
     }
 
     @objc public func show() {

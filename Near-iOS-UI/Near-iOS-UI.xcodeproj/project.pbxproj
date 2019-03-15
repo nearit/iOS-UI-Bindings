@@ -574,7 +574,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
 				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
@@ -591,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7B4340B2211E7830002E675 /* ShellScript */ = {

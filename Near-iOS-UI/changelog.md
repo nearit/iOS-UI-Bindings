@@ -1,3 +1,17 @@
+## 2.11.5 (2019-03-15)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* `NITCouponViewController` and `NITNotificationHistoryViewController` can be used from Interface Builder.
+
+### Bugfixes
+
+* None.
+
 ## 2.11.4 (2019-02-20)
 
 ### API Breaking Changes
