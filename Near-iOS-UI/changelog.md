@@ -1,3 +1,17 @@
+## 2.11.5 (2019-04-30)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+*  `NITNotificationHistoryViewController` delegate has method for detecting tap on custom JSONs.
+
+### Bugfixes
+
+* None.
+
 ## 2.11.5 (2019-03-15)
 
 ### API Breaking Changes
