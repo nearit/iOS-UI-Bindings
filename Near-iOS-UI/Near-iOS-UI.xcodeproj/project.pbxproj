@@ -60,6 +60,7 @@
 		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
 		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 		D71F1F392187236E0016BD1D /* how-to-release.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F1F382187236E0016BD1D /* how-to-release.md */; };
+		D7478168228330AB00139EB2 /* NearITUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7478167228330AB00139EB2 /* NearITUI.swift */; };
 		D77EF6EF20FCA73B00198922 /* NITMultilineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */; };
 		D77EF6F120FCAA1400198922 /* NITMultilineButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */; };
 		D77EF6F320FCF6A600198922 /* NITPermissionBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6F220FCF6A600198922 /* NITPermissionBarButton.swift */; };
@@ -181,6 +182,7 @@
 		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
 		D70E09B521B7C9530073D0C0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		D71F1F382187236E0016BD1D /* how-to-release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "how-to-release.md"; path = "../how-to-release.md"; sourceTree = "<group>"; };
+		D7478167228330AB00139EB2 /* NearITUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearITUI.swift; sourceTree = "<group>"; };
 		D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITMultilineButton.swift; sourceTree = "<group>"; };
 		D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITMultilineButton.xib; sourceTree = "<group>"; };
 		D77EF6F220FCF6A600198922 /* NITPermissionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionBarButton.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				26441FFA1F57F9EE00A38740 /* Utils */,
 				26CAC3061F56BB4E009DDDF2 /* Near-iOS-UI.h */,
 				26CAC3071F56BB4E009DDDF2 /* Info.plist */,
+				D7478167228330AB00139EB2 /* NearITUI.swift */,
 			);
 			path = "Near-iOS-UI";
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -676,6 +680,7 @@
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
 				26BA349720402229000B7CB4 /* NITNotificationCell.swift in Sources */,
 				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,
+				D7478168228330AB00139EB2 /* NearITUI.swift in Sources */,
 				D77EF6F320FCF6A600198922 /* NITPermissionBarButton.swift in Sources */,
 				8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */,
 				8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */,
