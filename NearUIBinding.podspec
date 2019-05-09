@@ -20,6 +20,6 @@ s.swift_version         = '4.2'
 
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
-s.dependency            'NearITSDK', '~> 2.11.2'
+s.dependency            'NearITSDKSwift', '~> 2.11.3'
 
 end

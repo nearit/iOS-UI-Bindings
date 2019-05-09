@@ -1,3 +1,17 @@
+## 2.11.6 (2019-05-09)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+*  New method for opening content dialogs immediately.
+
+### Bugfixes
+
+* None.
+
 ## 2.11.5 (2019-04-30)
 
 ### API Breaking Changes

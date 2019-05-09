@@ -60,6 +60,7 @@
 		8AE08CE21FA8715100710B0B /* NITContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE08CE01FA8715100710B0B /* NITContentViewController.xib */; };
 		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 		D71F1F392187236E0016BD1D /* how-to-release.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F1F382187236E0016BD1D /* how-to-release.md */; };
+		D7478168228330AB00139EB2 /* NearManager+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7478167228330AB00139EB2 /* NearManager+UI.swift */; };
 		D77EF6EF20FCA73B00198922 /* NITMultilineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */; };
 		D77EF6F120FCAA1400198922 /* NITMultilineButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */; };
 		D77EF6F320FCF6A600198922 /* NITPermissionBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6F220FCF6A600198922 /* NITPermissionBarButton.swift */; };
@@ -134,7 +135,7 @@
 		26B85B0C1F98A02A00087BEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26B85B0E1F98A02A00087BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26BA349020401B99000B7CB4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		26BA349120401C7D000B7CB4 /* NearUIBinding.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NearUIBinding.podspec; path = ../NearUIBinding.podspec; sourceTree = "<group>"; };
+		26BA349120401C7D000B7CB4 /* NearUIBinding.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = NearUIBinding.podspec; path = ../NearUIBinding.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		26BA349220401FEE000B7CB4 /* NITNotificationHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITNotificationHistoryViewController.swift; sourceTree = "<group>"; };
 		26BA349320401FEE000B7CB4 /* NITNotificationHistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITNotificationHistoryViewController.xib; sourceTree = "<group>"; };
 		26BA349620402229000B7CB4 /* NITNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITNotificationCell.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 		8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionButton.swift; sourceTree = "<group>"; };
 		D70E09B521B7C9530073D0C0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		D71F1F382187236E0016BD1D /* how-to-release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "how-to-release.md"; path = "../how-to-release.md"; sourceTree = "<group>"; };
+		D7478167228330AB00139EB2 /* NearManager+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearManager+UI.swift"; sourceTree = "<group>"; };
 		D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITMultilineButton.swift; sourceTree = "<group>"; };
 		D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITMultilineButton.xib; sourceTree = "<group>"; };
 		D77EF6F220FCF6A600198922 /* NITPermissionBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITPermissionBarButton.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		26441FFA1F57F9EE00A38740 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D7478167228330AB00139EB2 /* NearManager+UI.swift */,
 				26441FFB1F57FA0A00A38740 /* AppColors.swift */,
 				8A1CEB231F826901008E9372 /* UIWindow+currentController.swift */,
 				8AE08CDB1FA7817B00710B0B /* NITCoupon+ui.swift */,
@@ -492,6 +495,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -576,6 +580,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NearUIBinding-Tests-NeariOSUITests/Pods-NearUIBinding-Tests-NeariOSUITests-frameworks.sh",
 				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/NearITSDKSwift/NearITSDKSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-Snapshots/Nimble_Snapshots.framework",
@@ -584,6 +589,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDKSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble_Snapshots.framework",
@@ -676,6 +682,7 @@
 				8AD1900B1FA9E08C00D03836 /* NITWKWebViewContainer.swift in Sources */,
 				26BA349720402229000B7CB4 /* NITNotificationCell.swift in Sources */,
 				8AE08CDC1FA7817B00710B0B /* NITCoupon+ui.swift in Sources */,
+				D7478168228330AB00139EB2 /* NearManager+UI.swift in Sources */,
 				D77EF6F320FCF6A600198922 /* NITPermissionBarButton.swift in Sources */,
 				8A4E89351F9507A7002BCAB6 /* NITFeedbackViewController.swift in Sources */,
 				8A6AF9CD1F9E408100FA9D4B /* NITCouponViewController.swift in Sources */,
