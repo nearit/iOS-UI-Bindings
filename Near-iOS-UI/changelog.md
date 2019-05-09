@@ -1,3 +1,17 @@
+## 2.11.8 (2019-05-09)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Utility method made available for Obj-C.
+
+### Bugfixes
+
+* None.
+
 ## 2.11.7 (2019-05-09)
 
 ### API Breaking Changes
