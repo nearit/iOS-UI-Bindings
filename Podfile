@@ -5,7 +5,7 @@ workspace 'Near-iOS-UI'
 
 target 'NearUIBinding' do
     project 'Near-iOS-UI/Near-iOS-UI.xcodeproj'
-    pod 'NearITSDK', '~> 2.11.2'
+    pod 'NearITSDKSwift', '~> 2.11.3'
 
     abstract_target 'Tests' do
         target "NeariOSUITests"
@@ -19,7 +19,7 @@ end
 
 target 'UI-Swift-Sample' do
     project 'UI-Swift-Sample/UI-Swift-Sample.xcodeproj'
-    pod 'NearITSDK', '~> 2.11.2'
+    pod 'NearITSDKSwift', '~> 2.11.3'
     pod 'OHHTTPStubs/Swift'
 end
 
