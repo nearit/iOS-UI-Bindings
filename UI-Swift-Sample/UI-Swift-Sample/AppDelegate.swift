@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NearITSDK
+import NearITSDKSwift
 import OHHTTPStubs
 import NearUIBinding
 import UserNotifications
@@ -102,18 +102,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler(.alert)
+        NearManager.shared.userNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
     }
     
   @available(iOS 10.0, *)
   func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-    let userInfo = response.notification.request.content.userInfo
-    if let ui = userInfo as? [String : Any] {
-        
-        
-      NITManager.default().processRecipe(userInfo: ui, completion: { (content, trackingInfo, error) in
-        self.handleNearContent(content: content!, trackingInfo: trackingInfo!)
-      })
+        NearManager.shared.showContentFrom(response) { (content, trackingInfo, error) in
+            if error != nil {
+                // there was an error
+            }
+            if customJson = content as? NITCustomJSON {
+                // handle the custom JSON
+            }
+        }
+        completionHandler()
     }
   }
 }
