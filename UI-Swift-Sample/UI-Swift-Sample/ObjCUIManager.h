@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <NearITSDKSwift/NearITSDKSwift-Swift.h>
 
 @class NITContent;
 @class NITCoupon;
