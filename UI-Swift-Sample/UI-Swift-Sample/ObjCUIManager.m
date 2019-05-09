@@ -8,7 +8,7 @@
 
 #import "ObjCUIManager.h"
 @import NearUIBinding;
-@import NearITSDK;
+@import NearITSDKSwift;
 
 static NSString *const sharedManagerLock = @"manager.lock";
 static ObjCUIManager *sharedManager;
@@ -21,6 +21,7 @@ static ObjCUIManager *sharedManager;
             sharedManager = [[ObjCUIManager alloc] init];
         }
     }
+    
     return sharedManager;
 }
 
@@ -77,6 +78,5 @@ static ObjCUIManager *sharedManager;
     historyVC.unreadColor = [UIColor colorWithRed:99.0/255.0 green:182.0/255.0 blue:1.0 alpha:1.0];
     [historyVC showWithNavigationController:navController];
 }
-
 
 @end
