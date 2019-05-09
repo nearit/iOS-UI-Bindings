@@ -275,11 +275,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-UI-Swift-Sample/Pods-UI-Swift-Sample-frameworks.sh",
 				"${PODS_ROOT}/NearITSDK/NearITSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/NearITSDKSwift/NearITSDKSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NearITSDKSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

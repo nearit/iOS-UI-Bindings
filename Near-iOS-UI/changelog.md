@@ -1,3 +1,18 @@
+## 2.11.7 (2019-05-09)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* New method for opening content dialogs immediately.
+* Pass `trackingInfo` to custom JSON taps delegate method.
+
+### Bugfixes
+
+* None.
+
 ## 2.11.5 (2019-04-30)
 
 ### API Breaking Changes

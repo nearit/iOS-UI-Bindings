@@ -13,7 +13,8 @@ public protocol NITNotificationHistoryViewControllerDelegate: class {
     func historyViewController(_ viewController: NITNotificationHistoryViewController,
                                willShowViewController: UIViewController)
     func historyViewController(_ viewController: NITNotificationHistoryViewController,
-                               tappedOnCustomJSON: NITCustomJSON)
+                               tappedOnCustomJSON: NITCustomJSON,
+                               trackingInfo: NITTrackingInfo)
 }
 
 public class NITNotificationHistoryViewController: NITBaseViewController {
@@ -295,7 +296,11 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
                 delegate?.historyViewController(self, willShowViewController: couponVC)
                 couponVC.show(fromViewController: self, configureDialog: nil)
             } else if let customJSON = item.reactionBundle as? NITCustomJSON {
-                delegate?.historyViewController(self, tappedOnCustomJSON: customJSON)
+                guard let delegate = delegate else {
+                    NSLog("WARNING: A CustomJson was tapped but no delegate for NITNotificationHistoryViewController was set.")
+                    return
+                }
+                delegate.historyViewController(self, tappedOnCustomJSON: customJSON, trackingInfo: item.trackingInfo)
             }
         }
     }
