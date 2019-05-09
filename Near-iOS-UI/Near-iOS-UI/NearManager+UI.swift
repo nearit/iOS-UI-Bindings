@@ -7,15 +7,15 @@
 //
 
 import Foundation
-import NearITSDK
+import NearITSDKSwift
 import UserNotifications
 
-public class NearUIBinding {
+public extension NearManager {
     
     @available(iOS 10.0, *)
-    static func showContentFrom(_ response: UNNotificationResponse,
-                                completion: @escaping (NITReactionBundle?, NITTrackingInfo?, Error?) -> Void) {
-        NITManager.default().processRecipe(with: response) { (content, trackingInfo, error) in
+    func showContentFrom(_ response: UNNotificationResponse,
+                         completion: @escaping (NITReactionBundle?, NITTrackingInfo?, Error?) -> Void) -> Bool {
+        return getContentFrom(response) { (content, trackingInfo, error) in
             if error != nil {
                 completion(nil, nil, error)
                 return
