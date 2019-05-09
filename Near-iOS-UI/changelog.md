@@ -6,7 +6,8 @@
 
 ### Enhancements
 
-*  New method for opening content dialogs immediately.
+* New method for opening content dialogs immediately.
+* Pass `trackingInfo` to custom JSON taps delegate method.
 
 ### Bugfixes
 
