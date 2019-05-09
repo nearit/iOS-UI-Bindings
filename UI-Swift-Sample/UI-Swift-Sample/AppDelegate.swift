@@ -98,25 +98,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+@available(iOS 10.0, *)
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        NearManager.shared.userNotificationCenter(center, willPresent: notification, withCompletionHandler: completionHandler)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        NearManager.shared.userNotificationCenter(center,
+                                                  willPresent: notification,
+                                                  withCompletionHandler: completionHandler)
     }
     
-  @available(iOS 10.0, *)
-  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        NearManager.shared.showContentFrom(response) { (content, trackingInfo, error) in
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        _ = NearManager.shared.showContentFrom(response) { (content, trackingInfo, error) in
             if error != nil {
                 // there was an error
             }
-            if customJson = content as? NITCustomJSON {
+            if let customJson = content as? NITCustomJSON {
                 // handle the custom JSON
             }
         }
         completionHandler()
     }
-  }
 }
-
