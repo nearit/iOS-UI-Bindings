@@ -200,7 +200,7 @@ public class NITCouponViewController: NITBaseViewController {
         serial.font = getSerialFont()
         serial.textColor = serialColor
 
-        couponTitle.text = coupon.title ?? "Title"
+        couponTitle.text = coupon.title
         couponTitle.textColor = titleColor
         couponTitle.font = getTitleFont()
 
