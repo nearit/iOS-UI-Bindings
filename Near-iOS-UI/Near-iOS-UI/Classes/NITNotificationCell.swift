@@ -41,10 +41,11 @@ class NITNotificationCell: UITableViewCell {
         contentView.layer.cornerRadius = 5
         let bundle = Bundle.NITBundle(for: NITNotificationCell.self)
         let icon = UIImage(named: "scopriBold", in: bundle, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
-        moreIcon.image = icon
+        moreIcon.image = icon?.imageFlippedForRightToLeftLayoutDirection()
         
         messageLabel.textColor = messageColor
         dateLabel.textColor = dateColor
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
