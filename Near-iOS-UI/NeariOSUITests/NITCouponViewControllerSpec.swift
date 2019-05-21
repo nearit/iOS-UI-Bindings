@@ -31,6 +31,7 @@ class NITCouponSpec: QuickSpec {
 
     static func createValidCoupon() -> NITCoupon {
         let coupon = NITCoupon()
+        // swiftlint:disable line_length
         coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
         coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
         coupon.expiresAt = "3017-06-05T08:32:00.000Z"

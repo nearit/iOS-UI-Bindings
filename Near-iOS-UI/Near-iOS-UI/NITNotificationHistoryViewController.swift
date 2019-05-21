@@ -12,6 +12,9 @@ import NearITSDK
 public protocol NITNotificationHistoryViewControllerDelegate: class {
     func historyViewController(_ viewController: NITNotificationHistoryViewController,
                                willShowViewController: UIViewController)
+    func historyViewController(_ viewController: NITNotificationHistoryViewController,
+                               tappedOnCustomJSON: NITCustomJSON,
+                               trackingInfo: NITTrackingInfo)
 }
 
 public class NITNotificationHistoryViewController: NITBaseViewController {
@@ -41,13 +44,16 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     
     init(manager: NITManager = NITManager.default()) {
         self.nearManager = manager
-        let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
+        let bundle = Bundle.NITBundle(for: NITNotificationHistoryViewController.self)
         super.init(nibName: "NITNotificationHistoryViewController", bundle: bundle)
         //setupDefaultElements()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.nearManager = NITManager.default()
+        super.init(coder: aDecoder)
+        let bundle = Bundle.NITBundle(for: NITNotificationHistoryViewController.self)
+        bundle.loadNibNamed("NITNotificationHistoryViewController", owner: self, options: nil)
     }
     
     override public func viewDidLoad() {
@@ -104,33 +110,16 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
         nearManager.history {[weak self] (items, error) in
             if error != nil {
                 self?.showNoContentViewIfAvailable()
+                self?.refreshControl?.endRefreshing()
             } else {
-                var filteredItems = [NITHistoryItem]()
-                for item in items ?? [] {
-                    if let _ = item.reactionBundle as? NITSimpleNotification {
-                        item.read = true
-                    } else if let _ = item.reactionBundle as? NITCustomJSON {
-                        if let includeCustomJson = self?.includeCustomJson {
-                            if !includeCustomJson {
-                                continue
-                            }
+                self?.items = items?
+                    .filter { self?.itemCanBeShown($0) ?? false }
+                    .map { (item) -> NITHistoryItem in
+                        if item.reactionBundle is NITSimpleNotification {
+                            item.read = true
                         }
-                    } else if let _ = item.reactionBundle as? NITFeedback {
-                        if let includeFeedbacks = self?.includeFeedbacks {
-                            if !includeFeedbacks {
-                                continue
-                            }
-                        }
-                    } else if let _ = item.reactionBundle as? NITCoupon {
-                        if let includeCoupons = self?.includeCoupons {
-                            if !includeCoupons {
-                                continue
-                            }
-                        }
-                    }
-                    filteredItems.append(item)
+                        return item
                 }
-                self?.items = filteredItems
                 self?.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
                 
@@ -140,6 +129,21 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
                     self?.showNoContentViewIfAvailable(false)
                 }
             }
+        }
+    }
+    
+    private func itemCanBeShown(_ item: NITHistoryItem) -> Bool {
+        switch item.reactionBundle {
+        case is NITSimpleNotification, is NITContent:
+            return true
+        case is NITCoupon:
+            return self.includeCoupons
+        case is NITFeedback:
+            return self.includeFeedbacks
+        case is NITCustomJSON:
+            return self.includeCustomJson
+        default:
+            return false
         }
     }
     
@@ -264,14 +268,12 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
         //  add alpha on card
         let cell = tableView.cellForRow(at: indexPath)
         cell?.alpha = 0.5
-        cell?.contentView.backgroundColor = .white
     }
     
     public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
         //  restore alpha on card
         let cell = tableView.cellForRow(at: indexPath)
         cell?.alpha = 1.0
-        cell?.contentView.backgroundColor = .white
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -299,7 +301,19 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
                 let couponVC = NITCouponViewController(coupon: coupon)
                 delegate?.historyViewController(self, willShowViewController: couponVC)
                 couponVC.show(fromViewController: self, configureDialog: nil)
+            } else if let customJSON = item.reactionBundle as? NITCustomJSON {
+                guard let delegate = delegate else {
+                    NSLog("WARNING: A CustomJson was tapped but no delegate for NITNotificationHistoryViewController was set.")
+                    return
+                }
+                delegate.historyViewController(self, tappedOnCustomJSON: customJSON, trackingInfo: item.trackingInfo)
             }
+        }
+    }
+    
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let item = items?[indexPath.section], item.reactionBundle is NITSimpleNotification {
+            nearManager.sendTracking(with: item.trackingInfo, event: NITRecipeOpened)
         }
     }
     
