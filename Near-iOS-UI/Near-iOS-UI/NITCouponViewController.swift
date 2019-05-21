@@ -20,7 +20,9 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var separatorImage: UIImage!
     @objc public var separatorBackgroundColor = UIColor.clear
     @objc public var iconPlaceholder: UIImage!
-    @objc public var expiredText: String!
+    @objc public lazy var expiredText: String = {
+        return ""
+    }()
     @objc public var disabledText: String!
     @objc public var validText: String!
     @objc public var fromText: String!
@@ -51,13 +53,17 @@ public class NITCouponViewController: NITBaseViewController {
     let defaultValueFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueFont: UIFont?
     
-    
     @objc public var titleColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var descriptionColor = NITUIAppearance.sharedInstance.nearGrey()
     @objc public var serialColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
-    @IBOutlet weak var dates: UILabel!
+    @IBOutlet weak var validityLabel: UILabel!
+    @IBOutlet weak var validityPrefixFromLabel: UILabel!
+    @IBOutlet weak var validityFromLabel: UILabel!
+    @IBOutlet weak var validityPrefixToLabel: UILabel!
+    @IBOutlet weak var validityToLabel: UILabel!
+    
     @IBOutlet weak var qrcode: UIImageView!
     @IBOutlet weak var longDescription: UILabel!
     @IBOutlet weak var alternative: UILabel!
@@ -126,8 +132,8 @@ public class NITCouponViewController: NITBaseViewController {
         expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
         disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
         validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, bundle: bundle, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
-        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from", comment: "Coupon dialog: from")
-        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: "to", comment: "Coupon dialog: to")
+        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from ", comment: "Coupon dialog: from")
+        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: " to ", comment: "Coupon dialog: to")
     }
 
     override public func viewDidLoad() {
@@ -162,34 +168,30 @@ public class NITCouponViewController: NITBaseViewController {
     }
 
     internal func setupDates(color: UIColor) {
-        let validAttrs: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: getValidFont(),
-            NSAttributedString.Key.foregroundColor: color
-        ]
-
-        let fromToAttrs: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font: getFromToFont(),
-            NSAttributedString.Key.foregroundColor: NITUIAppearance.sharedInstance.nearGrey()
-        ]
-
-        let text = NSMutableAttributedString()
-        text.append(NSAttributedString(string: validText, attributes: validAttrs))
-        text.append(NSAttributedString(string: " ", attributes: validAttrs))
-
-        if let _ = coupon.redeemable {
-            text.append(NSAttributedString(string: fromText, attributes: fromToAttrs))
-            text.append(NSAttributedString(string: " ", attributes: fromToAttrs))
-            text.append(NSAttributedString(string: coupon.localizedRedeemable, attributes: fromToAttrs))
-            text.append(NSAttributedString(string: " ", attributes: fromToAttrs))
+        validityLabel.font = getValidFont()
+        validityLabel.textColor = color
+        validityLabel.text = validText + " "
+        
+        if coupon.redeemable != nil {
+            validityFromLabel.text = coupon.localizedRedeemable
+            validityFromLabel.font = getFromToFont()
+            validityFromLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
+            validityPrefixFromLabel.text = fromText
+            validityPrefixFromLabel.font = getFromToFont()
+            validityPrefixFromLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
+        } else {
+            validityPrefixFromLabel.isHidden = true
         }
-
-        if let _ = coupon.expires {
-            text.append(NSAttributedString(string: toText, attributes: fromToAttrs))
-            text.append(NSAttributedString(string: " ", attributes: fromToAttrs))
-            text.append(NSAttributedString(string: coupon.localizedExpiredAt, attributes: fromToAttrs))
+        if coupon.expires != nil {
+            validityToLabel.text = coupon.localizedExpiredAt
+            validityToLabel.font = getFromToFont()
+            validityToLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
+            validityPrefixToLabel.text = toText
+            validityPrefixToLabel.font = getFromToFont()
+            validityPrefixToLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
+        } else {
+            validityPrefixToLabel.isHidden = true
         }
-
-        dates.attributedText = text
     }
 
     internal func setupUI() {
@@ -200,7 +202,7 @@ public class NITCouponViewController: NITBaseViewController {
         serial.font = getSerialFont()
         serial.textColor = serialColor
 
-        couponTitle.text = coupon.title
+        couponTitle.text = coupon.title ?? "Title"
         couponTitle.textColor = titleColor
         couponTitle.font = getTitleFont()
 
