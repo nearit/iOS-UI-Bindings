@@ -32,7 +32,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     
     var nearManager: NITManager
     var items: [NITHistoryItem]?
-    let dateFormatter = DateFormatter()
+    var dateFormatter: DateFormatter = NITNotificationHistoryViewController.historyDateFormatter()
     
     @objc public var noContentView: UIView?
     @objc public var unreadColor: UIColor?
@@ -59,10 +59,6 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
-        
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(NITNotificationHistoryViewController.refreshControl(_:)),
                                   for: .valueChanged)
@@ -78,6 +74,16 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
         setupUI()
         setupDefaultElements()
         refreshHistory()
+    }
+    
+    static func historyDateFormatter() -> DateFormatter {
+        if let global = NITUIAppearance.sharedInstance.historyDateFormatter {
+            return global
+        }
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        return formatter
     }
 
     override public func didReceiveMemoryWarning() {
