@@ -1,4 +1,19 @@
-## 2.11.7 (2019-05-09)
+## 2.11.9 (TBD)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Support right-to-left locales.
+* Date format can be overridden.
+
+### Bugfixes
+
+* None.
+
+## 2.11.8 (2019-05-09)
 
 ### API Breaking Changes
 
