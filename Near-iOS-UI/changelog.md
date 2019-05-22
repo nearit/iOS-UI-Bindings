@@ -1,4 +1,4 @@
-## 2.11.9 (TBD)
+## 2.11.9 (2019-05-22)
 
 ### API Breaking Changes
 
