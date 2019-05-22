@@ -50,6 +50,9 @@ public class NITUIAppearance: NSObject {
     public func nearRed() -> UIColor {
         return globalRedColor ?? defaultGlobalRedColor
     }
+    
+    @objc public var couponDateFormatter : DateFormatter?
+    @objc public var historyDateFormatter : DateFormatter?
 }
 
 public extension UILabel {

@@ -108,29 +108,6 @@ class NITFeedbackViewControllerSpec: QuickSpec {
                 expect(feedbackVC.send.titleLabel?.text).to(match(feedbackVC.retryText))
             }
         }
-        
-        describe("comment") {
-            
-            it("keyboard show for comment") {
-                feedbackVC.show()
-                
-                feedbackVC.stars[2].sendActions(for: .touchUpInside)
-                
-                waitUntil(timeout: 2) { done in
-                    NotificationCenter.default.addObserver(forName: NSNotification.Name.UIKeyboardDidShow, object: nil, queue: OperationQueue.main, using: { (_) in
-                        if self.recordingMode {
-                            expect(feedbackVC.dialogController?.view).to(recordSnapshot(named: "feedback keyboard"))
-                        } else {
-                            expect(feedbackVC.dialogController?.view).to(haveValidSnapshot(named: "feedback keyboard"))
-                        }
-                        done()
-                    })
-                    feedbackVC.comment.becomeFirstResponder()
-                }
-
-                feedbackVC.dialogController?.dismiss()
-            }
-        }
     }
     
     public func testDummy() {}
