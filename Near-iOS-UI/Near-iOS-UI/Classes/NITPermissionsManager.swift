@@ -32,7 +32,7 @@ public class NITPermissionsManager: NSObject {
             return _notificationCenter as! UNUserNotificationCenter
         }
         set {
-            _notificationCenter = notificationCenter
+            _notificationCenter = newValue
         }
     }
     
