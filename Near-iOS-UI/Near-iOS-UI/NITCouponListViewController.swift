@@ -41,7 +41,9 @@ import NearITSDK
         }
     }
 
-    static public func |(lhs: NITCouponListViewControllerFilterOptions, rhs: NITCouponListViewControllerFilterOptions) -> NITCouponListViewControllerFilterOptions {
+    // swiftlint:disable identifier_name
+    static public func | (lhs: NITCouponListViewControllerFilterOptions,
+                          rhs: NITCouponListViewControllerFilterOptions) -> NITCouponListViewControllerFilterOptions {
         let or = lhs.rawValue | rhs.rawValue
         return NITCouponListViewControllerFilterOptions(rawValue: or)!
     }
@@ -52,6 +54,7 @@ import NearITSDK
 
 }
 
+// swiftlint:disable type_name
 @objc public enum NITCouponListViewControllerFilterRedeemed: NSInteger {
     case hide
     case show
@@ -298,17 +301,17 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         if let cell = cell as? NITCouponCell {
             cell.backgroundColor = .clear
             
-            if (couponBackground == .jaggedBorders) {
+            if couponBackground == .jaggedBorders {
                 cell.backgroundView = UIImageView.init(image: jaggedBackground)
                 cell.selectedBackgroundView = UIImageView.init(image: jaggedBackground.alpha(0.5))
             } else {
                 cell.clipsToBounds = false
                 cell.contentView.backgroundColor = .white
                 cell.contentView.layer.cornerRadius = 5
-                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1);
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 1)
                 cell.contentView.layer.shadowColor = UIColor.black.cgColor
-                cell.contentView.layer.shadowRadius = 5;
-                cell.contentView.layer.shadowOpacity = 0.15;
+                cell.contentView.layer.shadowRadius = 5
+                cell.contentView.layer.shadowOpacity = 0.15
             }
             
             if let coupons = coupons, coupons.count > 0 {
@@ -467,7 +470,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         return defaultValueFont
     }
     
-    
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         //  add alpha on card
@@ -506,12 +508,10 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         case .custom: ()
         }
     }
-
 }
 
 extension UIImage {
-    
-    func alpha(_ value:CGFloat) -> UIImage {
+    func alpha(_ value: CGFloat) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, false, scale)
         draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -519,4 +519,3 @@ extension UIImage {
         return newImage!
     }
 }
-
