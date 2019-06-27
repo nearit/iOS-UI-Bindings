@@ -1,4 +1,18 @@
-## 2.12.90 (2019-06-07)
+## 2.12.1 (2019-06-27)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None
+
+### Bugfixes
+
+* Handle NITContent nullable fields.
+
+## 2.12.0 (2019-06-07)
 
 ### API Breaking Changes
 
@@ -28,6 +42,20 @@
 * None.
 
 ## 2.11.8 (2019-05-09)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* Utility method made available for Obj-C.
+
+### Bugfixes
+
+* None.
+
+## 2.11.7 (2019-05-09)
 
 ### API Breaking Changes
 
