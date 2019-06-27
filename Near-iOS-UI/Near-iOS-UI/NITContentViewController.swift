@@ -156,6 +156,8 @@ public class NITContentViewController: NITBaseViewController {
         
         if let htmlContent = content.content {
             loadHtmlContent(content: htmlContent)
+        } else {
+            htmlContent.attributedText = nil
         }
     
         if let contentLink = content.link {
