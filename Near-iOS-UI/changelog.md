@@ -1,4 +1,18 @@
-## 2.12.90 (2019-06-07)
+## 2.12.1 (2019-06-27)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None
+
+### Bugfixes
+
+* Handle NITContent nullable fields.
+
+## 2.12.0 (2019-06-07)
 
 ### API Breaking Changes
 

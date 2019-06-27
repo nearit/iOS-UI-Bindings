@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name                  = 'NearUIBinding'
-s.version               = '2.12.0'
+s.version               = '2.12.1'
 s.summary               = 'nearit.com iOS UI Bindings'
 s.description           = 'nearit.com iOS UI Bindings for Swift and Objective-C'
 
@@ -20,6 +20,6 @@ s.swift_version         = '4.2'
 
 s.ios.deployment_target = '9.0'
 s.requires_arc          = true
-s.dependency            'NearITSDKSwift', '~> 2.12.0'
+s.dependency            'NearITSDKSwift', '~> 2.12.1'
 
 end
