@@ -367,16 +367,20 @@ public class NITPermissionsViewController: NITBaseViewController {
     }
     
     @objc public func show() {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: nil)
+        guard let viewController = UIApplication.shared.keyWindow?.currentController() else {
+            NSLog("WARNING: The app has no view hierarchy yet! If you are showing our viewController inside viewDidLoad(), you should move it to viewDidAppear().")
+            return
         }
+        self.show(fromViewController: viewController, configureDialog: nil)
     }
     
     /// Present permissions view controller from the rootViewController if it exists
     @objc public func show(configureDialog: ((_ dialogController: NITDialogController) -> Void)? = nil ) {
-        if let viewController = UIApplication.shared.keyWindow?.currentController() {
-            self.show(fromViewController: viewController, configureDialog: configureDialog)
+        guard let viewController = UIApplication.shared.keyWindow?.currentController() else {
+            NSLog("WARNING: The app has no view hierarchy yet! If you are showing our viewController inside viewDidLoad(), you should move it to viewDidAppear().")
+            return
         }
+        self.show(fromViewController: viewController, configureDialog: configureDialog)
     }
     
     /**
