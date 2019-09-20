@@ -11,7 +11,6 @@ import Nimble
 import FBSnapshotTestCase
 import Nimble_Snapshots
 import UIKit
-import CoreBluetooth
 import CoreLocation
 @testable import NearITSDK
 @testable import NearUIBinding
@@ -22,16 +21,13 @@ class NITPermissionViewSpec: QuickSpec {
     override func spec() {
         var view: NITPermissionsView!
         var fakePermissionManager: FakePermissionManager!
-        var fakeCBPeripheralManager: FakeCBPeripheralManager!
 
         describe("view") {
             beforeEach {
                 fakePermissionManager = FakePermissionManager()
-                fakeCBPeripheralManager = FakeCBPeripheralManager()
 
                 view = NITPermissionsView.init(frame: .zero,
-                                               permissionManager: fakePermissionManager,
-                                               btManager: fakeCBPeripheralManager)
+                                               permissionManager: fakePermissionManager)
             }
 
             afterEach {
@@ -40,17 +36,16 @@ class NITPermissionViewSpec: QuickSpec {
             it("all icons are unavailables") {
                 fakePermissionManager.location = false
                 fakePermissionManager.notifications = false
-                fakeCBPeripheralManager.bluetooth = false
 
                 view.permissionsRequired = .all
                 view.shouldRefresh()
-                expect(view.permissionButton.alreadyMissing).to(contain(.blueTooth, .location, .notification))
+                expect(view.permissionButton.alreadyMissing).to(
+                    contain(.location, .notification))
             }
 
             it("location/notification icons are availables") {
                 fakePermissionManager.location = true
                 fakePermissionManager.notifications = true
-                fakeCBPeripheralManager.bluetooth = true
 
                 view.permissionsRequired = .all
                 view.shouldRefresh()
@@ -62,7 +57,6 @@ class NITPermissionViewSpec: QuickSpec {
             it ("visible when permissions are missing") {
                 fakePermissionManager.location = false
                 fakePermissionManager.notifications = false
-                fakeCBPeripheralManager.bluetooth = false
 
                 let viewContr = UIViewController.init()
                 expect(viewContr.view).toNot(beNil())
@@ -88,7 +82,6 @@ class NITPermissionViewSpec: QuickSpec {
             it ("hidden when permissions are ok") {
                 fakePermissionManager.location = true
                 fakePermissionManager.notifications = true
-                fakeCBPeripheralManager.bluetooth = true
 
                 let viewContr = UIViewController.init()
                 expect(viewContr.view).toNot(beNil())
@@ -123,14 +116,6 @@ class NITPermissionViewSpec: QuickSpec {
         
         override func isLocationGrantedAtLeast(minStatus: CLAuthorizationStatus) -> Bool {
             return location
-        }
-    }
-
-    class FakeCBPeripheralManager: CBPeripheralManager {
-        var bluetooth = true
-
-        override open var state: CBManagerState {
-            return bluetooth ? .poweredOn : .poweredOff
         }
     }
 
