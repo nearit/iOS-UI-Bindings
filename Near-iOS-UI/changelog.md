@@ -1,3 +1,17 @@
+## 2.12.2 (2019-09-20)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* On iOS13, won't ask for bluetooth permissions.
+
+### Bugfixes
+
+* None.
+
 ## 2.12.1 (2019-06-27)
 
 ### API Breaking Changes
