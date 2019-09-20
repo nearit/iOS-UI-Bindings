@@ -78,16 +78,18 @@ public class NITContentViewController: NITBaseViewController {
 
     @objc public func show(fromViewController: UIViewController?,
                            configureDialog: ((_ dialogController: NITDialogController) -> Void )?) {
-        if let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() {
-
-            let dialog = NITDialogController(viewController: self)
-            dialog.contentWidth = .container
-            if let configureDialog = configureDialog {
-                configureDialog(dialog)
-            }
-
-            fromViewController.present(dialog, animated: true, completion: nil)
+        guard let fromViewController = fromViewController ?? UIApplication.shared.keyWindow?.currentController() else {
+            NSLog("WARNING: The app has no view hierarchy yet! If you are showing our viewController inside viewDidLoad(), you should move it to viewDidAppear().")
+            return
         }
+        
+        let dialog = NITDialogController(viewController: self)
+        dialog.contentWidth = .container
+        if let configureDialog = configureDialog {
+            configureDialog(dialog)
+        }
+        
+        fromViewController.present(dialog, animated: true, completion: nil)
     }
     
     @objc public func show(navigationController: UINavigationController) {

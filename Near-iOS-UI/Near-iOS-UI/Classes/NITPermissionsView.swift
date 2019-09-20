@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import CoreBluetooth
 
 @objc public enum NITPermissionsViewPermissions: NSInteger {
     case location = 0b001
@@ -47,16 +46,10 @@ import CoreBluetooth
 
     fileprivate func isGranted(permissionManager: NITPermissionsManager,
                                minStatus: CLAuthorizationStatus,
-                               btManager: CBPeripheralManager,
                                completionHandler: @escaping (Bool) -> Void) {
         let hasLocation = contains(NITPermissionsViewPermissions.location)
         let hasNotification = contains(NITPermissionsViewPermissions.notifications)
-        let hasBluetooth = contains(NITPermissionsViewPermissions.bluetooth)
-
-        if hasBluetooth && btManager.state != .poweredOn {
-            completionHandler(false)
-            return
-        }
+       
         if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: minStatus) {
             completionHandler(false)
             return
@@ -87,8 +80,7 @@ public protocol NITPermissionsViewDelegate: class {
     func permissionView(_ permissionView: NITPermissionsView, colorDidChangeTo: UIColor)
 }
 
-public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
-                                    NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
+public class NITPermissionsView: UIView, NITPermissionsManagerDelegate, NITPermissionsViewControllerDelegate {
 
     @IBOutlet weak var permissionButton: NITPermissionBarButton!
     @IBOutlet weak var message: UILabel!
@@ -100,7 +92,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
     
     @objc public var locationType: NITPermissionsLocationType = .always
 
-    private var btManager: CBPeripheralManager!
     private var permissionManager = NITPermissionsManager()
     private var heightConstraint: NSLayoutConstraint?
     private let height: CGFloat = 50.0
@@ -193,25 +184,18 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
     
     @objc override public init(frame: CGRect) {
         super.init(frame: frame)
-        btManager = CBPeripheralManager(delegate: self, queue: nil,
-                                        options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
     init(frame: CGRect,
-         permissionManager: NITPermissionsManager?,
-         btManager: CBPeripheralManager?) {
+         permissionManager: NITPermissionsManager?) {
         super.init(frame: frame)
         self.permissionManager = permissionManager ?? NITPermissionsManager()
-        self.btManager = btManager ?? CBPeripheralManager(delegate: self, queue: nil,
-                                                          options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        btManager = CBPeripheralManager(delegate: self, queue: nil,
-                                        options: [CBPeripheralManagerOptionShowPowerAlertKey: false])
         setup()
     }
 
@@ -306,10 +290,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
         let hasNotification = permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
         let hasBluetooth = permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
         
-        if hasBluetooth && btManager.state != .poweredOn {
-            strongFailure = true
-            permissionButton.addMissingConstraint(.blueTooth)
-        }
         if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
             let minRequirement = locationType
             let actualPermission = permissionManager.locationStatus()
@@ -374,8 +354,7 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
 
     @objc private func resize() {
         permissionsRequired.isGranted(permissionManager: permissionManager,
-                                      minStatus: locationType.authorizationStatus ,
-                                      btManager: btManager) { (granted) in
+                                      minStatus: locationType.authorizationStatus) { (granted) in
             let newHeight = granted ? 0.0 : self.height
             
             if self.animateView {
@@ -394,10 +373,6 @@ public class NITPermissionsView: UIView, CBPeripheralManagerDelegate,
                 self.heightConstraint = self.heightAnchor.constraint(equalToConstant: newHeight)
             }
         }
-    }
-
-    public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        refresh()
     }
 
     public func permissionsManager(_ manager: NITPermissionsManager,
