@@ -1,3 +1,23 @@
+## 2.12.3 (2019-10-24)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* You can set the button global corner radius. Only available when called from Swift.
+```
+// set the radius equal to half the height
+NITUIAppearance.sharedInstance.globalButtonLook = .fullRound
+// set a specific radius
+NITUIAppearance.sharedInstance.globalButtonLook = .radiusOf(2.0)
+```
+
+### Bugfixes
+
+* None.
+
 ## 2.12.2 (2019-09-20)
 
 ### API Breaking Changes
