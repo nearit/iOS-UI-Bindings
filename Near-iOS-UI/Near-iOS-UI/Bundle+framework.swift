@@ -19,12 +19,16 @@ public extension Bundle {
     }
 }
 
-public extension UIButton {
-    func setRoundedButtonOf(color: UIColor) {
+public extension UIView {
+    func setRoundedView() {
         layer.masksToBounds = true
-        backgroundColor = color
-        let number = layer.frame.height / 2
-        layer.cornerRadius = number
+        switch NITUIAppearance.sharedInstance.buttonLook() {
+        case .fullRound:
+            let number = layer.frame.height / 2
+            layer.cornerRadius = number
+        case .radiusOf(let radius):
+            layer.cornerRadius = radius
+        }
         layoutIfNeeded()
     }
 }

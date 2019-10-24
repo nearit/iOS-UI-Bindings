@@ -155,7 +155,8 @@ public class NITFeedbackViewController: NITBaseViewController {
         send.setBackgroundImage(sendButton, for: .normal)
         send.setTitle(sendText, for: .normal)
         sendContainer.isHidden = true
-        send.setRoundedButtonOf(color: NITUIAppearance.sharedInstance.nearBlack())
+        send.backgroundColor = NITUIAppearance.sharedInstance.nearBlack()
+        send.setRoundedView()
 
         comment.layer.cornerRadius = 5.0
         comment.layer.borderWidth = 1.0
@@ -306,7 +307,8 @@ public class NITFeedbackViewController: NITBaseViewController {
                        animations: {[weak self]() -> Void in
             guard let wself = self else { return }
             wself.errorContainer.isHidden = false
-            wself.send.setRoundedButtonOf(color: NITUIAppearance.sharedInstance.nearRed())
+            wself.send.backgroundColor = NITUIAppearance.sharedInstance.nearRed()
+            wself.send.setRoundedView()
             wself.send.setTitle(wself.retryText, for: .normal)
             wself.view.layoutIfNeeded()
         }, completion: { _ in })

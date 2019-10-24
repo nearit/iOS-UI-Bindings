@@ -53,6 +53,12 @@ public class NITUIAppearance: NSObject {
     
     @objc public var couponDateFormatter : DateFormatter?
     @objc public var historyDateFormatter : DateFormatter?
+    
+    public var globalButtonLook: NITUIButtonLook?
+    private let defaultGlobalButtonLook: NITUIButtonLook = .fullRound
+    public func buttonLook() -> NITUIButtonLook {
+        return globalButtonLook ?? defaultGlobalButtonLook
+    }
 }
 
 public extension UILabel {
@@ -82,4 +88,9 @@ extension UIFont {
     var isItalic: Bool {
         return fontDescriptor.symbolicTraits.contains(.traitItalic)
     }
+}
+
+public enum NITUIButtonLook {
+    case fullRound
+    case radiusOf(CGFloat)
 }
