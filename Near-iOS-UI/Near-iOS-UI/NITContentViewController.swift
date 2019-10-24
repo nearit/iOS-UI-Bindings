@@ -166,7 +166,8 @@ public class NITContentViewController: NITBaseViewController {
             callToAction.setTitle(contentLink.label, for: .normal)
             callToAction.titleLabel?.font = getCTAFont()
             callToAction.setTitleColor(callToActionTextColor, for: .normal)
-            callToAction.setRoundedButtonOf(color: callToActionColor)
+            callToAction.backgroundColor = callToActionColor
+            callToAction.setRoundedView()
         } else {
             ctaContainer.isHidden = true
         }

@@ -90,8 +90,7 @@ public class NITMultilineButton: UIButton {
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        let number = contentView.layer.frame.height / 2
-        contentView.layer.cornerRadius = number
+        setRoundedView()
     }
     
     public func setLabel(_ firstLine: String, secondLine: String? = nil) {

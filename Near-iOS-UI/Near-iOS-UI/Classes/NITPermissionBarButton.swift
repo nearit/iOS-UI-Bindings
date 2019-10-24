@@ -62,9 +62,7 @@ class NITPermissionBarButton: UIView {
         super.layoutSubviews()
         
         backgroundColor = NITUIAppearance.sharedInstance.nearBlack()
-        
-        let halfHeight = layer.frame.height / 2
-        layer.cornerRadius = halfHeight
+        setRoundedView()
         
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false

@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NITUIAppearance.sharedInstance.mediumItalicFontName = "Raleway-MediumItalic"
         NITUIAppearance.sharedInstance.boldItalicFontName = "Raleway-BoldItalic"
         
+        NITUIAppearance.sharedInstance.globalButtonLook = .radiusOf(2.0)
+        
         return true
     }
 

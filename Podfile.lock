@@ -4,9 +4,9 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - NearITSDK (2.12.2)
-  - NearITSDKSwift (2.12.2):
-    - NearITSDK (= 2.12.2)
+  - NearITSDK (2.12.4)
+  - NearITSDKSwift (2.12.4):
+    - NearITSDK (= 2.12.4)
   - Nimble (7.3.4)
   - Nimble-Snapshots (6.3.0):
     - Nimble-Snapshots/Core (= 6.3.0)
@@ -30,31 +30,32 @@ PODS:
 
 DEPENDENCIES:
   - FBSnapshotTestCase
-  - NearITSDKSwift (~> 2.12.2)
+  - NearITSDKSwift (~> 2.12.4)
   - Nimble
   - Nimble-Snapshots
   - OHHTTPStubs/Swift
   - Quick
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - FBSnapshotTestCase
-    - NearITSDK
-    - NearITSDKSwift
     - Nimble
     - Nimble-Snapshots
     - OHHTTPStubs
     - Quick
+  trunk:
+    - NearITSDK
+    - NearITSDKSwift
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  NearITSDK: 1e45bd72cec0cf649ef87be342f428bec70065e3
-  NearITSDKSwift: d4b969e0a4e41c5b04ac9e73f8e0b970f9263cea
+  NearITSDK: 0b959f0d02328409ebf0b2727ab80105f3ef3a74
+  NearITSDKSwift: f060cd70606da758c942361cd636153b128b3a54
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
-PODFILE CHECKSUM: c5b3fda5ab0fd61e9ba8f64b6125e4995e4a0c76
+PODFILE CHECKSUM: 35e27a6767d66551aa44fc94ec07f756d439b049
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.8.3
