@@ -459,7 +459,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 description?.text = " - "
             }
         case 5: // Permission bar
-            title?.text = "Coupon permission bar"
+            title?.text = "Custom permission bar"
             description?.text = "Creted by code"
         case 6: // History
             switch indexPath.row {

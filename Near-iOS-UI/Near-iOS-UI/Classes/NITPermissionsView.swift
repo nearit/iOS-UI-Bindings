@@ -288,7 +288,6 @@ public class NITPermissionsView: UIView, NITPermissionsManagerDelegate, NITPermi
         
         let hasLocation = permissionsRequired.contains(NITPermissionsViewPermissions.location)
         let hasNotification = permissionsRequired.contains(NITPermissionsViewPermissions.notifications)
-        let hasBluetooth = permissionsRequired.contains(NITPermissionsViewPermissions.bluetooth)
         
         if hasLocation && !permissionManager.isLocationGrantedAtLeast(minStatus: locationType.authorizationStatus) {
             let minRequirement = locationType

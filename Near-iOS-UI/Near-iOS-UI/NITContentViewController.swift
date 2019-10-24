@@ -115,9 +115,7 @@ public class NITContentViewController: NITBaseViewController {
     }
 
     internal func getImage() -> NITImage? {
-        if content.image != nil { return content.image }
-        guard let images = content.images else { return nil }
-        return images.first
+        return content.image
     }
 
     internal func setupUI() {

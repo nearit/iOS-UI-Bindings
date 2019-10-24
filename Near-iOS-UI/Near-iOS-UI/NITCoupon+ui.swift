@@ -28,9 +28,7 @@ extension NITCoupon {
     }
 
     var qrCodeValue: String? {
-        guard let claims = claims else { return nil }
-        guard let claim = claims.first else { return nil }
-        return claim.serialNumber
+        return serial
     }
 
     var qrCodeImage: CIImage? {
@@ -66,11 +64,6 @@ extension NITCoupon {
     }
 
     var isRedeemed: Bool {
-        for claim in claims {
-            if claim.redeemedAt != nil {
-                return true
-            }
-        }
-        return false
+        return redeemedAt != nil
     }
 }
