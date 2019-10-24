@@ -12,10 +12,10 @@ import CoreLocation
 @objc public enum NITPermissionsViewPermissions: NSInteger {
     case location = 0b001
     case notifications = 0b010
-    case bluetooth = 0b100
+    @available(*, deprecated, message: "Bluetooth will always be considered on") case bluetooth = 0b100
     case locationAndNotifications = 0b011
-    case notificationAndBluetooth = 0b110
-    case locationAndBluetooth = 0b101
+    @available(*, deprecated, message: "Bluetooth will always be considered on") case notificationAndBluetooth = 0b110
+    @available(*, deprecated, message: "Bluetooth will always be considered on") case locationAndBluetooth = 0b101
     case all = 0b111
 
     static public func | (lhs: NITPermissionsViewPermissions,
