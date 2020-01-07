@@ -1,3 +1,17 @@
+## 2.12.4 (2020-01-07)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* Content dialog is better looking in Dark Mode.
+
 ## 2.12.3 (2019-10-24)
 
 ### API Breaking Changes
