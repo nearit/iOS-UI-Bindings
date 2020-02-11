@@ -1,0 +1,76 @@
+/* 
+  NearUIBinding.strings
+  Near-iOS-UI
+
+  Created by Cattaneo Stefano on 11/02/2020.
+  Copyright © 2020 Near. All rights reserved.
+*/
+
+// Base
+"nearit_ui_coupon_date_pretty_format"="MM-dd-yyyy";
+
+// Coupon
+"nearit_ui_coupon_expired_text"="Expired coupon";
+"nearit_ui_coupon_inactive_text"="Inactive coupon";
+"nearit_ui_coupon_redeemed_text"="Already used coupon";
+"nearit_ui_coupon_validity_label_valid"="Validity: ";
+"nearit_ui_coupon_validity_label_valid_no_period"="Valid";
+"nearit_ui_coupon_validity_label_redeemed"="Redeemed at: ";
+"nearit_ui_coupon_validity_period_from"="from %s";
+"nearit_ui_coupon_validity_period_until"="until %s";
+"nearit_ui_coupon_validity_period_from_to"="from %1$s to %2$s";
+"nearit_ui_qr_code_error_message"="Cannot render QR code";
+
+// Coupon List
+"nearit_ui_coupon_list_valid_text"="Valid coupon";
+"nearit_ui_coupon_list_expired_text"="Expired coupon";
+"nearit_ui_coupon_list_inactive_text"="Valid from ";
+"nearit_ui_coupon_list_redeemed_text"="Already used coupon";
+"nearit_ui_coupon_list_empty_list_text"="No coupons available";
+
+// Feedback
+"nearit_ui_feedback_leave_a_comment"="Leave a comment (optional)";
+"nearit_ui_feedback_error_message"="Ops, something went wrong!";
+"nearit_ui_feedback_close_button"="No, thank you";
+"nearit_ui_feedback_send_success_message"="Thanks for your feedback!";
+"nearit_ui_feedback_send_button_default_text"="Send";
+"nearit_ui_feedback_send_button_retry"="Retry";
+
+// Notification History
+"nearit_ui_history_empty_list_text"="No messages available";
+"nearit_ui_history_content_button_label"="See more";
+"nearit_ui_history_coupon_button_label"="Open";
+"nearit_ui_history_feedback_button_label"="Open";
+"nearit_ui_history_error_message"="We could not get your notifications. Please try again later.";
+
+// Permission Bar
+"nearit_ui_permission_bar_alert_text"="Check all missing permissions";
+
+// Permission Dialog
+"nearit_ui_permissions_explanation_text"="Do you want to receive personalized contents? Allow us to know your location";
+"nearit_ui_close_permissions_text"="Close";
+"nearit_ui_close_permissions_text_default"="Not now";
+"nearit_ui_bluetooth"="Turn on bluetooth";
+"nearit_ui_location"="Turn on location";
+"nearit_ui_notification"="Turn on notifications";
+"nearit_ui_go_to_settings"="Settings";
+"nearit_ui_cancel_dialog"="Cancel";
+"nearit_ui_flight_mode_detected_title"="Flight mode detected";
+"nearit_ui_flight_mode_detected_message"="Please, turn flight mode off";
+"nearit_ui_go_to_settings_location_title"="Missing location permission";
+"nearit_ui_go_to_settings_location_message"="Please, change your selection under \"Permissions\" section";
+"nearit_ui_go_to_settings_notification_title"="Notifications are disabled";
+"nearit_ui_go_to_settings_notification_message"="Please, change your selection and enable them";
+"nearit_ui_location_button_sad_text"="permission denied";
+"nearit_ui_location_button_worried_text"="services are off";
+"nearit_ui_bluetooth_button_on_text"="Bluetooth on";
+"nearit_ui_bluetooth_button_off_text"="Bluetooth off";
+"nearit_ui_location_button_on_text"="Location on";
+"nearit_ui_location_button_text"="Location";
+
+// Warning Dialog
+"nearit_ui_warning_dialog_button_text"="Retry";
+"nearit_ui_warning_dialog_close_text"="Close";
+"nearit_ui_warning_dialog_message"="Network problem";
+
+
