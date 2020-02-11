@@ -23,6 +23,7 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public lazy var expiredText: String = {
         return ""
     }()
+    @objc public var alreadyRedeemedText: String!
     @objc public var disabledText: String!
     @objc public var validText: String!
     @objc public var fromText: String!
@@ -31,6 +32,7 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
     @objc public var couponDisabledAlternativeColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
+    @objc public var couponRedeemedColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
     @objc public var validFont: UIFont?
@@ -131,9 +133,10 @@ public class NITCouponViewController: NITBaseViewController {
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
 
-        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
-        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
-        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, bundle: bundle, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
+        expiredText = "nearit_ui_coupon_expired_text".nearUILocalized
+        disabledText = "nearit_ui_coupon_inactive_text".nearUILocalized
+        validText = "nearit_ui_coupon_validity_label_valid".nearUILocalized
+        alreadyRedeemedText = "nearit_ui_coupon_redeemed_text".nearUILocalized
         fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from ", comment: "Coupon dialog: from")
         toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: " to ", comment: "Coupon dialog: to")
     }
@@ -238,7 +241,7 @@ public class NITCouponViewController: NITBaseViewController {
             alternative.textColor = couponValidColor
             serial.isHidden = false
             setupDates(color: couponValidColor)
-        case .disabled:
+        case .inactive:
             alternative.isHidden = false
             qrcode.isHidden = true
             alternative.text = disabledText
@@ -255,6 +258,13 @@ public class NITCouponViewController: NITBaseViewController {
             alternative.textColor = couponExpiredColor
             serial.isHidden = true
             setupDates(color: couponExpiredColor)
+        case .redeemed:
+            alternative.isHidden = false
+            qrcode.isHidden = true
+            alternative.text = alreadyRedeemedText
+            alternative.textColor = couponRedeemedColor
+            serial.isHidden = true
+            setupDates(color: couponRedeemedColor)
         }
     }
 

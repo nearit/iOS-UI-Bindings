@@ -10,14 +10,19 @@ import NearITSDK
 
 @objc public enum NITCouponUIStatus: NSInteger {
     case valid = 0
-    case disabled
+    case inactive
     case expired
+    case redeemed
 }
 
 extension NITCoupon {
     var status: NITCouponUIStatus {
+        if redeemedAt != nil {
+            return .redeemed
+        }
+        
         if let redeemable = redeemable, redeemable.timeIntervalSinceNow > 0.0 {
-            return .disabled
+            return .inactive
         }
 
         if let expires = expires, expires.timeIntervalSinceNow < 0.0 {

@@ -248,6 +248,7 @@ class ViewController: UIViewController {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
             let aViewController = NITCouponListViewController()
+            aViewController.includeRedeemedCoupons = true
             if modal {
                 aViewController.show()
                 aViewController.couponBackground = .normalBorders
@@ -264,7 +265,6 @@ class ViewController: UIViewController {
     func customPushCouponList() {
         let aViewController = NITCouponListViewController()
         aViewController.presentCoupon = .popover
-        aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
         aViewController.show()
     }
