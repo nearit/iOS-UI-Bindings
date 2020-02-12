@@ -21,7 +21,7 @@ extension String {
         }
         return NSLocalizedString(self,
                                  tableName: String.stringTableName,
-                                 bundle: Bundle(for: NITCouponViewController.self),
+                                 bundle: Bundle.NITBundle(for: NITCouponViewController.self),
                                  value: self,
                                  comment: "")
     }
