@@ -68,13 +68,21 @@ extension NITCoupon {
             return couponFormatter
         }
         let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        formatter.dateStyle = DateFormatter.Style.medium
-        formatter.timeStyle = DateFormatter.Style.none
+        formatter.locale = Locale.preferredLocale()
+        formatter.dateFormat = "nearit_ui_coupon_date_pretty_format".nearUILocalized
         return formatter
     }
 
     var isRedeemed: Bool {
         return redeemedAt != nil
+    }
+}
+
+extension Locale {
+    static func preferredLocale() -> Locale {
+        guard let preferredIdentifier = Locale.preferredLanguages.first else {
+            return Locale.current
+        }
+        return Locale(identifier: preferredIdentifier)
     }
 }

@@ -7,7 +7,7 @@
 */
 
 // Base
-"nearit_ui_coupon_date_pretty_format" = "MM-dd-yyyy"; // TODO this
+"nearit_ui_coupon_date_pretty_format" = "dd MMM yyyy";
 
 // Coupon
 "nearit_ui_coupon_expired_text" = "Expired coupon";
