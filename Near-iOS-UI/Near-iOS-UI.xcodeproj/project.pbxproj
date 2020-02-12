@@ -61,8 +61,8 @@
 		8AF9E5131FC322EC00ED0057 /* NITPermissionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF9E5121FC322EC00ED0057 /* NITPermissionButton.swift */; };
 		D71F1F392187236E0016BD1D /* how-to-release.md in Resources */ = {isa = PBXBuildFile; fileRef = D71F1F382187236E0016BD1D /* how-to-release.md */; };
 		D72E149B23F3FE7A006E7FAD /* NITCouponViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D72E149A23F3FE7A006E7FAD /* NITCouponViewController+UI.swift */; };
+		D72E149C23F45907006E7FAD /* NearUIBinding.strings in Resources */ = {isa = PBXBuildFile; fileRef = D72E149E23F45907006E7FAD /* NearUIBinding.strings */; };
 		D7478168228330AB00139EB2 /* NearManager+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7478167228330AB00139EB2 /* NearManager+UI.swift */; };
-		D774892023F2CB2900A13F2A /* NearUIBinding.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774891F23F2CB2900A13F2A /* NearUIBinding.strings */; };
 		D774892223F2CDE500A13F2A /* String+NearUIBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D774892123F2CDE500A13F2A /* String+NearUIBinding.swift */; };
 		D77EF6EF20FCA73B00198922 /* NITMultilineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */; };
 		D77EF6F120FCAA1400198922 /* NITMultilineButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */; };
@@ -186,8 +186,8 @@
 		D70E09B521B7C9530073D0C0 /* changelog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = changelog.md; sourceTree = "<group>"; };
 		D71F1F382187236E0016BD1D /* how-to-release.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = "how-to-release.md"; path = "../how-to-release.md"; sourceTree = "<group>"; };
 		D72E149A23F3FE7A006E7FAD /* NITCouponViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NITCouponViewController+UI.swift"; sourceTree = "<group>"; };
+		D72E149D23F45907006E7FAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NearUIBinding.strings; sourceTree = "<group>"; };
 		D7478167228330AB00139EB2 /* NearManager+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearManager+UI.swift"; sourceTree = "<group>"; };
-		D774891F23F2CB2900A13F2A /* NearUIBinding.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NearUIBinding.strings; sourceTree = "<group>"; };
 		D774892123F2CDE500A13F2A /* String+NearUIBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NearUIBinding.swift"; sourceTree = "<group>"; };
 		D77EF6EE20FCA73B00198922 /* NITMultilineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NITMultilineButton.swift; sourceTree = "<group>"; };
 		D77EF6F020FCAA1400198922 /* NITMultilineButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NITMultilineButton.xib; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				26CAC33D1F56EA46009DDDF2 /* Images.xcassets */,
-				D774891F23F2CB2900A13F2A /* NearUIBinding.strings */,
+				D72E149E23F45907006E7FAD /* NearUIBinding.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -552,7 +552,7 @@
 				26BA349520401FEE000B7CB4 /* NITNotificationHistoryViewController.xib in Resources */,
 				D71F1F392187236E0016BD1D /* how-to-release.md in Resources */,
 				8A4E89331F94FE92002BCAB6 /* NITFeedbackViewController.xib in Resources */,
-				D774892023F2CB2900A13F2A /* NearUIBinding.strings in Resources */,
+				D72E149C23F45907006E7FAD /* NearUIBinding.strings in Resources */,
 				26CAC3391F56E996009DDDF2 /* NITPermissionsViewController.xib in Resources */,
 				26CAC3121F56C871009DDDF2 /* NITDialogController.xib in Resources */,
 				8A6AF9CE1F9E408100FA9D4B /* NITCouponViewController.xib in Resources */,
@@ -738,6 +738,14 @@
 				26B85B0C1F98A02A00087BEE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D72E149E23F45907006E7FAD /* NearUIBinding.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D72E149D23F45907006E7FAD /* en */,
+			);
+			name = NearUIBinding.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
