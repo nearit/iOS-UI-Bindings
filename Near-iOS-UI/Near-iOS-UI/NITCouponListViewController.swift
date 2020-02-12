@@ -81,11 +81,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     let defaultValueExpiredFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueExpiredFont: UIFont?
 
-    @objc public var expiredText: String!
-    @objc public var disabledText: String!
-    @objc public var validText: String!
-    @objc public var redeemedText: String!
-    @objc public var noCoupons: String!
+    @objc public var expiredText = "nearit_ui_coupon_list_expired_text".nearUILocalized
+    @objc public var inactiveText = "nearit_ui_coupon_list_inactive_text".nearUILocalized
+    @objc public var validText = "nearit_ui_coupon_list_valid_text".nearUILocalized
+    @objc public var redeemedText = "nearit_ui_coupon_list_redeemed_text".nearUILocalized
+    @objc public var noCoupons = "nearit_ui_coupon_list_empty_list_text".nearUILocalized
 
     @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
@@ -155,12 +155,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         jaggedBackground = UIImage(named: "jaggedCouponBg", in: bundle, compatibleWith: nil)
-
-        redeemedText = "nearit_ui_coupon_list_redeemed_text".nearUILocalized
-        expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
-        disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
-        validText = NSLocalizedString("Coupon list: valid coupon", tableName: nil, bundle: bundle, value: "Valid coupon", comment: "Coupon list: valid coupon")
-        noCoupons = NSLocalizedString( "Coupon list: no coupons", tableName: nil, bundle: bundle, value: "No coupons available", comment: "Coupon list: no coupons")
     }
 
     override public func viewDidLoad() {
@@ -200,8 +194,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     let coupons = coupons ?? []
                     wself.coupons = coupons.filter { (coupon: NITCoupon) -> Bool in
                         wself.itemCanBeShown(coupon)
-//                        if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
-//                        return wself.filterOption.filter(coupon.status)
                     }
                     if let coupons = wself.coupons {
                         if coupons.count == 0 {
@@ -304,7 +296,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
 
                 switch coupon.status {
                 case .inactive:
-                    cell.status.text = disabledText
+                    cell.status.text = inactiveText + coupon.redeemableFrom
                     cell.status.textColor = disabledColor
                     cell.status.font = getDisabledFont()
                     cell.name.font = getTitleDisabledFont()

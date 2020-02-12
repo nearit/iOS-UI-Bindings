@@ -12,13 +12,13 @@
 // Coupon
 "nearit_ui_coupon_expired_text" = "Expired coupon";
 "nearit_ui_coupon_inactive_text" = "Inactive coupon";
-"nearit_ui_coupon_redeemed_text" = "Already used coupon"; // TODO this is not even used
+"nearit_ui_coupon_redeemed_text" = "Already used coupon";
 "nearit_ui_coupon_validity_label_valid" = "Validity: ";
-"nearit_ui_coupon_validity_label_valid_no_period" = "Valid"; // TODO
+"nearit_ui_coupon_validity_label_valid_no_period" = "Valid";
 "nearit_ui_coupon_validity_label_redeemed" = "Redeemed at: ";
-"nearit_ui_coupon_validity_period_from" = "from %s";
-"nearit_ui_coupon_validity_period_until" = "until %s";
-"nearit_ui_coupon_validity_period_from_to" = "from %1$s to %2$s";
+"nearit_ui_coupon_validity_period_from" = "from %@";
+"nearit_ui_coupon_validity_period_until" = "until %@";
+"nearit_ui_coupon_validity_period_from_to" = "from %@ to %@";
 "nearit_ui_qr_code_error_message" = "Cannot render QR code";
 
 // Coupon List

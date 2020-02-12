@@ -45,14 +45,20 @@ extension NITCoupon {
         return filter.outputImage
     }
 
-    var localizedRedeemable: String {
-        guard let date = redeemable else { return "" }
+    var localizedRedeemable: String? {
+        guard let date = redeemable else { return nil }
         let formatter = couponLocale()
         return formatter.string(from: date)
     }
     
-    var localizedExpiredAt: String {
-        guard let date = expires else { return "" }
+    var localizedExpiredAt: String? {
+        guard let date = expires else { return nil }
+        let formatter = couponLocale()
+        return formatter.string(from: date)
+    }
+    
+    var localizedRedeemedAt: String? {
+        guard let date = redeemed else { return nil }
         let formatter = couponLocale()
         return formatter.string(from: date)
     }

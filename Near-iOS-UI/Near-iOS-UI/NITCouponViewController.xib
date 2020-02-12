@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,9 +19,6 @@
                 <outlet property="serial" destination="da9-vt-ysy" id="0Bw-HO-gzc"/>
                 <outlet property="validityFromLabel" destination="PkD-mV-HXG" id="MQA-7X-Exc"/>
                 <outlet property="validityLabel" destination="LYP-Bz-c2Q" id="Ukz-Ag-kDC"/>
-                <outlet property="validityPrefixFromLabel" destination="31L-QK-Zn8" id="jPg-s0-aTU"/>
-                <outlet property="validityPrefixToLabel" destination="LMj-Ud-DxN" id="zmY-m8-sjI"/>
-                <outlet property="validityToLabel" destination="5Wb-3g-mTq" id="uVy-ve-CUS"/>
                 <outlet property="value" destination="eSN-0T-CLi" id="ap2-0g-o6c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -47,25 +42,7 @@
                                             <attributedString key="attributedText"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31L-QK-Zn8" userLabel="From Prefix">
-                                            <rect key="frame" x="0.0" y="4.5" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkD-mV-HXG" userLabel="From">
-                                            <rect key="frame" x="0.0" y="4.5" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMj-Ud-DxN" userLabel="To Prefix">
-                                            <rect key="frame" x="0.0" y="4.5" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wb-3g-mTq" userLabel="To">
                                             <rect key="frame" x="0.0" y="4.5" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -75,17 +52,11 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="LYP-Bz-c2Q" firstAttribute="top" secondItem="O4d-ec-OCS" secondAttribute="top" id="2kt-gJ-QLC"/>
-                                        <constraint firstItem="5Wb-3g-mTq" firstAttribute="firstBaseline" secondItem="PkD-mV-HXG" secondAttribute="firstBaseline" id="E73-4U-gAo"/>
-                                        <constraint firstItem="LMj-Ud-DxN" firstAttribute="firstBaseline" secondItem="PkD-mV-HXG" secondAttribute="firstBaseline" id="ExY-zf-MH7"/>
+                                        <constraint firstAttribute="trailing" secondItem="PkD-mV-HXG" secondAttribute="trailing" id="3MH-ee-NC4"/>
+                                        <constraint firstItem="PkD-mV-HXG" firstAttribute="leading" secondItem="LYP-Bz-c2Q" secondAttribute="trailing" id="BTk-1Z-8Bc"/>
                                         <constraint firstItem="PkD-mV-HXG" firstAttribute="firstBaseline" secondItem="LYP-Bz-c2Q" secondAttribute="firstBaseline" id="MPO-uz-Lf2"/>
                                         <constraint firstAttribute="bottom" secondItem="LYP-Bz-c2Q" secondAttribute="bottom" id="V6t-0e-sl6"/>
-                                        <constraint firstItem="PkD-mV-HXG" firstAttribute="leading" secondItem="31L-QK-Zn8" secondAttribute="trailing" id="aEI-vU-0K3"/>
-                                        <constraint firstItem="31L-QK-Zn8" firstAttribute="leading" secondItem="LYP-Bz-c2Q" secondAttribute="trailing" id="e4e-Ak-QQM"/>
-                                        <constraint firstItem="LMj-Ud-DxN" firstAttribute="leading" secondItem="PkD-mV-HXG" secondAttribute="trailing" id="iYf-kQ-rpR"/>
-                                        <constraint firstItem="31L-QK-Zn8" firstAttribute="firstBaseline" secondItem="LYP-Bz-c2Q" secondAttribute="firstBaseline" id="iwX-If-SXC"/>
-                                        <constraint firstAttribute="trailing" secondItem="5Wb-3g-mTq" secondAttribute="trailing" id="rhC-Za-d4x"/>
                                         <constraint firstItem="LYP-Bz-c2Q" firstAttribute="leading" secondItem="O4d-ec-OCS" secondAttribute="leading" id="s75-NI-Hc3"/>
-                                        <constraint firstItem="5Wb-3g-mTq" firstAttribute="leading" secondItem="LMj-Ud-DxN" secondAttribute="trailing" id="tjE-ko-GRb"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ne0-9U-dZG">
