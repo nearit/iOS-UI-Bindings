@@ -75,9 +75,9 @@ public class NITPermissionsViewController: NITBaseViewController {
     @objc public var locationInUse: String!
     @objc public var locationNever: String!
     @objc public var notificationsText: String!
-    @objc public var explainText: String!
-    @objc public var closeText: String!
-    @objc public var notNowText: String!
+    @objc public var explainText = "nearit_ui_permissions_explanation_text".nearUILocalized
+    @objc public var closeText = "nearit_ui_close_permissions_text".nearUILocalized
+    @objc public var notNowText = "nearit_ui_close_permissions_text_default".nearUILocalized
     
     @objc public var happyImage: UIImage?
     @objc public var worriedImage: UIImage?
@@ -179,15 +179,6 @@ public class NITPermissionsViewController: NITBaseViewController {
         
         textColor = NITUIAppearance.sharedInstance.nearGrey()
 
-        explainText = NSLocalizedString("Permissions popup: explanation", tableName: nil,
-                                        bundle: bundle, value: "Permissions explanation",
-                                        comment: "Permissions popup: explanation")
-        closeText = NSLocalizedString("Permissions popup: Close", tableName: nil,
-                                      bundle: bundle, value: "Close",
-                                      comment: "Permissions popup: Close")
-        notNowText = NSLocalizedString("Permissios popup: Not now", tableName: nil,
-                                       bundle: bundle, value: "Not now",
-                                       comment: "Permissios popup: Not now")
         locationText = NSLocalizedString("Permissions popup: LOCATION", tableName: nil,
                                          bundle: bundle, value: "LOCATION",
                                          comment: "Permissions popup: LOCATION")
