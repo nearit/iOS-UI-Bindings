@@ -32,7 +32,6 @@ static ObjCUIManager *sharedManager;
 
 - (void)showListOfCoupons {
     NITCouponListViewController *controller = [[NITCouponListViewController alloc] init];
-    controller.filterOption = NITCouponListViewControllerFilterOptionsValid;
     [controller show];
 }
 

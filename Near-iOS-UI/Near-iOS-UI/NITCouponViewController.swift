@@ -20,17 +20,21 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var separatorImage: UIImage!
     @objc public var separatorBackgroundColor = UIColor.clear
     @objc public var iconPlaceholder: UIImage!
-    @objc public lazy var expiredText: String = {
-        return ""
-    }()
-    @objc public var disabledText: String!
-    @objc public var validText: String!
-    @objc public var fromText: String!
-    @objc public var toText: String!
+    @objc public lazy var expiredText = "nearit_ui_coupon_expired_text".nearUILocalized
+    @objc public var alreadyRedeemedText: String = "nearit_ui_coupon_redeemed_text".nearUILocalized
+    @objc public var inactiveText = "nearit_ui_coupon_inactive_text".nearUILocalized
+    @objc public var validText = "nearit_ui_coupon_validity_label_valid".nearUILocalized
+    @objc public var validNoPeriodText = "nearit_ui_coupon_validity_label_valid_no_period".nearUILocalized
+    @objc public var fromText = "nearit_ui_coupon_validity_period_from".nearUILocalized
+    @objc public var toText = "nearit_ui_coupon_validity_period_until".nearUILocalized
+    @objc public var fromToText =
+    "nearit_ui_coupon_validity_period_from_to".nearUILocalized
+    @objc public var validityRedeemedText = "nearit_ui_coupon_validity_label_redeemed".nearUILocalized
     @objc public var couponValidColor = NITUIAppearance.sharedInstance.nearGreen()
     @objc public var couponDisabledColor = NITUIAppearance.sharedInstance.nearGrey()
     @objc public var couponDisabledAlternativeColor = NITUIAppearance.sharedInstance.nearBlack()
     @objc public var couponExpiredColor = NITUIAppearance.sharedInstance.nearRed()
+    @objc public var couponRedeemedColor = NITUIAppearance.sharedInstance.nearRed()
     
     let defaultValidFont = UIFont.systemFont(ofSize: 12.0)
     @objc public var validFont: UIFont?
@@ -59,10 +63,7 @@ public class NITCouponViewController: NITBaseViewController {
     @objc public var valueColor = NITUIAppearance.sharedInstance.nearBlack()
 
     @IBOutlet weak var validityLabel: UILabel!
-    @IBOutlet weak var validityPrefixFromLabel: UILabel!
     @IBOutlet weak var validityFromLabel: UILabel!
-    @IBOutlet weak var validityPrefixToLabel: UILabel!
-    @IBOutlet weak var validityToLabel: UILabel!
     
     @IBOutlet weak var qrcode: UIImageView!
     @IBOutlet weak var longDescription: UILabel!
@@ -130,12 +131,6 @@ public class NITCouponViewController: NITBaseViewController {
         let bundle = Bundle.NITBundle(for: NITDialogController.self)
         separatorImage = UIImage(named: "separator", in: bundle, compatibleWith: nil)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
-
-        expiredText = NSLocalizedString("Coupon dialog: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon dialog: expired coupon")
-        disabledText = NSLocalizedString("Coupon dialog: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon dialog: inactive coupon")
-        validText = NSLocalizedString("Coupon dialog: valid:", tableName: nil, bundle: bundle, value: "Valid: ", comment: "Coupon dialog: valid:[whitespace]")
-        fromText = NSLocalizedString("Coupon dialog: from", tableName: nil, bundle: bundle, value: "from ", comment: "Coupon dialog: from")
-        toText = NSLocalizedString("Coupon dialog: to", tableName: nil, bundle: bundle, value: " to ", comment: "Coupon dialog: to")
     }
 
     override public func viewDidLoad() {
@@ -169,33 +164,6 @@ public class NITCouponViewController: NITBaseViewController {
         }
     }
 
-    internal func setupDates(color: UIColor) {
-        validityLabel.font = getValidFont()
-        validityLabel.textColor = color
-        validityLabel.text = validText + " "
-        
-        if coupon.redeemable != nil {
-            validityFromLabel.text = coupon.localizedRedeemable
-            validityFromLabel.font = getFromToFont()
-            validityFromLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
-            validityPrefixFromLabel.text = fromText
-            validityPrefixFromLabel.font = getFromToFont()
-            validityPrefixFromLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
-        } else {
-            validityPrefixFromLabel.isHidden = true
-        }
-        if coupon.expires != nil {
-            validityToLabel.text = coupon.localizedExpiredAt
-            validityToLabel.font = getFromToFont()
-            validityToLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
-            validityPrefixToLabel.text = toText
-            validityPrefixToLabel.font = getFromToFont()
-            validityPrefixToLabel.textColor = NITUIAppearance.sharedInstance.nearGrey()
-        } else {
-            validityPrefixToLabel.isHidden = true
-        }
-    }
-
     internal func setupUI() {
         dialogController?.contentView.backgroundColor = .clear
 
@@ -225,44 +193,19 @@ public class NITCouponViewController: NITBaseViewController {
         icon.layer.borderColor = UIColor.init(red: 51/255, green: 51/255, blue: 51/255, alpha: 1).cgColor
         icon.layer.borderWidth = 1.0
 
-        alternative.font = getAlternativeFont()
 
         if let iconURL = coupon.icon?.smallSizeURL() {
             applyImage(fromURL: iconURL, toImageView: icon, imageDownloader: NITImageDownloader.sharedInstance)
         }
-
-        switch coupon.status {
-        case .valid:
-            alternative.isHidden = true
-            qrcode.isHidden = false
-            alternative.textColor = couponValidColor
-            serial.isHidden = false
-            setupDates(color: couponValidColor)
-        case .disabled:
-            alternative.isHidden = false
-            qrcode.isHidden = true
-            alternative.text = disabledText
-            alternative.textColor = couponDisabledAlternativeColor
-            value.textColor = couponDisabledColor.withAlphaComponent(0.35)
-            longDescription.textColor = couponDisabledColor.withAlphaComponent(0.35)
-            couponTitle.textColor = couponDisabledColor.withAlphaComponent(0.35)
-            serial.isHidden = true
-            setupDates(color: couponDisabledColor)
-        case .expired:
-            alternative.isHidden = false
-            qrcode.isHidden = true
-            alternative.text = expiredText
-            alternative.textColor = couponExpiredColor
-            serial.isHidden = true
-            setupDates(color: couponExpiredColor)
-        }
+        
+        setUpTopSection()
     }
 
     @IBAction func tapClose(_ sender: Any) {
         dialogController?.dismiss()
     }
     
-    private func getValidFont() -> UIFont {
+    func getValidFont() -> UIFont {
         if let validFont = self.validFont {
             return validFont
         }
@@ -272,7 +215,7 @@ public class NITCouponViewController: NITBaseViewController {
         return defaultValidFont
     }
     
-    private func getFromToFont() -> UIFont {
+    func getFromToFont() -> UIFont {
         if let fromToFont = self.fromToFont {
             return fromToFont
         }
@@ -282,7 +225,7 @@ public class NITCouponViewController: NITBaseViewController {
         return defaultFromToFont
     }
     
-    private func getAlternativeFont() -> UIFont {
+    func getAlternativeFont() -> UIFont {
         if let alternativeFont = self.alternativeFont {
             return alternativeFont
         }

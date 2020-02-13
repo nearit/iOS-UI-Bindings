@@ -51,6 +51,7 @@ public class NITUIAppearance: NSObject {
         return globalRedColor ?? defaultGlobalRedColor
     }
     
+    // TODO these are redundant
     @objc public var couponDateFormatter : DateFormatter?
     @objc public var historyDateFormatter : DateFormatter?
     

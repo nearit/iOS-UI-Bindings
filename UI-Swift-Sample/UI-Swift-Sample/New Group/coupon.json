@@ -268,7 +268,7 @@
                 "recipe_id": "e58a44c6-25ef-4919-862a-3c986181fca2",
                 "serial_number": "B4675F633649",
                 "claimed_at": "2018-10-22T14:24:06.919Z",
-                "redeemed_at": null,
+                "redeemed_at": "2018-10-22T14:24:06.919Z",
                 "redeemer_id": null
             },
             "relationships": {

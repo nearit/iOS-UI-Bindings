@@ -20,46 +20,6 @@ import NearITSDK
     case jaggedBorders
 }
 
-@objc public enum NITCouponListViewControllerFilterOptions: NSInteger {
-    case none = 0b000
-    case valid = 0b001
-    case expired = 0b010
-    case validAndExpired =  0b011
-    case disabled = 0b100
-    case validAndDisabled = 0b101
-    case expiredAndDisabled = 0b110
-    case all = 0b111
-
-    fileprivate func filter(_ status: NITCouponUIStatus) -> Bool {
-        switch status {
-        case .disabled:
-            return contains(NITCouponListViewControllerFilterOptions.disabled)
-        case .expired:
-            return contains(NITCouponListViewControllerFilterOptions.expired)
-        case .valid:
-            return contains(NITCouponListViewControllerFilterOptions.valid)
-        }
-    }
-
-    // swiftlint:disable identifier_name
-    static public func | (lhs: NITCouponListViewControllerFilterOptions,
-                          rhs: NITCouponListViewControllerFilterOptions) -> NITCouponListViewControllerFilterOptions {
-        let or = lhs.rawValue | rhs.rawValue
-        return NITCouponListViewControllerFilterOptions(rawValue: or)!
-    }
-
-    public func contains(_ lhs: NITCouponListViewControllerFilterOptions) -> Bool {
-        return (rawValue & lhs.rawValue) != 0
-    }
-
-}
-
-// swiftlint:disable type_name
-@objc public enum NITCouponListViewControllerFilterRedeemed: NSInteger {
-    case hide
-    case show
-}
-
 public class NITCouponListViewController: NITBaseViewController, UITableViewDataSource, UITableViewDelegate {
     var nearManager: NITManager
     var coupons: [NITCoupon]?
@@ -70,8 +30,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     @IBOutlet weak var tableView: UITableView!
 
     @objc public var presentCoupon = NITCouponListViewControllerPresentCoupon.push
-    @objc public var filterOption = NITCouponListViewControllerFilterOptions.all
-    @objc public var filterRedeemed = NITCouponListViewControllerFilterRedeemed.hide
+    
+    @objc public var includeValidCoupons = true
+    @objc public var includeInactiveCoupons = true
+    @objc public var includeExpiredCoupons = false
+    @objc public var includeRedeemedCoupons = false
     
     @objc public var couponBackground = NITCouponListViewControllerCouponBackground.jaggedBorders
 
@@ -118,10 +81,11 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
     let defaultValueExpiredFont = UIFont.boldSystemFont(ofSize: 20.0)
     @objc public var valueExpiredFont: UIFont?
 
-    @objc public var expiredText: String!
-    @objc public var disabledText: String!
-    @objc public var validText: String!
-    @objc public var noCoupons: String!
+    @objc public var expiredText = "nearit_ui_coupon_list_expired_text".nearUILocalized
+    @objc public var inactiveText = "nearit_ui_coupon_list_inactive_text".nearUILocalized
+    @objc public var validText = "nearit_ui_coupon_list_valid_text".nearUILocalized
+    @objc public var redeemedText = "nearit_ui_coupon_list_redeemed_text".nearUILocalized
+    @objc public var noCoupons = "nearit_ui_coupon_list_empty_list_text".nearUILocalized
 
     @objc public var couponViewControllerConfiguration: ((NITCouponViewController) -> Void)?
 
@@ -191,11 +155,6 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
         let bundle = Bundle.NITBundle(for: NITCouponListViewController.self)
         iconPlaceholder = UIImage(named: "couponPlaceholder", in: bundle, compatibleWith: nil)
         jaggedBackground = UIImage(named: "jaggedCouponBg", in: bundle, compatibleWith: nil)
-
-        expiredText = NSLocalizedString("Coupon list: expired coupon", tableName: nil, bundle: bundle, value: "Expired coupon", comment: "Coupon list: expired coupon")
-        disabledText = NSLocalizedString("Coupon list: inactive coupon", tableName: nil, bundle: bundle, value: "Inactive coupon", comment: "Coupon list: inactive coupon")
-        validText = NSLocalizedString("Coupon list: valid coupon", tableName: nil, bundle: bundle, value: "Valid coupon", comment: "Coupon list: valid coupon")
-        noCoupons = NSLocalizedString( "Coupon list: no coupons", tableName: nil, bundle: bundle, value: "No coupons available", comment: "Coupon list: no coupons")
     }
 
     override public func viewDidLoad() {
@@ -234,8 +193,7 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     wself.isLoading = false
                     let coupons = coupons ?? []
                     wself.coupons = coupons.filter { (coupon: NITCoupon) -> Bool in
-                        if wself.filterRedeemed == .hide && coupon.isRedeemed { return false }
-                        return wself.filterOption.filter(coupon.status)
+                        wself.itemCanBeShown(coupon)
                     }
                     if let coupons = wself.coupons {
                         if coupons.count == 0 {
@@ -256,6 +214,19 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
             DispatchQueue.main.async {
                 self?.refreshControl?.endRefreshing()
             }
+        }
+    }
+    
+    private func itemCanBeShown(_ item: NITCoupon) -> Bool {
+        switch item.status {
+        case .expired:
+            return includeExpiredCoupons
+        case .inactive:
+            return includeInactiveCoupons
+        case .redeemed:
+            return includeRedeemedCoupons
+        case .valid:
+            return includeValidCoupons
         }
     }
     
@@ -324,8 +295,8 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                 cell.icon.image = iconPlaceholder
 
                 switch coupon.status {
-                case .disabled:
-                    cell.status.text = disabledText
+                case .inactive:
+                    cell.status.text = inactiveText + coupon.redeemableFrom
                     cell.status.textColor = disabledColor
                     cell.status.font = getDisabledFont()
                     cell.name.font = getTitleDisabledFont()
@@ -342,6 +313,14 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     cell.value.textColor = valueValidColor
                 case .expired:
                     cell.status.text = expiredText
+                    cell.status.textColor = expiredColor
+                    cell.status.font = getExpiredFont()
+                    cell.name.font = getTitleExpiredFont()
+                    cell.name.textColor = titleExpiredColor
+                    cell.value.font = getValueExpiredFont()
+                    cell.value.textColor = valueExpiredColor
+                case .redeemed:
+                    cell.status.text = redeemedText
                     cell.status.textColor = expiredColor
                     cell.status.font = getExpiredFont()
                     cell.name.font = getTitleExpiredFont()

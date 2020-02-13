@@ -39,12 +39,12 @@ public class NITFeedbackViewController: NITBaseViewController {
         }
     }
 
-    @objc public var closeText: String!
-    @objc public var commentDescriptionText: String!
-    @objc public var sendText: String!
-    @objc public var errorText: String!
-    @objc public var retryText: String!
-    @objc public var okText: String!
+    @objc public var closeText = "nearit_ui_feedback_close_button".nearUILocalized
+    @objc public var commentDescriptionText = "nearit_ui_feedback_leave_a_comment".nearUILocalized
+    @objc public var sendText = "nearit_ui_feedback_send_button_default_text".nearUILocalized
+    @objc public var errorText = "nearit_ui_feedback_error_message".nearUILocalized
+    @objc public var retryText = "nearit_ui_feedback_send_button_retry".nearUILocalized
+    @objc public var okText: String = "nearit_ui_feedback_send_success_message".nearUILocalized
 
     @objc public var disappearTime: Double = 3.0 {
         didSet {
@@ -112,31 +112,6 @@ public class NITFeedbackViewController: NITBaseViewController {
         
         rateFullButton = UIImage(named: "star", in: bundle, compatibleWith: nil)
         rateEmptyButton = UIImage(named: "starEmpty", in: bundle, compatibleWith: nil)
-
-        closeText = NSLocalizedString("Feedback dialog: Close",
-                                      tableName: nil, bundle: bundle,
-                                      value: "Close",
-                                      comment: "Feedback dialog: Close")
-        commentDescriptionText = NSLocalizedString("Feedback dialog: Leave a comment (optional):",
-                                                   tableName: nil, bundle: bundle,
-                                                   value: "Leave a comment (optional):",
-                                                   comment: "Feedback dialog: Leave a comment (optional):")
-        sendText = NSLocalizedString("Feedback dialog: SEND",
-                                     tableName: nil, bundle: bundle,
-                                     value: "SEND",
-                                     comment: "Feedback dialog: SEND")
-        errorText = NSLocalizedString("Feedback dialog: oops, an error occured!",
-                                      tableName: nil, bundle: bundle,
-                                      value: "Oops, an error occured!",
-                                      comment: "Feedback dialog: oops, an error occured!")
-        retryText = NSLocalizedString("Feedback dialog: retry",
-                                      tableName: nil, bundle: bundle,
-                                      value: "Retry",
-                                      comment: "Feedback dialog: retry")
-        okText = NSLocalizedString("Feedback dialog: Thank you for your feedback.",
-                                   tableName: nil, bundle: bundle,
-                                   value: "Thank you for your feedback.",
-                                   comment: "Feedback dialog: Thank you for your feedback.")
     }
 
     override public func viewDidLoad() {
