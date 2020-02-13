@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name                  = 'NearUIBinding'
-s.version               = '2.12.4'
+s.version               = '2.12.5'
 s.summary               = 'nearit.com iOS UI Bindings'
 s.description           = 'nearit.com iOS UI Bindings for Swift and Objective-C'
 
