@@ -206,6 +206,18 @@ class ViewController: UIViewController {
         aViewController.show(navigationController: navigationController!)
     }
 
+    func createValidCoupon() -> NITCoupon {
+        let coupon = NITCoupon()
+        coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
+        coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
+        coupon.expiresAt = "3017-06-05T08:32:00.000Z"
+        let claim = NITClaim()
+        claim.serialNumber = "0123456789"
+        coupon.claims = [claim]
+        coupon.icon = NITImage()
+        return coupon
+    }
+    
     func createExpiredCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Description"
@@ -220,18 +232,6 @@ class ViewController: UIViewController {
         return coupon
     }
 
-    func createValidCoupon() -> NITCoupon {
-        let coupon = NITCoupon()
-        coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
-        coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
-        coupon.expiresAt = "3017-06-05T08:32:00.000Z"
-        let claim = NITClaim()
-        claim.serialNumber = "0123456789"
-        coupon.claims = [claim]
-        coupon.icon = NITImage()
-        return coupon
-    }
-
     func createInactiveCoupon() -> NITCoupon {
         let coupon = NITCoupon()
         coupon.couponDescription = "Description"
@@ -243,11 +243,25 @@ class ViewController: UIViewController {
         coupon.icon = NITImage()
         return coupon
     }
+    
+    func createRedeemedCoupon() -> NITCoupon {
+        let coupon = NITCoupon()
+        coupon.couponDescription = "Long coupon description, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna ali."
+        coupon.value = "Value qwertyuioplkjhgfdsazxcvbnmpoiuytrewqasdfghj!"
+        coupon.expiresAt = "3017-06-05T08:32:00.000Z"
+        let claim = NITClaim()
+        claim.serialNumber = "0123456789"
+        claim.redeemedAt = "2017-06-01T08:32:00.000Z"
+        coupon.claims = [claim]
+        coupon.icon = NITImage()
+        return coupon
+    }
 
     func pushCouponList(modal: Bool = false) {
         switch codeSegment.selectedSegmentIndex {
         case Code.swift.rawValue:
             let aViewController = NITCouponListViewController()
+            aViewController.includeRedeemedCoupons = true
             if modal {
                 aViewController.show()
                 aViewController.couponBackground = .normalBorders
@@ -264,7 +278,6 @@ class ViewController: UIViewController {
     func customPushCouponList() {
         let aViewController = NITCouponListViewController()
         aViewController.presentCoupon = .popover
-        aViewController.filterOption = .valid
         aViewController.valueFont = UIFont.boldSystemFont(ofSize: 30)
         aViewController.show()
     }

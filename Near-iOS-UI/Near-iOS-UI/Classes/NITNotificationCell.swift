@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import NearITSDK
 
 enum NITNotificationCellState: Int {
     case read
@@ -27,9 +28,17 @@ class NITNotificationCell: UITableViewCell {
     var messageColor = NITUIAppearance.sharedInstance.nearBlack()
     private var cardBackgroundReadColor = UIColor(red: 239.0/255.0, green: 239.0/255.0, blue: 239.0/255.0, alpha: 1.0)
     var shadowOpacity: Float = 0.15
+    var dateFormatter: DateFormatter = NITNotificationHistoryViewController.historyDateFormatter()
     var state: NITNotificationCellState = .unread {
         didSet {
             changeStateUI()
+        }
+    }
+    
+    var item: NITHistoryItem? {
+        didSet {
+            guard let item = item else { return }
+            bindTo(item)
         }
     }
 
@@ -45,13 +54,36 @@ class NITNotificationCell: UITableViewCell {
         
         messageLabel.textColor = messageColor
         dateLabel.textColor = dateColor
-        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func bindTo(_ item: NITHistoryItem) {
+        backgroundColor = .clear
+        let date = Date(timeIntervalSince1970: item.timestamp)
+        dateLabel.text = dateFormatter.string(from: date)
+        messageLabel.text = item.reactionBundle.notificationMessage
+        if let _ = item.reactionBundle as? NITSimpleNotification {
+            state = .notReadable
+        } else {
+            if item.read {
+                state = .read
+            } else {
+                state = .unread
+            }
+        }
+        setSeeMoreLabel(item)
+    }
+    
+    func setSeeMoreLabel(_ item: NITHistoryItem) {
+        switch item.reactionBundle {
+        case _ as NITContent:
+            moreLabel.text = "nearit_ui_history_content_button_label".nearUILocalized
+        case _ as NITFeedback:
+            moreLabel.text = "nearit_ui_history_feedback_button_label".nearUILocalized
+        case _ as NITCoupon:
+            moreLabel.text = "nearit_ui_history_coupon_button_label".nearUILocalized
+        default:
+            moreLabel.text = ""
+        }
     }
     
     private func getBoldFont(size: CGFloat) -> UIFont {

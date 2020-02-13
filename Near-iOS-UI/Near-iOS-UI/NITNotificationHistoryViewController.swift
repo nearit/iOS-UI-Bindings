@@ -34,7 +34,19 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     var items: [NITHistoryItem]?
     var dateFormatter: DateFormatter = NITNotificationHistoryViewController.historyDateFormatter()
     
-    @objc public var noContentView: UIView?
+    @objc public var noContentView: UIView = {
+        let label = UILabel()
+        label.text = "nearit_ui_history_empty_list_text".nearUILocalized
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        if let boldItalicName = NITUIAppearance.sharedInstance.boldItalicFontName {
+            label.font = UIFont(name: boldItalicName, size: 18)
+        } else {
+            label.font = UIFont.italicSystemFont(ofSize: 18)
+        }
+        label.textColor = UIColor.gray202
+        return label
+    }()
     @objc public var unreadColor: UIColor?
     public weak var delegate: NITNotificationHistoryViewControllerDelegate?
     
@@ -46,7 +58,7 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
         self.nearManager = manager
         let bundle = Bundle.NITBundle(for: NITNotificationHistoryViewController.self)
         super.init(nibName: "NITNotificationHistoryViewController", bundle: bundle)
-        //setupDefaultElements()
+        // setupDefaultElements()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -192,18 +204,16 @@ public class NITNotificationHistoryViewController: NITBaseViewController {
     }
     
     func showNoContentViewIfAvailable(_ show: Bool = true) {
-        if let noContentView = noContentView {
-            if show && noContentView.superview == nil {
-                noContentView.translatesAutoresizingMaskIntoConstraints = false
-                noContentView.isUserInteractionEnabled = false
-                view.insertSubview(noContentView, at: 0)
-                noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-                noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-                noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-                noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            } else if !show {
-                noContentView.removeFromSuperview()
-            }
+        if show && noContentView.superview == nil {
+            noContentView.translatesAutoresizingMaskIntoConstraints = false
+            noContentView.isUserInteractionEnabled = false
+            view.insertSubview(noContentView, at: 0)
+            noContentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            noContentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+            noContentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+            noContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        } else if !show {
+            noContentView.removeFromSuperview()
         }
     }
     
@@ -239,26 +249,13 @@ extension NITNotificationHistoryViewController: UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "history", for: indexPath)
         
         if let cell = cell as? NITNotificationCell {
-            cell.backgroundColor = .clear
             cell.selectedBackgroundView = selectedCellBackground
             
             if let item = items?[indexPath.section] {
-                let date = Date(timeIntervalSince1970: item.timestamp)
-                cell.dateLabel.text = dateFormatter.string(from: date)
-                cell.messageLabel.text = item.reactionBundle.notificationMessage
                 if let color = unreadColor {
                     cell.unreadColor = color
                 }
-                
-                if let _ = item.reactionBundle as? NITSimpleNotification {
-                    cell.state = .notReadable
-                } else {
-                    if item.read {
-                        cell.state = .read
-                    } else {
-                        cell.state = .unread
-                    }
-                }
+                cell.item = item
             }
         }
         

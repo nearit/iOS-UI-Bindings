@@ -1,0 +1,9 @@
+/* 
+  NearUIBinding.strings
+  UI-Swift-Sample
+
+  Created by Cattaneo Stefano on 11/02/2020.
+  Copyright © 2020 Near. All rights reserved.
+*/
+
+// "nearit_ui_coupon_expired_text" = "This will override the library defualt";

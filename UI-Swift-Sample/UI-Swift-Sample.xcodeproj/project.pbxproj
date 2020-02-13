@@ -21,6 +21,7 @@
 		8A4CA2891FA94E1D0043C4C3 /* coupon.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA2881FA94E1D0043C4C3 /* coupon.json */; };
 		8A4CA28C1FA951E30043C4C3 /* contents1.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A4CA28B1FA951E30043C4C3 /* contents1.json */; };
 		8AB187271FA96809009E6959 /* response_content_reaction.json in Resources */ = {isa = PBXBuildFile; fileRef = 8AB187261FA96809009E6959 /* response_content_reaction.json */; };
+		D774892423F2D26200A13F2A /* NearUIBinding.strings in Resources */ = {isa = PBXBuildFile; fileRef = D774892323F2D26200A13F2A /* NearUIBinding.strings */; };
 		D7B0C7D620EB67430076FA92 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B0C7D520EB67430076FA92 /* Raleway-Regular.ttf */; };
 		D7B0C7DA20EB7AB90076FA92 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B0C7D920EB7AB90076FA92 /* Raleway-Bold.ttf */; };
 		D7B0C7DC20EB80140076FA92 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B0C7DB20EB80140076FA92 /* Raleway-Medium.ttf */; };
@@ -69,6 +70,7 @@
 		9C17E159099336060C530DCA /* Pods_NearUIBinding_UI_Swift_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearUIBinding_UI_Swift_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDB9331F15375A9C610188E /* Pods-NearUIBinding-UI-Swift-Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearUIBinding-UI-Swift-Sample.release.xcconfig"; path = "../Pods/Target Support Files/Pods-NearUIBinding-UI-Swift-Sample/Pods-NearUIBinding-UI-Swift-Sample.release.xcconfig"; sourceTree = "<group>"; };
 		CE0D721A108731BFA5645DC6 /* Pods_UI_Swift_Sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UI_Swift_Sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D774892323F2D26200A13F2A /* NearUIBinding.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NearUIBinding.strings; sourceTree = "<group>"; };
 		D7B0C7D520EB67430076FA92 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		D7B0C7D920EB7AB90076FA92 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		D7B0C7DB20EB80140076FA92 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				26CAC3281F56D220009DDDF2 /* LaunchScreen.storyboard */,
 				26CAC32B1F56D220009DDDF2 /* Info.plist */,
 				8A4CA28A1FA951BC0043C4C3 /* Fixtures */,
+				D774892323F2D26200A13F2A /* NearUIBinding.strings */,
 			);
 			path = "UI-Swift-Sample";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				8AB187271FA96809009E6959 /* response_content_reaction.json in Resources */,
 				8A4CA28C1FA951E30043C4C3 /* contents1.json in Resources */,
 				D7B0C7D620EB67430076FA92 /* Raleway-Regular.ttf in Resources */,
+				D774892423F2D26200A13F2A /* NearUIBinding.strings in Resources */,
 				26CAC3271F56D220009DDDF2 /* Assets.xcassets in Resources */,
 				26461880205AA77C0017F3D4 /* inbox_pushes.json in Resources */,
 				D7B0C7DC20EB80140076FA92 /* Raleway-Medium.ttf in Resources */,
