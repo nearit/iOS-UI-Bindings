@@ -261,7 +261,7 @@ public class NITContentViewController: NITBaseViewController {
             return
         }
         
-        if openLinksInWebView {
+        if openLinksInWebView && link.isWebSupported {
             let svc = SFSafariViewController(url: link, entersReaderIfAvailable: false)
             if #available(iOS 10.0, *) {
                 if let barColor = self.webViewBarColor {
@@ -289,5 +289,12 @@ extension NITContentViewController: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange) -> Bool {
         self.openUrl(url: url)
         return false
+    }
+}
+
+extension URL {
+    var isWebSupported: Bool {
+        return absoluteString.lowercased().hasPrefix("http://") ||
+            absoluteString.lowercased().hasPrefix("https://")
     }
 }
