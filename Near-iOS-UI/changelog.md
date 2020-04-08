@@ -1,3 +1,17 @@
+## 2.12.5 (2020-03-03)
+
+### API Breaking Changes
+
+* None.
+
+### Enhancements
+
+* None.
+
+### Bugfixes
+
+* Even with `openInWebView` options on, unsupported links, are opened normally, to avoid a crash.
+
 ## 2.12.4 (2020-01-07)
 
 ### API Breaking Changes
