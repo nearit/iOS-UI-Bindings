@@ -194,7 +194,9 @@ public class NITCouponListViewController: NITBaseViewController, UITableViewData
                     let coupons = coupons ?? []
                     wself.coupons = coupons.filter { (coupon: NITCoupon) -> Bool in
                         wself.itemCanBeShown(coupon)
-                    }
+                    }.sorted(by: { (one, other) -> Bool in
+                        one.claimed > other.claimed
+                    })
                     if let coupons = wself.coupons {
                         if coupons.count == 0 {
                             wself.showNoContentViewIfAvailable()
